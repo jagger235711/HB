@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HREngine.Bots
+{
+	//随从 中立 费用：3 攻击力：2 生命值：3
+	//Nostalgic Initiate
+	//恋旧的新生
+	//<b>Miniaturize</b>The first time you cast a spell, gain +2/+2.
+	//<b>微缩</b>在你施放本随从登场后的第一个法术时获得+2/+2。
+	class Sim_TOY_340 : SimTemplate
+	{
+		
+		
+	}
+}

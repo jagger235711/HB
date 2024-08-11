@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HREngine.Bots
+{
+	//随从 猎人 费用：1 攻击力：3 生命值：3
+	//Catch of the Day
+	//当日渔获
+	//[x]<b>Rush</b><b>Battlecry:</b> Summon a 2/1Worm for your opponent.
+	//<b>突袭</b>。<b>战吼：</b>为你的对手召唤一只2/1的鱼虫。
+	class Sim_VAC_412 : SimTemplate
+	{
+		
+		
+	}
+}
