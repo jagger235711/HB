@@ -12,20 +12,6 @@ namespace HREngine.Bots
 	class Sim_VAN_NEW1_022 : SimTemplate
 	{
 		
-		        // 在牌的法力值被计算时调用这个方法
-        public override void getCostModifier(Playfield p, Handmanager.Handcard hc, Minion target, int choice)
-        {
-            if (p.ownWeapon.Angr > 0)
-            {
-                // 计算武器攻击力带来的减费效果
-                hc.manacost -= p.ownWeapon.Angr;
-
-                // 确保卡牌的法力值消耗不会低于0
-                if (hc.manacost < 0)
-                {
-                    hc.manacost = 0;
-                }
-            }
-        }
+		
 	}
 }
