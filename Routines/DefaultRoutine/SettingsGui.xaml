@@ -65,25 +65,35 @@
 						<ColumnDefinition Width="Auto" />
 					</Grid.ColumnDefinitions>
 
-					<TextBox Name="Statement" Width="600"  Grid.Row="2" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" 
-					Text="声明： 使用炉石兄弟辅助进行游戏的行为违反了暴雪用户协议 1.C.ii.2 使用机器人程序软件（BOT）： 任何未经暴雪和/或运营方明确授权，允许自动控制游戏，服务器和/或任何组件或其功能的的代码或/和软件，如自动操控游戏中的角色；因此根据协议，暴雪和/或运营方可以暂停、撤销或终止您使用本平台或本平台的部分功能或组成部分的许可。 &#13;&#10;简单来说使用炉石兄弟操控角色出牌的行为违反了暴雪用户条例，因此会被封号。&#13;&#10;策略的开源分享仅供学习交流使用，请勿主动向外传播。&#13;&#10;分享策略是为了收集伏笔数据，优化策略以满足个人兴趣爱好，我承诺没有在任何场合贩卖炉石兄弟主程序或者策略，并且已经在捐赠声明了捐赠不会获得额外的任何服务，所有提供的资源都是免费的。之后会删除之前分享的主程序并不再主动进行主程序的分享。如果该策略的开源分享行为损害了暴雪/运营方的利益，请联系我停止更新/删库，我会全力配合。 " MaxWidth="600" TextWrapping="Wrap"/>
+                    <TextBox Name="Description" TextWrapping="Wrap" Width="500"  Grid.Row="0" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
+AI值相关说明和卡组代码请滑动到下面的文本框中查看 &#13;&#10;
+本策略完全免费！如果你是花钱购买的，说明你被坑了！！&#13;&#10;
+本策略基于李文浩大佬，由酸小明修改，随缘更新。&#13;&#10;
+卡组代码在下面的文本框里"/>
 
-                    <TextBox Name="Description" Width="600"  Grid.Row="0" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" 
-					Text="AI值相关说明和卡组代码请滑动到下面的文本框中查看 &#13;&#10;本策略完全免费！如果你是花钱购买的，说明你被坑了！！&#13;&#10;本策略基于李文浩大佬，由酸小明修改，随缘更新。&#13;&#10;卡组代码在下面的文本框里 &#13;&#10;" MaxWidth="600" TextWrapping="Wrap"/>
+                    <TextBox Name="deckCode" TextWrapping="Wrap" Width="500"  Grid.Row="1" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
+参考卡组代码：&#xA;
+没有的自己网上找吧~&#xA;&#xA;
+[狂野]锁喉剑鱼贼：&#xA;AAEBAaIHApG8AsekBg77D+XRAr+uA+mwA6rLA470A4rJBJrbBNejBb/3BdaeBvylBvyoBsn0BgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
+[狂野]暗龙牧：&#xA;AAEBAcz8BQSRvAK79wPHpAaiswYNoQSRD+4RmLYD184Do/cDrfcDssEE3aQFlaoFxpwG6qgG3PMGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=&#xA;&#xA;
+[狂野]偶数萨：&#xA;AAEBAaoIBjPN9AKdowOywQSx2QTHpAYMvgbWD9qlA/q0BIbUBKrZBL3lBPTyBaL6BcOPBpyeBsGeBgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
+[狂野]奥秘法：&#xA;AAEBAf0EAA/3Dde2Auu6Aoe9Ar6kA/SrA5HhA+efBMagBKPkBP7sBLztBP+SBduhBejoBQAA&#xA;&#xA;
+[标准]酸快攻德：&#xA;AAECAbSKAwAPrewDs+wD7PUD9PYDrIAEsIAEh58E4aQEiLIErsAEqM4EgdQEntQE1t4E3e0EAA==&#xA;&#xA;
+[标准]元素法：&#xA;AAECAf0EArSnBr2+Bg6WtwXyxAWx/gXf/gXUlQbxmwaYnQayngbTngbBnwbMogbipgaozgbt5gYAAA==&#xA;&#xA;
+[通用]酸鱼人萨：&#xA;AAECAc2+BQSo7gPblASX1ATy3QQNk+gDlOgDs+gD3ewDlfADtZ8EoqAEq6AE1bIEssEEws4Exc4E7tMEAA=="/>
 
-                    <TextBox Name="deckCode" Width="1000"  Grid.Row="1" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" 
-                    Text="参考卡组代码：&#xA;没有的自己网上找吧~&#xA;&#xA;
-狂野锁喉剑鱼贼：&#xA;AAEBAaIHApG8AsekBg77D+XRAr+uA+mwA6rLA470A4rJBJrbBNejBb/3BdaeBvylBvyoBsn0BgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
-狂野暗龙牧：&#xA;AAEBAcz8BQSRvAK79wPHpAaiswYNoQSRD+4RmLYD184Do/cDrfcDssEE3aQFlaoFxpwG6qgG3PMGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=&#xA;&#xA;
-狂野偶数萨：&#xA;AAEBAaoIBjPN9AKdowOywQSx2QTHpAYMvgbWD9qlA/q0BIbUBKrZBL3lBPTyBaL6BcOPBpyeBsGeBgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
-奥秘法：&#xA;AAEBAf0EAA/3Dde2Auu6Aoe9Ar6kA/SrA5HhA+efBMagBKPkBP7sBLztBP+SBduhBejoBQAA&#xA;&#xA;
-快攻德：&#xA;AAECAbSKAwAPrewDs+wD7PUD9PYDrIAEsIAEh58E4aQEiLIErsAEqM4EgdQEntQE1t4E3e0EAA==&#xA;&#xA;
-鱼人萨：&#xA;AAECAc2+BQSo7gPblASX1ATy3QQNk+gDlOgDs+gD3ewDlfADtZ8EoqAEq6AE1bIEssEEws4Exc4E7tMEAA==&#xA;&#xA;
-"/>
-                    
-                    <TextBox Name="AIDescription" Width="600"  Grid.Row="3" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" 
-					Text="最大计算量:设置的越高，策略的最大允许的计算量就越大，计算超过这个数量的场面时会直接退出计算，一般视机器性能设置到确保操作能打完的程度就可以了。默认是3000，最低不会低于 100。 &#13;&#10; 最大考虑步数： AI计算考虑的最大步数，默认为12，如果随机性高的话建议可以适当调低以提高性能，因为每次随机效果发生时兄弟检测到场面与计算不一致都会重新计算. &#13;&#10; 每步最大保留场面数：每一步只保留最优的场面数量继续进行计算，默认为60，最低不会低于1。因为兄弟在每一步的计算时都只会取场面最好的那么几个场面保留到下一步继续计算，因此如果设置成 1 就是每步只考虑当前最优打法；设置的很大就是不进行剪枝操作，保留所有场面来寻找策略认为的理论最优解。 &#13;&#10;打脸奖励：设置的越高随从和英雄越倾向于打脸，负数则更倾向于解场（设置绝对值过大的负数可能导致不攻击），如果已经在使用完善的策略和卡组，强烈不推荐手动设置该参数，设置会造成打法上的大幅差异。 &#13;&#10; 我自己进行场面模拟的时候就是使用默认参数进行模拟的，因此设置低于这个数值的伏笔不用反馈给我。
-					" MaxWidth="600" TextWrapping="Wrap"/>
+					<TextBox Name="Statement" TextWrapping="Wrap" Width="500"  Grid.Row="2" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
+声明： 使用炉石兄弟辅助进行游戏的行为违反了暴雪用户协议 1.C.ii.2 使用机器人程序软件（BOT）： 任何未经暴雪和/或运营方明确授权，允许自动控制游戏，服务器和/或任何组件或其功能的的代码或/和软件，如自动操控游戏中的角色；因此根据协议，暴雪和/或运营方可以暂停、撤销或终止您使用本平台或本平台的部分功能或组成部分的许可。 &#13;&#10;
+简单来说使用炉石兄弟操控角色出牌的行为违反了暴雪用户条例，因此会被封号。&#13;&#10;
+策略的开源分享仅供学习交流使用，请勿主动向外传播。&#13;&#10;
+分享策略是为了收集伏笔数据，优化策略以满足个人兴趣爱好，我承诺没有在任何场合贩卖炉石兄弟主程序或者策略，并且已经在捐赠声明了捐赠不会获得额外的任何服务，所有提供的资源都是免费的。之后会删除之前分享的主程序并不再主动进行主程序的分享。如果该策略的开源分享行为损害了暴雪/运营方的利益，请联系我停止更新/删库，我会全力配合。"/>
+
+                    <TextBox Name="AIDescription" TextWrapping="Wrap" Width="500"  Grid.Row="3" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
+最大计算量:设置的越高，策略的最大允许的计算量就越大，计算超过这个数量的场面时会直接退出计算，一般视机器性能设置到确保操作能打完的程度就可以了。默认是3000，最低不会低于 100。 &#13;&#10;
+最大考虑步数： AI计算考虑的最大步数，默认为12，如果随机性高的话建议可以适当调低以提高性能，因为每次随机效果发生时兄弟检测到场面与计算不一致都会重新计算. &#13;&#10;
+每步最大保留场面数：每一步只保留最优的场面数量继续进行计算，默认为60，最低不会低于1。因为兄弟在每一步的计算时都只会取场面最好的那么几个场面保留到下一步继续计算，因此如果设置成 1 就是每步只考虑当前最优打法；设置的很大就是不进行剪枝操作，保留所有场面来寻找策略认为的理论最优解。 &#13;&#10;
+打脸奖励：设置的越高随从和英雄越倾向于打脸，负数则更倾向于解场（设置绝对值过大的负数可能导致不攻击），如果已经在使用完善的策略和卡组，强烈不推荐手动设置该参数，设置会造成打法上的大幅差异。 &#13;&#10;
+我自己进行场面模拟的时候就是使用默认参数进行模拟的，因此设置低于这个数值的伏笔不用反馈给我。"/>
 
 				</Grid>
 
