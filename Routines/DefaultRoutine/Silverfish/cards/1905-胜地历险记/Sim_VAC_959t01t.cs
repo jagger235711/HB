@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//直到你的回合结束，夺取一个敌方随从的控制权。
 	class Sim_VAC_959t01t : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            if (target != null && !target.own)
+            {
+                // 夺取敌方随从的控制权，直到回合结束
+                p.minionGetControlled(target, ownplay, true);
+            }
+        }
+
+    }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HREngine.Bots
@@ -11,7 +12,13 @@ namespace HREngine.Bots
 	//使你的所有其他随从获得+2/+2。
 	class Sim_TTN_858t2 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.ownMinions.ForEach(m =>
+            {
+                m.Angr += 2;
+                m.Hp += 2;
+            });
+        }
+    }
 }

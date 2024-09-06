@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//随机将五张其他职业的牌置入你的手牌。这些牌为<b>临时</b>牌。
 	class Sim_MIS_708 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 抽取5张随机的临时牌
+            for (int i = 0; i < 5; i++)
+            {
+                p.drawTemporaryCard(CardDB.cardIDEnum.None, ownplay); // 使用drawTemporaryCard方法抽取临时牌
+            }
+        }
+    }
 }

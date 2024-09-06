@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//<b>战吼：</b>获取一张法力值消耗为（2）的奶酪。奶酪可以召唤三个法力值消耗为（1）的随从，且每回合都会升级。
 	class Sim_VAC_955 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 获取一张法力值消耗为2的奶酪卡牌 (假设奶酪卡牌的ID为 VAC_955t)
+            p.drawACard(CardDB.cardIDEnum.VAC_955t, own.own, true);
+        }
+
+    }
 }

@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>，<b>扰魔</b><b>战吼：</b>如果你有十个法力水晶，获得+7/+7。
 	class Sim_MIS_712 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 检查是否有十个法力水晶
+            if (p.ownMaxMana >= 10)
+            {
+                // 如果有十个法力水晶，随从获得+7/+7
+                p.minionGetBuffed(own, 7, 7);
+            }
+        }
+    }
 }

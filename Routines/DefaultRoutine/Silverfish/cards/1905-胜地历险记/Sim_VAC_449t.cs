@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽两张牌。对敌方英雄造成6点伤害。
 	class Sim_VAC_449t : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 抽两张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+
+            // 对敌方英雄造成6点伤害
+            p.minionGetDamageOrHeal(own.own ? p.enemyHero : p.ownHero, 6);
+        }
+    }
 }

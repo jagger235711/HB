@@ -11,7 +11,24 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>亡语：</b>所有其他随从陷入沉睡。
 	class Sim_VAC_406 : SimTemplate
 	{
-		
-		
-	}
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 使所有其他随从陷入沉睡
+            foreach (Minion minion in p.ownMinions)
+            {
+                if (minion != m)
+                {
+                    minion.dormant = 1; // 设置为1回合的沉睡状态
+                }
+            }
+            foreach (Minion minion in p.enemyMinions)
+            {
+                if (minion != m)
+                {
+                    minion.dormant = 1; // 设置为1回合的沉睡状态
+                }
+            }
+        }
+
+    }
 }

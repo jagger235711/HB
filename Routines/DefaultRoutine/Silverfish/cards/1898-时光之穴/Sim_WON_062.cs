@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对每个英雄造成3点伤害。
 	class Sim_WON_062 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            int damage = 3;
+
+            // 对己方英雄造成3点伤害
+            p.minionGetDamageOrHeal(p.ownHero, damage);
+
+            // 对敌方英雄造成3点伤害，并更新本回合对敌方英雄造成的伤害
+            p.minionGetDamageOrHeal(p.enemyHero, damage);
+        }
+    }
 }

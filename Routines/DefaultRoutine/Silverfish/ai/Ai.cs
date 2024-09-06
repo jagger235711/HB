@@ -121,10 +121,14 @@ namespace HREngine.Bots
             this.mainTurnSimulator.setPlayAround(settings.playaround, settings.playaroundprob, settings.playaroundprob2);
         }
 
+        /// <summary>
+        /// test，调试的时候为true,不过发现下面没用:(
+        /// isLethalCheck，斩杀判定，当为true时，程序接下来只会模拟一些有可能造成伤害的操作，来判定是否会斩杀，如果不能造成斩杀，
+        /// 则再次进行isLethalCheck = false的运算。如果看到兄弟错斩的情况，就可以从这里入手来找解决的办法，具体解决办法在PenalityManager.cs处说明
+        /// </summary>
+        /// <param name="test"></param>
+        /// <param name="isLethalCheck"></param>
         private void doallmoves(bool test, bool isLethalCheck)
-        //test，调试的时候为true,不过发现下面没用:(
-        //isLethalCheck，斩杀判定，当为true时，程序接下来只会模拟一些有可能造成伤害的操作，来判定是否会斩杀，如果不能造成斩杀，
-        //则再次进行isLethalCheck = false的运算。如果看到兄弟错斩的情况，就可以从这里入手来找解决的办法，具体解决办法在PenalityManager.cs处说明
         {
             if (isLethalCheck)
                 help.logg("斩杀检验开始:");
@@ -138,7 +142,6 @@ namespace HREngine.Bots
                 ets.setMaxwide(true);
             }
 
-            //if (isLethalCheck) this.posmoves[0].enemySecretList.Clear();
             this.posmoves[0].isLethalCheck = isLethalCheck;
             this.mainTurnSimulator.doallmoves(this.posmoves[0]); //核心计算
 
@@ -159,17 +162,18 @@ namespace HREngine.Bots
             }
             help.logg("value of best board " + bestval);
 
-            this.bestActions.Clear();  // 初始化，清楚上次回合的最优操作  这是List<Action>
+            this.bestActions.Clear();  // 初始化，清除上次回合的最优操作  这是List<Action>
             this.bestmove = null;
 
             ActionNormalizer an = new ActionNormalizer(); //对操作重排使得其先打出AOE伤害，在_setting.txt中设定，默认关闭，实际使用效果并不好
-            //an.checkLostActions(bestplay, isLethalCheck);
             if (settings.adjustActions > 0) an.adjustActions(bestplay, isLethalCheck);
+            Helpfunctions.Instance.logg("bestplay.playactions ################################# START");
             foreach (Action a in bestplay.playactions)
             {
-                this.bestActions.Add(new Action(a));  
+                this.bestActions.Add(new Action(a));
                 a.print();
             }
+            Helpfunctions.Instance.logg("bestplay.playactions ################################# END");
 
             if (this.bestActions.Count >= 1)
             {
@@ -199,7 +203,6 @@ namespace HREngine.Bots
         public void doNextCalcedMove()
         {
             help.logg("noRecalcNeeded!!!-----------------------------------");
-            //this.bestboard.printActions();
 
             this.bestmove = null;
             if (this.bestActions.Count >= 1)
@@ -250,10 +253,6 @@ namespace HREngine.Bots
 
         public void dosomethingclever(Behavior bbase)
         {
-            //return;
-            //turncheck
-            //help.moveMouse(950,750);
-            //help.Screenshot();
             this.botBase = bbase;
             hp.updatePositions();
 
@@ -288,10 +287,6 @@ namespace HREngine.Bots
 
                 }
             }
-
-
-            //help.logging(true);
-
         }
         
 

@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//在你的回合结束时，召唤两个3/2的小鬼。
 	class Sim_TTN_960t : SimTemplate
 	{
-		
-		
-	}
+        CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_960t6);
+        public override void onTurnEndsTrigger(Playfield p, Minion triggerEffectMinion, bool turnEndOfOwner)
+        {
+            p.callKid(kid, p.ownMinions.Count, true, false);
+            p.callKid(kid, p.ownMinions.Count, true, false);
+        }
+    }
 }

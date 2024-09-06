@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>微型</b><b>嘲讽</b>。<b>战吼：</b>将一个随从的攻击力和生命值变为与本随从相同。
 	class Sim_TOY_813t : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 执行战吼效果，将目标随从的攻击力和生命值设置为与本随从相同
+            if (target != null)
+            {
+                p.minionSetAngrToX(target, own.Angr);
+                p.minionSetLifetoX(target, own.Hp);
+            }
+        }
+
+    }
 }

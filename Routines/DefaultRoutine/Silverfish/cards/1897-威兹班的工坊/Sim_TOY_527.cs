@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//使一个友方随从获得“<b>亡语：</b>召唤本随从的两个<b>休眠</b>2回合的复制。”
 	class Sim_TOY_527 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+        }
+    }
 }

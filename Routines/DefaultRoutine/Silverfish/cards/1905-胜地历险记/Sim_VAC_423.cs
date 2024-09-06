@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>战吼：</b>将你牌库顶的一张牌的法力值消耗变为（1）点。
 	class Sim_VAC_423 : SimTemplate
 	{
-		
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+
+		}
 	}
 }

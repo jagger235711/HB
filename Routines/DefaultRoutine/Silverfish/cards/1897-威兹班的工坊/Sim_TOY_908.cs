@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>亡语：</b>召唤两个1/1的砰砰机器人。<i>警告：该机器人随时可能爆炸。</i>
 	class Sim_TOY_908 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 召唤两个1/1的砰砰机器人
+            for (int i = 0; i < 2; i++)
+            {
+                p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.GVG_110t), m.zonepos, m.own);
+            }
+        }
+
+    }
 }

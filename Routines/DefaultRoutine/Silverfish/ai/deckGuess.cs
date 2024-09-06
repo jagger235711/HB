@@ -13,154 +13,49 @@ namespace HREngine.Bots
         /// </summary>
         public static Dictionary<string, string> deckDatabase = new Dictionary<string, string>()
         {
-            
-            //  2021-09 标准天梯构筑
-            // 萨满
-            {"AAECAaoIAA/buAOTuQOYuQOn3gOo3gOq3gOM4QPg7APh7AOt7gPj7gOMnwSNnwT5nwT+nwQA", "暴风城元素打脸萨" },
-            {"AAECAaoIAtb1A4CgBA7buAOq3gOr3gOM4QPg7APh7AOt7gOv7gPj7gPA9gPB9gOMnwT5nwTjoAQA", "暴风城元素萨" },
-            {"AAECAaoIApzOA8L2Aw7buAPhzAPNzgPw1AOJ5AOK5APq5wP67APj7gPB9gPk9gPwhQT5nwT6nwQA", "暴风城FIVEKSRICK任务萨" },
-            {"AAECAaoIBJzOA6jeA/rsA8L2Aw3buAOTuQPhzAP+0QPw1AOq3gOK5APq5wPj7gPB9gONnwT5nwT+nwQA ", "任务打脸萨" },
-            // 术士
-            {"AAECAf0GApXNA4T7Aw7LuQObzQPXzgPB0QPM0gOT3gO04QOT5AOU7gOI7wP9+gOD+wOEoATnoAQA", "暴风城任务动物园" },
-            {"AAECAf0GCufwA9b5A9f5A6iKBLaKBIWgBJigBKOgBKmgBKqgBArDzAOO5wPThQSsnwSEoASPoAThoATnoATooATpoAQA", "暴风城大王术" },
-            {"AAECAf0GApXNA4T7Aw61uQO2uQPLuQPXzgPB0QOT3gOV3gOT5AOI7wOK7wP9+gOB+wOD+wOEoAQA", "暴风城任务术" },
-            {"AAECAf0GApTuA4T7Aw7LuQOVzQObzQPXzgPB0QPM0gOT3gO04QOT5AOI7wP9+gOD+wOEoATnoAQA", "暴风城任务黑眼园" },
-            {"AAECAf0GBPLtA8f5A4T7A4f7Aw3XzgPB0QOL1QOT5APY7QPw7QPx7QOI7wPA+QPG+QOD+wOxnwTnoAQA ", "巨人任务术" },
-            {"AAECAf0GCIT7A83SA4jvA/LtA/jjA8D5A4L7A7W5AwvXzgPr7QOS5AOxnwSD+wObzQPnoAST5APw7QPY7QPx7QMA ", "任务术" },
-            // 法师
-            {"AAECAf0EAuDMA+j3Aw7BuAOBvwPHzgPNzgP30QPU6gPQ7APR7AOn9wOu9wOy9wP8ngT9ngTonwQA", "暴风城任务法" },
-            {"AAECAf0EApPhA/6eBA7BuAOMuQOBvwPgzAPHzgPNzgOU0QP30QP73QPr3gPQ7APR7AP8ngT9ngQA", "暴风城法术法" },
-            {"AAECAf0EAA/3uAOVzQP43QP83QOM4QPS7AOt7gO/+QPH+QPK+QPO+QPQ+QP0/APVoATaoAQA", "暴风城谢幕法" },
-            {"AAECAf0EArXJA+j3Aw7BuAPHzgPNzgP30QPU6gPQ7APR7AOn9wOu9wOy9wP0/AP8ngT9ngTonwQA ", "玛胖任务法" },
-            // 战士
-            {"AAECAQcEwd4DgeQDmPYD1vkDDeLMA+PMA/fUA7XeA/7nA9XxA5X2A5b2A5f2A8/7A6aKBK2gBK+gBAA=", "暴风城海盗战" },
-            {"AAECAQcCle0DmPYDDuPMA4rQA/fUA7XeA4HkA/7nA9XxA5X2A5b2A5f2A8/7A6aKBK2gBK+gBAA=", "暴风城海盗战" },
-            {"AAECAQcCmPYDsIoEDry5A4vQA/fUA7XeA/7nA5LoA47tA5TtA5X2A5b2A5f2A8/7A6aKBK2gBAA=", "暴风城海盗战" },
-            {"AAECAQcEwN4Dle0DqooEsIoEDby5A+LMA93NA6fOA7PeA7XeA7reA8HeA8TeA/foA5jtA4j0A5X2AwA=", "暴风城健身战" },
-            {"AAECAZfDAwr5wgO1yQOT0AO23gOq7gOP7wOU7wOY9gPY+QOmigQKuLkDtd4Dj+0D1fEDlfYDlvYDl/YDz/sD+IAEiKAEAA==", "防盗战" },
-            {"AAECAQcK3r4DwN4Dwd4D+OgD1fED2fkDz/sDqIoEqooE1qAECuLMA93NA7XeA7reA77eA8TeA/TfA8fhA5jtA5X2AwA=", "马戏团瓦王战" },
-
-            // 牧师
-            {"AAECAa0GBOfwA7v3A9D5A62KBA2wugPpugObzQPXzgP7zgO70QOL1QO04QOh6AOI9wOj9wOt9wO9nwQA", "暴风城快攻暗牧" },
-            {"AAECAa0GBPvRA+fwA7v3A62KBA2wugObzQPXzgO70QOL1QPK4wOh6AOK9AOI9wOj9wOt9wO9nwTvnwQA", "暴风城暗牧" },
-            {"AAECAa0GBPvRA/zoA+fwA7v3Aw2wugPpugPevgObzQPXzgO70QOL1QPK4wOK9AOj9wOt9wOtigTvnwQA ", "卡扎暗牧" },
-            {"AAECAa0GBOfRA/vRA+fwA7v3Aw2wugPevgObzQPXzgO70QPP0QOL1QPK4wOK9AOj9wOt9wPvnwTboAQA ", "主任暗牧" },
-            {"AAECAa0GDMi+A9fOA/vRA53YA5vrA9TtA932A4b3A4j3A9D5A7WKBPCfBAmTugPezAPi3gP73wP44wOZ6wOe6wPz7gOH9wMA ", "控制牧" },
-            {"AAECAa0GBsi+A86+A/vRA6bvA+fwA7v3AwzXzgPi3gP44wOW6AOb6wP08QOI9wOj9wOt9wPJ+QOtigS+nwQA ", "控制暗牧" },
-            // 猎人
-            {"AAECAR8E4c4Dj+MD5e8D5/ADDdzMA6LOA4LQA7nSA4biA8rjA9zqA5/sA/DsA9vtA/f4A6mfBLugBAA=", "暴风城enderT7猎" },
-            {"AAECAR8C5/ADv6AEDqK5A/+6A9zMA6LOA4LQA7nSA4vVA7ThA4biA9zqA9vtA/f4A6mfBLugBAA=", "暴风城T7猎" },
-            {"AAECAR8G5NQDj+MDj+QD5e8D/fgDl6AEDPvOA7nQA/7RA43kA5boA9zqA9vtA/f4A5T8A6mfBKqfBLugBAA=", "暴风城任务猎" },
-            {"AAECAR8G5NQDj+MD5e8D/fgDlPwDl6AEDLnQA/7RA43kA5boA9zqA9vtA83yA/f4A6mfBKqfBOOfBLugBAA=", "任务猎" },
-            // 骑士
-            {"AAECAZ8FCPy4A/voA+PrA5HsA6L4A9j5A9n5A6qKBAvKwQOO1APM6wOH9AOI9APw9gPz9gON+AOq+APD+QPJoAQA", "暴风城圣盾骑" },
-            {"AAECAZ8FAvvoA5HsAw7KwQO/0QPK0QOD3gOF3gPM6wPO6wPP6wPj6wPb7gOI9APw9gOVoATJoAQA", "暴风城铭枫奥秘骑" },
-            {"AAECAZ8FCvy4A5XkA/voA5HsA6L4A6r4A8f5A9n5A6iKBKqKBArKwQPR0QPM6wPj6wOH9AOI9APw9gPz9gOVoATJoAQA", "暴风城驴哥污手骑" },
-            {"AAECAZ3DAwr8uAO/0QOF3gP76APj6wOR7AOH9AOi+AOq+APH+QMKysEDytED++MD9+gD+OgDzOsDiPQD8PYDzfkDyaAEAA==", "哨所污手骑" },
-
+            // 2024.08.29 狂野天梯构筑 瞎贼牧萨骑DK战术猎德法
             // 瞎子
-            {"AAECAea5AwLn8APR9wMO2cYD+84D/tEDxd0DzN0D8+MDkOQDwvEDgIUEg58Etp8E0p8EsqAE7KAEAA==", "暴风城节奏蛋" },
-            {"AAECAea5AwS/7QOv7wPQ+QPUnwQN2cYDi9UDyd0D194D8+MD9+gDmOoDu+0DvO0D/e0DqO8Di/cDgIUEAA==", "暴风城亡语瞎" },
-            {"AAECAaOtBAT39gOL9wOw+QO2nwQN1tEDzNIDztID+dUD2d4D8+MD/e0DwvED9fYDivcD0PkDs6AEtKAEAA==", "任务瞎" },
-            {"AAECAea5AwSXoATQ+QPR3QON9wMNx90DwvED8+MDivcDtp8EifcD3dMD6b4DlegDg58EmfkDjPcD2cYDAA==", "邪能瞎" },
-            {"AAECAea5AwLQ3QON9wMO6b4D2cYD3dMDxd0Dx90D8+MDlegDwvEDifcDivcDg58Etp8EtKAE7KAEAA==", "邪能吸血瞎" },
-            // 德鲁伊
-            {"AAECAZICAozkA6P2Aw7lugPougPvugObzgOJ4AOK4AOi4QOk4QPR4QOK7QOk9gPR9gO4oAS5oAQA", "暴风城任务德" },
-            {"AAECAZICAuTuA9efBA7lugPmugPougPvugObzgPw1AOJ4AOK4AOk4QPR4QOM5APA7AOunwTanwQA", "暴风城安娜德" },
-            {"AAECAdfXAwa/4APR4QPk7gO1igSJnwS4oAQM5boD6LoDm84D8NQDieADiuADpOEDwOwDpPYDrp8E2p8EoKAEAA==", "克苏恩超凡德" },
-            {"AAECAZICBJ3YA7/gA+TuA7WKBA3lugPmugPougObzgPw1AOJ4AOK4AOk4QPA7AOJnwSunwTanwSgoAQA ", "超凡中速德" },
-            {"AAECAZICBNHhA5XkA7f3A6iKBA3kugPougObzgO60AO80AOT0QPe0QPw1AP+2wOk4QP36APe7AOk9gMA ", "保镖德" },
-            {"AAECAdfXAwSSzQPR0QOm4QPE+QMN174Dm84DudIDjOQD9+gDuewDku4DiPQDyfUD7PUD0fYDgfcDhPcDAA==", "超生德" },
+            {"AAEBAea5AwSRvALHpAbEuAb8wAYN6bAD8skDvtIDpeIEq+IE5OQF/KgG17gG17oG1sAG2MAG9sAGrcUGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=", "狂野快攻瞎" },
+            {"AAEBAea5AwSongbHpAb8wAa6wQYNr6AE5OQFsvUFhY4G7p4G/KgG17gG1sAG2MAG9sAGrcUGl8oGy8oGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=", "狂野海盗瞎" },
             // 贼
-            {"AAECAaIHAsPhA6b5Aw6qywOk0QPf3QPn3QPz3QOo6wOr6wOf9AOh9AOi9AOj9QOm9QP1nwT2nwQA", "暴风城任务贼" },
-            {"AAECAaIHAtXUA8X5Aw6qywP+0QP31APi3QPn3QOp6wOq6wOs6wOt6wOO9AOh9AOSnwSUnwT3nwQA", "暴风城刀贼" },
-            {"AAECAcKPBATgvgOV6AOh9AORnwQNzrkDqssDn80Dx84D590D890DqOsDq+sDrusD/u4DjvQD9p8E958EAA==", "联络人锁喉贼" },
-            {"AAECAaIHBJXNA5/NA/zoA+fwAw3evgPgvgOqywPHzgOk0QPf3QPn3QPz3QOo6wOr6wP+7gOO9AP2nwQA", "站场锁喉贼" },
-
-            
-            // 2021-09 狂野天梯构筑
-            // 术士
-            {"AAEBAf0GBN7EAoT7A4+CA87pAg3XzgOS5AP6/gLy0AKdqQPx9wKD+wObzQPnywL9pAOT5AO98QO1uQMA", "暴风城狂野气宗任务术" },
-            {"AAEBAf0GBISgBIT7A4+CA8f5Aw3XzgOVzQP6/gLy0ALtrAPx9wKD+wObzQOT5APLuQOfzgLB0QPcCgA=", "暴风城狂野剑宗任务术" },
-            {"AAEBAf0GCpLkA7GfBJ2pA+2sA4T7A4+CA+fLAvyjA87pAsMWCtfOA/r+AvLQAoP7A5vNA9/EAv2kA5PkA73xA7W5AwA=", "暴风城狂野宇宙术" },
-            // 德鲁伊
-            {"AAEBAZICAqP2A5vOAw65oASaCJjSAuED+a0DiuADuKAE5boD/M0CouEDwQSE5gLR9gNAAA==", "暴风城狂野口德" },
-            {"AAEBAZICAp74AqP2Aw7pAeEDmgjoFb6rAvzNApjSAo/2AvmtA+W6A5vNA5vOA5XgA6LhAwA=", "暴风城狂野任务奇数德" },
-            {"AAEBAZICBtaZA9ToA+TuA7CKBLQDtYoEDK6fBI/2AongA7/yAp7SAoTmAooOQNqfBKDNAsDsA4fOAgA=", "暴风城狂野超凡德" },
-            {"AAEBAZICCPm1A9aZA9ToA4oO5O4DsIoEtAO1igQLrp8Ej/YCieADv/ICntIChOYCQNqfBKDNAsDsA4fOAgA=", "暴风城狂野超凡德" },
-            {"AAEBAZICCLQDm+gCv/IC1pkD26UD5roDj84D5O4DC0CHzgKe0gKE5gKP9gKEtgObzgPw1AOK4APA7APanwQA", "暴风城狂野蓝龙德" },
-            {"AAEBAZICAvcDkbwCDtQF5QeIDugVzbsC+60D6bAD3MwDxtEDudIDjOQD7PUD9PYDhPcDAA==", "暴风城狂野巨化德" },
-            // 猎人
-            {"AAEBAR8C/fgDnvgCDqqfBIAHjQHy4QPpqwK50APslgOH+wKpnwTb7QP3+AOoAs4U2wkA", "暴风城狂野走A猎" },
-            {"AAEBAR8CnvgC/fgDDo0BqALtBoAHlwjbCbQTzhTpqwKH+wLslgO50APb7QP3+AMA", "暴风城狂野奇数走A猎" },
-            // 法师
-            {"AAEBAf0EAvSrA8sEDsiHA/T8A673A4XkA/fRA7L3A7T8AuYE/J4EwAHBuAPaxQLR7AOz9wMA", "暴风城狂野点燃法" },
-            {"AAEBAf0EApLLA6iKBA6sAZ+bA/SrA4XkA/fRA5YFtPwC0OwD5gT8ngTLBMABwbgD0ewDAA==", "暴风城狂野决斗法" },
-            {"AAEBAf0EBMABwfADkOEDleEDDeu6AvSrA76kA8agBPcN17YC558Ej9MC7AWR4QP9ngTdqQOHvQIA", "暴风城狂野奥秘法" },
-            // 骑士
-            {"AAEBAZ8FAA/b7gOD3gOMAcmgBNagBPfoA8rBA7EIiA7O6wOr7AOnBZqfBPjSAvvjAwA=", "暴风城狂野厕所骑" },
-            {"AAEBAZ8FBJ74Ao6aA7/RA4PeAw3sD+0PuMcCjK0Dlc0Dm80DhN4DzOsD4+sDivQDx/kDx6AEyaAEAA==", "暴风城狂野奇数骑" },
-            {"AAEBAZ8FBvoOk9ADi9UD++gDkewDx/kDDLoT97wC99AC2f4ClaYDysEDlc0DkeQDzOsD4+sD8PYD8/YDAA==", "暴风城狂野污手骑" },
-            {"AAEBAZ8FBOAFhBf8uAPD0QMN4wWnCNOqArPBArHCAvz8ApupA8qrA/u4A/TfA5ToA/foA875AwA=", "暴风城狂野鱼人骑" },
-            {"AAEBAZ8FBPoOh94DtPYDrooEDe0PuMcC2f4ClaYDlc0Dm80Dns0Dgt4DzOsD4+sDlfkDx6AEyaAEAA==", "暴风城狂野任务骑" },
+            {"AAEBAaIHBPyjA+WwBMygBdOyBQ2CtAL1uwL9wQKqywPn3QP3nwT7pQS3swT03QTBoQXfwwW/9wXQuAYAAA==", "狂野巨人贼" },
+            {"AAEBAaIHApG8AsekBg6MAvsP6bADqssD890DiskEmtsE16MF07IFv/cF1p4G/KUG/KgGyfQGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=", "狂野剑鱼贼" },
+            {"AAEBAaIHBpG8AsygBdejBb/3BbPBBurEBgyMAvW7AumwA6rLA/PdA/afBIrJBO6eBvylBq2nBvyoBsn0BgAA", "海盗矿锄贼" },
             // 牧师
-            {"AAEBAa0GBJG8ApvNA/vRA7v3Aw3XzgPlB5EP1AWt9wOhBOmwA9HBAvTxA/sPrYoEo/cDurYDAA==", "暴风城狂野海盗暗牧" },
-            {"AAEBAa0GArW7Aof3Aw7RwQLwzwKp4gLmiAPvkgOspQOZqQO0tgPLzQPXzgP73wP44wP08QPT+QMA", "暴风城狂野野猪牧" },
-            {"AAEBAa0GHh7DFoO7ArW7Are7Ati7AtHBAt/EAvDPAujQApDTAvLsApeHA+aIA+ubA/yjA5mpA8i+A9fOA/vRA+LeA/vfA/jjA5nrA5vrA9TtA/LuA932A6iKBMGfBAAA", "暴风城狂野宇宙牧" },
-            {"AAEBAa0GBtMK8M8C/N8D+OMD3fYDzPkDDPoR0cEC5cwCtM4C4+kCl4cDmakD8qwDk7oD87sD4t4D+t8DAA==", "暴风城狂野大哥牧" },
+            {"AAEBAa0GApG8Arv3Aw6hBJEP6bADurYD184Do/cDrfcDjYEE3aQFxKgG/KgG17oG1cEG3PMGAAA=", "狂野快攻牧" },
+            {"AAEBAa0GKPcTwxaDuwK1uwLwzwKXhwP8owP9sAPXzgP21gP44wP36AOf6wOt9wO79wO+nwTwnwSEowSLowTlsATHsgS43ASX7wSGgwX9xAXm5AWt6QXP9gXI+AWFjgbDnAbQngbRngbTngaYoAavqAbEqAbGqAbCtgaPzwYAAAEDgxT9xAW42QT9xAXRngb9xAUAAA==", "狂野宇宙牧" },
+            {"AAEBAa0GAqS2BO+RBQ7lBNHBAtjBAuuKA+LeA/vfA62KBISjBLjcBKSRBbvHBaLpBe33BfGpBgAA", "狂野控制牧" },
             // 萨满
-            {"AAEBAaoIAsL2A/oPDp79AvDUA/bwAvCFBPmfBIX6A/rsA9IT1g/hzAO8FLIG4AaMhQMA", "暴风城狂野任务萨" },
-            {"AAEBAaoIBIQXqO4DxtED4AUN26AE2wPKqwOV8AO1mAOLzgKU6AOdwgKz6AOMlAOnCN3sA78XAA==", "暴风城狂野鱼人萨" },
-            {"AAEBAaoIBpG8AovOAu/3ArWYA6juA+P2AwzUBe4G5Qf6qgL2vQL5vwLYqQPosAPduAPw1AOq3gPj7gMA", "暴风城狂野进化萨" },
-            {"AAEBAaoIAvbwAvrsAw7gBtYP0hPKFp79AoyFA/aKA9u4A+HMA/DUA6reA+rnA4X6A/mfBAA=", "暴风城狂野快攻萨" },
-            {"AAEBAaoIBovOArWYA6veA6juA8H2A4b6Awyw8AKq3gOM4QPg7APh7AOt7gOv7gPj7gOU8APW9QPA9gOMnwQA", "暴风城狂野元素萨" },
-            {"AAEBAaoIBKirAt+pA8L2A/CFBA3OD9YP0hPz5wKf/QKMhQPbuAOTuQPzuwPw1AP67AOF+gP5nwQA", "暴风城狂野任务大哥萨" },
-            {"AAEBAaoIHrIG+g7DFva9At/EApvLAovOAqvnAu/xAsXzAu/3AoyFA7WYA8OdA9qdA6GhA+GoA9u4A+S4A5O5A+DMA5vNA/DUA7/gA5jqA6juA+PuA6bvA8H2A/CgBAAA", "暴风城狂野宇宙战吼克萨" },
-            // 战士
-            {"AAEBAQcEkbwCmPYD3q0DxRUN5Qf+5wOCsALdrQPUBf8DpooElfYD6bAD+w+IsAKvoATuBgA=", "暴风城狂野海盗战" },
-            {"AAEBAQcKhRe+wwLfxALTxQKgzgKa7gKb8wKS+AKT0AOd2AMKS6IE+Af/B+UPjs4Cz+cC2a0DitADju0DAA==", "暴风城狂野无限战" },
-            {"AAEBAQcGhRferQOT0AOq7gOP7wOY9gMMkAOOzgKd8ALdrQOktgOcuwO13gPV8QPG9QOV9gOX9gOHoAQA", "暴风城狂野任务无限战" },
-            {"AAEBAQcM/weS+AKe+ALerQOIsQPjvgP2wgP5wgOK0AOT0API4QOS5AMJqRWCrQLK5wKz/ALZrQOktgO4uQOIoASJoAQA", "暴风城狂野奇数防战" },
-            {"AAEBAQcE+g6ggAOT0AOqigQNjRCSEJvLAp3wAqSkA5XNA7XeA8/eA47tA5jtA5rtA4j0A5X2AwA=", "暴风城狂野墙战" },
-            // 瞎子
-            {"AAEBAea5AwKSBZ74Ag7SnwT9pwPUyAOC0APC8QPz4wPczAO2E/LJA/X4A+C8A83dA+ygBM/dAwA=", "暴风城狂野奇数瞎" },
-            {"AAEBAea5AwKSBZ74Ag62E/2nA+C8A9TIA/LJA9zMA4LQA83dA8/dA/PjA8LxA/X4A9KfBOygBAA=", "暴风城狂野亡语瞎" },
-            // 贼
-            {"AAEBAaIHCtIDrwT6DpG8ApfBAp74AuLdA/PdA/T2A+6gBArUBZsVubgDqssDm80DiNADpNED99QDkp8ElJ8EAA==", "暴风城狂野奇数贼" },
-            {"AAEBAaIHBtQFkbwCu+8C4t0DrOsDofkDDMsD7gaIB68QmxXl0QLVjAOqywP31APz3QOq6wP3nwQA", "暴风城狂野弑君贼" },
-            {"AAEBAaIHBMPhA53wA6H0A5afBA29BPW7AtvjAt/jApfnArSGA9/dA+LdA+fdA/7uA5GfBPafBPefBAA=", "暴风城狂野鬼灵贼" },
-
-
-            // 经典套牌
-            // 德鲁伊
-            {"AAEDAZICArehBNuhBA7ZlQTblQTclQSvlgSwlgTdlgT6oASvoQTpoQTwoQTxoQSTogS9owTFqgQA", "经典咆哮德" },
-            {"AAEDAZICBrWhBK+hBK+WBNuhBLehBK2hBAzdlgTclQTpoQTUogTZlQSwlgTxoQTblQSTogTwoQTFqgS9owQA", "经典咆哮德" },
-            // 猎人
-            {"AAEDAR8E0pYE0aIEzJYE3KEEDYWWBIGhBL2hBNGWBKKjBMuiBMCWBLGXBNGhBM2iBPiWBM+iBKGWBAA=", "经典T7猎" },
-            {"AAEDAR8EgqEE3KEE0aIEqKMEDYWWBJyWBJ2WBMCWBMqWBNGWBPiWBLGXBMyiBM2iBM+iBKKjBMOjBAA=", "经典中速猎" },
-            // 法师
-            {"AAEDAf0EBrWhBLGhBNeiBOeVBNmiBJGiBAz0oATllQTFowTilQTUlgThlQTklQSVogSXogTmlQSTogTzoAQA", "经典冰法" },
-            {"AAEBAf0EArOWBLWhBA7hlQTilQTllQTmlQTolQShlgTplgT0oAS9oQTVoQSTogSgowS/owTDowQA", "经典打脸法" },
+            {"AAEBAaoIBo31BcekBpy4BvzABrrOBqXTBgzl5AX26AX08gWH+wXDjwbslQaopwb8qAbWwAbYwAb2wAbR0AYAAQPzswbHpAb2swbHpAbo3gbHpAYAAA==", "狂野海盗萨" },
+            {"AAEBAaoIBDPN9AKx2QSN9QUNvgbWD9qlA/q0BLLBBIbUBKrZBL3lBPTyBaL6BcOPBpyeBsGeBgAA", "狂野偶数萨" },
+            {"AAEBAaoIBOm2BLzOBL/OBPajBg0z7wGTCZEOzg/2vQKPlAO1rQPW9QPgtQS8tgT08gWkpwYAAA==", "狂野大哥萨" },
             // 骑士
-            {"AAEDAZ8FArahBNyhBA6BoQSyoQSHlgSzlgS9oQS0oQSwogSpowTDowSsogSOlgSPlgSQlgS3ogQA", "经典摸腿骑" },
-            {"AAEDAZ8FComWBIqWBI+WBO6WBLWhBNuhBK6iBLaiBMWjBNKjBAqOlgSQlgSvlgSzlgT6oAS+oQSTogS1ogSpowTEowQA", "经典奶骑" },
-            {"AAEDAZ8FComWBIqWBI+WBLOWBO6WBLGhBNOhBK6iBLaiBNKjBAqOlgSQlgSvlgS+oQSTogS1ogTUogSpowTDowTEowQA", "经典中速骑" },
-            // 贼
-            {"AAEDAaIHBIahBLWhBKWjBNyhBA38lQTooQTnoQT4oATfoQT9lQTdoQT7lgT6oATclgTkoQSTogTUoQQA", "经典奇迹贼" },
-            {"AAEDAaIHBIKWBPuWBIahBNyhBA38lQT9lQSnlgT4oASyoQTLoQTToQTVoQTdoQThoQTkoQSTogTUogQA", "经典中速贼" },
-            // 萨满
-            {"AAEDAaoIBLWhBOqVBNyhBN2iBA2yoQSHogS9oQSEogTulQT5lgTDowTVoQSJogTUogSFogSTogTtlQQA", "经典打脸萨" },
-            {"AAEDAaoICLWhBMuhBNOhBIeiBI2iBN2iBJCjBL6jBAvtlQTulQSnlgTnlgT5lgSyoQSEogSJogSOogSTogTUogQA", "经典中速萨" },
-            // 术士
-            {"AAEDAf0GAruiBIKhBA7tlgSBoQSyoQSzlgSjogS/ogT7lQSuoQTuoQTDowTVlgTDoQTToQSdogQA", "经典动物园" },
-            {"AAEDAf0GAsShBNyhBA73lQT7lQSulgSzlgTVlgTrlgTtlgSBoQSyoQS9oQTRoQShogTUogTDowQA", "经典冲锋园" },
-            {"AAEDAf0GBvqgBLWhBNyhBKGiBKWiBNyiBAz3lQTrlgTtlgSCoQTAoQTCoQTJoQTToQTaoQSaogScogSqowQA", "经典手牌术" },
-            {"AAEDAf0GCvWVBOuWBK+hBLWhBJiiBJqiBJ6iBKWiBNmiBNyiBAr3lQTtlgSCoQTAoQTCoQTJoQTToQTaoQScogSqowQA", "经典大王术" },
+            {"AAEBAZ8FBPjSAo7TAoetA4/OAw3VE94Uz4YDy80Dg94Di/gD1awEktQEgeIEwOIE1oAGlpYGorMGAAA=", "中速天启骑" },
+            {"AAEBAZ8FBNn+ApXNA7+ABNK5Bg3dCtjHAsDRA8zrA9C9BNO9BOLTBNaABsG2BtS4BsG/BvLJBs7VBgAA", "中速法术骑" },
+            {"AAEBAZ8FCL+ABOWwBJfvBIyDBfboBa6DBtK5Bsy/BhDdCt4U2McC2f4CwNEDzOsD0L0E070E4tMEjZYF1oAGwbYG1LgGwb8G8skGztUGAAA=", "中速控制骑" },
+            // 死骑
+            {"AAEBAfHhBASLkga9sQba5Qbk5QYNseYEh/YEsvcEmIEFlMoFkqAGurEGvLEG9rEGi7cG1uUG1+UG2eUGAAA=", "污手DK"},
+            {"AAEBAfHhBAKoigTh5QYO/+MEhuQEkOQEkeQEhfYEh/YEsvcEs/cEmIEFrqEF0J4G1J4G0+UG4OUGAAA=", "邪DK"},
+            {"AAEBAfHhBAT++AWT+wXt/wX/lwYN9eMEh/YE9fcFgvgF8vgFu/kF+PkF6/8FyoMG0IMG9YwG94wG85EGAAA=", "疫病DK"},
+            {"AAEBAfHhBAjt/wX/lwbHpAakwAaowAbIyQaWywa6zgYL9eMEhY4GlJUGkqAGubEGu7EG/7oGv74Gx8kG/8kGlM8GAAED9bMGx6QG97MGx6QG6N4Gx6QGAAA=", "殡淇淋DK"},
             // 战士
-            {"AAEDAQcMuaIEr6EEk6IEwKIE1qIE26EEt6EEiqIExKIExqIEmKIE2aIECZiWBMOiBPOWBL6iBJ2jBJeWBLGhBP+WBLCXBAA=", "经典防战" },
-            {"AAEDAQcE+6AEzqEE3KEEvaIEDZWWBJeWBJmWBKGWBK6WBLCXBL2hBNGhBMGiBMKiBJ6jBMKjBMajBAA=", "经典打脸战" },
-            // 牧师
-            {"AAEDAa0GDM2VBL6WBNmWBLmXBPqgBLehBNKhBNuhBJiiBKmiBNyiBK2jBAnLlQTQlQSvlgSAlwS3lwSAoQSXowSrowTEowQA", "经典环牧" },
+            {"AAEBAQcGkAPx+wKT0AOMtwSfngaPqAYM1ASNEKS2A/mMBI7UBI+VBfDNBbTRBaL6BaH7BZyeBs+eBgAA", "狂野机克战" },
+            {"AAEBAQcIk9ADvIoE5bAEl+8EpfYF+L0GycEG+skGENQEz+cCpLYD+YwE+owEiaAEjLcEjtQEj5UF8M0FofsFn54G7KkG1boGjr8G88oGAAA=", "狂野奥丁战" },
+            // 术士
+            {"AAEBAf0GAo+CA4T7Aw7y0AL40AL6/gLLuQOVzQObzQPXzgPB0QOD+wPO+gXEngajoAbDuAbw5gYAAA==", "自残任务术" },
+            {"AAEBAf0GBo+CA52pA4T7A8jrBaOgBp64Bgzy0AL40AL6/gLLuQOVzQObzQPXzgPB0QOD+wPO+gXEngbDuAYAAA==", "黑眼任务术" },
+            {"AAEBAf0GAo+CA8ekBg7OB40QvLYC8tAC3IYD/aQD1dED0OEDxYAEmJIFq5IFuLgF9qEGlcoGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=", "狂野动物园" },
+            // 猎人
+            {"AAEBAR8EoIAD25EE6sQGltMGDee9AtSLA/+6A5T8A8OABKmfBNLkBOT1BZn2BeqlBty4Bs7ABovWBgAA", "狂野融合猎" },
+            {"AAEBAR8G/q8CwI8D25EE5bAEl+8E/cQFEccPnM0Cq9AC8pYDn6UD9roDnssDlPwDqZ8E458Ema0EqqQF0Z4GjaEGnaIG6KUGzsAGAAEDuwX9xAWAB/3EBbjZBP3EBQAA", "中速亡语猎" },
+            // 德鲁伊
+            {"AAEBAZICBuwV/esCmu4Cn/MF8foFscEGDI/2Aoz7AvDUA6+ABK6fBLClBK7ABKLpBf2NBomhBtmxBvvlBgAA", "狂野换家德" },
+            {"AAEBAZICEIUX/esCj/YC9fwCxf0CiYsE5bAEuNkEl+8E/cQFn/MFqZUGx6QG1boGpLsGpbsGDOkB+AfkCIoOntICiuADr4AErsAEhO8E2/oFiaEGsc4GAAEGoM0C/cQF+7AD/cQFqrEG/cQF9LMGx6QG97MGx6QG6N4Gx6QGAAA=", "豪华换家德" },
+            {"AAEBAZICKF/kCIoO7BXDFoUXj/YC9fwCxf0C/KMDjK4Dr4AEiYsEpY0ElKUEz6wEpa0E5bAErsAEuNkEwd8El+8E4qQF/cQFn/MFyPgF2/oFu5UGv5UGwZUG2pwG0Z4GiaEGx6QGr6gG76kGh7EG1boGusEG88oGAAABBoSwBP3EBb6ZBv3EBevmBv3EBfSzBsekBvezBsekBujeBsekBgAA", "狂野宇宙德" },
+            // 法师
+            {"AAEBAf0EAvyeBOWwBA7mBLT8AvfRA4XkA+DDBez2BfGABtaYBvKbBoieBuepBoG/BoDKBsvQBgAA", "伙伴法术法" },
+            {"AAEBAf0EBMAB6PcDvO0E26EFDawBn5sD9KsD0ewDrvcDio0E7PYF1pgGsp4G5aYG5bgGgb8GheYGAAA=", "任务法术法" },
+            {"AAEBAf0EBPXnAvSrA/yeBOz2BQ3AAeYEtPwC99EDheQD4MMF8YAG1pgG8psG56kGgb8GgMoGy9AGAAA=", "学徒法术法" },
         };
 
         /// <summary>

@@ -6,25 +6,6 @@ namespace HREngine.Bots
     using System.Collections.Generic;
     using Triton.Game;
 
-    public class miniEnch
-    {
-        public Entity entity;
-        public CardDB.cardIDEnum CARDID = CardDB.cardIDEnum.None;
-        public int creator = 0; // the minion
-        public int controllerOfCreator = 0; // own or enemys buff?
-        public int copyDeathrattle = 0;
-
-        public miniEnch(CardDB.cardIDEnum id, int crtr, int controler, int copydr, Entity entity)
-        {
-            this.CARDID = id;
-            this.creator = crtr;
-            this.controllerOfCreator = controler;
-            this.copyDeathrattle = copydr;
-            this.entity = entity;
-        }
-
-    }
-
     public class Minion
     {
         private bool _honorableKill = false;
@@ -99,7 +80,6 @@ namespace HREngine.Bots
         public int returnToHand = 0;//回到手牌
         public int infest = 0;//寄生感染 使你的所有随从获得 “亡语：随机将一张野兽牌置入你的手牌”。
 
-
         public int ownBlessingOfWisdom = 0;//我方智慧祝福
         public int enemyBlessingOfWisdom = 0;//敌方智慧祝福
         public int ownPowerWordGlory = 0;//我方真言术：耀
@@ -127,7 +107,7 @@ namespace HREngine.Bots
         public bool divineshild = false;//圣盾
         public bool windfury = false; //风怒
         public bool frozen = false;//冻结
-        public bool stealth = false;//隐身
+        public bool stealth = false;//潜行
         public bool immune = false;//免疫
         public bool untouchable = false;//无法被攻击
         public bool exhausted = false;//用尽的   法力值?
@@ -187,6 +167,7 @@ namespace HREngine.Bots
             this.own = m.own;
 
             this.name = m.name;
+            this.nameCN = m.nameCN;
             this.cardClass = m.cardClass;
             this.synergy = m.synergy;
             this.handcard = m.handcard;
@@ -289,6 +270,7 @@ namespace HREngine.Bots
             this.own = m.own;
 
             this.name = m.name;
+            this.nameCN = m.nameCN;
             this.cardClass = m.cardClass;
             this.synergy = m.synergy;
             this.handcard = m.handcard;
@@ -380,7 +362,13 @@ namespace HREngine.Bots
             return this.Angr;
         }
 
-        //受到伤害
+        /// <summary>
+        /// 受到伤害
+        /// </summary>
+        /// <param name="dmg"></param>
+        /// <param name="p"></param>
+        /// <param name="isMinionAttack"></param>
+        /// <param name="dontCalcLostDmg"></param>
         public void getDamageOrHeal(int dmg, Playfield p, bool isMinionAttack, bool dontCalcLostDmg)
         {
             if (this.Hp <= 0) return;
@@ -605,9 +593,21 @@ namespace HREngine.Bots
 
             //its a Minion--------------------------------------------------------------
 
+            // AmitusThePeacekeeper效果：限制随从每次受到的伤害不超过2点
+            if (damage > 0) // 只对伤害进行处理
+            {
+                if (this.own && p.ownAmitusThePeacekeeper) // 己方随从
+                {
+                    damage = Math.Min(damage, 2);
+                }
+                else if (!this.own && p.enemyAmitusThePeacekeeper) // 敌方随从
+                {
+                    damage = Math.Min(damage, 2);
+                }
+            }
+
             bool woundedbefore = this.wounded;
             if (damage > 0) this.allreadyAttacked = true;
-            //if (damage > 0) this.Frenzy = true;
 
             if (damage > 0 && this.divineshild)
             {
@@ -722,7 +722,11 @@ namespace HREngine.Bots
             }
 
         }
-        //随从死亡
+
+        /// <summary>
+        /// 随从死亡
+        /// </summary>
+        /// <param name="p"></param>
         public void minionDied(Playfield p)
         {
             if (this.own)
@@ -802,7 +806,10 @@ namespace HREngine.Bots
                 p.diedMinions.Add(gyi);
             }
         }
-        //更新状态
+
+        /// <summary>
+        /// 更新状态
+        /// </summary>
         public void updateReadyness()
         {
             Ready = false;
@@ -826,7 +833,10 @@ namespace HREngine.Bots
             {
                 Ready = true;
                 cantAttackHeroes = false;
-
+            }
+            if (this.handcard.card.type == CardDB.cardtype.LOCATION && this.handcard.card.CooldownTurn == 0)
+            {
+                Ready = true;
             }
         }
         //被沉默
@@ -976,7 +986,12 @@ namespace HREngine.Bots
             if (target.Hp > 0) return target;
             return null;
         }
-        //特殊随从的特效添加位置
+
+        /// <summary>
+        /// 特殊随从的特效添加位置
+        /// </summary>
+        /// <param name="enchants"></param>
+        /// <param name="ownPlayerControler"></param>
         public void loadEnchantments(List<miniEnch> enchants, int ownPlayerControler)
         {
             foreach (miniEnch me in enchants)
@@ -1164,7 +1179,11 @@ namespace HREngine.Bots
             }
         }
 
-        public string info() // 测试用，用于打印信息
+        /// <summary>
+        /// 打印中文信息用，中文名 + 身材，方便辨识
+        /// </summary>
+        /// <returns></returns>
+        public string info()
         {
             if (isHero)
             {
@@ -1172,10 +1191,34 @@ namespace HREngine.Bots
                     return "己方英雄" + "(" + Hp + ")";
                 else
                     return "敌方英雄" + "(" + Hp + ")";
+            } 
+            else if (handcard.card.type == CardDB.cardtype.MOB)
+            {
+                return nameCN.ToString() + "(" + Angr + "," + Hp + ")";
             }
-            return handcard.card.nameCN + "(" + Angr + "," + Hp + ")";
+            else
+            {
+                return nameCN.ToString();
+            }
         }
 
     }
+    public class miniEnch
+    {
+        public Entity entity;
+        public CardDB.cardIDEnum CARDID = CardDB.cardIDEnum.None;
+        public int creator = 0; // the minion
+        public int controllerOfCreator = 0; // own or enemys buff?
+        public int copyDeathrattle = 0;
 
+        public miniEnch(CardDB.cardIDEnum id, int crtr, int controler, int copydr, Entity entity)
+        {
+            this.CARDID = id;
+            this.creator = crtr;
+            this.controllerOfCreator = controler;
+            this.copyDeathrattle = copydr;
+            this.entity = entity;
+        }
+
+    }
 }

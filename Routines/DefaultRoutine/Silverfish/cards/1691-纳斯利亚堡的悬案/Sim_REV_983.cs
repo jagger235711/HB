@@ -11,7 +11,28 @@ namespace HREngine.Bots
 	//将一个随从的攻击力和生命值变为3。
 	class Sim_REV_983 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            // 检查目标是否为有效随从
+            if (target != null)
+            {
+                // 将目标随从的攻击力设置为3
+                target.Angr = 3;
+
+                // 将目标随从的生命值设置为3，并且最大生命值也设置为3
+                target.Hp = 3;
+                target.maxHp = 3;
+            }
+        }
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[]
+            {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要一个目标才能使用
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),  // 目标必须是一个随从
+            };
+        }
+    }
 }

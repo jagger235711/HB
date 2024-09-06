@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//你的下一张<b>战吼</b>随从牌的法力值消耗减少（1）点。在你使用一张<b>战吼</b>随从牌后，重新开启本地标。
 	class Sim_VAC_409 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            // 激活法力值减少效果
+            if (triggerMinion.handcard.card.CooldownTurn == 0) p.parrotSanctuaryCount += 1;
+        }
+    }
 }

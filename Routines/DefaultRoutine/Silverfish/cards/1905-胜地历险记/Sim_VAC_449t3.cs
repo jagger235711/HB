@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽两张牌。为你的英雄恢复6点生命值。
 	class Sim_VAC_449t3 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 抽两张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+
+            // 为己方英雄恢复6点生命值
+            p.minionGetDamageOrHeal(own.own ? p.ownHero : p.enemyHero, -6);
+        }
+    }
 }

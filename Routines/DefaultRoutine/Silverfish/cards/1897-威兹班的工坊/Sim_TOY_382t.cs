@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//恢复#3点生命值。
 	class Sim_TOY_382t : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.minionGetDamageOrHeal(target, -3); // 恢复3点生命值
+        }
+    }
 }

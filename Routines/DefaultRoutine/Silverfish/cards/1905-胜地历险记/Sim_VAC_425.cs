@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//造成3点伤害，随机分配到所有敌人身上。在一个友方随从死亡后，重新开启本地标。
 	class Sim_VAC_425 : SimTemplate
 	{
-		
-		
-	}
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            if(triggerMinion.handcard.card.CooldownTurn == 0) p.allCharsOfASideGetRandomDamage(false, 3);
+        }
+    }
 }

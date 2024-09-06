@@ -278,7 +278,7 @@ as well as
             }
             HeroEnum ownHeroClass = Hrtprozis.Instance.heroTAG_CLASSstringToEnum(mulliganData.UserClass.ToString());
             HeroEnum enemyHeroClass = Hrtprozis.Instance.heroTAG_CLASSstringToEnum(mulliganData.OpponentClass.ToString());
-            
+
             int manaRule = 4;
             string MullRuleKey = getMullRuleKey(CardDB.cardIDEnum.None, ownHeroClass, enemyHeroClass, 1);
             if (MulliganRules.ContainsKey(MullRuleKey))
@@ -340,7 +340,7 @@ as well as
                     string[] val = MulliganRules[MullRuleKeySimple].Split(new string[] { ";" }, StringSplitOptions.RemoveEmptyEntries);
                     allowedQuantitySimple = ((val[1] == "2") ? 2 : 1) * ((val[0] == "Hold") ? 1 : -1);
                 }
-                
+
                 hasRule = false;
                 string MullRuleKeyExtra = getMullRuleKey(c.cardIDenum, ownHeroClass, enemyHeroClass, 1); //Extra key for Class enemy
                 if (MulliganRules.ContainsKey(MullRuleKeyExtra)) hasRule = true;
@@ -501,6 +501,9 @@ as well as
                     }
                 }
             }
+
+            //增加特殊留牌规则
+            behave.specialMulligan(cards);
 
             for (var i = 0; i < mulliganData.Cards.Count; i++)
             {

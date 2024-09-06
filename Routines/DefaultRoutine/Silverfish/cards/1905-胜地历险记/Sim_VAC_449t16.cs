@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b>获得+2/+2和<b>嘲讽</b>。随机消灭2个敌方随从。
 	class Sim_VAC_449t16 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 增加+2/+2
+            p.minionGetBuffed(own, 2, 2);
+
+            // 赋予嘲讽
+            own.taunt = true;
+
+            // 随机消灭敌方随从的效果不实现
+        }
+    }
 }

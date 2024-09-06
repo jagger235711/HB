@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//使你的所有随从获得“<b>亡语：</b>随机召唤一个<b>传说</b>随从。”
 	class Sim_VAC_464t18 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+        }
+    }
 }

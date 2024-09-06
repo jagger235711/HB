@@ -11,7 +11,20 @@ namespace HREngine.Bots
 	//在你使用最左或最右边的一张手牌后，随机对一个敌人造成1点伤害。
 	class Sim_TOY_943 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardWasPlayed(Playfield p, CardDB.Card card, bool wasOwnCard, Minion triggerEffectMinion)
+        {
+            // 仅当是己方卡牌被使用时触发效果
+            if (wasOwnCard)
+            {
+                // 检查是否是手牌中最左或最右的卡牌
+                if (p.owncards.Count > 0 && (card == p.owncards[0].card || card == p.owncards[p.owncards.Count - 1].card))
+                {
+                    // 随机对一个敌人造成1点伤害
+                    p.allCharsOfASideGetRandomDamage(false, 1);
+                }
+            }
+        }
+
+    }
 }

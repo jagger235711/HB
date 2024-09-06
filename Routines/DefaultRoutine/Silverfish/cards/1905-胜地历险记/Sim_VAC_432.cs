@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b><b>发现</b>一张最新扩展包的牌。
 	class Sim_VAC_432 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 模拟从最新扩展包中 "发现" 一张牌，这里简单实现为随机抽一张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+    }
 }

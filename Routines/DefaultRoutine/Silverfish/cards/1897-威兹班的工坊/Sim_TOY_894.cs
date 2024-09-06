@@ -11,7 +11,22 @@ namespace HREngine.Bots
 	//<b>突袭</b>。<b>战吼：</b>与另一个随从交换攻击力。
 	class Sim_TOY_894 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 确保目标随从有效
+            if (target != null)
+            {
+                // 交换攻击力
+                int tempAttack = own.Angr;
+                own.Angr = target.Angr;
+                target.Angr = tempAttack;
+
+                // 确保攻击力不低于1
+                if (own.Angr < 0) own.Angr = 0;
+                if (target.Angr < 0) target.Angr = 0;
+            }
+        }
+
+
+    }
 }

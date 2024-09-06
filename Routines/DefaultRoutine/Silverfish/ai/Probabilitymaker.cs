@@ -643,14 +643,14 @@ namespace HREngine.Bots
             Helpfunctions.Instance.logg("GraveYard:" + g);
             if (writetobuffer) Helpfunctions.Instance.writeToBuffer("GraveYard:" + g);*/
 
-            string s = "ownDiedMinions: ";
+            string s = "己方当前回合随从墓地: ";
             foreach (GraveYardItem gyi in this.turngraveyard)
             {
                 if (gyi.own) s += gyi.cardid + "," + gyi.entityId + ";";
             }
             Helpfunctions.Instance.logg(s);
 
-            s = "enemyDiedMinions: ";
+            s = "敌方当前回合随从墓地: ";
             foreach (GraveYardItem gyi in this.turngraveyard)
             {
                 if (!gyi.own) s += gyi.cardid + "," + gyi.entityId + ";";
@@ -658,14 +658,14 @@ namespace HREngine.Bots
             Helpfunctions.Instance.logg(s);
 
 
-            s = "otg: ";
+            s = "己方当前回合卡牌墓地: ";
             foreach (GraveYardItem gyi in this.turngraveyardAll)
             {
                 if (gyi.own) s += gyi.cardid + "," + gyi.entityId + ";";
             }
             Helpfunctions.Instance.logg(s);
 
-            s = "etg: ";
+            s = "敌方当前回合卡牌墓地: ";
             foreach (GraveYardItem gyi in this.turngraveyardAll)
             {
                 if (!gyi.own) s += gyi.cardid + "," + gyi.entityId + ";";
@@ -832,12 +832,12 @@ namespace HREngine.Bots
 
         public void printGraveyards()
         {
-            string og = "og: ";
+            string og = "己方坟场: ";
             foreach (KeyValuePair<CardDB.cardIDEnum, int> e in this.ownGraveyard)
             {
                 og += e.Key + "," + e.Value + ";";
             }
-            string eg = "eg: ";
+            string eg = "敌方坟场: ";
             foreach (KeyValuePair<CardDB.cardIDEnum, int> e in this.enemyGraveyard)
             {
                 eg += e.Key + "," + e.Value + ";";

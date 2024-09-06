@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：发现</b>一张任意职业的地标牌。
 	class Sim_VAC_438 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 简单实现：抽取一张随机牌，模拟“发现”效果
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+    }
 }

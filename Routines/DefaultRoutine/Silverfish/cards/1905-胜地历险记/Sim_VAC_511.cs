@@ -11,7 +11,16 @@ namespace HREngine.Bots
 	//<b>休眠</b>2回合。<b>休眠</b>状态下，在你的回合结束时召唤一条3/5并具有<b>嘲讽</b>的龙。
 	class Sim_VAC_511 : SimTemplate
 	{
-		
-		
-	}
+
+        CardDB.Card tauntDragon = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_511t); // 假设3/5嘲讽龙的卡牌ID是 VAC_511t
+
+        public override void onTurnEndsTrigger(Playfield p, Minion triggerEffectMinion, bool turnEndOfOwner)
+        {
+            if (turnEndOfOwner == triggerEffectMinion.own && triggerEffectMinion.dormant <= 0)
+            {
+                int pos = triggerEffectMinion.zonepos;
+                p.callKid(tauntDragon, pos, triggerEffectMinion.own); // 召唤3/5嘲讽龙
+            }
+        }
+    }
 }

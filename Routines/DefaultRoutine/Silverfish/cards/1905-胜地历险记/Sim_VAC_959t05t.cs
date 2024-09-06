@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//随机获取3张<b>传说</b>卡牌。
 	class Sim_VAC_959t05t : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                // 随机获取3张传说卡牌 (假设 CardDB.cardIDEnum.None 表示随机传说卡牌)
+                p.drawACard(CardDB.cardIDEnum.None, ownplay, true);
+            }
+        }
+
+    }
 }

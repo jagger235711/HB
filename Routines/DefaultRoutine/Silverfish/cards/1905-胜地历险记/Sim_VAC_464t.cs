@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//<b>支线任务：</b>使用3张其他职业的牌。<b>奖励：</b><b>发现</b>两件神奇的战利品！
 	class Sim_VAC_464t : SimTemplate
 	{
-		
-		
-	}
+        public override void onQuestCompleteTrigger(Playfield p, bool own)
+        {
+            // 任务完成时，触发发现效果
+            p.drawACard(CardDB.cardIDEnum.None, own, true);
+            p.drawACard(CardDB.cardIDEnum.None, own, true);
+        }
+
+    }
 }

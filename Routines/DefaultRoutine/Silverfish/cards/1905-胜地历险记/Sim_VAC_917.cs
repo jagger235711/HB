@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽取你法力值消耗最低的牌。<b>亡语：</b>抽取你法力值消耗最高的牌。
 	class Sim_VAC_917 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 战吼：抽一张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 亡语：抽一张牌
+            p.drawACard(CardDB.cardIDEnum.None, m.own, true);
+        }
+    }
 }

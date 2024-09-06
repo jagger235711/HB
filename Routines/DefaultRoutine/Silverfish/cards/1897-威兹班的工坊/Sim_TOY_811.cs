@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//<b>微缩</b><b>突袭</b>，<b>吸血</b>，<b>圣盾</b>
 	class Sim_TOY_811 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 处理微缩效果，假设微缩效果是抽一张衍生物卡牌
+            p.drawACard(CardDB.cardIDEnum.TOY_811t, ownplay, true); // 替换为实际的衍生物卡牌 ID
+        }
+
+    }
 }

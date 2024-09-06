@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//<b>战吼：</b><i>（尽可能对一个随机的敌人）</i>重新施放你对一个敌人施放的上一个法术。
 	class Sim_VAC_407 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+        }
+
+    }
 }

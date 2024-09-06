@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b><b>发现</b>一张海盗牌。
 	class Sim_VAC_430 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 模拟 "发现" 效果：从卡组中抽取一张随机牌（这里假设为海盗牌）
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+    }
 }

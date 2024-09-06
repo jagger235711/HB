@@ -11,7 +11,19 @@ namespace HREngine.Bots
 	//对所有随从造成$2点伤害。在你的下个回合开始时，再对所有随从造成$2点伤害。
 	class Sim_DEEP_013 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 立即对所有随从造成2点伤害
+            foreach (Minion m in p.ownMinions)
+            {
+                p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(2));
+            }
+
+            foreach (Minion m in p.enemyMinions)
+            {
+                p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(2));
+            }
+        }
+    }
 }

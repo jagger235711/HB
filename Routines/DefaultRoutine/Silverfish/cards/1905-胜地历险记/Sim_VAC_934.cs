@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>战吼：</b>对本随从造成10点伤害。
 	class Sim_VAC_934 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            p.minionGetDamageOrHeal(own, 10); // 对该随从造成10点伤害
+        }
+    }
 }

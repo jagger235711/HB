@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//随机获取其他职业的金色海盗牌和元素牌各一张。
 	class Sim_DEEP_022 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.drawACard(CardDB.cardIDEnum.None, ownplay);
+            p.drawACard(CardDB.cardIDEnum.None, ownplay);
+        }
+
+    }
 }

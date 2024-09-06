@@ -11,7 +11,19 @@ namespace HREngine.Bots
 	//<b>战吼：</b>如果你已经<b>发掘</b>过两次，将所有敌方随从变形成为1/1的鱼人。
 	class Sim_DEEP_007 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion ownMinion, Minion target, int choice)
+        {
+            // 检查玩家是否已经发掘过两次
+            if (p.allExcavationCount >= 2)
+            {
+                // 遍历所有敌方随从
+                foreach (Minion enemyMinion in p.enemyMinions)
+                {
+                    // 将每个敌方随从变形为1/1的鱼人
+                    p.minionTransform(enemyMinion, CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.LOEA10_3));
+                }
+            }
+        }
+    }
 }

@@ -1,10 +1,15 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using log4net;
+using Triton.Common.LogUtilities;
 
 namespace HREngine.Bots
 {
     public partial class Behavior丨通用丨不设惩罚 : Behavior
     {
+        private static readonly ILog ilog_0 = Logger.GetLoggerInstanceForType();
+
         private int bonus_enemy = 4;
         private int bonus_mine = 4;
         // 危险血线
@@ -24,13 +29,39 @@ namespace HREngine.Bots
                 return 100000;
             }
             // 初始惩罚值
-            int pen = 0;
-            switch (card.nameCN)
+            int penalty = 0;
+
+            switch (card.nameCN.ToString())
             {
-                case CardDB.cardNameCN.幸运币:
+                case "树篱迷宫":
+                    penalty = -47; // 优先级数值转为负值作为惩罚值
+                    break;
+                case "远足步道":
+                    penalty = -49;
+                    break;
+                case "尤格萨隆的监狱":
+                    penalty = -52;
+                    break;
+                case "惊险悬崖":
+                    penalty = -68;
+                    break;
+                case "鹦鹉乐园":
+                    penalty = -59;
+                    break;
+                case "大地之末号":
+                    penalty = -59;
+                    break;
+                case "潮汐之地":
+                    penalty = -50;
+                    break;
+                case "小玩物小屋":
+                    penalty = -48;
+                    break;
+                default:
+                    penalty = 0; // 如果卡牌名称不匹配，使用初始惩罚值
                     break;
             }
-            return pen;
+            return penalty;
         }
 
         // 核心，场面值
@@ -51,6 +82,18 @@ namespace HREngine.Bots
                 ownActCount++;
                 switch (a.actionType)
                 {
+                    case actionEnum.trade:
+                        retval -= 20;
+                        continue;
+                    case actionEnum.useLocation:
+                        retval -= (10 * a.own.handcard.getManaCost(p));
+                        continue;
+                    case actionEnum.useTitanAbility:
+                        retval -= 20;
+                        continue;
+                    case actionEnum.forge:
+                        retval -= 20;
+                        continue;
                     // 英雄攻击
                     case actionEnum.attackWithHero:
                         continue;
@@ -310,8 +353,6 @@ namespace HREngine.Bots
             { CardDB.cardNameEN.steadyshot, 8 }
         };
 
-
-
         public override int getHpValue(Playfield p, int hpboarder, int aggroboarder)
         {
             int offset_enemy = 0;
@@ -342,11 +383,6 @@ namespace HREngine.Bots
             {
                 retval += 4 * (aggroboarder + 1 - p.enemyHero.Hp - p.enemyHero.armor - offset_enemy);
             }
-            // 进入斩杀线
-            // if (p.enemyHero.Hp + p.enemyHero.armor + offset_enemy <= 5 && p.enemyHero.Hp + p.enemyHero.armor + offset_enemy > 0)
-            // {
-            //     retval += 300 / (p.enemyHero.Hp + p.enemyHero.armor - offset_enemy);
-            // }
             // 场攻+直伤大于对方生命，预计完成斩杀
             if (p.anzEnemyTaunt == 0 && p.calTotalAngr() + p.calDirectDmg(p.mana, false) >= p.enemyHero.Hp + p.enemyHero.armor)
             {
@@ -354,5 +390,89 @@ namespace HREngine.Bots
             }
             return retval;
         }
+
+        /// <summary>
+        /// 获取使用地标的惩罚值
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public override int getUseLocationPenality(Minion m, Minion target, Playfield p)
+        {
+            int penalty = 0; // 初始惩罚值为 0
+
+            switch (m.handcard.card.nameCN.ToString())
+            {
+                case "树篱迷宫":
+                    penalty = -47; // 优先级数值转为负值作为惩罚值
+                    break;
+                case "远足步道":
+                    penalty = -49;
+                    break;
+                case "尤格萨隆的监狱":
+                    penalty = -52;
+                    break;
+                case "惊险悬崖":
+                    penalty = -68;
+                    break;
+                case "鹦鹉乐园":
+                    penalty = -59;
+                    break;
+                case "大地之末号":
+                    penalty = -59;
+                    break;
+                case "潮汐之地":
+                    penalty = -50;
+                    break;
+                case "小玩物小屋":
+                    penalty = -48;
+                    break;
+                default:
+                    penalty = 0; // 如果卡牌名称不匹配，使用初始惩罚值
+                    break;
+            }
+
+            return (int)penalty;
+        }
+
+        /// <summary>
+        /// 获取使用泰坦技能的惩罚值
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public override int getUseTitanAbilityPenality(Minion m, Minion target, Playfield p)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 发现卡的价值
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public override int getDiscoverVal(CardDB.Card card, Playfield p)
+        {
+            //初始化Hsreplay数据
+            Hsreplay hs = Hsreplay.Instance;
+
+            // 从对应职业的数据列表中找到匹配的卡牌数据
+            var cardStats = Hsreplay.AllCardStats.FirstOrDefault(c => c.DbfId == card.dbfId);
+
+            if (cardStats != null)
+            {
+                Helpfunctions.Instance.logg("getDiscoverVal - 使用Hsreplay数据比对" + card.nameCN.ToString() + " => " + cardStats.WinrateWhenDrawn);
+                ilog_0.Info("getDiscoverVal - 使用Hsreplay数据比对" + card.nameCN.ToString() + " => " + cardStats.WinrateWhenDrawn);
+                // 返回 WinrateWhenDrawn 的整数部分
+                return (int)cardStats.WinrateWhenDrawn;
+            }
+
+            // 如果找不到对应的卡牌数据，或者职业数据不存在，则返回默认值
+            return 0;
+        }
+
     }
 }

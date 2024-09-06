@@ -11,7 +11,28 @@ namespace HREngine.Bots
 	//<b>微型</b><b>战吼：</b>如果你在此牌在你手中时使用过法力值消耗更高的牌，造成4点伤害。
 	class Sim_TOY_341t : SimTemplate
 	{
-		
-		
-	}
+        private bool higherCostCardPlayed = false; // 用于跟踪是否在手牌中时打出了法力值消耗更高的牌
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 检查是否应该造成4点伤害
+            if (higherCostCardPlayed && target != null)
+            {
+                p.minionGetDamageOrHeal(target, 4);
+            }
+        }
+
+        public override void onCardWasPlayed(Playfield p, CardDB.Card card, bool wasOwnCard, Minion triggerEffectMinion)
+        {
+            // 检查此随从是否在手牌中
+            if (wasOwnCard && triggerEffectMinion.own && triggerEffectMinion.handcard.card.cardIDenum == CardDB.cardIDEnum.TOY_341t)
+            {
+                // 检查是否使用过法力值消耗更高的牌
+                if (card.cost > triggerEffectMinion.handcard.card.cost)
+                {
+                    higherCostCardPlayed = true; // 标记为已经使用过更高法力值的牌
+                }
+            }
+        }
+    }
 }

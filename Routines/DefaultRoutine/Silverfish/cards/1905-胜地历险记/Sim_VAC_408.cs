@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//从你的牌库中<b>发现</b>一张随从牌。使其所有的复制获得+2/+1<i>（无论它们在哪）</i>。
 	class Sim_VAC_408 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+			p.drawACard(CardDB.cardIDEnum.None, ownplay, true);
+        }
+    }
 }

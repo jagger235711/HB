@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>亡语：</b>随机获取一张饮品法术牌。<i>（饮品可以饮用3次！）</i>
 	class Sim_VAC_461 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 亡语效果：抽一张牌
+            p.drawACard(CardDB.cardIDEnum.None, m.own, true);
+        }
+    }
 }

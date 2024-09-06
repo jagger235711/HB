@@ -11,7 +11,28 @@ namespace HREngine.Bots
 	//<b>冲锋</b><b>战吼：</b>将所有攻击力小于本随从的随从移回其拥有者的牌库。
 	class Sim_TOY_357 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            int attackThreshold = own.Angr; // 获取本随从的攻击力
+
+            // 处理己方随从
+            foreach (Minion m in p.ownMinions.ToArray()) // 使用 ToArray() 避免修改集合时的迭代错误
+            {
+                if (m.Angr < attackThreshold)
+                {
+                    p.minionReturnToDeck(m, m.own);
+                }
+            }
+
+            // 处理敌方随从
+            foreach (Minion m in p.enemyMinions.ToArray()) // 使用 ToArray() 避免修改集合时的迭代错误
+            {
+                if (m.Angr < attackThreshold)
+                {
+                    p.minionReturnToDeck(m, m.own);
+                }
+            }
+        }
+    }
 }

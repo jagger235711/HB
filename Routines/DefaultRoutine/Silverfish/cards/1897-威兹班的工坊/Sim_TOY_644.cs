@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//使一个随从<b>休眠</b>2回合。
 	class Sim_TOY_644 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            if (target != null)
+            {
+                target.dormant = 2; // 使目标随从休眠2回合
+            }
+        }
+    }
 }

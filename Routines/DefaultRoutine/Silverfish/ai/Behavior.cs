@@ -1,4 +1,5 @@
 
+using System;
 using System.Collections.Generic;
 
 namespace HREngine.Bots
@@ -683,6 +684,50 @@ namespace HREngine.Bots
                     return -1000;
                 }
             }
+            return 0;
+        }
+
+        /// <summary>
+        /// 获取使用地标的惩罚值
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public virtual int getUseLocationPenality(Minion m, Minion target, Playfield p)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 获取使用泰坦技能的惩罚值
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public virtual int getUseTitanAbilityPenality(Minion m, Minion target, Playfield p)
+        {
+            return 0;
+        }
+
+        /// <summary>
+        /// 特殊留牌规则
+        /// </summary>
+        /// <param name="cards">起手卡牌</param>
+        public virtual void specialMulligan(List<HREngine.Bots.Mulligan.CardIDEntity> cards)
+        {
+
+        }
+
+        /// <summary>
+        /// 探底
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public virtual int getDredgeVal(CardDB.Card card, Playfield p)
+        {
             return 0;
         }
 

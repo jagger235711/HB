@@ -1,28 +1,108 @@
 using System.Collections.Generic;
 using System;
+using System.Linq;
+using log4net;
+using Triton.Common.LogUtilities;
 
 namespace HREngine.Bots
 {
     public partial class Behavior丨狂野丨剑鱼贼 : Behavior
     {
+        private static readonly ILog ilog_0 = Logger.GetLoggerInstanceForType();
+
         private int bonus_enemy = 4;
         private int bonus_mine = 4;
 
-        public override string BehaviorName() { return "丨狂野丨剑鱼贼"; }
+        public override string BehaviorName()
+        {
+            return "丨狂野丨剑鱼贼";
+        }
+
         PenalityManager penman = PenalityManager.Instance;
 
+        /// <summary>
+        /// 剑鱼贼的留牌策略
+        /// </summary>
+        /// <param name="cards">起手卡牌列表</param>
+        public override void specialMulligan(List<Mulligan.CardIDEntity> cards)
+        {
+            // 初始化卡牌出现次数字典
+            Dictionary<CardDB.cardNameCN, int> cardFlags = new Dictionary<CardDB.cardNameCN, int>()
+            {
+                {CardDB.cardNameCN.空降歹徒, 0},
+                {CardDB.cardNameCN.宝藏经销商, 0},
+                {CardDB.cardNameCN.旗标骷髅, 0},
+                {CardDB.cardNameCN.鱼排斗士, 0},
+                {CardDB.cardNameCN.玩具船, 0},
+                {CardDB.cardNameCN.船载火炮, 0},
+                {CardDB.cardNameCN.剑鱼, 0}
+            };
+
+            // 遍历手牌，记录每张卡牌的出现次数
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+                if (cardFlags.ContainsKey(cardCN.nameCN))
+                {
+                    cardFlags[cardCN.nameCN]++;
+                }
+            }
+
+            // 设置保留规则
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+
+                if (cardFlags.ContainsKey(cardCN.nameCN))
+                {
+                    if (cardFlags[cardCN.nameCN] > 0)
+                    {
+                        if (cardCN.nameCN == CardDB.cardNameCN.空降歹徒 ||
+                            cardCN.nameCN == CardDB.cardNameCN.宝藏经销商 ||
+                            cardCN.nameCN == CardDB.cardNameCN.旗标骷髅)
+                        {
+                            card.holdByRule = 2; // 高优先级保留
+                            card.holdReason = "符合规则而保留: 高优先级保留";
+                        }
+                        else
+                        {
+                            card.holdByRule = 1; // 中等优先级保留
+                            card.holdReason = "符合规则而保留: 中等优先级保留";
+                        }
+                    }
+                }
+                else
+                {
+                    card.holdByRule = 0; // 其他卡牌不保留
+                    card.holdReason = "符合规则而弃掉: 其他卡牌不保留";
+                }
+            }
+        }
+
+
+
+        /// <summary>
+        /// 计算并返回给定卡牌在当前回合的组合技惩罚值。
+        /// 该方法用于根据当前手牌、场上随从状态以及对手情况，评估某张卡牌的出牌优先级。
+        /// 返回的惩罚值越高，表示该卡牌在当前回合出牌的优先级越低，反之亦然。
+        /// </summary>
+        /// <param name="card">当前需要评估的卡牌。</param>
+        /// <param name="target">该卡牌可能指向的目标随从。</param>
+        /// <param name="p">当前的游戏状态，包括己方和对手的场面信息。</param>
+        /// <param name="nowHandcard">当前手牌信息，包含卡牌费用和其他属性。</param>
+        /// <returns>返回一个整数，表示该卡牌的组合技惩罚值。值越大，优先级越低。</returns>
         public override int getComboPenality(CardDB.Card card, Minion target, Playfield p, Handmanager.Handcard nowHandcard)
         {
-            // 无法选中
+            // 无法选中目标时，返回极高的惩罚值，避免选择该目标
             if (target != null && target.untouchable)
             {
                 return 100000;
             }
 
-            // 初始惩罚值
+            // 初始惩罚值设为0
             int pen = 0;
-            
-            //一费检查手牌有没有船载火炮、幸运币、海盗，此处为没有海盗，返回值1000不打出此combo。
+
+            // 一费检查：如果当前是前两回合且手牌有船载火炮和幸运币或其他一费非海盗随从时，不打出海盗
             if (Hrtprozis.Instance.gTurn <= 2 && card.race == CardDB.Race.PIRATE && p.enemyMinions.Count == 0)
             {
                 foreach (Handmanager.Handcard hc in p.owncards)
@@ -31,128 +111,162 @@ namespace HREngine.Bots
                     {
                         foreach (Handmanager.Handcard hhc in p.owncards)
                         {
-                            if (hhc.card.nameCN == CardDB.cardNameCN.幸运币 || hhc.getManaCost(p) == 1 && hhc.card.race != CardDB.Race.PIRATE && hhc.card.type == CardDB.cardtype.MOB)
+                            if (hhc.card.nameCN == CardDB.cardNameCN.幸运币 || (hhc.getManaCost(p) == 1 && hhc.card.race != CardDB.Race.PIRATE && hhc.card.type == CardDB.cardtype.MOB))
                             {
-                                return 1000;
+                                return 1000; // 返回高惩罚值，避免打出该combo
                             }
                         }
                     }
                 }
             }
-            //如果是海盗并且随从有船载火炮 增加基础推荐出牌。
-            if(card.race == CardDB.Race.PIRATE)	
-			{
-				foreach (Minion m in p.ownMinions)
-				{
-					if(m.handcard.card.nameCN == CardDB.cardNameCN.船载火炮)
-					{
-						pen -= 100;
-					}
-				}
-			}
-              switch (card.nameCN)
+
+            // 如果卡牌是海盗且场上有船载火炮，降低惩罚值，优先出牌
+            if (card.race == CardDB.Race.PIRATE)
+            {
+                foreach (Minion m in p.ownMinions)
+                {
+                    if (m.handcard.card.nameCN == CardDB.cardNameCN.船载火炮)
+                    {
+                        pen -= 100; // 降低惩罚值
+                    }
+                }
+            }
+
+            // 根据不同卡牌设定个性化惩罚策略
+            switch (card.nameCN)
             {
                 case CardDB.cardNameCN.南海船工:
+                    // 没有特殊处理，保留默认惩罚值
                     break;
+
                 case CardDB.cardNameCN.宝藏经销商:
                     foreach (Handmanager.Handcard hc in p.owncards)
+                    {
+                        if (hc.card.race == CardDB.Race.PIRATE)
                         {
-                            if (hc.card.race == CardDB.Race.PIRATE )
-                            {
-
-                             pen -= 30;
-
-                            }
+                            pen -= 30; // 如果手牌有海盗，降低惩罚值
                         }
-                        pen -= 30;
+                    }
+                    pen -= 30; // 默认降低惩罚值
                     break;
+
                 case CardDB.cardNameCN.旗标骷髅:
-                    if(p.ownWeapon.Durability > 0) pen -= 5;
+                    if (p.ownWeapon.Durability > 0)
+                        pen -= 5; // 如果武器耐久度大于0，降低惩罚值
                     break;
+
                 case CardDB.cardNameCN.海盗帕奇斯:
+                    // 没有特殊处理，保留默认惩罚值
                     break;
+
                 case CardDB.cardNameCN.秘密通道:
-                    if (p.owncards.Count >= 5 || p.ownMaxMana < 3) return 10;// 手牌数大于等于3或费用小于4时不出
-                    if (p.ownHero.Angr < 3 && p.ownMaxMana >= 4)            //手里没刀赶紧找
+                    if (p.owncards.Count >= 5 || p.ownMaxMana <= 4 || p.mana <= 3)
+                    {
+                        return 10; // 如果手牌数大于等于5或法力上限小于3或剩余法力值小于等于2，增加惩罚值，不打出
+                    }
+
+                    if (p.ownHero.Angr < 3 && p.ownMaxMana >= 5) // 如果手中没有强力武器，且费用大于等于5
                     {
                         foreach (Handmanager.Handcard hc in p.owncards)
                         {
-                            if (hc.card.nameCN == CardDB.cardNameCN.剑鱼||hc.card.nameCN == CardDB.cardNameCN.洞穴探宝者)
+                            if (hc.card.nameCN == CardDB.cardNameCN.剑鱼)
                             {
-                                return 10;
+                                return 10; // 如果有这些卡牌，适度增加惩罚值
                             }
                         }
-                        return -30;
+                        return -30; // 否则，降低惩罚值，优先使用秘密通道寻找武器
                     }
-                    return 0;
-                case CardDB.cardNameCN.蹩脚海盗:
-                    if(p.ownWeapon.Durability > 0) pen -= 5;
-                    break;
+                    return 0; // 保持默认惩罚值
                 case CardDB.cardNameCN.鱼排斗士:
-                    if (p.ownMaxMana <= 1 && target.Hp == 1) //一费灭一个随从，非常不错
-                        return -200;
-                    if (target.Hp == 1)                      //消灭一个随从，很不错
-                        return -10;
-                    return 0;
+                    if (p.ownMaxMana <= 1 && target.Hp == 1)
+                        return -200; // 如果只有1费，且目标生命值为1，极大降低惩罚值，优先打出
+
+                    if (target.Hp == 1)
+                        return -10; // 如果目标生命值为1，适度降低惩罚值
+
+                    return 0; // 否则，保持默认惩罚值
                 case CardDB.cardNameCN.换挡漂移:
-					int index = 0;
-					foreach (Handmanager.Handcard hc in p.owncards)
-					{
-						if(index == 2)		// 只换手牌两张
-							break;
-						if (hc.card.nameCN == CardDB.cardNameCN.剑鱼||hc.card.nameCN == CardDB.cardNameCN.洞穴探宝者)
-							return 1000;
-						if (hc.card.nameCN == CardDB.cardNameCN.海盗帕奇斯 && index < 3)
-							pen -= 30;
-						if (hc.card.nameCN == CardDB.cardNameCN.空降歹徒 && index < 3)
-                            pen += 35;
-                        index += 1;
-					}
-					break;
-                case CardDB.cardNameCN.悦耳嘻哈:
-                    if (p.ownWeapon.Durability <= 0) pen += 10;
-                    pen -= (p.ownWeapon.Durability * bonus_mine + p.ownWeapon.Angr + bonus_mine / 3);
-                    //if (p.anzEnemyTaunt == 0 && (p.calTotalAngr() + p.calDirectDmg(p.mana, false) < 1 || p.calTotalAngr() + p.calDirectDmg(p.mana, false) >= p.enemyHero.Hp + p.enemyHero.armor))
-                       //{
-                       // 添加优先攻击敌方英雄的条件
-                            //if (target != null && !target.own && !target.isHero)
-                               //{
-                               // pen -= 20000; // 优先攻击敌方英雄
-                              // }
-                       //}    
-                break;
-                case CardDB.cardNameCN.洞穴探宝者:
-					pen -= 30;
-					if(p.ownMaxMana == 2)
-						pen -= 5;
+                    int index = 0;
                     foreach (Handmanager.Handcard hc in p.owncards)
                     {
-                        // 手里有剑鱼，有限度低
+                        if (index == 2)
+                            break; // 只处理手牌中的前两张
+
                         if (hc.card.nameCN == CardDB.cardNameCN.剑鱼)
+                            return 1000; // 如果有剑鱼，返回极高惩罚值，不打出换挡漂移
+
+                        if (hc.card.nameCN == CardDB.cardNameCN.海盗帕奇斯 && index < 3)
+                            pen -= 30; // 如果有海盗帕奇斯，降低惩罚值
+
+                        if (hc.card.nameCN == CardDB.cardNameCN.空降歹徒 && index < 3)
+                            pen += 35; // 如果有空降歹徒，增加惩罚值
+
+                        index += 1;
+                    }
+                    break;
+
+                case CardDB.cardNameCN.玩具船:
+                    // 规则1: 如果场上已经有旗标骷髅，并且存在武器，最优先出牌
+                    bool hasBannerSkeletonOnBoard = false;
+                    foreach (Minion m in p.ownMinions)
+                    {
+                        if (m.handcard.card.nameCN == CardDB.cardNameCN.旗标骷髅 && p.ownWeapon.Durability > 0)
                         {
-                            return 0;
+                            hasBannerSkeletonOnBoard = true;
+                            break;
+                        }
+                    }
+
+                    if (hasBannerSkeletonOnBoard)
+                    {
+                        pen -= 200; // 极大降低惩罚值，最优先打出玩具船
+                    }
+                    else
+                    {
+                        // 规则2: 如果手牌费用合适，出完玩具船后还能出2张或更多海盗，优先出牌
+                        int remainingManaAfterToyBoat = p.mana - nowHandcard.getManaCost(p);
+                        int affordablePirates = 0;
+                        foreach (Handmanager.Handcard hc in p.owncards)
+                        {
+                            if (hc.card.race == CardDB.Race.PIRATE && hc.getManaCost(p) <= remainingManaAfterToyBoat)
+                            {
+                                remainingManaAfterToyBoat -= hc.getManaCost(p);
+                                affordablePirates++;
+                                if (affordablePirates >= 2) break;
+                            }
+                        }
+
+                        if (affordablePirates >= 2)
+                        {
+                            pen -= 100; // 降低惩罚值，优先打出玩具船
                         }
                     }
                     break;
-                case CardDB.cardNameCN.玩具船:
-                    if (p.owncards.Count >= 2 ) pen -= 7;// 手牌数大于等于3或费用小于4时不出
-                    break;
                 case CardDB.cardNameCN.空降歹徒:
-                    pen += bonus_mine * 4;
+                    foreach (Handmanager.Handcard hc in p.owncards)
+                    {
+                        if (hc.card.race == CardDB.Race.PIRATE)
+                        {
+                            return 1000; // 如果手牌中有1费海盗，禁止使用空降歹徒
+                        }
+                    }
+                    pen += bonus_mine * 4; // 增加惩罚值，避免在不合适时机打出
                     break;
                 case CardDB.cardNameCN.船载火炮:
-                    // 一费手上有海盗可以跳币直接出
+                    // 如果是第二回合，且手中有1费海盗，极大降低惩罚值，优先打出
                     if (Hrtprozis.Instance.gTurn == 2)
                     {
-                        foreach(Handmanager.Handcard hc in p.owncards)
+                        foreach (Handmanager.Handcard hc in p.owncards)
                         {
-                            if(hc.getManaCost(p) == 1 && hc.card.race == CardDB.Race.PIRATE)
+                            if (hc.getManaCost(p) == 1 && hc.card.race == CardDB.Race.PIRATE)
                             {
                                 pen -= 100;
                             }
                         }
                     }
-                    pen += bonus_mine * 3;
+                    pen += bonus_mine * 3; // 增加惩罚值，避免不必要的打出
+
+                    // 如果费用小于等于2且敌方没有随从，降低惩罚值，优先打出海盗
                     if (p.ownMaxMana <= 2 && p.enemyMinionStartCount == 0)
                     {
                         foreach (Handmanager.Handcard hc in p.owncards)
@@ -163,122 +277,133 @@ namespace HREngine.Bots
                             }
                         }
                     }
-                    if (p.enemyMinions.Count > 1 && p.ownMaxMana < 3 && p.ownMinions.Count == 0) pen += bonus_mine;
+
+                    if (p.enemyMinions.Count > 1 && p.ownMaxMana < 3 && p.ownMinions.Count == 0)
+                        pen += bonus_mine; // 如果敌方随从较多且我方无随从，增加惩罚值
                     break;
-                case CardDB.cardNameCN.刺豚拳手:
-                    if(p.ownWeapon.Durability > 0) pen -= 5;
-                    break;
-                case CardDB.cardNameCN.剑鱼:  //有刀赶紧下
-					if(p.ownWeapon.Angr > 2)
-						return 100000;
-                    return -2000;
+                case CardDB.cardNameCN.剑鱼:
+                    if (p.ownWeapon.Angr > 2)
+                        return 100000; // 如果武器攻击力大于2，极大增加惩罚值，不打出剑鱼
+
+                    return -2000; // 否则，极大降低惩罚值，优先打出剑鱼
                 case CardDB.cardNameCN.恐怖海盗:
-                    if (nowHandcard.getManaCost(p) <= 0) pen -= 10;
-                    if (nowHandcard.getManaCost(p) >= 3) pen += 10;
-                    break;
-                case CardDB.cardNameCN.狂暴邪翼蝠:
-                    if (nowHandcard.getManaCost(p) <= 0) pen -= 10;
-                    if (nowHandcard.getManaCost(p) >= 2) pen += 10;
+                    if (nowHandcard.getManaCost(p) <= 0)
+                        pen -= 10; // 如果卡牌费用为0，适度降低惩罚值
+
+                    if (nowHandcard.getManaCost(p) >= 3)
+                        pen += 10; // 如果卡牌费用大于等于3，适度增加惩罚值
                     break;
                 case CardDB.cardNameCN.奇利亚斯豪华版3000型:
-                    if (p.ownMinions.Count >= 3) pen -= 30;
-                    if (nowHandcard.getManaCost(p) <= 0) pen -= 60;
-                    if (nowHandcard.getManaCost(p) <= 1) pen -= 40;
-                    if (nowHandcard.getManaCost(p) <= 3) pen -= 10;
-                    if (nowHandcard.getManaCost(p) > 3) pen += 10;
+                    if (p.ownMinions.Count >= 3)
+                        pen -= 50; // 如果场上有3个及以上随从，极大降低惩罚值
+
+                    if (nowHandcard.getManaCost(p) <= 0)
+                        pen -= 60; // 如果卡牌费用为0，极大降低惩罚值
+
+                    if (nowHandcard.getManaCost(p) <= 1)
+                        pen -= 40; // 如果卡牌费用为1，适度降低惩罚值
+
+                    if (nowHandcard.getManaCost(p) <= 3)
+                        pen -= 10; // 如果卡牌费用为3，适度降低惩罚值
+
+                    if (nowHandcard.getManaCost(p) > 3)
+                        pen += 10; // 如果卡牌费用大于3，适度增加惩罚值
                     break;
-
-
-
-
-                ///下面的是白白写的独有针对策略，很有参考价值
-                case CardDB.cardNameCN.锈烂蝰蛇:
-					if(p.enemyWeapon.Durability > 0)		//敌方头上有武器
-						pen -= (p.enemyWeapon.Angr * bonus_mine) + (p.enemyWeapon.Durability * bonus_mine);   // 惩罚值和攻击力成正比 再加上耐久
-					break;
-				case CardDB.cardNameCN.血帆海盗:
-					if(p.enemyHeroName == HeroEnum.thief && p.enemyMaxMana >= 2)	// 如果对手是贼...并且下回合3费了，有几率出刀，有其他牌就降低一下出牌优先。
-						pen += 5;
-					break;
-				
-				case CardDB.cardNameCN.致命药膏:
-                    if(p.ownWeapon.Durability <= 0) pen += 10;
-					pen -= (p.ownWeapon.Durability * bonus_mine + p.ownWeapon.Angr + bonus_mine / 3);
-					break;
-				case CardDB.cardNameCN.闭麦收工:
-					if (p.ownWeapon.Durability + p.ownWeapon.Angr > 0 && p.mana == 3)
-						pen -= (p.ownWeapon.Durability * bonus_mine + p.ownWeapon.Angr - p.owncards.Count)* bonus_mine;
-					break;
-				case CardDB.cardNameCN.雾帆劫掠者:
-				case CardDB.cardNameCN.血帆袭击者:
-					pen -= (p.ownWeapon.Durability * bonus_mine + p.ownWeapon.Angr);
-					break;
-                case CardDB.cardNameCN.锈水海盗:
-					foreach(Handmanager.Handcard hc in p.owncards){
-						if (hc.card.nameCN == CardDB.cardNameCN.剑鱼)
-							return -10;
-					}
-                    return 0;
-                case CardDB.cardNameCN.携刃信使:
-                    return 0;
-                case CardDB.cardNameCN.劈砍课程:
-                    if (nowHandcard.getManaCost(p) <= 1) pen -= 10;
-                    if (nowHandcard.getManaCost(p) >= 3) pen += bonus_mine * 3;
+                case CardDB.cardNameCN.奖品掠夺者:
+                    // 如果本回合没有打出其他牌，则惩罚值增加
+                    if (p.cardsPlayedThisTurn == 0)
+                    {
+                        pen += 10;
+                    }
                     break;
                 case CardDB.cardNameCN.匕首精通:
-					if(p.ownWeapon.Angr > 1)
-						return 100000;
-					foreach (Handmanager.Handcard hc in p.owncards)
-					{
-						if (hc.card.nameCN == CardDB.cardNameCN.洞穴探宝者)
-						{
-							return 100000;	
-						}
-					}
-					if(p.ownWeapon.Angr == 1 && p.ownWeapon.Durability == 1)
-						return 8;
-                    return 10;
-                       }
-            return pen;
+                    if (p.ownWeapon.Angr > 1)
+                        return 100000; // 如果当前武器的攻击力大于1，极大增加惩罚值，不打出匕首精通
+
+                    if (p.ownWeapon.Angr == 1 && p.ownWeapon.Durability == 1)
+                        return 8; // 如果当前武器攻击力为1且耐久度为1，适度增加惩罚值，避免浪费
+
+                    return 10; // 在其他情况下，适度增加惩罚值
+                case CardDB.cardNameCN.悦耳嘻哈:
+                    if (p.ownWeapon.Durability > 1)
+                    {
+                        pen -= (p.ownWeapon.Durability * bonus_mine + p.ownWeapon.Angr + bonus_mine / 3); // 如果当前有武器，降低惩罚值，优先使用悦耳嘻哈
+                    }
+                    else
+                    {
+                        pen += 50; // 如果当前没有武器，增加惩罚值，降低使用优先级
+                    }
+                    break;
+            }
+            return pen; // 返回最终计算的惩罚值
         }
-        // 发现卡的价值
-        public override int getDiscoverVal(CardDB.Card card, Playfield p)
+
+        /// <summary>
+        /// 探底卡的价值
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        public override int getDredgeVal(CardDB.Card card, Playfield p)
         {
             switch (card.nameCN)
             {
-                case CardDB.cardNameCN.空降歹徒:
-                case CardDB.cardNameCN.南海船工:
-                case CardDB.cardNameCN.鱼排斗士:
-                case CardDB.cardNameCN.刺豚拳手:
-                case CardDB.cardNameCN.恐怖海盗:
-                    return 15;
-                case CardDB.cardNameCN.宝藏经销商:
+                // 高优先级 - 抽到胜率60%以上，且是海盗卡牌
                 case CardDB.cardNameCN.旗标骷髅:
-                case CardDB.cardNameCN.蹩脚海盗:
-                    return 10;
+                    return 20;
 
-            }
-			if (card.race == CardDB.Race.PIRATE)    //类型等于海盗
-            {
-                return 3;
-            }
-			switch (card.nameCN)
-			{
-				case CardDB.cardNameCN.洞穴探宝者:
+                // 中等优先级 - 抽到胜率55%到60%之间，或者重要的海盗卡牌
+                case CardDB.cardNameCN.宝藏经销商:
+                case CardDB.cardNameCN.空降歹徒:
+                case CardDB.cardNameCN.恐怖海盗:
+                case CardDB.cardNameCN.鱼排斗士:
+                    return 15;
+
+                // 低等优先级 - 海盗种族，剑鱼探底加攻
+                case CardDB.cardNameCN.南海船工:
+                case CardDB.cardNameCN.奖品掠夺者:
+                    return 10;
                 case CardDB.cardNameCN.海盗帕奇斯:
-                case CardDB.cardNameCN.秘密通道:
-                case CardDB.cardNameCN.暗影之门:
-                case CardDB.cardNameCN.船载火炮:
+                    return 6;
+
+                // 次级优先级 - 抽到胜率高，但不是海盗种族的卡牌
                 case CardDB.cardNameCN.剑鱼:
-                case CardDB.cardNameCN.狂暴邪翼蝠:
-                case CardDB.cardNameCN.悦耳嘻哈:
+                case CardDB.cardNameCN.秘密通道:
+                case CardDB.cardNameCN.船载火炮:
                 case CardDB.cardNameCN.玩具船:
-                    return 2;
-			}
-            return 0;
+                case CardDB.cardNameCN.冷血:
+                case CardDB.cardNameCN.奇利亚斯豪华版3000型:
+                    return 5;
+
+                // 未特别指定的卡牌，根据WinrateWhenDrawn计算优先级
+                default:
+                    // 获取当前卡的职业
+                    string className = card.Class.ToString().ToUpper();
+
+                    //初始化Hsreplay数据
+                    Hsreplay hs = Hsreplay.Instance;
+
+                    // 从对应职业的数据列表中找到匹配的卡牌数据
+                    var cardStats = Hsreplay.AllCardStats.FirstOrDefault(c => c.DbfId == card.dbfId);
+
+                    if (cardStats != null)
+                    {
+                        Helpfunctions.Instance.logg("getDredgeVal - 使用Hsreplay数据比对" + card.nameCN.ToString() + " => " + cardStats.WinrateWhenDrawn);
+                        ilog_0.Info("getDredgeVal - 使用Hsreplay数据比对" + card.nameCN.ToString() + " => " + cardStats.WinrateWhenDrawn);
+                        // 返回计算优先级
+                        return (int)(20 * cardStats.WinrateWhenDrawn / 100);
+                    }
+
+                    // 如果找不到对应的卡牌数据，或者职业数据不存在，则返回最低优先级
+                    return 0;
+            }
         }
 
-        // 核心，场面值
+        /// <summary>
+        /// 核心，场面值
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public override float getPlayfieldValue(Playfield p)
         {
             if (p.value > -200000) return p.value;
@@ -305,7 +430,7 @@ namespace HREngine.Bots
                 {
                     // 英雄攻击
                     case actionEnum.attackWithHero:
-                        retval -=  i;
+                        retval -= i;
                         continue;
                     case actionEnum.useHeroPower:
                     case actionEnum.playcard:
@@ -313,7 +438,7 @@ namespace HREngine.Bots
                     default:
                         continue;
                 }
-                if (a.card.card.race == CardDB.Race.PIRATE )
+                if (a.card.card.race == CardDB.Race.PIRATE)
                     foreach (Minion m in p.ownMinions)
                     {
                         if (m.handcard.card.nameCN == CardDB.cardNameCN.船载火炮)
@@ -337,25 +462,21 @@ namespace HREngine.Bots
                     case CardDB.cardNameCN.玩具船:
                         retval -= 3 * i;
                         break;
-                     case CardDB.cardNameCN.宝藏经销商:
+                    case CardDB.cardNameCN.宝藏经销商:
                         retval -= 2 * i;
                         break;
-                     case CardDB.cardNameCN.旗标骷髅:
+                    case CardDB.cardNameCN.旗标骷髅:
                         retval -= 2 * i;
                         break;
-                    
-                }
 
-                
-                
+                }
             }
-        
+
             // 对手基本随从交换模拟
             retval -= p.lostDamage;
             retval += getSecretPenality(p); // 奥秘的影响
             retval -= p.enemyWeapon.Angr * 3 + p.enemyWeapon.Durability * 3;
 
-            
 
             // 特殊：优势防亵渎
             if (retval > 50 && p.enemyHeroStartClass == TAG_CLASS.WARLOCK && p.enemyMinions.Count == 0 && p.ownMinions.Count > 2)
@@ -381,14 +502,19 @@ namespace HREngine.Bots
                     }
                 }
             }
-            
-             
+
+
             return retval;
         }
 
 
-        
-        // 敌方随从价值 主要等于（HP + Angr） * 4
+
+        /// <summary>
+        /// 敌方随从价值 主要等于（HP + Angr） * 4
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public override int getEnemyMinionValue(Minion m, Playfield p)
         {
             bool dieNextTurn = false;
@@ -434,7 +560,6 @@ namespace HREngine.Bots
             }
             if (m.lifesteal) retval += m.Angr * bonus_enemy * 4;
 
-            int bonus = 4;
             switch (m.handcard.card.nameCN)
             {
                 case CardDB.cardNameCN.巫师学徒:
@@ -477,7 +602,7 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.伴唱机:
                     retval += 150;
                     break;
-              
+
                 // 不解巨大劣势
                 case CardDB.cardNameCN.安娜科德拉:
                 case CardDB.cardNameCN.农夫:
@@ -513,7 +638,13 @@ namespace HREngine.Bots
             }
             return retval;
         }
-        // 我方随从价值，大致等于主要等于 （HP + Angr） * 4 
+
+        /// <summary>
+        /// 我方随从价值，大致等于主要等于 （HP + Angr） * 4 
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public override int getMyMinionValue(Minion m, Playfield p)
         {
             bool dieNextTurn = false;
@@ -568,21 +699,9 @@ namespace HREngine.Bots
 
         public override int getSirFinleyPriority(List<Handmanager.Handcard> discoverCards)
         {
-
-            return -1; //comment out or remove this to set manual priority
-            int sirFinleyChoice = -1;
-            int tmp = int.MinValue;
-            for (int i = 0; i < discoverCards.Count; i++)
-            {
-                CardDB.cardNameEN name = discoverCards[i].card.nameEN;
-                if (SirFinleyPriorityList.ContainsKey(name) && SirFinleyPriorityList[name] > tmp)
-                {
-                    tmp = SirFinleyPriorityList[name];
-                    sirFinleyChoice = i;
-                }
-            }
-            return sirFinleyChoice;
+            return -1;
         }
+
         public override int getSirFinleyPriority(CardDB.Card card)
         {
             return SirFinleyPriorityList[card.nameEN];
@@ -590,7 +709,6 @@ namespace HREngine.Bots
 
         private Dictionary<CardDB.cardNameEN, int> SirFinleyPriorityList = new Dictionary<CardDB.cardNameEN, int>
         {
-            //{HeroPowerName, Priority}, where 0-9 = manual priority
             { CardDB.cardNameEN.lesserheal, 0 },
             { CardDB.cardNameEN.shapeshift, 6 },
             { CardDB.cardNameEN.fireblast, 7 },
@@ -602,7 +720,12 @@ namespace HREngine.Bots
             { CardDB.cardNameEN.steadyshot, 8 }
         };
 
-
+        /// <summary>
+        /// 敌我生命值的价值判定
+        /// </summary>
+        /// <param name="p">场面</param>
+        /// <param name="hpboarder">我方危险血线</param>
+        /// <param name="aggroboarder">敌方危险血线</param>
         public override int getHpValue(Playfield p, int hpboarder, int aggroboarder)
         {
             int offset_enemy = 0;
@@ -617,7 +740,6 @@ namespace HREngine.Bots
             // 快死了
             else if (p.ownHero.Hp + p.ownHero.armor - offset_mine > 0)
             {
-                //if (p.nextTurnWin()) retval -= (hpboarder + 1 - p.ownHero.Hp - p.ownHero.armor);
                 retval -= 4 * (hpboarder + 1 - p.ownHero.Hp - p.ownHero.armor + offset_mine) * (hpboarder + 1 - p.ownHero.Hp - p.ownHero.armor + offset_mine);
             }
             else
@@ -638,11 +760,6 @@ namespace HREngine.Bots
             {
                 retval += 4 * (aggroboarder + 1 - p.enemyHero.Hp - p.enemyHero.armor - offset_enemy);
             }
-            // 进入斩杀线
-            // if (p.enemyHero.Hp + p.enemyHero.armor + offset_enemy <= 5 && p.enemyHero.Hp + p.enemyHero.armor + offset_enemy > 0)
-            // {
-            //     retval += 300 / (p.enemyHero.Hp + p.enemyHero.armor - offset_enemy);
-            // }
             // 场攻+直伤大于对方生命，预计完成斩杀
             if (p.anzEnemyTaunt == 0 && p.calTotalAngr() + p.calDirectDmg(p.mana, false) >= p.enemyHero.Hp + p.enemyHero.armor)
             {
@@ -655,7 +772,6 @@ namespace HREngine.Bots
             }
             return retval;
         }
-
 
         /// <summary>
         /// 攻击触发的奥秘惩罚
@@ -680,11 +796,6 @@ namespace HREngine.Bots
             }
             return pen;
         }
-
-
-
-
     }
 }
 
-                

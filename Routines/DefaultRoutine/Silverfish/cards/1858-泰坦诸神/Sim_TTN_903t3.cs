@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//复原你的法力水晶。
 	class Sim_TTN_903t3 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.mana = p.ownMaxMana; // 复原法力水晶
+            p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_903t4), p.ownMinions.Count, true, false);
+        }
+    }
 }

@@ -19,7 +19,8 @@ namespace HREngine.Bots
         lordjaraxxus,//大王
         ragnarosthefirelord,//炎魔
         hogger,//霍格
-        demonhunter
+        demonhunter,//恶魔猎手
+        deathknight,//巫妖王
     }
     //对局信息    
     public class Hrtprozis  //Hrtprozis是兄弟中非常重要的一个类，记录着从兄弟内部数据中获取到的各种信息
@@ -262,7 +263,8 @@ namespace HREngine.Bots
             else if (s.StartsWith("HERO_08")) return "mage";
             else if (s.StartsWith("HERO_09")) return "priest";
             else if (s.StartsWith("HERO_10")) return "demonhunter";
-           
+            else if (s.StartsWith("HERO_11")) return "deathknight";
+
             switch (s)
             {//添加英雄sim编号到名字的转换
                 case "HERO_01": return "warrior";
@@ -286,7 +288,6 @@ namespace HREngine.Bots
 
                 case "HERO_06": return "druid";
                 case "ICC_832": return "druid";
-
 
                 case "HERO_07": return "warlock";
                 case "HERO_07a": return "warlock";
@@ -323,6 +324,7 @@ namespace HREngine.Bots
             else if (s.StartsWith("HERO_08")) return "mage";
             else if (s.StartsWith("HERO_09")) return "perist";
             else if (s.StartsWith("HERO_10")) return "demonhunter";
+            else if (s.StartsWith("HERO_11")) return "deathknight";
 
             switch (s)
             {//添加英雄sim编号到名字的转换
@@ -386,6 +388,7 @@ namespace HREngine.Bots
                 case "Illidanstormrage": return HeroEnum.demonhunter;
                 case "lordjaraxxus": return HeroEnum.lordjaraxxus;
                 case "ragnarosthefirelord": return HeroEnum.ragnarosthefirelord;
+                case "deathknight": return HeroEnum.deathknight;
                 default:
                     if (s.EndsWith("吉安娜"))
                         return HeroEnum.mage;
@@ -409,6 +412,8 @@ namespace HREngine.Bots
                 case HeroEnum.thief: return TAG_CLASS.ROGUE;
                 case HeroEnum.warlock: return TAG_CLASS.WARLOCK;
                 case HeroEnum.warrior: return TAG_CLASS.WARRIOR;
+                case HeroEnum.demonhunter: return TAG_CLASS.DEMONHUNTER;
+                case HeroEnum.deathknight: return TAG_CLASS.DEATHKNIGHT;
                 case HeroEnum.weizbang: return TAG_CLASS.WHIZBANG;
                 default: return TAG_CLASS.INVALID;
             }
@@ -668,6 +673,7 @@ namespace HREngine.Bots
                 Hp = hc.card.Health,
                 maxHp = hc.card.Health,
                 name = hc.card.nameEN,
+                nameCN = hc.card.nameCN,
                 playedThisTurn = true,
                 numAttacksThisTurn = 0
             };
@@ -849,7 +855,7 @@ namespace HREngine.Bots
         //输出我方牌库信息(兄弟的牌库读取时好时坏)
         public void printOwnDeck()
         {
-            string od = "od: ";
+            string od = "己方牌库: ";
             foreach (KeyValuePair<CardDB.cardIDEnum, int> e in this.turnDeck)
             {
                 od += e.Key + "," + e.Value + ";";

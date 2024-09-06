@@ -11,9 +11,13 @@ namespace HREngine.Bots
 
         public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
         {
-            int dmg = 3;
-            p.minionGetDamageOrHeal(p.enemyHero, dmg);
-            p.minionGetDamageOrHeal(p.ownHero, dmg);
+            int damage = 3;
+
+            // 对己方英雄造成3点伤害
+            p.minionGetDamageOrHeal(p.ownHero, damage);
+
+            // 对敌方英雄造成3点伤害，并更新本回合对敌方英雄造成的伤害
+            p.minionGetDamageOrHeal(p.enemyHero, damage);
         }
 
 

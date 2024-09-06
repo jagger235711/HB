@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using HREngine.Bots;
 
 namespace HREngine.Bots
 {
@@ -11,7 +12,13 @@ namespace HREngine.Bots
 	//对所有敌人造成$1点伤害。<i>（还剩3杯！）</i>
 	class Sim_VAC_323 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int dmg = 1;
+            p.allCharsOfASideGetDamage(!ownplay, dmg); // 对所有敌人造成1点伤害
+
+            // 抽一张“还剩2杯”的卡牌
+            p.drawACard(CardDB.cardIDEnum.VAC_323t, ownplay, true);
+        }
+    }
 }

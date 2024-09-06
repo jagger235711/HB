@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>亡语：</b>召唤两个1/2并具有<b>嘲讽</b>和<b>圣盾</b>的机械。
 	class Sim_TOY_670 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 召唤两个 1/2 并具有 嘲讽 和 圣盾 的机械
+            for (int i = 0; i < 2; i++)
+            {
+                 p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.BG_GVG_085), m.zonepos, m.own);
+            }
+        }
+
+    }
 }

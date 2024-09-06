@@ -8,78 +8,11 @@ using System.Xml;
 
 namespace HREngine.Bots
 {
-    public struct targett
-    {
-        public int target;//目标
-        public int targetEntity;//目标实体
-
-        public targett(int targ, int ent)
-        {
-            this.target = targ;
-            this.targetEntity = ent;
-        }
-    }
-
-    public struct PlayReq
-    {
-        public CardDB.ErrorType2 errorType;
-        public int param;
-
-        public PlayReq(CardDB.ErrorType2 errorType, int param)
-        {
-            this.errorType = errorType;
-            this.param = param;
-        }
-
-        public PlayReq(CardDB.ErrorType2 errorType)
-        {
-            this.errorType = errorType;
-            this.param = -1;
-        }
-
-        public void UpdateCardAttr(CardDB.Card card)
-        {
-            switch (errorType)
-            {
-                case CardDB.ErrorType2.REQ_TARGET_MAX_ATTACK:
-                    card.needWithMaxAttackValueOf = param;
-                    break;
-                case CardDB.ErrorType2.REQ_TARGET_WITH_RACE:
-                    card.needRaceForPlaying = param;
-                    break;
-                case CardDB.ErrorType2.REQ_NUM_MINION_SLOTS:
-                    card.needEmptyPlacesForPlaying = param;
-                    break;
-                case CardDB.ErrorType2.REQ_MINION_CAP_IF_TARGET_AVAILABLE:
-                    card.needMinionsCapIfAvailable = param;
-                    break;
-                case CardDB.ErrorType2.REQ_MINIMUM_ENEMY_MINIONS:
-                    card.needMinNumberOfEnemy = param;
-                    break;
-                case CardDB.ErrorType2.REQ_TARGET_MIN_ATTACK:
-                    card.needWithMinAttackValueOf = param;
-                    break;
-                case CardDB.ErrorType2.REQ_MINIMUM_TOTAL_MINIONS:
-                    card.needMinTotalMinions = param;
-                    break;
-                case CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE_AND_MINIMUM_FRIENDLY_MINIONS:
-                    card.needMinOwnMinions = param;
-                    break;
-                case CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE_AND_MINIMUM_FRIENDLY_SECRETS:
-                    card.needControlaSecret = param;
-                    break;
-            }
-        }
-
-    }
-
-
-
     public partial class CardDB
     {
-        // Data is stored in hearthstone-folder -> data->win cardxml0
-        //(data-> cardxml0 seems outdated (blutelfkleriker has 3hp there >_>)
-        //数据存储存储在炉石文件夹 
+        /// <summary>
+        /// 卡牌类型
+        /// </summary>
         public enum cardtype
         {
             NONE = 0,
@@ -88,7 +21,6 @@ namespace HREngine.Bots
             HERO = 3,//英雄
             MOB = 4,//随从
             SPELL = 5,//法术
-            //ABILITY = 5,
             ENCHANTMENT = 6,//增幅（例如：变形术，救赎，力量的代价，自然之力的附加效果）
             WEAPON = 7,//武器
             ITEM = 8,
@@ -97,10 +29,20 @@ namespace HREngine.Bots
             BLANK = 11,
             GAME_MODE_BUTTON = 12,
             MOVE_MINION_HOVER_TARGET = 22,
+            LETTUCE_ABILITY,
+            BATTLEGROUND_HERO_BUDDY,//战旗伙伴
+            LOCATION = 39,//地标
+            BATTLEGROUND_QUEST_REWARD,//战旗奖励
+            BATTLEGROUND_ANOMALY = 43,//战旗畸变
+            BATTLEGROUND_SPELL = 42,//战旗法术
+            BATTLEGROUND_TRINKET = 44,//战旗饰品
         }
 
+        /// <summary>
+        /// 卡片效果
+        /// </summary>
         public enum cardtrigers
-        {//卡片效果
+        {
             newtriger,//新触发
             getBattlecryEffect,//战吼效果
             onAHeroGotHealedTrigger,//一个英雄受到伤害触发
@@ -125,9 +67,13 @@ namespace HREngine.Bots
             Strike,//撞击
             xiaomie,//消灭
             onTurnStart,//回合开始
-            onTurnEnd //回合结束
+            onTurnEnd, //回合结束
+            useLocation, //使用地标
         }
 
+        /// <summary>
+        /// 法术派系
+        /// </summary>
         public enum SpellSchool
         {
             NONE = 0,
@@ -141,6 +87,9 @@ namespace HREngine.Bots
             PHYSICAL_COMBAT = 8,
         }
 
+        /// <summary>
+        /// 种族
+        /// </summary>
         public enum Race
         {
             INVALID = 0,
@@ -175,7 +124,12 @@ namespace HREngine.Bots
             QUILBOAR = 43,
         }
 
-        public Card chnNameToCard(string chnName) // 输入卡牌中文名，输出Card类对象，多个同名，返回第一个
+        /// <summary>
+        /// 输入卡牌中文名，输出Card类对象，多个同名，返回第一个
+        /// </summary>
+        /// <param name="chnName"></param>
+        /// <returns></returns>
+        public Card chnNameToCard(string chnName)
         {
             Card c;
             cardNameCN enumCn;
@@ -188,17 +142,27 @@ namespace HREngine.Bots
                 return null;
             }
         }
+
+        /// <summary>
+        /// 输入卡牌id，输出cardIDEnum枚举对象
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public cardIDEnum cardIdstringToEnum(string s)
         {
             CardDB.cardIDEnum CardEnum;
             if (Enum.TryParse<cardIDEnum>(s, false, out CardEnum)) return CardEnum;
             else
             {
-                // Triton.Common.LogUtilities.Logger.GetLoggerInstanceForType().ErrorFormat("[Unidentified card ID :" + s + "]");
                 return CardDB.cardIDEnum.None;
             }
         }
 
+        /// <summary>
+        /// 输入卡牌英文名，输出cardNameEN枚举对象
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public cardNameEN cardNameENstringToEnum(string s)
         {
             CardDB.cardNameEN NameEnum;
@@ -206,6 +170,30 @@ namespace HREngine.Bots
             else return CardDB.cardNameEN.unknown;
         }
 
+        /// <summary>
+        /// 输入卡牌英文名，输出cardNameCN枚举对象
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
+        public cardNameCN cardNameENstringToEnumCN(string s)
+        {
+            CardDB.cardNameEN NameEnum;
+            if (Enum.TryParse<cardNameEN>(s, false, out NameEnum))
+            {
+                Card card = getCardData(NameEnum);
+                return card.nameCN;
+            }
+            else
+            {
+                return CardDB.cardNameCN.未知;
+            };
+        }
+
+        /// <summary>
+        /// 输入卡牌中文名，输出cardNameCN枚举对象
+        /// </summary>
+        /// <param name="s"></param>
+        /// <returns></returns>
         public cardNameCN cardNameCNstringToEnum(string s)
         {
             CardDB.cardNameCN NameEnum;
@@ -213,6 +201,9 @@ namespace HREngine.Bots
             else return CardDB.cardNameCN.未知;
         }
 
+        /// <summary>
+        /// 异常类型
+        /// </summary>
         public enum ErrorType2
         {
             INVALID = -1,
@@ -239,7 +230,7 @@ namespace HREngine.Bots
             REQ_MINION_CAP = 20,
             REQ_TARGET_ATTACKED_THIS_TURN = 21,
             REQ_TARGET_IF_AVAILABLE = 22, // 有目标如果用（抉择星辰降落，巫医）
-            REQ_MINIMUM_ENEMY_MINIONS = 23, // 最少的地方随从，有参数
+            REQ_MINIMUM_ENEMY_MINIONS = 23, // 最少的敌方随从，有参数
             REQ_TARGET_FOR_COMBO = 24, //连击有目标
             REQ_NOT_EXHAUSTED_ACTIVATE = 25,
             REQ_UNIQUE_SECRET_OR_QUEST = 26,
@@ -290,50 +281,66 @@ namespace HREngine.Bots
             REQ_DRAG_TO_PLAY = 71,
             REQ_TARGET_TO_PLAY2 = 75,
             REQ_TARGET_NO_NATURE = 77,
+            REQ_LITERALLY_UNPLAYABLE,
+            REQ_TARGET_IF_AVAILABLE_AND_HERO_HAS_ATTACK,
+            REQ_FRIENDLY_MINION_OF_RACE_DIED_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_MINIMUM_SPELLS_PLAYED_THIS_TURN,
+            REQ_FRIENDLY_MINION_OF_RACE_IN_HAND,
+            REQ_FRIENDLY_DEATHRATTLE_MINION_DIED_THIS_GAME = 86,
+            REQ_FRIENDLY_REBORN_MINION_DIED_THIS_GAME = 89,
+            REQ_MINION_DIED_THIS_GAME,
+            REQ_BOARD_NOT_COMPLETELY_FULL = 92,
+            REQ_TARGET_IF_AVAILABLE_AND_HAS_OVERLOADED_MANA,
+            REQ_TARGET_IF_AVAILABLE_AND_HERO_ATTACKED_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_DRAWN_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_NOT_DRAWN_THIS_TURN,
+            REQ_TARGET_NON_TRIPLED_MINION,
+            REQ_BOUGHT_MINION_THIS_TURN,
+            REQ_SOLD_MINION_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_PLAYER_HEALTH_CHANGED_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_SOUL_FRAGMENT_IN_DECK,
+            REQ_DAMAGED_TARGET_UNLESS_COMBO,
+            REQ_NOT_MINION_DORMANT,
+            REQ_TARGET_NOT_UNTOUCHABLE,
+            REQ_TARGET_IF_AVAILABLE_AND_BOUGHT_RACE_THIS_TURN,
+            REQ_TARGET_IF_AVAILABLE_AND_SOLD_RACE_THIS_TURN,
+            REQ_NOT_IN_COOLDOWN,
+            REQ_TARGET_IS_MERC,
+            REQ_TARGET_IS_NON_MERC,
+            REQ_TWO_OF_A_KIND,
+            REQ_HAS_OVERLOADED_MANA,
+            REQ_LETTUCE_ABILITY_CANNOT_TARGET_OWNER,
+            REQ_TARGET_NOT_HAVE_TAG = 116,
+            REQ_TARGET_MUST_HAVE_TAG,
+            REQ_TRADEABLE = 119,
+            REQ_NOT_LEGENDARY_TARGET = 123,
+            REQ_MINIMUM_TAVERN_TIER_LEVEL_TO_PLAY = 128,
+            REQ_CARD_TAVERN_TIER_LEVEL_TO_PLAY,
+            REQ_NOT_EXHAUSTED_LOCATION,
+            REQ_LOCATION_TARGET,
+            REQ_TARGET_SILVER_HAND_RECRUIT,
+            REQ_MINIMUM_CORPSES,
+            REQ_LOCATION_OR_MINION_TARGET,
+            REQ_CAN_BE_TARGETED_BY_LOCATIONS,
+            REQ_FORGE,
+            REQ_TARGET_MAX_COST,
+            REQ_HAS_PLAYED_SPELL_THIS_GAME,
+            REQ_TARGET_IS_NON_TITAN = 141,
+            REQ_BACON_DUO_PASSABLE,
+            REQ_TARGET_EXACT_ATTACK,
+            REQ_MINIMUM_NON_GOLDEN_ENEMY_MINIONS = 146,
         }
 
         public class Card
         {
             public string dbfId = "";
-            //public string CardID = "";
             public cardNameEN nameEN = cardNameEN.unknown;//名称
             public cardNameCN nameCN = cardNameCN.未知;
-            /// <summary>
-            /// 14鱼人 15恶魔 17机械 18元素 20野兽 21图腾 23海盗 24龙 26融合怪
-            /// </summary>
             public Race race = Race.INVALID;//种族
-            //14鱼人 15恶魔 17机械 18元素 20野兽 21图腾 23海盗 24龙 43 野猪人
             public int rarity = 0;//稀有度
             public int cost = 0;//费用
-            /// <summary>
-            /// 2德鲁伊 3猎人 4法师 5圣骑士 6牧师 7潜行者 8萨满 9术士 10战士 11梦境牌 12中立
-            /// </summary>
             public int Class = 0;//职业
-            /// <summary>
-            /// MOB 随从 SPELL 法术 WEAPON 武器
-            /// </summary>
             public cardtype type = CardDB.cardtype.NONE;//类别
-            //public string description = "";
-            
-            private bool _honorableKill = false;
-            /// <summary>
-            /// 荣耀击杀
-            /// </summary>
-            public bool HonorableKill
-            {
-                get { return _honorableKill; }
-                set { _honorableKill = value; }
-            }
-
-            private bool _overkill = false;
-            /// <summary>
-            /// 超杀
-            /// </summary>
-            public bool Overkill
-            {
-                get { return _overkill; }
-                set { _overkill = value; }
-            }
             public int Attack = 0; //攻击力
             public int Health = 0;//血量
             public int Durability = 0;//for weapons//耐久值
@@ -372,30 +379,11 @@ namespace HREngine.Bots
             public bool Outcast = false;//流放
             public bool Corrupted = false;//已腐蚀
             public bool Corrupt = false;//可腐蚀
-            public bool CantAttack = false; // 不可攻击
-            public bool Collectable = false; // 可收藏
-            /// <summary>
-            /// 6 暗影 5 神圣 4 自然 3 冰冻 2 火焰 1 奥术
-            /// </summary>
-            public SpellSchool SpellSchool = SpellSchool.NONE;
+            public bool CantAttack = false; //不可攻击
+            public bool Collectable = false; //可收藏
+            public SpellSchool SpellSchool = SpellSchool.NONE;//法术派系
             public bool Tradeable = false;//可交易
             public int TradeCost = 0;//交易消耗法力值
-
-            //法术迸发
-            public bool Spellburst
-            {
-                get { return _spellburst; }
-                set { _spellburst = value; }
-            }
-            private bool _spellburst = false;
-            //暴怒
-            public bool Frenzy
-            {
-                get { return _frenzy; }
-                set { _frenzy = value; }
-            }
-            private bool _frenzy = false;
-
             public int needEmptyPlacesForPlaying = 0;
             public int needWithMinAttackValueOf = 0;
             public int needWithMaxAttackValueOf = 0;
@@ -405,22 +393,90 @@ namespace HREngine.Bots
             public int needMinOwnMinions = 0;
             public int needMinionsCapIfAvailable = 0;
             public int needControlaSecret = 0;
-
-            //additional data
             public bool isToken = false;
             public int isCarddraw = 0;
             public bool damagesTarget = false;
             public bool damagesTargetWithSpecial = false;
             public int targetPriority = 0;
             public bool isSpecialMinion = false;
-
             public int spellpowervalue = 0;
             public cardIDEnum cardIDenum = cardIDEnum.None;
-
             public List<cardtrigers> trigers;
-
             public SimTemplate sim_card = new SimTemplate();
 
+            public int TAG_SCRIPT_DATA_NUM_1 = 0;//标签脚本数据编号1，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+            public int TAG_SCRIPT_DATA_NUM_2 = 0;//标签脚本数据编号2，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+            public int TAG_SCRIPT_DATA_NUM_3 = 0;//标签脚本数据编号3，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+            public int TAG_SCRIPT_DATA_NUM_4 = 0;//标签脚本数据编号4，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+
+            public int DECK_ACTION_COST = 0;//卡组操作消耗法力值
+
+            public bool Dredge = false;//探底
+            public int CooldownTurn = 0;//地标冷却回合
+            public bool Infuse = false;//注能
+            public bool Infused = false;//已注能
+            public int InfuseNum = 0;//注能数量
+            public int Manathirst = 0;//法力渴求
+            public bool Finale = false;//压轴
+            public bool Overheal = false;//过量治疗
+            public bool Titan = false;//泰坦
+            public bool TitanAbilityUsed1 = false;//泰坦第一技能
+            public bool TitanAbilityUsed2 = false;//泰坦第二技能
+            public bool TitanAbilityUsed3 = false;//泰坦第三技能
+            public List<Card> TitanAbility = new List<Card> ();//泰坦技能列表
+            public bool Forge = false;//锻造
+            public int ForgeCost = 0;//锻造消耗法力值
+            public bool Forged = false;//已锻造
+            public bool Quickdraw = false;//快枪
+            public bool Excavate = false;//发掘
+            public bool Elusive = false;//扰魔
+
+            private bool _honorableKill = false;
+            private bool _overkill = false;
+            private bool _spellburst = false;
+            private bool _frenzy = false;
+
+            /// <summary>
+            /// 荣耀击杀
+            /// </summary>
+            public bool HonorableKill
+            {
+                get { return _honorableKill; }
+                set { _honorableKill = value; }
+            }
+
+            /// <summary>
+            /// 超杀
+            /// </summary>
+            public bool Overkill
+            {
+                get { return _overkill; }
+                set { _overkill = value; }
+            }
+
+            /// <summary>
+            /// 法术迸发
+            /// </summary>
+            public bool Spellburst
+            {
+                get { return _spellburst; }
+                set { _spellburst = value; }
+            }
+
+            /// <summary>
+            /// 暴怒
+            /// </summary>
+            public bool Frenzy
+            {
+                get { return _frenzy; }
+                set { _frenzy = value; }
+            }
+
+            /// <summary>
+            /// 存在错误类型
+            /// </summary>
+            /// <param name="errorType"></param>
+            /// <returns></returns>
             public bool ExistErrorType(CardDB.ErrorType2 errorType)
             {
                 foreach (var pr in this.sim_card.GetPlayReqs())
@@ -429,15 +485,20 @@ namespace HREngine.Bots
                 }
                 return false;
             }
-            //获得卡牌的目标
+
+            /// <summary>
+            /// 获得卡牌的目标
+            /// </summary>
+            /// <param name="p"></param>
+            /// <param name="isLethalCheck"></param>
+            /// <param name="own"></param>
+            /// <returns></returns>
             public List<Minion> getTargetsForCard(Playfield p, bool isLethalCheck, bool own)
             {
                 //if wereTargets=true and 0 targets at end -> then can not play this card
                 List<Minion> retval = new List<Minion>();
                 if (this.type == CardDB.cardtype.MOB && ((own && p.ownMinions.Count >= 7) || (!own && p.enemyMinions.Count >= 7))) return retval; // cant play mob, if we have allready 7 mininos
                 if (this.Secret && ((own && (p.ownSecretsIDList.Contains(this.cardIDenum) || p.ownSecretsIDList.Count >= 5)) || (!own && p.enemySecretCount >= 5))) return retval;
-                //if (p.mana < this.getManaCost(p, 1)) return retval;
-
                 if (this.sim_card.GetPlayReqs().Length == 0) { retval.Add(null); return retval; }
 
                 List<Minion> targets = new List<Minion>();
@@ -640,8 +701,6 @@ namespace HREngine.Bots
                         case ErrorType2.REQ_HAND_NOT_FULL:
                             if (p.owncards.Count == 10) return retval;
                             continue;
-
-                            //default:
                     }
                 }
 
@@ -661,8 +720,8 @@ namespace HREngine.Bots
                     }
                     else
                     {
-                        foreach (Minion m in p.ownMinions) if (!m.untouchable) targets.Add(m);
-                        foreach (Minion m in p.enemyMinions) if (!m.untouchable) targets.Add(m);
+                        foreach (Minion m in p.ownMinions) if (!m.untouchable && m.handcard.card.type != cardtype.LOCATION) targets.Add(m);
+                        foreach (Minion m in p.enemyMinions) if (!m.untouchable && m.handcard.card.type != cardtype.LOCATION) targets.Add(m);
                     }
                     if (targetOnlyMinion)
                     {
@@ -850,8 +909,9 @@ namespace HREngine.Bots
                 if (targetEnemyHero && own && p.enemyHero.stealth) targetEnemyHero = false;
                 if (targetOwnHero && !own && p.ownHero.stealth) targetOwnHero = false;
 
+                //斩杀
                 if (isLethalCheck)
-                {//斩杀?
+                {
                     if (targetEnemyHero && own) retval.Add(p.enemyHero);
                     else if (targetOwnHero && !own) retval.Add(p.ownHero);
 
@@ -950,7 +1010,12 @@ namespace HREngine.Bots
                 return retval;
             }
 
-
+            /// <summary>
+            /// 获取英雄技能的目标
+            /// </summary>
+            /// <param name="p">场面</param>
+            /// <param name="own">是否自己打出</param>
+            /// <returns></returns>
             public List<Minion> getTargetsForHeroPower(Playfield p, bool own)
             {
                 List<Minion> trgts = getTargetsForCard(p, p.isLethalCheck, own);
@@ -1022,7 +1087,171 @@ namespace HREngine.Bots
                 }
                 return trgts;
             }
-            //计算费用 会减费的牌需要在里面写
+
+            /// <summary>
+            /// 获得地标卡牌的目标
+            /// </summary>
+            /// <param name="p">当前的游戏状态</param>
+            /// <param name="isLethalCheck">是否进行斩杀检测</param>
+            /// <param="own">是否为自己的回合</param>
+            /// <returns>返回可以选择的随从目标列表</returns>
+            public List<Minion> getTargetsForLocation(Playfield p, bool isLethalCheck, bool own)
+            {
+                List<Minion> retval = new List<Minion>();
+                if (this.sim_card.GetPlayReqs().Length == 0) { retval.Add(null); return retval; }
+
+                List<Minion> targets = new List<Minion>();
+                bool targetAll = false;
+                bool targetAllEnemy = false;
+                bool targetAllFriendly = false;
+                bool targetEnemyHero = false;
+                bool targetOwnHero = false;
+                bool targetOnlyMinion = false;
+                bool extraParam = false;
+                bool wereTargets = false;
+                bool REQ_DAMAGED_TARGET = false;
+                bool REQ_TARGET_WITH_DEATHRATTLE = false;
+
+                foreach (PlayReq pr in this.sim_card.GetPlayReqs())
+                {
+                    switch (pr.errorType)
+                    {
+                        case ErrorType2.REQ_TARGET_TO_PLAY:
+                            targetAll = true;
+                            continue;
+                        case ErrorType2.REQ_MINION_TARGET:
+                            targetOnlyMinion = true;
+                            continue;
+                        case ErrorType2.REQ_FRIENDLY_TARGET:
+                            if (own) targetAllFriendly = true;
+                            else targetAllEnemy = true;
+                            continue;
+                        case ErrorType2.REQ_ENEMY_TARGET:
+                            if (own) targetAllEnemy = true;
+                            else targetAllFriendly = true;
+                            continue;
+                        case ErrorType2.REQ_DAMAGED_TARGET:
+                            REQ_DAMAGED_TARGET = true;
+                            extraParam = true;
+                            continue;
+                        case ErrorType2.REQ_TARGET_WITH_DEATHRATTLE:
+                            REQ_TARGET_WITH_DEATHRATTLE = true;
+                            targetOnlyMinion = true;
+                            extraParam = true;
+                            continue;
+                    }
+                }
+
+                if (targetAll)
+                {
+                    wereTargets = true;
+                    if (targetAllFriendly != targetAllEnemy)
+                    {
+                        if (targetAllFriendly)
+                        {
+                            foreach (Minion m in p.ownMinions) if (!m.untouchable) targets.Add(m);
+                        }
+                        else
+                        {
+                            foreach (Minion m in p.enemyMinions) if (!m.untouchable) targets.Add(m);
+                        }
+                    }
+                    else
+                    {
+                        foreach (Minion m in p.ownMinions) if (!m.untouchable) targets.Add(m);
+                        foreach (Minion m in p.enemyMinions) if (!m.untouchable) targets.Add(m);
+                    }
+                    if (targetOnlyMinion)
+                    {
+                        targetEnemyHero = false;
+                        targetOwnHero = false;
+                    }
+                    else
+                    {
+                        if (!p.enemyHero.immune) targetEnemyHero = true;
+                        if (!p.ownHero.immune) targetOwnHero = true;
+                        if (targetAllEnemy) targetOwnHero = false;
+                        if (targetAllFriendly) targetEnemyHero = false;
+                    }
+                }
+
+                if (extraParam)
+                {
+                    wereTargets = true;
+                    if (REQ_DAMAGED_TARGET)
+                    {
+                        foreach (Minion m in targets)
+                        {
+                            if (!m.wounded)
+                            {
+                                m.extraParam = true;
+                            }
+                        }
+                        targetOwnHero = false;
+                        targetEnemyHero = false;
+                    }
+                    if (REQ_TARGET_WITH_DEATHRATTLE)
+                    {
+                        foreach (Minion m in targets)
+                        {
+                            if (!m.silenced && (m.handcard.card.deathrattle || m.deathrattle2 != null)) continue;
+                            else m.extraParam = true;
+                        }
+                        targetOwnHero = false;
+                        targetEnemyHero = false;
+                    }
+                }
+
+                if (targetEnemyHero && own && p.enemyHero.stealth) targetEnemyHero = false;
+                if (targetOwnHero && !own && p.ownHero.stealth) targetOwnHero = false;
+
+                // 斩杀检测
+                if (isLethalCheck)
+                {
+                    if (targetEnemyHero && own) retval.Add(p.enemyHero);
+                    else if (targetOwnHero && !own) retval.Add(p.ownHero);
+
+                    foreach (Minion m in targets)
+                    {
+                        if (m.extraParam != true)
+                        {
+                            if (m.stealth && !m.own) continue;
+                            retval.Add(m);
+                        }
+                        m.extraParam = false;
+                    }
+                }
+                else
+                {
+                    if (targetEnemyHero) retval.Add(p.enemyHero);
+                    if (targetOwnHero) retval.Add(p.ownHero);
+
+                    foreach (Minion m in targets)
+                    {
+                        if (m.extraParam != true)
+                        {
+                            if (m.stealth && !m.own) continue;
+                            if (m.cantBeTargetedBySpellsOrHeroPowers && (this.type == cardtype.SPELL || this.type == cardtype.HEROPWR)) continue;
+                            retval.Add(m);
+                        }
+                        m.extraParam = false;
+                    }
+                }
+
+                // 如果没有找到合适的目标且没有特定目标要求，则返回null
+                if (retval.Count == 0 && !wereTargets)
+                {
+                    retval.Add(null);
+                }
+
+                return retval;
+            }
+
+            /// <summary>
+            /// 计算费用 会减费的牌需要在里面写
+            /// </summary>
+            /// <param name="p"></param>
+            /// <returns></returns>
             public int calculateManaCost(Playfield p)//calculates the mana from orginal mana, needed for back-to hand effects and new draw
             {
                 int retval = this.cost;//卡牌本身的费用
@@ -1090,137 +1319,7 @@ namespace HREngine.Bots
                         retval = retval + offset - p.libram;
                         break;
                 }
-                switch (this.nameEN)
-                {
-                    // //特殊减费机制的卡
-                    //case CardDB.cardName.libramofjudgment://审判圣契
-                    //case CardDB.cardName.libramofwisdom://智慧圣契
-                    //case CardDB.cardName.libramofjustice://正义圣契
-                    //case CardDB.cardName.libramofhope://希望圣契
-                    //    retval = retval + offset - p.libram;
-                    //    break;
-                    //case CardDB.cardNameEN.happyghoul:
-                    //    if (p.healTimes > 0)
-                    //        retval = 0 + offset;
-                    //    break;
-                    //case CardDB.cardNameEN.wildmagic:
-                    //    retval = offset;
-                    //    break;
-                    //case CardDB.cardNameEN.dreadcorsair://恐怖海盗
-                    //    retval = retval + offset - p.ownWeapon.Angr;
-                    //    break;
-                    //case CardDB.cardNameEN.volcanicdrake://火山幼龙
-                    //    retval = retval + offset - p.ownMinionsDiedTurn - p.enemyMinionsDiedTurn;
-                    //    break;
-                    //case CardDB.cardNameEN.knightofthewild://荒野骑士
-                    //    retval = retval + offset - p.tempTrigger.ownBeastSummoned;
-                    //    break;
-                    //case CardDB.cardNameEN.seagiant://海巨人
-                    //    retval = retval + offset - p.ownMinions.Count - p.enemyMinions.Count;
-                    //    break;
-                    //case CardDB.cardNameEN.mountaingiant://山岭巨人
-                    //    retval = retval + offset - p.owncards.Count;
-                    //    break;
-                    //case CardDB.cardNameEN.clockworkgiant://发条巨人
-                    //    retval = retval + offset - p.enemyAnzCards;
-                    //    break;
-                    //case CardDB.cardNameEN.moltengiant://熔岩巨人
-                    //    retval = retval + offset - p.ownHero.maxHp + p.ownHero.Hp;
-                    //    break;
-                    //case CardDB.cardNameEN.frostgiant://冰霜巨人
-                    //    retval = retval + offset - p.anzUsedOwnHeroPower;
-                    //    break;
-                    //case CardDB.cardNameEN.arcanegiant://奥术巨人
-                    //    retval = retval + offset - p.spellsplayedSinceRecalc;
-                    //    break;
-                    //case CardDB.cardNameEN.snowfurygiant://雪怒巨人
-                    //    retval = retval + offset - p.ueberladung;
-                    //    break;
-                    //case CardDB.cardNameEN.kabalcrystalrunner://暗金教水晶侍女
-                    //    retval = retval + offset - 2 * p.secretsplayedSinceRecalc;
-                    //    break;
-                    //case CardDB.cardNameEN.secondratebruiser://二流打手
-                    //    retval = retval + offset - ((p.enemyMinions.Count < 3) ? 0 : 2);
-                    //    break;
-                    //case CardDB.cardNameEN.golemagg:
-                    //    retval = retval + offset - p.ownHero.maxHp + p.ownHero.Hp;
-                    //    break;
-                    //case CardDB.cardNameEN.volcaniclumberer://火山邪木
-                    //    retval = retval + offset - p.ownMinionsDiedTurn - p.enemyMinionsDiedTurn;
-                    //    break;
-                    //case CardDB.cardNameEN.skycapnkragg://天空上尉库拉格
-                    //    int costBonus = 0;
-                    //    foreach (Minion m in p.ownMinions)
-                    //    {
-                    //        if ((TAG_RACE)m.handcard.card.race == TAG_RACE.PIRATE) costBonus++;
-                    //    }
-                    //    retval = retval + offset - costBonus;
-                    //    break;
-                    //case CardDB.cardNameEN.everyfinisawesome://鱼人恩典
-                    //    int costBonusM = 0;
-                    //    foreach (Minion m in p.ownMinions)
-                    //    {
-                    //        if ((TAG_RACE)m.handcard.card.race == TAG_RACE.MURLOC) costBonusM++;
-                    //    }
-                    //    retval = retval + offset - costBonusM;
-                    //    break;
-                    //// 血肉巨人
-                    //case CardDB.cardNameEN.fleshgiant:
-                    //    retval = retval + offset - p.healOrDamageTimes;
-                    //    break;
-                    //case CardDB.cardNameEN.crush:
-                    //    // cost 4 less if we have a dmged minion
-                    //    bool dmgedminions = false;
-                    //    foreach (Minion m in p.ownMinions)
-                    //    {
-                    //        if (m.wounded) dmgedminions = true;
-                    //    }
-                    //    if (dmgedminions)
-                    //    {
-                    //        retval = retval + offset - 4;
-                    //    }
-                    //    break;
-                    //case CardDB.cardNameEN.thingfrombelow://深渊魔物
-                    //    if (p.playactions.Count > 0)
-                    //    {
-                    //        foreach (Action a in p.playactions)
-                    //        {
-                    //            if (a.actionType == actionEnum.playcard)//使用卡片
-                    //            {
-                    //                switch (a.card.card.nameEN)
-                    //                {
-                    //                    case cardNameEN.tuskarrtotemic: //海象人图腾师
-                    //                        retval -= (p.ownBrannBronzebeard + 1); break;
-                    //                    case cardNameEN.splittingaxe://分裂战斧
-                    //                        int ownTotemsCount = 0;
-                    //                        foreach (Minion m in p.ownMinions)
-                    //                        {
-                    //                            if ((TAG_RACE)m.handcard.card.race == TAG_RACE.TOTEM) ownTotemsCount++;
-                    //                        }
-                    //                        retval -= ownTotemsCount;
-                    //                        break;
-                    //                    default:
-                    //                        if ((TAG_RACE)a.card.card.race == TAG_RACE.TOTEM) retval--;
-                    //                        break;
-                    //                }
-                    //            }
-                    //            else if (a.actionType == actionEnum.useHeroPower)//使用英雄技能
-                    //            {
-                    //                switch (a.card.card.nameEN)
-                    //                {
-                    //                    case cardNameEN.totemiccall: retval--; break;//图腾召唤
-                    //                    case cardNameEN.totemicslam: retval--; break;//图腾崇拜
-                    //                }
-                    //            }
-                    //        }
-                    //    }
-                    //    retval = retval + offset;
-                    //    break;
-                    default:
-                        retval = retval + offset;
-                        break;
-                }
-
+                retval = retval + offset;
                 if (this.Secret)
                 {
                     if (p.anzOwnCloakedHuntress > 0 || p.nextSecretThisTurnCost0) retval = 0;
@@ -1231,6 +1330,12 @@ namespace HREngine.Bots
                 return retval;
             }
 
+            /// <summary>
+            /// 获取卡牌费用
+            /// </summary>
+            /// <param name="p"></param>
+            /// <param name="currentcost"></param>
+            /// <returns></returns>
             public int getManaCost(Playfield p, int currentcost)
             {
                 int retval = currentcost;
@@ -1299,11 +1404,9 @@ namespace HREngine.Bots
                         }
 
                         //卫兵
-                        //if (p.mobsplayedThisTurn == 0 && this.tank)
                         if (p.winRazormaneBattleguard != p.startedRazormaneBattleguard && this.tank)
                         {
                             offset -= p.winRazormaneBattleguard * 2;
-                            //offset += (p.startedRazormaneBattleguard - p.winRazormaneBattleguard) * 2;
                         }
 
                         if (p.anzOwnDragonConsort != p.anzOwnDragonConsortStarted && (TAG_RACE)this.race == TAG_RACE.DRAGON)
@@ -1524,14 +1627,25 @@ namespace HREngine.Bots
                 return retval;
             }
 
+            /// <summary>
+            /// 能否打出牌
+            /// </summary>
+            /// <param name="p"></param>
+            /// <param name="manacost"></param>
+            /// <param name="own"></param>
+            /// <returns></returns>
             public bool canplayCard(Playfield p, int manacost, bool own)
-            {//能否使用牌
+            {
                 if (p.mana < this.getManaCost(p, manacost)) return false;
                 if (this.getTargetsForCard(p, false, own).Count == 0) return false;
                 return true;
             }
 
-            public string chnInfo()  //打印中文信息用，中文名 + 身材，方便辨识
+            /// <summary>
+            /// 打印中文信息用，中文名 + 身材，方便辨识
+            /// </summary>
+            /// <returns></returns>
+            public string chnInfo()
             {
                 if (type == cardtype.MOB) //随从
                     return nameCN.ToString() + "(" + Attack + "," + Health + ")";
@@ -1539,6 +1653,79 @@ namespace HREngine.Bots
                     return nameCN.ToString();
             }
 
+            /// <summary>
+            /// 获取泰坦卡牌的技能列表
+            /// </summary>
+            public List<CardDB.Card> GetTitanAbility()
+            {
+                var titanSkills = new List<CardDB.Card>();
+
+                switch (this.cardIDenum.ToString())
+                {
+                    case "TTN_092":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_092t1)); // 守护秩序
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_092t2)); // 统帅风范
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_092t3)); // 迅疾挥剑
+                        break;
+                    case "TTN_075":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_075t)); // 元尊之力
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_075t2)); // 远古知识
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_075t3)); // 无限潜能
+                        break;
+                    case "TTN_800":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_800t)); // 狂海怒涛
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_800t2)); // 天空之王
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_800t3)); // 沙加恩之怒
+                        break;
+                    case "TTN_415":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_415t)); // 泰坦锻造
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_415t2)); // 升温回火
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_415t3)); // 烈焰之心
+                        break;
+                    case "TTN_858":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_858t1)); // 增援
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_858t2)); // 强化
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_858t3)); // 平静
+                        break;
+                    case "TTN_429":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_429t)); // 塑造星辰
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_429t2)); // 扫出历史
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_429t3)); // 英雄视界
+                        break;
+                    case "TTN_862":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_862t1)); // 雕琢晶石
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_862t2)); // 力量展现
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_862t3)); // 阿古尼特大军
+                        break;
+                    case "TTN_737":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_737t)); // 鲜血符文
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_737t1)); // 邪恶符文
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_737t3)); // 冰霜符文
+                        break;
+                    case "TTN_960":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_960t2)); // 打入虚空！
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_960t3)); // 地狱火！
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_960t4)); // 军团进攻！
+                        break;
+                    case "YOG_516":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.YOG_516t)); // 混沌统治
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.YOG_516t2)); // 诱引狂乱
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.YOG_516t3)); // 触须攒聚
+                        break;
+                    case "TTN_903":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_903t)); // 自行生长
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_903t2)); // 丰饶收获
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_903t3)); // 繁茂似锦
+                        break;
+                    case "TTN_721":
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_721t)); // 加装火炮！
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_721t1)); // 动力全开！
+                        titanSkills.Add(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_721t2)); // 防御拉满！
+                        break;
+                }
+
+                return titanSkills;
+            }
         }
 
         List<Card> cardlist = new List<Card>();
@@ -1553,6 +1740,9 @@ namespace HREngine.Bots
 
         public Card burlyrockjaw;
         private static CardDB instance;
+
+        //定义三个稀有度的宝藏卡牌池
+        public Dictionary<string, List<cardIDEnum>> treasurePools;
 
         public static CardDB Instance
         {
@@ -1588,10 +1778,37 @@ namespace HREngine.Bots
             this.cardNameCNToCardList.Clear();
             this.cardNameENToCardList.Clear();
 
+            treasurePools = new Dictionary<string, List<cardIDEnum>>
+            {
+                { "common", new List<cardIDEnum> {
+                    cardIDEnum.WW_001t4,
+                    cardIDEnum.WW_001t,
+                    cardIDEnum.WW_001t2,
+                    cardIDEnum.WW_001t18,
+                    cardIDEnum.WW_001t3,
+                    cardIDEnum.DEEP_999t1,
+                }},
+                { "rare", new List<cardIDEnum> {
+                    cardIDEnum.WW_001t16,
+                    cardIDEnum.WW_001t7,
+                    cardIDEnum.WW_001t8,
+                    cardIDEnum.WW_001t5,
+                    cardIDEnum.WW_001t9,
+                    cardIDEnum.DEEP_999t2,
+                }},
+                { "epic", new List<cardIDEnum> {
+                    cardIDEnum.WW_001t11,
+                    cardIDEnum.WW_001t17,
+                    cardIDEnum.WW_001t13,
+                    cardIDEnum.WW_001t12,
+                    cardIDEnum.WW_001t14,
+                    cardIDEnum.DEEP_999t3,
+                }},
+            };
+
             //placeholdercard
             this.cardlist.Add(new Card { nameEN = cardNameEN.unknown, cost = 10 });
             this.unknownCard = cardlist[0];
-
 
             var filePath = Path.Combine(Settings.Instance.path, "CardDefs.xml");
             if (!File.Exists(filePath))
@@ -1638,7 +1855,8 @@ namespace HREngine.Bots
                 {
                     card.isToken = true;
                 }
-                #region parse tags
+
+                //parse tags
                 foreach (XmlElement tag in entity.ChildNodes)
                 {
                     if (!tag.HasAttribute("enumID"))
@@ -1815,17 +2033,17 @@ namespace HREngine.Bots
                             }
                             break;
                         case "1637":
-                            {//暴怒
+                            {
                                 card.Frenzy = true;
                             }
                             break;
                         case "1920":
-                            {//暴怒
+                            {
                                 card.HonorableKill = true;
                             }
                             break;
                         case "923":
-                            {//超杀
+                            {
                                 card.Overkill = true; 
                                 break;
                             }
@@ -1947,12 +2165,98 @@ namespace HREngine.Bots
                             break;
                         case "1743":
                             {
-                                card.TradeCost = int.Parse(tag.GetAttribute("value"));
+                                card.DECK_ACTION_COST = int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "2":
+                            {
+                                card.TAG_SCRIPT_DATA_NUM_1 = int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "3":
+                            {
+                                card.TAG_SCRIPT_DATA_NUM_2 = int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "2889":
+                            {
+                                card.TAG_SCRIPT_DATA_NUM_3 = int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "2919":
+                            {
+                                card.TAG_SCRIPT_DATA_NUM_4 = int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "2332":
+                            {
+                                card.Dredge = true;//探底
+                            }
+                            break;
+                        case "2456":
+                            {
+                                //排除冥界侍从
+                                if (cardId != "MAW_031")
+                                {
+                                    card.Infuse = true;//注能
+                                }
+                            }
+                            break;
+                        case "2457":
+                            {
+                                card.Infused = true;//已注能
+                            }
+                            break;
+                        case "2498":
+                            {
+                                card.Manathirst = int.Parse(tag.GetAttribute("value"));//法力渴求
+                            }
+                            break;
+                        case "2820":
+                            {
+                                card.Finale = true;//压轴
+                            }
+                            break;
+                        case "2821":
+                            if (!"ReferencedTag".Equals(tag.Name))
+                            {
+                                card.Overheal = true;//过量治疗
+                            }
+                            break;
+                        case "2772":
+                            if (!"ReferencedTag".Equals(tag.Name))
+                            {
+                                card.Titan = true;//泰坦
+                            }
+                            break;
+                        case "2785":
+                            {
+                                card.Forge = true;//锻造
+                            }
+                            break;
+                        case "3011":
+                            {
+                                card.Forged = true;//已锻造
+                            }
+                            break;
+                        case "2905":
+                            {
+                                card.Quickdraw = true;//快枪
+                            }
+                            break;
+                        case "3114":
+                            {
+                                card.Excavate = true;//发掘
+                            }
+                            break;
+                        case "1211":
+                            {
+                                card.Elusive = true;//扰魔
                             }
                             break;
                     }
                 }
-                #endregion
+                
                 cardlist.Add(card);
                 if (card.dbfId != null && card.dbfId != "")
                     carddbfidToCardList[card.dbfId] = card;
@@ -1962,19 +2266,29 @@ namespace HREngine.Bots
                 {
                     cardNameCNToCardList[card.nameCN] = card;
                 }
-                // else
-                // {
-                // Helpfunctions.Instance.ErrorLog("未知卡牌中文名: " + cardId);
-                // }
                 if (card.nameEN != cardNameEN.unknown)
                 {
                     cardNameENToCardList[card.nameEN] = card;
                 }
-                // else
-                // {
-                // Helpfunctions.Instance.ErrorLog("未知卡牌英文名: " + cardId);
-                // }
             }
+
+            //处理DECK_ACTION_COST、TAG_SCRIPT_DATA_NUM_1、TAG_SCRIPT_DATA_NUM_2等属性
+            foreach (Card item in cardlist)
+            {
+                if (item.Infuse)
+                {
+                    item.InfuseNum = item.TAG_SCRIPT_DATA_NUM_1;
+                }
+                if (item.Tradeable)
+                {
+                    item.TradeCost = item.DECK_ACTION_COST;
+                }
+                if (item.Forge)
+                {
+                    item.ForgeCost = item.DECK_ACTION_COST;
+                }
+            }
+
         }
 
         // 根据卡名获取卡
@@ -2066,7 +2380,74 @@ namespace HREngine.Bots
                 if (c.trigers.Count > 10) c.trigers.Clear();
             }
         }
-
     }
 
+    /// <summary>
+    /// 目标
+    /// </summary>
+    public struct targett
+    {
+        public int target;//目标
+        public int targetEntity;//目标实体
+
+        public targett(int targ, int ent)
+        {
+            this.target = targ;
+            this.targetEntity = ent;
+        }
+    }
+
+    /// <summary>
+    /// 打出卡牌要求
+    /// </summary>
+    public struct PlayReq
+    {
+        public CardDB.ErrorType2 errorType;
+        public int param;
+
+        public PlayReq(CardDB.ErrorType2 errorType, int param)
+        {
+            this.errorType = errorType;
+            this.param = param;
+        }
+
+        public PlayReq(CardDB.ErrorType2 errorType)
+        {
+            this.errorType = errorType;
+            this.param = -1;
+        }
+        public void UpdateCardAttr(CardDB.Card card)
+        {
+            switch (errorType)
+            {
+                case CardDB.ErrorType2.REQ_TARGET_MAX_ATTACK:
+                    card.needWithMaxAttackValueOf = param;
+                    break;
+                case CardDB.ErrorType2.REQ_TARGET_WITH_RACE:
+                    card.needRaceForPlaying = param;
+                    break;
+                case CardDB.ErrorType2.REQ_NUM_MINION_SLOTS:
+                    card.needEmptyPlacesForPlaying = param;
+                    break;
+                case CardDB.ErrorType2.REQ_MINION_CAP_IF_TARGET_AVAILABLE:
+                    card.needMinionsCapIfAvailable = param;
+                    break;
+                case CardDB.ErrorType2.REQ_MINIMUM_ENEMY_MINIONS:
+                    card.needMinNumberOfEnemy = param;
+                    break;
+                case CardDB.ErrorType2.REQ_TARGET_MIN_ATTACK:
+                    card.needWithMinAttackValueOf = param;
+                    break;
+                case CardDB.ErrorType2.REQ_MINIMUM_TOTAL_MINIONS:
+                    card.needMinTotalMinions = param;
+                    break;
+                case CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE_AND_MINIMUM_FRIENDLY_MINIONS:
+                    card.needMinOwnMinions = param;
+                    break;
+                case CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE_AND_MINIMUM_FRIENDLY_SECRETS:
+                    card.needControlaSecret = param;
+                    break;
+            }
+        }
+    }
 }

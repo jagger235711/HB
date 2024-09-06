@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>战吼：</b>选择一张神奇宝藏。将其余3张洗入你的牌库。
 	class Sim_VAC_702 : SimTemplate
 	{
-		
-		
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 随机抽一张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
 	}
 }

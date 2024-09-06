@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对所有敌方随从造成2点伤害。随机消灭2个敌方随从。
 	class Sim_VAC_449t20 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 对所有敌方随从造成2点伤害
+            p.allMinionOfASideGetDamage(!own.own, 2);
+
+            // 随机消灭敌方随从的效果不实现
+        }
+
+    }
 }

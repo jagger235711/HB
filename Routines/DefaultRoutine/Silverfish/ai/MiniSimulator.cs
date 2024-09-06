@@ -102,11 +102,6 @@ namespace HREngine.Bots
         
         public float doallmoves(Playfield playf)
         {
-            // 测试时修改
-            //Ai.Instance.maxdeep = 12;
-            //Ai.Instance.maxwide = 3000;
-            //Ai.Instance.maxCal = 60;
-
             print = playf.print; 
             this.isLethalCheck = playf.isLethalCheck; // 是否做斩杀检验
             enoughCalculations = false; //计算是否足够，深度大于最大深度，计算场面数大于最大宽度时为true
@@ -146,20 +141,6 @@ namespace HREngine.Bots
                 foreach (Playfield p in temp)  // 到这里nextPlayfields 哪些牌面计算好了（动作也都模拟做完了），value还没算，evaluatePenality已经计算好了。
                 {
                     idx++;
-                    //if (this.totalboards > 0) this.calculated += p.nextPlayfields.Count; //计算总的场面数，用于剪枝  totalboards = 0,则没有限制
-                    //if (this.calculated <= this.totalboards) //如果宽度小于设定值则继续计算
-                    //{
-                    //    this.posmoves.AddRange(p.nextPlayfields); //将下一层牌面进入队列，赋值posmoves下一层牌面
-                    //    p.nextPlayfields.Clear();
-                    //}
-                    //else
-                    //{
-                    //    Helpfunctions.Instance.logg(string.Format("触发剪枝,deep={0},已计算={1}>阈值{2},牌面{3}的所有子孙牌面被抛弃", 
-                    //        deep + 1, calculated, totalboards, idx));
-                    //}
-                    // if (Settings.Instance.test)
-                    //     debugCal(playf, p, deep, idx); //仅用于debug特定牌面的打分计算
-                    //get the best Playfield  重点调试，设条件断点位置：基于deep和idx设断点
                     float pVal = botBase.getPlayfieldValue(p);
                     p.value = pVal;
                     if (pVal > bestoldval)  // 找最优得分场面
@@ -182,32 +163,6 @@ namespace HREngine.Bots
                 }
                 // TODO 仅考虑得分最高的 60 种情况，将其他情况直接剪枝
                 temp.Sort((a, b) => -a.value.CompareTo(b.value));
-                // 筛选出相同 action 牌序最好的牌面，删除其他牌面
-                // FIXME 不太行，这样会错斩
-                //Dictionary<String, Playfield> bestActions = new Dictionary<String, Playfield>();
-                //// 第一次遍历，为所有相同出牌找到最优牌序
-                //foreach (Playfield p in temp)
-                //{
-                //    string actionStr = "";
-                //    List<string> actionList = new List<string>();
-                //    p.playactions.ForEach(a =>
-                //    {
-                //        string tmp = a.actionType.ToString() + (a.card == null ? "" : a.card.entity.ToString()) + (a.own == null ? "" : a.own.entitiyID.ToString());
-                //        actionList.Add(tmp);
-                //    });
-                //    actionList.Sort((a, b) => a.CompareTo(b));
-                //    actionStr = string.Join(",", actionList.ToArray());
-                //    if (!bestActions.ContainsKey(actionStr) || bestActions[actionStr].value < p.value)
-                //    {
-                //        bestActions[actionStr] = p;
-                //    }
-                //}
-                //// 删除其他牌面
-                //temp = bestActions.Values.ToList();
-                // Helpfunctions.Instance.ErrorLog("当前maxwide设置为：" + Ai.Instance.maxwide);
-                // Helpfunctions.Instance.ErrorLog("当前maxCal设置为：" + Ai.Instance.maxCal);
-                // Helpfunctions.Instance.ErrorLog("当前maxDeep设置为：" + Ai.Instance.maxdeep);
-
                 if (this.calculated > Ai.Instance.maxwide)
                 {
                     // 加快计算
@@ -218,11 +173,6 @@ namespace HREngine.Bots
                     // 加快计算
                     temp = temp.Take(Ai.Instance.maxCal / 2).ToList();
                 }
-                //else if (this.calculated > 1000)
-                //{
-                //    // 加快计算
-                //    temp = temp.Take(40).ToList();
-                //}
                 else
                 {
                     temp = temp.Take(Ai.Instance.maxCal).ToList();
@@ -255,7 +205,6 @@ namespace HREngine.Bots
                 if (this.posmoves.Count > 0) havedonesomething = true; //如果还有其他状态可以模拟，则继续运算
 
                 int num_before_cut = posmoves.Count;
-                //if(Ai.Instance.botBase.BehaviorName() != "黑眼任务术")
                 cuttingposibilities(isLethalCheck); //去除重复的PlayField  这里面有排序，以及对posmoves的赋值
                 Helpfunctions.Instance.logg("cut to len 去重从" + num_before_cut + " 到 " + this.posmoves.Count);
                 deep++;
@@ -326,7 +275,6 @@ namespace HREngine.Bots
                 return;
             }
 
-
             int berserk = Settings.Instance.berserkIfCanFinishNextTour;
             int printRules = Settings.Instance.printRules;
 
@@ -336,8 +284,7 @@ namespace HREngine.Bots
                 float pv = botBase.getPlayfieldValue(p);
                 if (pv < -10000) // 场面得分过低，弃掉这个场面以及这个场面的子序列，提前剪枝
                     continue;
-                if (p.complete || p.ownHero.Hp <= 0) { }
-                else if (!enoughCalculations)
+                if (!enoughCalculations)
                 {
                     //gernerate actions and play them!
                     //从这里进入调用getMoveList函数，这个函数返回的是兄弟下一步所有可以做的操作
@@ -347,14 +294,32 @@ namespace HREngine.Bots
                     //建议直接跟进去看寻找原因，可以加深理解
                     List<Action> actions = movegen.getMoveList(p, usePenalityManager, useCutingTargets, true); // 这里面会算每个action的惩罚值
 
-                    if (printRules > 0) p.endTurnState = new Playfield(p);
                     //读取到actions后接下来对每个步骤进行模拟
                     //从而得到操作之后的场面并且计算val值
+                    if (printRules > 0) p.endTurnState = new Playfield(p);
+                    // 全局集合，记录已经模拟过的泰坦技能动作
+                    var usedTitanSkills = "";
                     foreach (Action a in actions)  // 到这步 a.penalty已经计算好了
                     {
+                        // 检查是否为泰坦技能动作，并检查是否已经模拟过
+                        if (a.actionType == actionEnum.useTitanAbility)
+                        {
+                            string titanSkillKey = a.own.entitiyID + "-" + a.titanAbilityNO;
+                            if (usedTitanSkills.Length == 0)
+                            {
+                                usedTitanSkills = titanSkillKey;
+                            }
+                            else
+                            {
+                                if (usedTitanSkills != titanSkillKey)
+                                {
+                                    continue; // 已使用其他技能
+                                }
+                            }
+                        }
+
                         Playfield pf = new Playfield(p);
                         pf.doAction(a);
-                        //pf.evaluatePenality += - pf.ruleWeight + RulesEngine.Instance.getRuleWeight(pf); Todo:我们不用规则引擎
                         if (pf.ownHero.Hp > 0 && pf.evaluatePenality < 500) p.nextPlayfields.Add(pf);
                     }
                 }

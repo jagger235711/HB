@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//<b>战吼：</b>获取两张预知命运。预知命运为你牌库顶的牌的复制。
 	class Sim_VAC_420 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 直接抽两张牌
+            p.drawACard(CardDB.cardIDEnum.VAC_420t, own.own, true); // 抽第一张牌
+            p.drawACard(CardDB.cardIDEnum.VAC_420t, own.own, true); // 抽第二张牌
+        }
+    }
 }

@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//为你的英雄恢复所有生命值。
 	class Sim_TTN_903t2 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.ownHero.Hp = p.ownHero.maxHp; // 恢复所有生命值
+            p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TTN_903t4), p.ownMinions.Count, true, false);
+        }
+    }
 }

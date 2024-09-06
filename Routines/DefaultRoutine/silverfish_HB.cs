@@ -109,7 +109,11 @@ namespace HREngine.Bots
             setBehavior();
             getAllCards = Extensions.GetAllCards;
         }
-        //设置行为
+
+        /// <summary>
+        /// 设置行为
+        /// </summary>
+        /// <returns></returns>
         private bool setBehavior()
         {
             Type[] types = Assembly.GetExecutingAssembly().GetTypes().Where(t => t.BaseType == typeof(Behavior)).ToArray();
@@ -141,8 +145,6 @@ namespace HREngine.Bots
 
             if (BehaviorDB.Count != BehaviorPath.Count || BehaviorDB.Count != bCount)
             {
-                // Helpfunctions.Instance.ErrorLog("Behavior: registered - " + BehaviorDB.Count + ", folders - " + bCount + ", have a path - "
-                //     + BehaviorPath.Count + ". These values should be the same. Maybe you have some extra files in the 'custom_behavior' folder.");
                 Helpfunctions.Instance.ErrorLog("Behavior: 登记过 - " + BehaviorDB.Count + ", 文件夹 - " + bCount + ", 有路径 - "
                     + BehaviorPath.Count + ". 这些值应该相同. 或许你有其他文件在  'custom_behavior' 文件夹.");
             }
@@ -231,8 +233,15 @@ namespace HREngine.Bots
             }
         }
 
+        /// <summary>
+        /// 更新所有信息
+        /// </summary>
+        /// <param name="botbase"></param>
+        /// <param name="numcal"></param>
+        /// <param name="sleepRetry"></param>
+        /// <returns></returns>
         public bool updateEverything(Behavior botbase, int numcal, out bool sleepRetry)
-        {//更新所有信息
+        {
             this.needSleep = false;
             this.updateBehaveString(botbase);
 
@@ -241,11 +250,7 @@ namespace HREngine.Bots
 
             updateRealTimeInfo();//获取实时场面信息 
 
-
-
             Hrtprozis.Instance.updateTurnDeck(turnDeck);//对局信息更新卡组
-            //if (CardDB.Instance.getCardDataFromID(item.Key).cardIDenum == CardDB.cardIDEnum.CFM_637) patchesInDeck = true;
-
             Hrtprozis.Instance.setOwnPlayer(ownController);//对局信息设置我方玩家                
             Handmanager.Instance.setOwnPlayer(ownController);//手牌管理 设置我方玩家
 
@@ -261,8 +266,6 @@ namespace HREngine.Bots
                 TritonHs.EnemyHero.EntityId);//更新玩家
             Hrtprozis.Instance.updateSecretStuff(this.ownSecretList, this.enemySecretList.Count);//更新奥秘
 
-            //this.ownHeroPowerCost = this.heroAbility.cost;
-
             Hrtprozis.Instance.updateHero(this.ownWeapon, this.heroname, this.heroAbility, this.ownAbilityisReady, this.ownHeroPowerCost, this.ownHero);//更新我方英雄
             Hrtprozis.Instance.updateHero(this.enemyWeapon, this.enemyHeroname, this.enemyAbility, false, this.enemyHeroPowerCost, this.enemyHero, this.enemyMaxMana);//更新敌方英雄
 
@@ -276,7 +279,6 @@ namespace HREngine.Bots
             Hrtprozis.Instance.updateTurnInfo(this.gTurn, this.gTurnStep);//回合
             updateCThunInfobyCThun();//克苏恩
             Hrtprozis.Instance.updateCThunInfo(this.anzOgOwnCThunAngrBonus, this.anzOgOwnCThunHpBonus, this.anzOgOwnCThunTaunt);
-            //Hrtprozis.Instance.updateOwnMinionsInDeckCost0(this.ownMinionsCost0);  //消耗0的随从          
             Probabilitymaker.Instance.setEnemySecretGuesses(this.enemySecretList);//猜测对手奥秘
 
             bool isTurnStart = false;
@@ -306,9 +308,9 @@ namespace HREngine.Bots
             sleepRetry = this.needSleep;
             if (sleepRetry && numcal == 0) return false;
 
-
+            //不设置游戏规则
             if (!Hrtprozis.Instance.setGameRule)
-            {//不设置游戏规则
+            {
                 RulesEngine.Instance.setCardIdRulesGame(this.ownHero.cardClass, this.enemyHero.cardClass);
                 Hrtprozis.Instance.setGameRule = true;
             }
@@ -382,10 +384,10 @@ namespace HREngine.Bots
             return true;
         }
 
-
-
-
-        private void updateRealTimeInfo()//实时更新游戏数据
+        /// <summary>
+        /// 实时更新游戏数据
+        /// </summary>
+        private void updateRealTimeInfo()
         {
             List<HSCard> allcards = getAllCards();
 
@@ -434,7 +436,6 @@ namespace HREngine.Bots
             Questmanager.Instance.updateQuestStuff("None", 0, 1000, true);
             Questmanager.Instance.updateQuestStuff("None", 0, 1000, false);
 
-
             foreach (HSCard card in allcards)
             {
                 //基础信息，不需要重复读取
@@ -465,6 +466,10 @@ namespace HREngine.Bots
                                 updateHeroPower(card, controllerId, cardId, rtCost);
                             }
                             else if (card.IsMinion)//随从
+                            {
+                                updateMinion(card, entity, controllerId, cardId);
+                            }
+                            else if ((TAG_CARDTYPE)cardType == TAG_CARDTYPE.LOCATION)//地标
                             {
                                 updateMinion(card, entity, controllerId, cardId);
                             }
@@ -759,16 +764,6 @@ namespace HREngine.Bots
                     return;
                 m.wounded = m.maxHp > m.Hp;
 
-                //int ctarget = card.GetTag(GAME_TAG.CARD_TARGET);
-                //if (ctarget > 0 && Extensions.AllCardsDict.ContainsKey(ctarget))
-                //{
-                //    LurkersDB.Add(card.EntityId, new IDEnumOwner()
-                //    {
-                //        IDEnum = CardDB.Instance.cardIdstringToEnum(cardId),
-                //        own = (controller == ownController) ? true : false
-                //    });
-                //}
-
                 m.own = controller == ownController;
 
                 m.exhausted = (card.GetTag(GAME_TAG.EXHAUSTED) == 0) ? false : true;//枯竭的
@@ -848,11 +843,37 @@ namespace HREngine.Bots
 
                 }
 
+                m.handcard.card.TAG_SCRIPT_DATA_NUM_1 = c.TAG_SCRIPT_DATA_NUM_1;//标签脚本数据编号1，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+                m.handcard.card.TAG_SCRIPT_DATA_NUM_2 = c.TAG_SCRIPT_DATA_NUM_2;//标签脚本数据编号2，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+                m.handcard.card.TAG_SCRIPT_DATA_NUM_3 = c.TAG_SCRIPT_DATA_NUM_3;//标签脚本数据编号3，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+                m.handcard.card.TAG_SCRIPT_DATA_NUM_4 = c.TAG_SCRIPT_DATA_NUM_4;//标签脚本数据编号4，用于记录伤害、召唤数量、衍生物攻击力、衍生物血量、注能数量、法力渴求
+
+                m.handcard.card.DECK_ACTION_COST = c.DECK_ACTION_COST;//卡组操作消耗法力值
+
+                m.handcard.card.Dredge = c.Dredge;//探底
+                m.handcard.card.CooldownTurn = c.CooldownTurn;//地标冷却回合
+                m.handcard.card.Infuse = c.Infuse;//注能
+                m.handcard.card.Infused = c.Infused;//已注能
+                m.handcard.card.InfuseNum = c.InfuseNum;//注能数量
+                m.handcard.card.Manathirst = c.Manathirst;//法力渴求
+                m.handcard.card.Finale = c.Finale;//压轴
+                m.handcard.card.Overheal = c.Overheal;//过量治疗
+                m.handcard.card.Titan = c.Titan;//泰坦
+                m.handcard.card.TitanAbilityUsed1 = c.TitanAbilityUsed1;//泰坦第一技能
+                m.handcard.card.TitanAbilityUsed2 = c.TitanAbilityUsed2;//泰坦第二技能
+                m.handcard.card.TitanAbilityUsed3 = c.TitanAbilityUsed3;//泰坦第三技能
+                m.handcard.card.TitanAbility = c.TitanAbility;//泰坦技能列表
+                m.handcard.card.Forge = c.Forge;//锻造
+                m.handcard.card.ForgeCost = c.ForgeCost;//锻造消耗法力值
+                m.handcard.card.Forged = c.Forged;//已锻造
+                m.handcard.card.Quickdraw = c.Quickdraw;//快枪
+                m.handcard.card.Excavate = c.Excavate;//发掘
+                m.handcard.card.Elusive = c.Elusive;//扰魔
+
                 if (m.charge > 0 && m.playedThisTurn && !m.Ready && m.numAttacksThisTurn == 0)
                 {
                     needSleep = true;
                     Helpfunctions.Instance.ErrorLog("[AI] 冲锋的随从还没有准备好");
-
                 }
 
                 if (controller == ownController)
@@ -868,7 +889,15 @@ namespace HREngine.Bots
             }
         }
 
-        // 更新手牌/附魔
+        /// <summary>
+        /// 更新手牌/附魔
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="controller"></param>
+        /// <param name="cardId"></param>
+        /// <param name="entityId"></param>
+        /// <param name="cost"></param>
+        /// <param name="entity"></param>
         private void updateHandcard(HSCard card, int controller, string cardId, int entityId, int cost, Entity entity)
         {
             var zp = card.ZonePosition;
@@ -886,7 +915,6 @@ namespace HREngine.Bots
                     hc.manacost = cost;
                     hc.poweredUp = card.GetTag(GAME_TAG.POWERED_UP);
                     hc.darkmoon_num = scriptNum1; //得到暗月先知抽牌数
-                                                  //if (hc.elemPoweredUp > 0) wereElementalsLastTurn = 1;
                     hc.SCRIPT_DATA_NUM_1 = scriptNum1;
                     
                     hc.addattack = card.Attack - card.DefATK;
@@ -929,7 +957,6 @@ namespace HREngine.Bots
                     enemyAnzCards++;
                 }
             }
-            //Hrtprozis.Instance.updateElementals(0, wereElementalsLastTurn, 0); //TODO
         }
 
         private void updateBehaveString(Behavior botbase)
@@ -1125,7 +1152,6 @@ namespace HREngine.Bots
             Probabilitymaker.Instance.printTurnGraveYard();
             Probabilitymaker.Instance.printGraveyards();
             p.prozis.printOwnDeck();
-            //Hrtprozis.Instance.printOwnDeck();
             printUtils.printRecord = false;
         }
 

@@ -10,6 +10,14 @@ namespace HREngine.Bots
     //这三个函数用于单动作评估，如果返回值超过500，则被剪枝，不列入候选动作
     public partial class Behavior丨狂野丨剑鱼贼 : Behavior
     {
+        /// <summary>
+        /// 打牌评分
+        /// </summary>
+        /// <param name="card"></param>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <param name="nowHandcard"></param>
+        /// <returns></returns>
         public override int getPlayCardPenality(CardDB.Card card, Minion target, Playfield p, Handmanager.Handcard nowHandcard)
         {
             switch (card.nameCN)
@@ -20,16 +28,17 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.梦魇:
                     if (target != null && !target.own) return 1000;
                     break;
-                case CardDB.cardNameCN.鱼排斗士:
-                    if (target.own) return 1000;
-                    break;
-                case CardDB.cardNameCN.奖品掠夺者:
-                    if (target.own) return 1000;
-                    break;
             }
             return getComboPenality(card, target, p, nowHandcard);
         }
 
+        /// <summary>
+        /// 随从进攻评分
+        /// </summary>
+        /// <param name="m"></param>
+        /// <param name="p"></param>
+        /// <param name="target"></param>
+        /// <returns></returns>
         public override int getAttackWithMininonPenality(Minion m, Playfield p, Minion target)
         {
             if (!m.silenced && m.handcard.card.CantAttack || target.untouchable)
@@ -45,12 +54,47 @@ namespace HREngine.Bots
             return pen;
         }
 
-        //英雄攻击惩罚
+        /// <summary>
+        /// 英雄攻击评分
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="p"></param>
+        /// <returns></returns>
         public override int getAttackWithHeroPenality(Minion target, Playfield p)
         {
             if (target.untouchable)
                 return 1000;
             int pen = -10;
+
+            // 新增逻辑：检查场上是否存在旗标骷髅，手中是否有奇利亚斯，以及是否装备了武器
+            bool hasBannerSkeletonOnBoard = false;
+            bool hasKilliathInHand = false;
+            bool hasWeaponEquipped = p.ownWeapon.Durability > 0;
+
+            foreach (Minion m in p.ownMinions)
+            {
+                if (m.handcard.card.nameCN == CardDB.cardNameCN.旗标骷髅)
+                {
+                    hasBannerSkeletonOnBoard = true;
+                    break;
+                }
+            }
+
+            foreach (Handmanager.Handcard hc in p.owncards)
+            {
+                if (hc.card.nameCN == CardDB.cardNameCN.奇利亚斯豪华版3000型)
+                {
+                    hasKilliathInHand = true;
+                    break;
+                }
+            }
+
+            // 如果满足条件，优先进攻，惩罚值为负数表示优先级高
+            if (hasBannerSkeletonOnBoard && hasKilliathInHand && hasWeaponEquipped)
+            {
+                pen -= 200; // 极大降低惩罚值，表示必须先进攻再出牌
+            }
+
             foreach (Handmanager.Handcard hc in p.owncards)
             {
                 if(hc.card.nameCN == CardDB.cardNameCN.闭麦收工 || hc.card.nameCN == CardDB.cardNameCN.悦耳嘻哈 || hc.card.nameCN == CardDB.cardNameCN.刺耳嘻哈 || hc.card.nameCN == CardDB.cardNameCN.南海船工)
@@ -73,7 +117,12 @@ namespace HREngine.Bots
             return pen;
         }
 
-        private int getSecretPenality(Playfield p)  // 牌序和防奥秘的影响
+        /// <summary>
+        /// 牌序和防奥秘的影响
+        /// </summary>
+        /// <param name="p"></param>
+        /// <returns></returns>
+        private int getSecretPenality(Playfield p)
         {
             // 硬币不用来跳一些卡
             int flag = 0, first = 0;

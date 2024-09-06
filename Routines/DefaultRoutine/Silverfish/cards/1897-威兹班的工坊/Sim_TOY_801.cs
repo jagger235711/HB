@@ -11,7 +11,22 @@ namespace HREngine.Bots
 	//<b>微缩</b><b>抉择：</b>获得<b>法术伤害+1</b>；或者抽一张法术牌。
 	class Sim_TOY_801 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 处理微缩效果，抽一张衍生物卡牌
+            p.drawACard(CardDB.cardIDEnum.TOY_801t, ownplay, true); // 替换为实际的衍生物卡牌 ID
+
+            if (choice == 1)
+            {
+                // 选项1：获得法术伤害+1
+                p.ownHero.spellpower++;
+            }
+            else if (choice == 2)
+            {
+                // 选项2：抽一张法术牌
+                p.drawACard(CardDB.cardIDEnum.None, ownplay, true);
+            }
+        }
+    }
 }

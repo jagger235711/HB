@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b><b>发现</b>一款神奇的护符，赠予双方玩家。<i>（敌人的护符为伪劣版本！）</i>
 	class Sim_VAC_959 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 抽取一张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+    }
 }

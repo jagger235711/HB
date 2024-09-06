@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//检视你手牌中的三张牌，选择一张弃掉。抽两张牌。
 	class Sim_WON_103 : SimTemplate
 	{
-		
-		
-	}
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            if (triggerMinion.handcard.card.CooldownTurn == 0)
+            {
+                // 抽两张牌
+                p.drawACard(CardDB.cardIDEnum.None, true);
+                p.drawACard(CardDB.cardIDEnum.None, true);
+            }
+        }
+
+    }
 }

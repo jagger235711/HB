@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>嘲讽</b><b>亡语：</b>召唤两个4/6并具有<b>嘲讽</b>的骑士。
 	class Sim_TOY_914 : SimTemplate
 	{
-		
-		
-	}
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 召唤两个4/6并具有嘲讽的骑士
+            for (int i = 0; i < 2; i++)
+            {
+                p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TOY_914t), m.zonepos, m.own);
+            }
+        }
+
+
+    }
 }

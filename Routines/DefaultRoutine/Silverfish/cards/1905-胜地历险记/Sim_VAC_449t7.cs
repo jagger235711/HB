@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对敌方英雄造成6点伤害。获得+2/+2和<b>嘲讽</b>。
 	class Sim_VAC_449t7 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 对敌方英雄造成6点伤害
+            p.minionGetDamageOrHeal(own.own ? p.enemyHero : p.ownHero, 6);
+
+            // 增加+2/+2
+            p.minionGetBuffed(own, 2, 2);
+
+            // 赋予嘲讽
+            own.taunt = true;
+        }
+    }
 }

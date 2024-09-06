@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b>战吼：</b>为你的英雄恢复6点生命值。随机消灭2个敌方随从。
 	class Sim_VAC_449t18 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 为己方英雄恢复6点生命值
+            p.minionGetDamageOrHeal(own.own ? p.ownHero : p.enemyHero, -6);
+
+            // 随机消灭敌方随从的效果不实现
+        }
+    }
 }

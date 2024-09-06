@@ -11,16 +11,17 @@ namespace HREngine.Bots
 
 		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
 		{
+            // 将目标随从移回玩家手牌，并减少其法力值消耗2点
             p.minionReturnToHand(target, ownplay, -2);
 		}
 
-
+        // 获取卡牌的使用要求
         public override PlayReq[] GetPlayReqs()
         {
             return new PlayReq[] {
-                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
-                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET),
-                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),     // 需要指定目标
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET),   // 目标必须是友方随从
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),     // 目标必须是随从
             };
         }
 	}

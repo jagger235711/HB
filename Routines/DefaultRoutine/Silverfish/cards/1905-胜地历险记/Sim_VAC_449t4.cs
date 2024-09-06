@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽两张牌。随机消灭2个敌方随从。
 	class Sim_VAC_449t4 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 抽两张牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+
+            // 随机消灭敌方随从的效果不实现
+        }
+    }
 }

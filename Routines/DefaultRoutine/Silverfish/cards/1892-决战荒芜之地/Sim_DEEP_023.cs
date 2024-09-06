@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>潜行</b>。在你的回合结束时，为所有友方角色恢复#2点生命值。
 	class Sim_DEEP_023 : SimTemplate
 	{
-		
-		
-	}
+        public override void onTurnEndsTrigger(Playfield p, Minion triggerEffectMinion, bool turnEndOfOwner)
+        {
+            // 在回合结束时触发效果
+            if (turnEndOfOwner == triggerEffectMinion.own)
+            {
+                // 为所有友方角色恢复2点生命值
+                p.allCharsOfASideGetDamage(!triggerEffectMinion.own, -2);
+            }
+        }
+    }
 }

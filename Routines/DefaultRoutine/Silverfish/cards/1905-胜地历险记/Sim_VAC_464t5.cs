@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//对敌方英雄造成$8点伤害，并使其<b>冻结</b>。
 	class Sim_VAC_464t5 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int dmg = ownplay ? p.getSpellDamageDamage(8) : p.getEnemySpellDamageDamage(8);
+            p.minionGetDamageOrHeal(p.enemyHero, dmg); // 对敌方英雄造成8点伤害
+            p.minionGetFrozen(p.enemyHero); // 使敌方英雄冻结
+        }
+    }
 }

@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//<b>战吼：</b>重复你在上回合使用的每一张牌。
 	class Sim_VAC_415 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+        }
+    }
 }

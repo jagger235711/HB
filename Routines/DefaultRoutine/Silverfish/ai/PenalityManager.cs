@@ -2807,7 +2807,60 @@ namespace HREngine.Bots
             //自己可以加入后面出的 会装备武器的新卡
         }
 
+        /// <summary>
+        /// 获取使用地标的惩罚值
+        /// </summary>
+        /// <param name="locationMinion">地标对应的随从对象</param>
+        /// <param name="target">地标的目标随从</param>
+        /// <param name="p">当前场面</param>
+        /// <returns>惩罚值</returns>
+        public int getUseLocationPenality(Minion locationMinion, Minion target, Playfield p)
+        {
+            int enfaceReward = 0;
+            if (target != null)
+            {
+                // 如果目标为不可攻击或已被销毁，返回高惩罚值
+                if (target.untouchable || target.Hp <= 0)
+                {
+                    return 1000; // 高惩罚值，表明不应执行此操作
+                }
 
+                // 检查是否有针对英雄攻击的奖励
+                if (printUtils.enfaceReward != 0 && target.isHero)
+                {
+                    enfaceReward = printUtils.enfaceReward; // 获取对敌方英雄的奖励
+                }
+            }
+
+            // 如果地标本身有特殊条件，例如地标在冷却中或耐久度已为0
+            if (locationMinion.handcard.card.CooldownTurn > 0 || locationMinion.handcard.card.Health <= 0)
+            {
+                return 1000; // 地标在冷却或已无耐久度，不应使用
+            }
+
+            // 调用AI的基础逻辑来获取惩罚值，并减去奖励值
+            return ai.botBase.getUseLocationPenality(locationMinion, target, p) - enfaceReward;
+        }
+
+        /// <summary>
+        /// 获取使用泰坦技能的惩罚值
+        /// </summary>
+        /// <param name="titanMinion">泰坦随从对象</param>
+        /// <param name="target">泰坦技能的目标随从</param>
+        /// <param name="p">当前场面</param>
+        /// <returns>惩罚值</returns>
+        public int getUseTitanAbilityPenality(Minion titanMinion, Minion target, Playfield p)
+        {
+            // 如果泰坦随从本身有特殊条件，例如冷却中或无技能可用
+            if ((titanMinion.handcard.card.TitanAbilityUsed1 && titanMinion.handcard.card.TitanAbilityUsed2 && titanMinion.handcard.card.TitanAbilityUsed3) 
+                || titanMinion.handcard.card.Health <= 0)
+            {
+                return 1000; // 泰坦技能在冷却或已无可用资源，不应使用
+            }
+
+            // 调用AI的基础逻辑来获取惩罚值
+            return ai.botBase.getUseTitanAbilityPenality(titanMinion, target, p);
+        }
     }
 
 }

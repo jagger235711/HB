@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b>装备一个会施放有用的法师法术的0/6的魔法智慧之球！
 	class Sim_TOY_373 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 装备一个 0/6 的魔法智慧之球
+            p.equipWeapon(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TOY_373t), own.own);
+        }
+    }
 }

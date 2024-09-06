@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>术士游客</b><b><b>战吼：</b>发现</b>一张来自过去的<i>（另一职业的）</i>英雄牌。
 	class Sim_VAC_336 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 发现一张来自过去的（另一职业的）英雄牌
+            p.drawACard(CardDB.cardIDEnum.None, own.own, true);
+        }
+    }
 }

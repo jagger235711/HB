@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//双方玩家抽三张牌。<b>流放：</b>只有你抽牌。
 	class Sim_VAC_928 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            
+        }
+    }
 }

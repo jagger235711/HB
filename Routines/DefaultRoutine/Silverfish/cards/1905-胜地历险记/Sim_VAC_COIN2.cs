@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//在本回合中，获得一个法力水晶。
 	class Sim_VAC_COIN2 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 在本回合中，获得一个法力水晶
+            if (ownplay)
+            {
+                p.mana = Math.Min(p.ownMaxMana, p.mana + 1);
+            }
+            else
+            {
+                p.mana = Math.Min(p.ownMaxMana, p.mana + 1);
+            }
+        }
+    }
 }

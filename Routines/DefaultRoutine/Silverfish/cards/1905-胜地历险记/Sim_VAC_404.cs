@@ -11,7 +11,18 @@ namespace HREngine.Bots
 	//对一个随从造成$2点伤害。对你的英雄造成$2点伤害。<i>（还剩3杯！）</i>
 	class Sim_VAC_404 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int dmg = (ownplay) ? p.getSpellDamageDamage(2) : p.getEnemySpellDamageDamage(2);
+
+            // 对一个随从造成2点伤害
+            p.minionGetDamageOrHeal(target, dmg);
+
+            // 对你的英雄造成2点伤害
+            p.minionGetDamageOrHeal(ownplay ? p.ownHero : p.enemyHero, dmg);
+
+            // 抽一张 "VAC_404t1" 卡牌，表示“还剩2杯”
+            p.drawACard(CardDB.cardIDEnum.VAC_404t1, ownplay, true);
+        }
+    }
 }

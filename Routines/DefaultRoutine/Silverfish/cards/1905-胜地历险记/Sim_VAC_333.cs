@@ -11,7 +11,8 @@ namespace HREngine.Bots
 	//<b>战吼：</b>再次使用你使用过的上一张非潜行者的职业牌。
 	class Sim_VAC_333 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+        }
+    }
 }

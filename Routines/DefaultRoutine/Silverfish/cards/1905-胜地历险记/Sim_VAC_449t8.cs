@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对敌方英雄造成6点伤害。为你的英雄恢复6点生命值。
 	class Sim_VAC_449t8 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 对敌方英雄造成6点伤害
+            p.minionGetDamageOrHeal(own.own ? p.enemyHero : p.ownHero, 6);
+
+            // 为己方英雄恢复6点生命值
+            p.minionGetDamageOrHeal(own.own ? p.ownHero : p.enemyHero, -6);
+        }
+    }
 }

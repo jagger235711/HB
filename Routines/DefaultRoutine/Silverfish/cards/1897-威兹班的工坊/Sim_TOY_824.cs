@@ -11,7 +11,18 @@ namespace HREngine.Bots
 	//在你的回合结束时，造成等同于本随从攻击力的伤害，随机分配到所有敌人身上。
 	class Sim_TOY_824 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onTurnEndsTrigger(Playfield p, Minion m, bool turnEndOfOwner)
+        {
+            if (turnEndOfOwner == m.own)
+            {
+                // 计算随从的攻击力
+                int damage = m.Angr;
+
+                // 对所有敌人随机分配伤害
+                p.allCharsOfASideGetRandomDamage(!m.own, damage);
+            }
+        }
+
+    }
 }

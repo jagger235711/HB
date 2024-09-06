@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽两张牌。随机<b>冻结</b>三个敌方随从。
 	class Sim_VAC_449t1 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 仅实现抽两张牌的效果
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+        }
+    }
 }

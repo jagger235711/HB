@@ -115,6 +115,8 @@ namespace HREngine.Bots
         {
             return this.Angr + " " + this.Durability + " " + this.name + " " + this.card.cardIDenum + " " + (this.poisonous ? 1 : 0) + " " + (this.lifesteal ? 1 : 0) + " " + this.scriptNum1;
         }
-            
+
+        // 记录武器的附魔卡牌
+        public List<miniEnch> enchants = new List<miniEnch>();
     }
 }

@@ -11,7 +11,23 @@ namespace HREngine.Bots
 	//在你使用一张海盗牌后，从你的手牌中召唤本随从。
 	class Sim_DRG_056 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardIsGoingToBePlayed(Playfield p, Handmanager.Handcard hc, bool wasOwnCard, Minion triggerEffectMinion)
+        {
+            // 如果打出的卡牌是海盗
+            if (hc.card.race == CardDB.Race.PIRATE)
+            {
+                List<Handmanager.Handcard> tmp = p.owncards;
+                for (int i = 0; i < p.owncards.Count; i++)
+                {
+                    Handmanager.Handcard handcard = tmp[i];
+                    // 如果手牌中有“空降歹徒”且场上随从数小于7
+                    if (handcard.card.cardIDenum == CardDB.cardIDEnum.DRG_056 && p.ownMinions.Count < 7)
+                    {
+                        p.callKid(handcard.card, p.ownMinions.Count, true);
+                        p.removeCard(handcard);
+                    }
+                }
+            }
+        }
+    }
 }

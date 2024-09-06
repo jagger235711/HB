@@ -11,7 +11,19 @@ namespace HREngine.Bots
 	//<b>恶魔猎手游客</b>在一个友方随从死亡后，随机召唤一个法力值消耗增加（1）点的随从。
 	class Sim_VAC_450 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onMinionDiedTrigger(Playfield p, Minion m, Minion diedMinion)
+        {
+            // 检查死去的随从是否是友方随从
+            if (diedMinion.own && m.own && m.silenced == false)
+            {
+                // 获取一个法力值消耗增加（1）点的随从
+                int cost = diedMinion.handcard.card.cost + 1;
+                CardDB.Card kid = p.getRandomCardForManaMinion(cost);
+
+                // 召唤这个随从
+                p.callKid(kid, p.ownMinions.Count, m.own);
+            }
+        }
+    }
 }

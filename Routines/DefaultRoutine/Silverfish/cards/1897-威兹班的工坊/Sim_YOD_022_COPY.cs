@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//在你使用一张随从牌后，对所有随从造成1点伤害。
 	class Sim_YOD_022_COPY : SimTemplate
 	{
-		
-		
-	}
+        public override void onMinionWasSummoned(Playfield p, Minion triggerEffectMinion, Minion summonedMinion)
+        {
+            // 在己方召唤随从后，对所有随从造成1点伤害
+            p.allMinionOfASideGetDamage(true, 1);
+            p.allMinionOfASideGetDamage(false, 1);
+        }
+    }
 }

@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b>突袭</b>。<b>亡语：</b>召唤一只1/1并具有<b>复生</b>的恐惧猎犬。
 	class Sim_VAC_514 : SimTemplate
 	{
-		
-		
-	}
+
+        CardDB.Card dreadhound = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_514t); // 假设1/1恐惧猎犬的卡牌ID是 VAC_514t
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            int pos = m.zonepos;
+            p.callKid(dreadhound, pos, m.own);
+        }
+    }
 }

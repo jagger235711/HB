@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//在你召唤一个海盗后，抽一张牌。
 	class Sim_TOY_505 : SimTemplate
 	{
-		
-		
-	}
+        public override void onMinionWasSummoned(Playfield p, Minion m, Minion summonedMinion)
+        {
+            // 检查召唤的随从是否是海盗
+            if ((TAG_RACE)summonedMinion.handcard.card.race == TAG_RACE.PIRATE && m.own)
+            {
+                // 抽一张牌
+                p.drawACard(CardDB.cardIDEnum.None, m.own);
+            }
+        }
+    }
 }

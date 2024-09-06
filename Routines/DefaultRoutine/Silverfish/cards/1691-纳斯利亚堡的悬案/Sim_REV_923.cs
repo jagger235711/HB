@@ -11,7 +11,23 @@ namespace HREngine.Bots
 	//将一个友方随从变形成为法力值消耗增加（1）点的随从。
 	class Sim_REV_923 : SimTemplate
 	{
-		
-		
-	}
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            if (target.own && target.entitiyID != 0)
+            {
+                int newCost = target.handcard.card.cost + 1; // 新随从的法力值消耗增加1点
+                p.minionTransform(target, p.getRandomCardForManaMinion(newCost)); // 变形为一个新的随从
+            }
+        }
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[]
+            {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要一个目标才能使用
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET), // 目标必须是友方随从
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 目标必须是一个随从
+            };
+        }
+    }
 }

@@ -11,7 +11,16 @@ namespace HREngine.Bots
 	//<b>战吼：</b>召唤两只1/1的邪能兽。对你的英雄造成3点伤害。
 	class Sim_VAC_940 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 召唤两只1/1的邪能兽
+            p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_940t), own.zonepos, own.own);
+            p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_940t), own.zonepos, own.own);
+
+            // 对你的英雄造成3点伤害
+            p.minionGetDamageOrHeal(own.own ? p.ownHero : p.enemyHero, 3);
+        }
+
+    }
 }

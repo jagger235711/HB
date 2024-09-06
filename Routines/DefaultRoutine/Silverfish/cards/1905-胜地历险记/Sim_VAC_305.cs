@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//召唤两个2/4并具有<b>嘲讽</b>和“<b>亡语：</b>获得4点护甲值”的元素。
 	class Sim_VAC_305 : SimTemplate
 	{
-		
-		
-	}
+        CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_305t);
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int pos = (ownplay) ? p.ownMinions.Count : p.enemyMinions.Count;
+
+            p.callKid(kid, pos, ownplay, false);
+            p.callKid(kid, pos, ownplay);
+        }
+    }
 }

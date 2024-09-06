@@ -14,7 +14,7 @@ namespace HREngine.Bots
         {
             if (ownplay)
             {
-                foreach (var cid in p.CheckTurnDeckExists(CardDB.cardtype.WEAPON, 2))
+                foreach (var cid in p.CheckTurnDeckForType(CardDB.cardtype.WEAPON, 2))
                 {
                     p.drawACard(cid, ownplay);
                 }

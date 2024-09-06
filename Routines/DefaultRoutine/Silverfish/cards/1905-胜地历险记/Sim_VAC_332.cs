@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>战吼：</b>你使用的下一张非潜行者的职业牌法力值消耗减少（2）点。
 	class Sim_VAC_332 : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            if (own.own)
+            {
+            }
+        }
+    }
 }

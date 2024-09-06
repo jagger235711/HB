@@ -66,21 +66,20 @@
 					</Grid.ColumnDefinitions>
 
                     <TextBox Name="Description" TextWrapping="Wrap" Width="500"  Grid.Row="0" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
-AI值相关说明和卡组代码请滑动到下面的文本框中查看 &#13;&#10;
-本策略完全免费！如果你是花钱购买的，说明你被坑了！！&#13;&#10;
-本策略基于李文浩大佬，由酸小明修改，随缘更新。&#13;&#10;
-卡组代码在下面的文本框里"/>
+AI值相关说明和卡组代码请滑动到下面的文本框中查看。&#13;&#10;
+本策略由各位大佬共同开发：【李文浩】【看书范】【酸小明】【血色】【白寸衫】【不着调的～man】等。"/>
 
                     <TextBox Name="deckCode" TextWrapping="Wrap" Width="500"  Grid.Row="1" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
-参考卡组代码：&#xA;
-没有的自己网上找吧~&#xA;&#xA;
-[狂野]锁喉剑鱼贼：&#xA;AAEBAaIHApG8AsekBg77D+XRAr+uA+mwA6rLA470A4rJBJrbBNejBb/3BdaeBvylBvyoBsn0BgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
-[狂野]暗龙牧：&#xA;AAEBAcz8BQSRvAK79wPHpAaiswYNoQSRD+4RmLYD184Do/cDrfcDssEE3aQFlaoFxpwG6qgG3PMGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=&#xA;&#xA;
-[狂野]偶数萨：&#xA;AAEBAaoIBjPN9AKdowOywQSx2QTHpAYMvgbWD9qlA/q0BIbUBKrZBL3lBPTyBaL6BcOPBpyeBsGeBgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
-[狂野]奥秘法：&#xA;AAEBAf0EAA/3Dde2Auu6Aoe9Ar6kA/SrA5HhA+efBMagBKPkBP7sBLztBP+SBduhBejoBQAA&#xA;&#xA;
-[标准]酸快攻德：&#xA;AAECAbSKAwAPrewDs+wD7PUD9PYDrIAEsIAEh58E4aQEiLIErsAEqM4EgdQEntQE1t4E3e0EAA==&#xA;&#xA;
-[标准]元素法：&#xA;AAECAf0EArSnBr2+Bg6WtwXyxAWx/gXf/gXUlQbxmwaYnQayngbTngbBnwbMogbipgaozgbt5gYAAA==&#xA;&#xA;
-[通用]酸鱼人萨：&#xA;AAECAc2+BQSo7gPblASX1ATy3QQNk+gDlOgDs+gD3ewDlfADtZ8EoqAEq6AE1bIEssEEws4Exc4E7tMEAA=="/>
+参考卡组代码：&#xA;&#xA;
+【狂野】快攻暗牧：&#xA;AAEBAa0GApG8Arv3Aw6hBJEP6bADurYD184Do/cDrfcDjYEE3aQFxKgG/KgG17oG1cEG3PMGAAA=&#xA;&#xA;
+【标准】元素法：&#xA;AAECAf0EArSnBr2+Bg6WtwXyxAWx/gXf/gXUlQbxmwaYnQayngbTngbBnwbMogbipgaozgbt5gYAAA==&#xA;&#xA;
+【狂野】剑鱼贼：&#xA;AAEBAaIHApG8AsekBg6MAvsP6bADqssD890DiskEmtsE16MF07IFv/cF1p4G/KUG/KgGyfQGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=&#xA;&#xA;
+【狂野】锁喉剑鱼贼：&#xA;AAEBAaIHApG8AsekBg77D+XRAr+uA+mwA6rLA470A4rJBJrbBNejBb/3BdaeBvylBvyoBsn0BgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
+【狂野】暗龙牧：&#xA;AAEBAcz8BQSRvAK79wPHpAaiswYNoQSRD+4RmLYD184Do/cDrfcDssEE3aQFlaoFxpwG6qgG3PMGAAED87MGx6QG9rMGx6QG6N4Gx6QGAAA=&#xA;&#xA;
+【狂野】偶数萨：&#xA;AAEBAaoIBjPN9AKdowOywQSx2QTHpAYMvgbWD9qlA/q0BIbUBKrZBL3lBPTyBaL6BcOPBpyeBsGeBgABA/OzBsekBvazBsekBujeBsekBgAA&#xA;&#xA;
+【狂野】奥秘法：&#xA;AAEBAf0EAA/3Dde2Auu6Aoe9Ar6kA/SrA5HhA+efBMagBKPkBP7sBLztBP+SBduhBejoBQAA&#xA;&#xA;
+【标准】酸快攻德：&#xA;AAECAbSKAwAPrewDs+wD7PUD9PYDrIAEsIAEh58E4aQEiLIErsAEqM4EgdQEntQE1t4E3e0EAA==&#xA;&#xA;
+【通用】酸鱼人萨：&#xA;AAECAc2+BQSo7gPblASX1ATy3QQNk+gDlOgDs+gD3ewDlfADtZ8EoqAEq6AE1bIEssEEws4Exc4E7tMEAA=="/>
 
 					<TextBox Name="Statement" TextWrapping="Wrap" Width="500"  Grid.Row="2" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
 声明： 使用炉石兄弟辅助进行游戏的行为违反了暴雪用户协议 1.C.ii.2 使用机器人程序软件（BOT）： 任何未经暴雪和/或运营方明确授权，允许自动控制游戏，服务器和/或任何组件或其功能的的代码或/和软件，如自动操控游戏中的角色；因此根据协议，暴雪和/或运营方可以暂停、撤销或终止您使用本平台或本平台的部分功能或组成部分的许可。 &#13;&#10;

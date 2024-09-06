@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//对所有敌人造成$7点伤害。在本局对战中，每有一个随从死亡，本牌的法力值消耗便减少（1）点。
 	class Sim_VAC_464t24 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int dmg = ownplay ? p.getSpellDamageDamage(7) : p.getEnemySpellDamageDamage(7);
+            p.allCharsOfASideGetDamage(!ownplay, dmg); // 对所有敌人造成7点伤害
+        }
+    }
 }

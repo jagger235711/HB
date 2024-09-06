@@ -11,7 +11,5 @@ namespace HREngine.Bots
 	//你每个回合使用的第一张法术牌的法力值消耗减少（2）点。
 	class Sim_VAC_435 : SimTemplate
 	{
-		
-		
-	}
+    }
 }

@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b>微型</b><b>战吼：</b>你的下一个<b>战吼</b>会触发3次，但无法伤害敌方英雄。
 	class Sim_TOY_501t : SimTemplate
 	{
-		
-		
-	}
+        public override void getBattlecryEffect(Playfield p, Minion ownMinion, Minion target, int choice)
+        {
+            if (ownMinion.own)
+            {
+                // 设置玩家下一个战吼效果触发三次的标志
+                p.nextBattlecryTriggers = 3;
+            }
+        }
+    }
 }

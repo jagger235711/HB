@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//抽两张牌。<i>（用你的英雄攻击@次后升级。）</i>
 	class Sim_TOY_645t : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 抽二张牌
+            for (int i = 0; i < 2; i++)
+            {
+                p.drawACard(CardDB.cardIDEnum.None, ownplay);
+            }
+        }
+    }
 }

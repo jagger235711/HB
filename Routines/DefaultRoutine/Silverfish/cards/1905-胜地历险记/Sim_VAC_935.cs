@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>战吼：</b>获取一张法力值消耗为（1）的手提箱，将你牌库顶的2张牌装入其中。
 	class Sim_VAC_935 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            // 假设衍生物“手提箱”的卡牌ID为 VAC_935t
+            p.drawACard(CardDB.cardIDEnum.VAC_935t, own.own, true); // 抽取衍生物
+        }
+    }
 }

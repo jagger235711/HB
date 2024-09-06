@@ -24,6 +24,12 @@ namespace HREngine.Bots
             public int scheme = 1;
             public List<CardDB.cardIDEnum> enchs = new List<CardDB.cardIDEnum>();
             public bool discovered = false;
+            //临时卡牌
+            public bool temporary = false;
+            //条件计数，例如施放过几张法术，英雄技能造成多少伤害等
+            public int conditionalCount = 0;
+            //条件卡牌，例如施放的法术牌
+            public List<CardDB.cardIDEnum> conditionalList = new List<CardDB.cardIDEnum>();
 
             public Handcard()
             {
@@ -44,6 +50,12 @@ namespace HREngine.Bots
                 this.LUNAHIGHLIGHTHINT = hc.LUNAHIGHLIGHTHINT;
                 this.scheme = hc.scheme;
                 this.enchs = hc.enchs;
+                //临时卡牌
+                this.temporary = hc.temporary;
+                //条件计数
+                this.conditionalCount = hc.conditionalCount;
+                //条件卡牌
+                this.conditionalList = hc.conditionalList;
             }
             public Handcard(CardDB.Card c)
             {
@@ -65,6 +77,12 @@ namespace HREngine.Bots
                 this.TAG_ONE_TURN_EFFECT = hc.TAG_ONE_TURN_EFFECT;
                 this.LUNAHIGHLIGHTHINT = hc.LUNAHIGHLIGHTHINT;
                 this.enchs = hc.enchs;
+                //临时卡牌
+                this.temporary = hc.temporary;
+                //条件计数
+                this.conditionalCount = hc.conditionalCount;
+                //条件卡牌
+                this.conditionalList = hc.conditionalList;
             }
 
             public int getManaCost(Playfield p)  //读取卡牌法力值

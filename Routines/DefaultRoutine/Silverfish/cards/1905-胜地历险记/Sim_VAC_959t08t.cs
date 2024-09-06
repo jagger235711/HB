@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//为你的英雄恢复#12点生命值。
 	class Sim_VAC_959t08t : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 为你的英雄恢复12点生命值
+            p.minionGetDamageOrHeal(ownplay ? p.ownHero : p.enemyHero, -12);
+        }
+
+
+    }
 }

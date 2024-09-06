@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace HREngine.Bots
@@ -11,7 +12,14 @@ namespace HREngine.Bots
 	//使一个随从获得-5/-5。使你手牌中的一张随从牌获得+5/+5。
 	class Sim_MIS_100 : SimTemplate
 	{
-		
-		
-	}
+
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            // 使目标随从获得 -5/-5
+            if (target != null)
+            {
+                p.minionGetBuffed(target, -5, -5);
+            }
+        }
+    }
 }

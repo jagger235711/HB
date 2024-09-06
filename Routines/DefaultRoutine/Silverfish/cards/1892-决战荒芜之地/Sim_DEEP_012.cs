@@ -11,7 +11,33 @@ namespace HREngine.Bots
 	//<b>突袭</b>。<b>战吼：</b>夺取你的武器并获得其属性值。<b>亡语：</b>还回武器。
 	class Sim_DEEP_012 : SimTemplate
 	{
-		
-		
-	}
+
+        CardDB.Card stolenWeapon = null; // 用于存储被盗取的武器
+
+        public override void getBattlecryEffect(Playfield p, Minion ownMinion, Minion target, int choice)
+        {
+            // 处理战吼效果
+            if (ownMinion.own && p.ownWeapon.Durability > 0)
+            {
+                // 夺取武器
+                stolenWeapon = p.ownWeapon.card;
+                target.Angr += p.ownWeapon.Angr;
+                target.Hp += p.ownWeapon.Durability;
+
+                // 移除玩家的武器
+                p.lowerWeaponDurability(p.ownWeapon.Durability, true);
+            }
+        }
+
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            // 处理亡语效果
+            if (stolenWeapon != null)
+            {
+                // 还回武器
+                p.equipWeapon(stolenWeapon, true);
+                stolenWeapon = null; // 清空存储的武器
+            }
+        }
+    }
 }

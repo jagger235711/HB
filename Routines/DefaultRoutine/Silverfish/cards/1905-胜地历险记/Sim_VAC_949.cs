@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//将你的法力值上限提高3点，获得一个空的法力水晶。
 	class Sim_VAC_949 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+        }
+
+
+    }
 }

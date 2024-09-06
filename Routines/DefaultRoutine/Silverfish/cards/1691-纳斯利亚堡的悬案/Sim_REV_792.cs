@@ -11,7 +11,25 @@ namespace HREngine.Bots
 	//{0}{1}
 	class Sim_REV_792 : SimTemplate
 	{
-		
-		
-	}
+        public override void useLocation(Playfield p, Minion triggerMinion, Minion target)
+        {
+            // 检查目标是否为有效随从，并且是否具有亡语效果
+            if (target != null && target.silenced == false && target.handcard.card.deathrattle)
+            {
+                // 触发目标随从的亡语效果
+                target.handcard.card.sim_card.onDeathrattle(p, target);
+            }
+        }
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[]
+            {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要一个目标才能使用
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET), // 目标必须是友方随从
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 目标必须是一个随从
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_WITH_DEATHRATTLE), // 目标必须是一个亡语
+            };
+        }
+    }
 }

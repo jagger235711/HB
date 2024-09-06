@@ -21,24 +21,30 @@ namespace HREngine.Bots
             }
         }
 
-
+        /// <summary>
+        /// 调整动作的顺序，以提高效率和潜在的伤害输出。特别是在致命伤害检查中，此方法尝试重新排列动作顺序以获得最大伤害。
+        /// </summary>
+        /// <param name="p">当前的游戏状态。</param>
+        /// <param name="isLethalCheck">是否正在进行致命伤害检查。</param>
         public void adjustActions(Playfield p, bool isLethalCheck)
         {
-            if (p.enemySecretCount > 0) return;
-            if (p.playactions.Count < 2) return;
+            // 如果敌方有秘密或动作数小于2，不调整动作顺序
+            if (p.enemySecretCount > 0 || p.playactions.Count < 2) return;
 
+            // 定义重排序后的动作列表和随机伤害的动作ID及其对应的伤害
             List<Action> reorderedActions = new List<Action>();
             Dictionary<int, Dictionary<int, int>> rndActIdsDmg = new Dictionary<int, Dictionary<int, int>>();
             Playfield tmpPlOld = new Playfield();
 
+            // 致命伤害检查
             if (isLethalCheck)
             {
-                if (Ai.Instance.botBase.getPlayfieldValue(p) < 10000) return;
+                if (Ai.Instance.botBase.getPlayfieldValue(p) < 10000) return; // 如果当前场地值低于10000，则不调整
                 Playfield tmpPf = new Playfield();
-                if (tmpPf.anzEnemyTaunt > 0) return;
+                if (tmpPf.anzEnemyTaunt > 0) return; // 如果敌方有嘲讽随从，则不调整
 
                 Dictionary<Action, int> actDmgDict = new Dictionary<Action, int>();
-                tmpPf.enemyHero.Hp = 30;
+                tmpPf.enemyHero.Hp = 30; // 初始化敌方英雄血量为30
                 try
                 {
                     int useability = 0;
@@ -53,8 +59,12 @@ namespace HREngine.Bots
                     }
                     if (useability > 1) return;
                 }
-                catch { return; }
+                catch
+                {
+                    return;
+                }
 
+                // 根据动作造成的伤害从高到低进行排序
                 foreach (var pair in actDmgDict.OrderByDescending(pair => pair.Value))
                 {
                     reorderedActions.Add(pair.Key);
@@ -75,10 +85,12 @@ namespace HREngine.Bots
                     }
                 }
 
+                // 如果调整后的场地值低于10000，则不进行调整
                 if (Ai.Instance.botBase.getPlayfieldValue(tmpPf) < 10000) return;
             }
             else
             {
+                // 非致命伤害检查
                 bool damageRandom = false;
                 bool rndBeforeDamageAll = false;
                 Action aa;
@@ -174,21 +186,25 @@ namespace HREngine.Bots
                     if (!isActionPossible(tmpPf, a)) return;
                     try
                     {
-
-                        if (!(a.actionType == actionEnum.playcard && rndActIdsDmg.ContainsKey(a.card.entity))) tmpPf.doAction(a);
+                        if (!(a.actionType == actionEnum.playcard && rndActIdsDmg.ContainsKey(a.card.entity)))
+                            tmpPf.doAction(a);
                         else
                         {
                             tmpPf.playactions.Add(a);
                             Dictionary<int, int> actIdDmg = rndActIdsDmg[a.card.entity];
-                            if (actIdDmg.ContainsKey(tmpPf.enemyHero.entitiyID)) tmpPf.minionGetDamageOrHeal(tmpPf.enemyHero, actIdDmg[tmpPf.enemyHero.entitiyID]);
-                            if (actIdDmg.ContainsKey(tmpPf.ownHero.entitiyID)) tmpPf.minionGetDamageOrHeal(tmpPf.ownHero, actIdDmg[tmpPf.ownHero.entitiyID]);
+                            if (actIdDmg.ContainsKey(tmpPf.enemyHero.entitiyID))
+                                tmpPf.minionGetDamageOrHeal(tmpPf.enemyHero, actIdDmg[tmpPf.enemyHero.entitiyID]);
+                            if (actIdDmg.ContainsKey(tmpPf.ownHero.entitiyID))
+                                tmpPf.minionGetDamageOrHeal(tmpPf.ownHero, actIdDmg[tmpPf.ownHero.entitiyID]);
                             foreach (Minion m in tmpPf.enemyMinions)
                             {
-                                if (actIdDmg.ContainsKey(m.entitiyID)) tmpPf.minionGetDamageOrHeal(m, actIdDmg[m.entitiyID]);
+                                if (actIdDmg.ContainsKey(m.entitiyID))
+                                    tmpPf.minionGetDamageOrHeal(m, actIdDmg[m.entitiyID]);
                             }
                             foreach (Minion m in tmpPf.ownMinions)
                             {
-                                if (actIdDmg.ContainsKey(m.entitiyID)) tmpPf.minionGetDamageOrHeal(m, actIdDmg[m.entitiyID]);
+                                if (actIdDmg.ContainsKey(m.entitiyID))
+                                    tmpPf.minionGetDamageOrHeal(m, actIdDmg[m.entitiyID]);
                             }
                             tmpPf.doDmgTriggers();
                         }
@@ -213,54 +229,76 @@ namespace HREngine.Bots
             p.playactions.AddRange(reorderedActions);
 
             help.logg("New order of actions:");
-
         }
 
+        /// <summary>
+        /// 检查某个操作在当前的游戏状态下是否可行，包括使用地标的判断。
+        /// </summary>
+        /// <param name="p">当前的游戏状态。</param>
+        /// <param name="a">要检查的操作。</param>
+        /// <returns>如果操作可行，则返回 true；否则返回 false。</returns>
         private bool isActionPossible(Playfield p, Action a)
         {
             bool actionFound = false;
+
+            // 根据操作类型进行不同的检查
             switch (a.actionType)
             {
                 case actionEnum.playcard:
+                    // 检查是否可以打出卡牌
                     foreach (Handmanager.Handcard hc in p.owncards)
                     {
-                        // 这里，可能是导致腐蚀出现问题的地方？
                         if (hc.entity == a.card.entity)
                         {
+                            // 判断法力值是否足够
                             if (p.mana >= hc.card.getManaCost(p, hc.manacost))
                             {
-                                if (p.ownMinions.Count > 6)
-                                {
-                                    if (hc.card.type == CardDB.cardtype.MOB) return false;
-                                }
+                                // 如果随从已满且尝试打出随从，则返回 false
+                                if (p.ownMinions.Count > 6 && hc.card.type == CardDB.cardtype.MOB)
+                                    return false;
+
                                 actionFound = true;
                             }
                             break;
                         }
                     }
                     break;
+
                 case actionEnum.attackWithMinion:
+                    // 检查随从是否可以攻击
                     foreach (Minion m in p.ownMinions)
                     {
                         if (m.entitiyID == a.own.entitiyID)
                         {
-                            if (!m.Ready) return false;
+                            // 如果随从没有准备好，则返回 false
+                            if (!m.Ready)
+                                return false;
+
                             actionFound = true;
                             break;
                         }
                     }
                     break;
+
                 case actionEnum.attackWithHero:
-                    if (p.ownHero.Ready) actionFound = true;
+                    // 检查英雄是否可以攻击
+                    if (p.ownHero.Ready)
+                        actionFound = true;
                     break;
+
                 case actionEnum.useHeroPower:
-                    if (p.ownAbilityReady && p.mana >= p.ownHeroAblility.card.getManaCost(p, p.ownHeroAblility.manacost)) actionFound = true;
+                    // 检查英雄技能是否可以使用
+                    if (p.ownAbilityReady && p.mana >= p.ownHeroAblility.card.getManaCost(p, p.ownHeroAblility.manacost))
+                        actionFound = true;
                     break;
+
                 case actionEnum.trade:
+                    // 检查卡牌是否可以交易
                     foreach (Handmanager.Handcard hc in p.owncards)
                     {
                         if (hc.entity == a.card.entity)
                         {
+                            // 检查是否满足交易的条件
                             if (hc.card.Tradeable && p.mana >= hc.card.TradeCost && p.ownDeckSize > 0)
                             {
                                 actionFound = true;
@@ -269,16 +307,73 @@ namespace HREngine.Bots
                         }
                     }
                     break;
-            }
-            if (!actionFound) return false;
 
+                case actionEnum.useLocation:
+                    // 检查地标是否可以使用
+                    foreach (Minion m in p.ownMinions)
+                    {
+                        if (m.entitiyID == a.own.entitiyID)
+                        {
+                            // 确认地标类型并检查其冷却时间是否已经结束
+                            if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.handcard.card.CooldownTurn == 0)
+                            {
+                                actionFound = true;
+                            }
+                            break;
+                        }
+                    }
+                    break;
+
+                case actionEnum.useTitanAbility:
+                    // 检查泰坦是否可以使用
+                    foreach (Minion m in p.ownMinions)
+                    {
+                        if (m.entitiyID == a.own.entitiyID)
+                        {
+                            // 确认泰坦技能可否能使用
+                            if (m.handcard.card.Titan && (!m.handcard.card.TitanAbilityUsed1 || !m.handcard.card.TitanAbilityUsed2 || !m.handcard.card.TitanAbilityUsed3))
+                            {
+                                actionFound = true;
+                            }
+                            break;
+                        }
+                    }
+                    break;
+
+                case actionEnum.forge:
+                    // 检查卡牌是否可以锻造
+                    foreach (Handmanager.Handcard hc in p.owncards)
+                    {
+                        if (hc.entity == a.card.entity)
+                        {
+                            // 检查是否满足交易的条件
+                            if (hc.card.Forge && p.mana >= hc.card.ForgeCost && !hc.card.Forged)
+                            {
+                                actionFound = true;
+                            }
+                            break;
+                        }
+                    }
+                    break;
+            }
+
+            // 如果在上面的检查中没有找到合适的操作，返回 false
+            if (!actionFound)
+                return false;
+
+            // 如果操作有目标，则需要检查目标是否存在
             if (a.target != null)
             {
                 actionFound = false;
-                if (p.enemyHero.entitiyID == a.target.entitiyID) actionFound = true;
-                else if (p.ownHero.entitiyID == a.target.entitiyID) actionFound = true;
+
+                // 检查目标是否是敌方英雄或己方英雄
+                if (p.enemyHero.entitiyID == a.target.entitiyID || p.ownHero.entitiyID == a.target.entitiyID)
+                {
+                    actionFound = true;
+                }
                 else
                 {
+                    // 检查目标是否是敌方或己方的随从
                     foreach (Minion m in p.enemyMinions)
                     {
                         if (m.entitiyID == a.target.entitiyID)
@@ -300,6 +395,7 @@ namespace HREngine.Bots
                     }
                 }
             }
+
             return actionFound;
         }
 

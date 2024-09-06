@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//在一个友方海盗攻击后，使你的英雄在本回合中获得+1攻击力。
 	class Sim_VAC_927 : SimTemplate
 	{
-		
-		
-	}
+        public override void onMinionGotDmgTrigger(Playfield p, Minion triggerEffectMinion, int anzOwnMinionsGotDmg, int anzEnemyMinionsGotDmg, int anzOwnHeroGotDmg, int anzEnemyHeroGotDmg)
+        {
+            // 如果触发效果的随从是友方并且是海盗
+            if (triggerEffectMinion.own && triggerEffectMinion.handcard.card.race == CardDB.Race.PIRATE)
+            {
+                // 增加英雄的攻击力（仅限本回合）
+                p.minionGetTempBuff(p.ownHero, 1, 0);
+            }
+        }
+    }
 }

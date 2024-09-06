@@ -351,6 +351,7 @@ namespace HREngine.Bots
                 Hp = hc.card.Health,
                 maxHp = hc.card.Health,
                 name = hc.card.nameEN,
+                nameCN = hc.card.nameCN,
                 playedThisTurn = true,
                 numAttacksThisTurn = 0
             };

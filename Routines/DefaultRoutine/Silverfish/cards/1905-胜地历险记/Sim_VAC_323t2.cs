@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//对所有敌人造成$1点伤害。<i>（最后一杯！）</i>
 	class Sim_VAC_323t2 : SimTemplate
 	{
-		
-		
-	}
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            int dmg = 1;
+            p.allCharsOfASideGetDamage(!ownplay, dmg); // 对所有敌人造成1点伤害
+        }
+    }
 }
