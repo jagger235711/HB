@@ -14,6 +14,8 @@ namespace HREngine.Bots
         public override string BehaviorName() { return "丨狂野丨快攻暗牧"; }
         PenalityManager penman = PenalityManager.Instance;
 
+//改于2024.9.9  by血色
+
         // 存储海盗卡牌的集合
         HashSet<CardDB.Card> pirateCards = new HashSet<CardDB.Card>()
         {
@@ -547,7 +549,7 @@ namespace HREngine.Bots
                     {
                         pen += 500;
                     }
-                    if (p.owncards.Count < 2)   // 手牌数量太少了可以推荐出牌
+                    if (p.owncards.Count < 2 && p.getCorpseCount() >= 1)   // 手牌数量太少了可以推荐出牌
                     {
                         pen -= 10;
                     }
@@ -884,7 +886,7 @@ namespace HREngine.Bots
                                 retval -= i * 10;
                                 break;
                             case CardDB.cardNameCN.暮光欺诈者:
-                                retval += i * 15;
+                                retval +=  i * 15;
                                 break;
                         }
                         break;
