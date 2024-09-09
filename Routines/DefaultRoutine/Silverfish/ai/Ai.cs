@@ -1,9 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Windows;
+
+#if APPLICATION_MODE
+    using RoutineHelper;
+#endif
+
 namespace HREngine.Bots
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
-
     public class Ai
     {
 
@@ -162,6 +167,10 @@ namespace HREngine.Bots
             }
             help.logg("value of best board " + bestval);
 
+#if APPLICATION_MODE
+            (Application.Current.MainWindow as MainWindow).BestScore = bestval;
+#endif
+
             this.bestActions.Clear();  // 初始化，清除上次回合的最优操作  这是List<Action>
             this.bestmove = null;
 
@@ -174,6 +183,10 @@ namespace HREngine.Bots
                 a.print();
             }
             Helpfunctions.Instance.logg("bestplay.playactions ################################# END");
+
+#if APPLICATION_MODE
+            (Application.Current.MainWindow as MainWindow).UpdateBestActionList(bestplay.playactions);
+#endif
 
             if (this.bestActions.Count >= 1)
             {
@@ -370,12 +383,21 @@ namespace HREngine.Bots
 
         public void simmulateWholeTurn(BoardTester bt)  // 这里影响输出.result文件
         {
+#if APPLICATION_MODE
+            (Application.Current.MainWindow as MainWindow).playfieldActionList.Clear();
+#endif
+
             // 打印结果设置
             printUtils.printResult = true;
             help.logg("########################################################################################################");
             //输出场面
             Playfield p = new Playfield();
             p.prozis.turnDeck = bt.od;
+
+#if APPLICATION_MODE
+            (Application.Current.MainWindow as MainWindow).playfieldActionList.Add("回合开始", new Playfield(p));
+#endif
+
             string normalInfo = "";
             String enemyVal = "[敌方场面] ";
             String myVal = "[我方场面] ";
@@ -418,6 +440,11 @@ namespace HREngine.Bots
                 help.logg("第" + step + "步:");
                 bestmove.print();
                 tempbestboard.doAction(bestmove);
+
+#if APPLICATION_MODE
+                (Application.Current.MainWindow as MainWindow).playfieldActionList.Add("第" + step + "步", new Playfield(tempbestboard));
+#endif
+
                 if (this.bestActions.Count == 0)
                 {
                     help.ErrorLog("end turn");
@@ -442,8 +469,14 @@ namespace HREngine.Bots
                 {
                     tempbestboard.mana = -100;
                 }
-                //tempbestboard.printBoard();
+#if APPLICATION_MODE
+                (Application.Current.MainWindow as MainWindow).playfieldActionList.Add("第" + step + "步", new Playfield(tempbestboard));
+#endif
             }
+
+#if APPLICATION_MODE
+            (Application.Current.MainWindow as MainWindow).UpdatePlayfieldActionList();
+#endif
 
             normalInfo = "水晶： " + tempbestboard.mana + " / " + tempbestboard.ownMaxMana
                 + " [我方英雄] " + tempbestboard.ownHeroName + " （生命: " + tempbestboard.ownHero.Hp + " + " + tempbestboard.ownHero.armor + " 奥秘数: " + tempbestboard.ownSecretsIDList.Count + " ) "

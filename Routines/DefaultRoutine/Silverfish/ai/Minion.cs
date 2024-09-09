@@ -147,6 +147,17 @@ namespace HREngine.Bots
         public bool extraParam = false;//扩展参数1
         public int extraParam2 = 0;//扩展参数2
 
+        public string Status
+        {
+            get
+            {
+                return "{" + zonepos.ToString() + "} " + " (" + Angr + "/" + Hp + ") " + handcard.card.nameCN + "\n " + 
+                    (frozen ? "[冻结]" : "") + (!Ready || cantAttack ? "[无法攻击]" : "[可攻击]") + (windfury ? "[风怒]" : "") + (taunt ? "[嘲讽]" : "")
+                    + (divineshild ? "[圣盾]" : "") + (stealth ? "[隐身]" : "") + (immune ? "[免疫]" : "") + (untouchable ? "[无法被攻击]" : "") + (lifesteal ? "[吸血]" : "")
+                     + (dormant != 0 ? "[休眠(" + dormant.ToString() + ")]" : "") + (reborn ? "[复生]" : "") + (handcard.card.Elusive ? "[扰魔]" : "") + (poisonous ? "[剧毒]" : "");
+            }
+        }
+
         public Minion()
         {
             this.handcard = new Handmanager.Handcard();

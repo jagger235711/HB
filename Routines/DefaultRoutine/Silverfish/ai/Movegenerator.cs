@@ -92,6 +92,31 @@ namespace HREngine.Bots
                         trgts = c.getTargetsForCard(p, p.isLethalCheck, true);
                         if (trgts.Count == 0) continue;
 
+                        //非地标目标指向，移除地标
+                        if (c.type == CardDB.cardtype.MOB && 
+                            c.cardIDenum != CardDB.cardIDEnum.VAC_529 && 
+                            c.cardIDenum != CardDB.cardIDEnum.REV_023 && c.cardIDenum != CardDB.cardIDEnum.CORE_REV_023)
+                        {
+                            trgts.RemoveAll(minion => minion != null &&
+                                  minion.handcard != null &&
+                                  minion.handcard.card != null &&
+                                  minion.handcard.card.type == CardDB.cardtype.LOCATION);
+
+                        }
+
+                        //如果是法术，移除扰魔、地标
+                        if (c.type == CardDB.cardtype.SPELL)
+                        {
+                            trgts.RemoveAll(minion => minion != null &&
+                                  minion.handcard != null &&
+                                  minion.handcard.card != null &&
+                                  minion.handcard.card.Elusive);
+                            trgts.RemoveAll(minion => minion != null &&
+                                  minion.handcard != null &&
+                                  minion.handcard.card != null &&
+                                  minion.handcard.card.type == CardDB.cardtype.LOCATION);
+                        }
+
                         int bestplace = p.getBestPlace(c, p.isLethalCheck);
 
                         foreach (var trgt in trgts)
@@ -140,7 +165,10 @@ namespace HREngine.Bots
                               p.ownMinions.Exists(prev => prev.handcard.card.nameCN == CardDB.cardNameCN.战场军官 && !prev.silenced);
                 }
 
-                if (m.Ready && m.Angr >= 1 && !m.frozen) attackingMinions.Add(m);
+                if (m.Ready && m.Angr >= 1 && !m.frozen)
+                {
+                    attackingMinions.Add(m);
+                }
             }
 
             attackingMinions = this.cutAttackList(attackingMinions);
@@ -181,7 +209,7 @@ namespace HREngine.Bots
             {
                 var c = p.ownHeroAblility.card;
                 int choiceCount = c.choice ? 2 : 1;  // 如果是抉择卡牌，choiceCount为2，否则为1
-
+                trgts = p.ownHeroAblility.card.getTargetsForHeroPower(p, true);
                 for (int choice = 1; choice <= choiceCount; choice++)
                 {
                     CardDB.Card chosenCard = c;
@@ -194,7 +222,6 @@ namespace HREngine.Bots
 
                     int cardplayPenality = 0;
                     int bestplace = p.ownMinions.Count + 1;
-                    trgts = p.ownHeroAblility.card.getTargetsForHeroPower(p, true);
 
                     foreach (Minion trgt in trgts)
                     {

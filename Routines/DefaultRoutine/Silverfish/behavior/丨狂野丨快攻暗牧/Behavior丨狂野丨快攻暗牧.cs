@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System;
 using Logger = Triton.Common.LogUtilities.Logger;
 using log4net;
+using System.Linq;
 
 namespace HREngine.Bots
 {
@@ -13,6 +14,18 @@ namespace HREngine.Bots
         public override string BehaviorName() { return "丨狂野丨快攻暗牧"; }
         PenalityManager penman = PenalityManager.Instance;
 
+        // 存储海盗卡牌的集合
+        HashSet<CardDB.Card> pirateCards = new HashSet<CardDB.Card>()
+        {
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.TOY_518),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_512),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.CFM_637),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.CORE_WON_065),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.WON_065),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.DRG_056),
+            CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.DED_513),
+        };
+
         //文本输出
         private static readonly ILog Log = Logger.GetLoggerInstanceForType();
 
@@ -22,61 +35,340 @@ namespace HREngine.Bots
         /// <param name="cards">起手卡牌列表</param>
         public override void specialMulligan(List<Mulligan.CardIDEntity> cards)
         {
-            // 初始化卡牌出现次数字典
-            Dictionary<CardDB.cardNameCN, int> cardFlags = new Dictionary<CardDB.cardNameCN, int>()
-            {
-                {CardDB.cardNameCN.宝藏经销商, 0},
-                {CardDB.cardNameCN.空降歹徒, 0},
-                {CardDB.cardNameCN.随船外科医师, 0},
-                {CardDB.cardNameCN.心灵按摩师, 0},
-                {CardDB.cardNameCN.虚触侍从, 0}
-            };
-
-            // 遍历手牌，记录每张卡牌的出现次数
+            int flag1 = 0;//宝藏经销商
+            int flag2 = 0;//心灵按摩师
+            int flag3 = 0;//虚触侍从
+            int flag4 = 0;//随船外科医师
+            int flag5 = 0;//空降歹徒
+            int flag6 = 0;//纸艺天使
+            int flag7 = 0;//狂暴邪翼蝠
+            int flag8 = 0;//针灸
             foreach (Mulligan.CardIDEntity card in cards)
             {
                 CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
-                if (cardFlags.ContainsKey(cardCN.nameCN))
+                if (cardCN.nameCN == CardDB.cardNameCN.宝藏经销商)
                 {
-                    cardFlags[cardCN.nameCN]++;
+                    flag1 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.心灵按摩师)
+                {
+                    flag2 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.虚触侍从)
+                {
+                    flag3 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.随船外科医师)
+                {
+                    flag4 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.空降歹徒)
+                {
+                    flag5 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.纸艺天使)
+                {
+                    flag6 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.狂暴邪翼蝠)
+                {
+                    flag7 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.针灸)
+                {
+                    flag8 += 1;
                 }
             }
 
-            // 设置保留规则
             foreach (Mulligan.CardIDEntity card in cards)
             {
                 CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
 
-                if (cardFlags.ContainsKey(cardCN.nameCN))
+                if (cardCN.nameCN == CardDB.cardNameCN.宝藏经销商)
                 {
-                    if (cardFlags[cardCN.nameCN] > 0)
+                    if (cards.Count == 3 && flag4 == 0)
                     {
-                        // 高优先级保留
-                        if (cardCN.nameCN == CardDB.cardNameCN.宝藏经销商 ||  // 保留率97.3%
-                            cardCN.nameCN == CardDB.cardNameCN.空降歹徒)     // 保留率97.1%
+                        card.holdByRule = 2;
+                        card.holdReason = "先手一个没有随船外科医师留一张宝藏经销商";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
                         {
-                            card.holdByRule = 2; // 高优先级保留
-                            card.holdReason = "符合规则而保留: 高优先级保留";
-                        }
-                        // 中高优先级保留
-                        else if (cardCN.nameCN == CardDB.cardNameCN.随船外科医师 ||  // 保留率93.5%
-                                 cardCN.nameCN == CardDB.cardNameCN.心灵按摩师)    // 保留率90.6%
-                        {
-                            card.holdByRule = 1; // 中高优先级保留
-                            card.holdReason = "符合规则而保留: 中高优先级保留";
-                        }
-                        // 中等优先级保留
-                        else if (cardCN.nameCN == CardDB.cardNameCN.虚触侍从)    // 保留率72.6%
-                        {
-                            card.holdByRule = 1; // 中等优先级保留
-                            card.holdReason = "符合规则而保留: 中等优先级保留";
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡宝藏经销商";
+                            }
                         }
                     }
+                    else if (cards.Count > 3 && flag2 + flag3 + flag4 == 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手除了宝藏经销商只有1张能用下的1费，留一张宝藏经销商";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡宝藏经销商";
+                            }
+                        }
+                    }
+                    else if (cards.Count > 3 && flag4 >= 1 && flag2 + flag3 >= 1)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "后手有随船外科医师和1张能用的1费，不留宝藏经销商";
+                    }
+                    else if (cards.Count > 3 && flag4 == 0 && flag2 == 0)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手没随船外科医师和心灵按摩师，宝藏经销商全留";
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+
                 }
-                else
+
+                if (cardCN.nameCN == CardDB.cardNameCN.心灵按摩师)
                 {
-                    card.holdByRule = 0; // 其他卡牌不保留
-                    card.holdReason = "符合规则而弃掉: 其他卡牌不保留";
+                    if (cards.Count == 3 && flag1 + flag4 == 0)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先手没宝藏经销商和随船外科医师留1张心灵按摩师";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡心灵按摩师";
+                            }
+                        }
+                    }
+                    else if (cards.Count > 3 && flag1 == 0 && flag4 == 0)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手没随船外科医师和宝藏经销商，心灵按摩师全留";
+                    }
+                    else if (cards.Count > 3 && flag1 + flag4 == 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手有随船外科医师和宝藏经销商中间的一张，心灵按摩师留一张";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡心灵按摩师";
+                            }
+                        }
+                    }
+                    else if (cards.Count > 3 && flag1 + flag4 >= 2)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "后手有随船外科医师和宝藏经销商中间的两张，心灵按摩师不留";
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.随船外科医师)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手都留两张随船外科医师";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.空降歹徒)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手留2张空降歹徒";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.虚触侍从)
+                {
+                    if (cards.Count == 3 && flag1 + flag2 + flag4 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先手有1费能下的海盗，留一张虚触侍从";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡虚触侍从";
+                            }
+                        }
+                    }
+                    else if (cards.Count > 3 && flag4 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手有随船外科医师，留一张虚触侍从";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡虚触侍从";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.纸艺天使)
+                {
+                    if (cards.Count == 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "先手不留纸艺天使";
+                    }
+                    else if (cards.Count > 3 && flag1 + flag2 + flag4 == 0 && flag5 < 2)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "后手没1张能用的1费海盗，空降歹徒低于两张，留1张纸艺天使保底";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡纸艺天使";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.针灸)
+                {
+                    if (cards.Count >= 3 && flag7 == 2)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有2张狂暴邪翼蝠留1张针灸";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡针灸";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.狂暴邪翼蝠)
+                {
+                    if (cards.Count >= 3 && flag8 >= 1 && flag7 == 2)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有2张狂暴邪翼蝠和1张针灸留2张狂暴邪翼蝠";
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.亡者复生)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留亡者复生";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.暗影投弹手)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留暗影投弹手";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.海盗帕奇斯)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留海盗帕奇斯";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.精神灼烧)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留精神灼烧";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.心灵震爆)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留心灵震爆";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.暮光欺诈者)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留暮光欺诈者";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.迪菲亚麻风侏儒)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留迪菲亚麻风侏儒";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.黑暗主教本尼迪塔斯)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留黑暗主教本尼迪塔斯";
+                    }
                 }
             }
         }
@@ -119,54 +411,133 @@ namespace HREngine.Bots
                 }
             }
 
-
-
-            int 一费随从 = 0;//1费随从手牌数量           
+            int 一费有用随从 = 0;//1费随从手牌数量           
             foreach (Handmanager.Handcard hc in p.owncards)
             {
                 if (hc.card.nameCN == CardDB.cardNameCN.宝藏经销商
-    || hc.card.nameCN == CardDB.cardNameCN.心灵按摩师
-    || hc.card.nameCN == CardDB.cardNameCN.暗影投弹手
-    || hc.card.nameCN == CardDB.cardNameCN.虚触侍从
-    || hc.card.nameCN == CardDB.cardNameCN.随船外科医师
-    || hc.card.nameCN == CardDB.cardNameCN.海盗帕奇斯
-    )
-                    一费随从++;
-        }
-
+                    || hc.card.nameCN == CardDB.cardNameCN.心灵按摩师
+                    || hc.card.nameCN == CardDB.cardNameCN.暗影投弹手
+                    || hc.card.nameCN == CardDB.cardNameCN.虚触侍从
+                    || hc.card.nameCN == CardDB.cardNameCN.随船外科医师)
+                    一费有用随从++;
+            }
 
             int 暗影法术牌 = 0;//暗影法术牌手牌数量           
             foreach (Handmanager.Handcard hc in p.owncards)
             {
                 if (hc.card.nameCN == CardDB.cardNameCN.亡者复生
-    || hc.card.nameCN == CardDB.cardNameCN.精神灼烧
-    || hc.card.nameCN == CardDB.cardNameCN.针灸
-    || hc.card.nameCN == CardDB.cardNameCN.心灵震爆
-    )
+                    || hc.card.nameCN == CardDB.cardNameCN.精神灼烧
+                    || hc.card.nameCN == CardDB.cardNameCN.针灸
+                    || hc.card.nameCN == CardDB.cardNameCN.心灵震爆)
                     暗影法术牌++;
-        }
+            }
 
+            int 空降歹徒数量 = 0; // 用于统计空降歹徒的数量
+            // 遍历手牌，统计空降歹徒数量
+            foreach (Handmanager.Handcard hc in p.owncards)
+            {
+                if (hc.card.nameCN == CardDB.cardNameCN.空降歹徒)
+                {
+                    空降歹徒数量++;
+                }
+            }
 
-bool 幸运币 = false;   // 是否有幸运币
-bool 一费的狂暴邪翼蝠 = false; // 是否有1费的狂暴邪翼蝠
+            bool 幸运币 = false;   // 是否有幸运币
+            bool 一费的狂暴邪翼蝠 = false; // 是否有1费的狂暴邪翼蝠
+            bool 随船外科医师 = false;   // 是否有随船外科医师
+            bool 宝藏经销商 = false;   // 是否有宝藏经销商
+            bool 心灵按摩师 = false;   // 是否有心灵按摩师
+            bool 海盗帕奇斯 = false;   // 是否有海盗帕奇斯
+            bool 空降歹徒 = false;   // 是否有空降歹徒
+            bool 纸艺天使 = false;   // 是否有纸艺天使
+            bool 狂暴邪翼蝠 = false;   // 是否有狂暴邪翼蝠
+            bool 暗影投弹手 = false;   // 是否有暗影投弹手
+            bool 虚触侍从 = false;   // 是否有虚触侍从
+            bool 亡者复生 = false;   // 是否有亡者复生  
 
-// 遍历手牌
-foreach (Handmanager.Handcard hc in p.owncards)
-{
-    // 检查是否有幸运币
-    if (hc.card.nameCN == CardDB.cardNameCN.幸运币)
-    {
-        幸运币 = true;
-    }
-    
-    // 检查是否有1费的狂暴邪翼蝠
-    if (hc.card.nameCN == CardDB.cardNameCN.狂暴邪翼蝠 && hc.manacost == 1)
-    {
-        一费的狂暴邪翼蝠 = true;
-    }
-}
+            // 遍历手牌
+            foreach (Handmanager.Handcard hc in p.owncards)
+            {
+                // 检查是否有幸运币
+                if (hc.card.nameCN == CardDB.cardNameCN.幸运币)
+                {
+                    幸运币 = true;
+                }
 
+                // 检查是否有1费的狂暴邪翼蝠
+                if (hc.card.nameCN == CardDB.cardNameCN.狂暴邪翼蝠 && hc.manacost == 1)
+                {
+                    一费的狂暴邪翼蝠 = true;
+                }
 
+                if (hc.card.nameCN == CardDB.cardNameCN.随船外科医师)
+                {
+                    随船外科医师 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.狂暴邪翼蝠)
+                {
+                    狂暴邪翼蝠 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.宝藏经销商)
+                {
+                    宝藏经销商 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.心灵按摩师)
+                {
+                    心灵按摩师 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.海盗帕奇斯)
+                {
+                    海盗帕奇斯 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.空降歹徒)
+                {
+                    空降歹徒 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.纸艺天使)
+                {
+                    纸艺天使 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.暗影投弹手)
+                {
+                    暗影投弹手 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.虚触侍从)
+                {
+                    虚触侍从 = true;
+                }
+
+                if (hc.card.nameCN == CardDB.cardNameCN.虚触侍从)
+                {
+                    亡者复生 = true;
+                }
+            }
+
+            // 判断是否为英雄技能
+            if (card.type == CardDB.cardtype.HEROPWR)
+            {
+                // 判断目标是否为海盗帕奇斯
+                if (target != null && target.handcard.card.nameCN == CardDB.cardNameCN.海盗帕奇斯)
+                {
+                    // 判断玩家是否试图使用自己的英雄技能对海盗帕奇斯造成伤害
+                    if (target.own) // target.own 判断目标是否是玩家自己控制的随从
+                    {
+                        // 如果手牌有亡者复生且坟墓里没有随从
+                        if (p.getCorpseCount() == 0 && 亡者复生)
+                        {
+                            pen = 500; // 设置一个较大的惩罚值，禁止使用  修复墓地没怪发癫杀自己怪用亡者复生的伏笔
+                        }
+                    }
+                }
+            }
 
             //此处为单卡描述
             switch (card.nameCN)
@@ -192,17 +563,7 @@ foreach (Handmanager.Handcard hc in p.owncards)
                 case CardDB.cardNameCN.精神灼烧:
                     if (target != null && target.Hp <= 2 || !target.own)       //对方随从生命值小于 2
                     {
-                        pen -= 10;
-                    }
-                    break;
-                case CardDB.cardNameCN.虚触侍从:
-                    if (p.ownMinions.Count >= p.enemyMinions.Count && p.ownMinions.Count >= 1)	//暗牧的随从攻击力都偏低，就不计算 敌我攻击力之类的了，如果敌方随从更多，应该不下。
-                    {
-                        pen -= 5;
-                    }
-                    else
-                    {
-                        pen += 3;
+                        pen -= 20;
                     }
                     break;
                 case CardDB.cardNameCN.随船外科医师:
@@ -288,12 +649,122 @@ foreach (Handmanager.Handcard hc in p.owncards)
                     else
                         pen += 10;
                     break;
+                case CardDB.cardNameCN.迪菲亚麻风侏儒:
+                    if (暗影法术牌 <= 0) pen += 20;
+                    else pen -= 5;
+                    break;
+                case CardDB.cardNameCN.虚触侍从:
+                    int ownAtk = 0;
+                    int enemyAtk = 0;
+                    foreach (var item in p.ownMinions)
+                    {
+                        ownAtk += item.Angr;
+                    }
+                    foreach (var item in p.enemyMinions)
+                    {
+                        enemyAtk += item.Angr;
+                    }
+
+                    if (ownAtk >= enemyAtk)
+                    {
+                        pen -= 5;
+                    }
+                    else
+                    {
+                        pen += 3;
+                    }
+
+                    // 如果手牌有纸艺天使，费用小于等于2，场上友方随从是3个以下，以打满费用为主
+                    if (p.owncards.Any(hand => hand.card.nameCN == CardDB.cardNameCN.纸艺天使) &&
+                        p.mana == 2 && p.ownMinions.Count < 3)
+                    {
+                        pen += 10;
+                    }
+                    break;
+                case CardDB.cardNameCN.空降歹徒:
+                    foreach (Handmanager.Handcard hc in p.owncards)
+                    {
+                        if ((hc.card.race == CardDB.Race.PIRATE || pirateCards.Contains(card)) && hc.card.nameCN != CardDB.cardNameCN.空降歹徒)
+                        {
+                            return 1000; // 如果手牌中有其他海盗，禁止使用空降歹徒
+                        }
+                    }
+                    pen += bonus_mine * 4; // 增加惩罚值，避免在不合适时机打出
+                    break;
             }
 
-           if (Hrtprozis.Instance.gTurn == 2
+            if (Hrtprozis.Instance.gTurn == 2
+                 && 幸运币
+                 && 宝藏经销商
+                 && 心灵按摩师
+                 && !随船外科医师)
+            {
+                switch (card.nameCN)
+                {
+                    case CardDB.cardNameCN.宝藏经销商:
+                        pen -= 25;
+                        break;
+                    case CardDB.cardNameCN.幸运币:
+                        pen -= 5;
+                        break;
+                }
+            }
+
+            if (Hrtprozis.Instance.gTurn == 2
                 && 幸运币
-                && 一费随从 >= 2
-                 )
+                && 宝藏经销商
+                && 暗影投弹手
+                && !狂暴邪翼蝠
+                && !心灵按摩师
+                && !随船外科医师)
+            {
+                switch (card.nameCN)
+                {
+                    case CardDB.cardNameCN.宝藏经销商:
+                        pen -= 25;
+                        break;
+                    case CardDB.cardNameCN.幸运币:
+                        pen -= 40;
+                        break;
+                }
+            }
+
+            if (Hrtprozis.Instance.gTurn == 1
+                 && 宝藏经销商
+                 && (暗影投弹手 || 虚触侍从)
+                 && !心灵按摩师
+                 && !海盗帕奇斯
+                 && !随船外科医师)
+            {
+                switch (card.nameCN)
+                {
+                    case CardDB.cardNameCN.宝藏经销商:
+                        pen -= 25;
+                        break;
+                }
+            }
+
+            if (Hrtprozis.Instance.gTurn == 2
+                && 幸运币
+                && 一费有用随从 == 0
+                && 海盗帕奇斯
+                && 纸艺天使
+                && !空降歹徒)
+            {
+                switch (card.nameCN)
+                {
+                    case CardDB.cardNameCN.纸艺天使:
+                        pen -= 10;
+                        break;
+                    case CardDB.cardNameCN.幸运币:
+                        pen -= 5;
+                        break;
+                }
+            }
+
+            if (Hrtprozis.Instance.gTurn == 2
+                 && 幸运币
+                 && 一费有用随从 >= 2)
             {
                 switch (card.nameCN)
                 {
@@ -301,12 +772,11 @@ foreach (Handmanager.Handcard hc in p.owncards)
                         pen -= 5;
                         break;
                 }
-                Log.ErrorFormat("1费后手能打光费用提高硬币优先");
             }
 
             if (Hrtprozis.Instance.gTurn == 2
                 && 幸运币
-                && 一费随从 == 1
+                && 一费有用随从 == 1
                 && 一费的狂暴邪翼蝠
                  )
             {
@@ -316,15 +786,13 @@ foreach (Handmanager.Handcard hc in p.owncards)
                         pen -= 5;
                         break;
                 }
-                Log.ErrorFormat("1费后手能打光费用提高硬币优先");
             }
 
             if (Hrtprozis.Instance.gTurn == 2
                 && 幸运币
-                && 一费随从 == 0
+                && 一费有用随从 == 0
                 && p.enemyHero.Hp <= (p.enemyHero.maxHp - 3)
-                && 一费的狂暴邪翼蝠
-                 )
+                && 一费的狂暴邪翼蝠)
             {
                 switch (card.nameCN)
                 {
@@ -332,7 +800,6 @@ foreach (Handmanager.Handcard hc in p.owncards)
                         pen -= 5;
                         break;
                 }
-                Log.ErrorFormat("1费后手能打光费用提高硬币优先");
             }
 
             return pen;
@@ -345,107 +812,122 @@ foreach (Handmanager.Handcard hc in p.owncards)
         /// <returns></returns>
         public override float getPlayfieldValue(Playfield p)
         {
+            // 如果场上的评分值大于-200000，则返回该值
             if (p.value > -200000) return p.value;
-            float retval = 0;
+
+            float retval = 0; // 初始化返回值
+
+            // 加上一般的场面价值
             retval += getGeneralVal(p);
+
+            // 自己的抽牌数量，每张牌价值5分
             retval += p.owncarddraw * 5;
-            // 危险血线
+
+            // 危险血量线
             int hpboarder = 3;
-            // 不考虑法强了
+
+            // 不考虑法术伤害加成
             if (p.enemyHeroName == HeroEnum.mage) retval += 2 * p.enemyspellpower;
-            // 抢脸血线
+
+            // 攻击血量线
             int aggroboarder = 20;
+
+            // 加上血量值
             retval += getHpValue(p, hpboarder, aggroboarder);
-            // 出牌序列数量
+
+            // 出牌的动作数量
             int count = p.playactions.Count;
-            int ownActCount = 0;
-            bool useAb = false;
+            int ownActCount = 0; // 自己的动作计数
+            bool useAb = false; // 是否使用了英雄技能
+            bool attacted = false; // 是否已进行攻击
 
-            bool canBe_flameward = false;
-
-            if (p.anzOldWoman > 0)
-            {
-                foreach (SecretItem si in p.enemySecretList)  //Todo: 是否要判断己方回合还是敌方回合？？？
-                {
-                    if (si.canBe_flameward) { canBe_flameward = true; break; }
-                }
-            }
-            bool attacted = false;
-            // 排序问题！！！！
+            // 遍历所有的动作
             for (int i = 0; i < count; i++)
             {
-                Action a = p.playactions[i];
-                ownActCount++;
+                Action a = p.playactions[i]; // 当前动作
+                ownActCount++; // 计数自己的动作数量
+
+                // 根据不同动作类型调整评分
                 switch (a.actionType)
                 {
                     case actionEnum.trade:
-                        retval -= 20;
+                        retval -= 20; // 交换行动减分
                         continue;
-                    // 英雄攻击
+
+                    // 英雄或随从攻击
                     case actionEnum.attackWithMinion:
                     case actionEnum.attackWithHero:
                         if (a.target != null && a.target.isHero)
                         {
-                            attacted = true;
+                            attacted = true; // 如果攻击了英雄，标记为已攻击
+                        }
+                        if (a.actionType == actionEnum.attackWithMinion)
+                        {
+                            int atk = a.own.Angr > 0 ? a.own.Angr + p.anzOldWoman : a.own.Angr;
+                            retval += atk * 10;
                         }
                         continue;
+
+                    // 使用英雄技能
                     case actionEnum.useHeroPower:
-                        useAb = true;
+                        useAb = true; // 使用了英雄技能
                         break;
+
+
+                    //在这里加出牌顺序
                     case actionEnum.playcard:
+
+                        // 判断具体的卡牌，并根据出牌顺序调整评分  减分早下  加分晚下 分数别太极端 会出毛病
+                        switch (a.card.card.nameCN)
+                        {
+                            case CardDB.cardNameCN.幸运币:
+                                retval -= i * 10;
+                                break;
+                            case CardDB.cardNameCN.暮光欺诈者:
+                                retval += i * 15;
+                                break;
+                        }
                         break;
+
                     default:
                         continue;
                 }
+
+                // 如果出牌是海盗或“虚触侍从”
                 if (a.card.card.race == CardDB.Race.PIRATE || a.card.card.nameCN == CardDB.cardNameCN.虚触侍从)
+                {
+                    // 检查己方随从是否有“船载火炮”
                     foreach (Minion m in p.ownMinions)
                     {
                         if (m.handcard.card.nameCN == CardDB.cardNameCN.船载火炮)
                         {
-                            retval += 10 - i * 3;
+                            retval += 10 - i * 3; // 根据出牌顺序加分
                             break;
                         }
                     }
-                //// 出牌排序优先
-                switch (a.card.card.nameCN)
-                {
-                    case CardDB.cardNameCN.心灵震爆:
-                        if (canBe_flameward) retval -= i * 100 - 500;
-                        break;
-                    case CardDB.cardNameCN.心灵尖刺:
-                        if (canBe_flameward) retval -= i * 100 - 500;
-                        break;
-                    case CardDB.cardNameCN.礼盒雏龙:
-                        retval -= 3 * i;//不斩杀时优于技能
-                        break;
-                    case CardDB.cardNameCN.随船外科医师:
-                        retval -= 2 * i;
-                        break;
-                    case CardDB.cardNameCN.虚触侍从:
-                        retval -= 3 * i;
-                        break;
-                    case CardDB.cardNameCN.亡者复生:
-                        retval -= 4 * i;
-                        break;
                 }
             }
+
             // 对手基本随从交换模拟
             retval -= p.lostDamage;
             retval += getSecretPenality(p); // 奥秘的影响
-            retval -= p.enemyWeapon.Angr * 3 + p.enemyWeapon.Durability * 3;
+            retval -= p.enemyWeapon.Angr * 3 + p.enemyWeapon.Durability * 3; // 对方武器影响
 
-            // 留着技能下回合出的情况
+            // 留着技能下回合使用的情况
             if (p.ownMaxMana < 2 && p.ownHeroPowerCostLessOnce <= -99)
             {
                 if (!useAb && p.enemyMinions.Count == 0)
+                {
                     retval += 20;
+                }
             }
 
-            // 特殊：优势防亵渎
+            // 针对术士职业的特殊防“亵渎”
             if (retval > 50 && p.enemyHeroStartClass == TAG_CLASS.WARLOCK && p.enemyMinions.Count == 0 && p.ownMinions.Count > 2)
             {
                 bool found = false;
-                // 从 2 开始防，术士自带一堆 1
+
+                // 防止“亵渎”，从2血开始计算
                 for (int i = 1; i <= 10; i++)
                 {
                     found = false;
@@ -465,7 +947,8 @@ foreach (Handmanager.Handcard hc in p.owncards)
                     }
                 }
             }
-            // 震爆闲着没事可以出
+
+            // “心灵震爆”闲置时优先出
             if (p.owncards.Count <= 4)
             {
                 foreach (Handmanager.Handcard hc in p.owncards)
@@ -476,12 +959,13 @@ foreach (Handmanager.Handcard hc in p.owncards)
                     }
                 }
             }
-            // 如果不攻击就能击杀还有额外奖励哦
+
+            // 如果不攻击就能击杀敌方英雄，额外加分
             if (!attacted && p.enemyHero.Hp <= 0) retval += 10000;
-            //p.value = retval;
+
+            // 返回计算后的场面价值
             return retval;
         }
-
 
         /// <summary>
         /// 发现卡的价值

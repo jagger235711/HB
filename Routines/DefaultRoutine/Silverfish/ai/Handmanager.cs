@@ -31,6 +31,30 @@ namespace HREngine.Bots
             //条件卡牌，例如施放的法术牌
             public List<CardDB.cardIDEnum> conditionalList = new List<CardDB.cardIDEnum>();
 
+            public string Status
+            {
+                get
+                {
+                    return "{" + position + "} " + card.nameCN + " [费用: " + manacost + "] (" + (addattack + card.Attack) + "/" + (addHp + card.Health) + ")";
+                }
+            }
+
+            public string OnlineCardImage
+            {
+                get
+                {
+                    return card.OnlineCardImage;
+                }
+            }
+
+            public string OnlineCardTile
+            {
+                get
+                {
+                    return card.OnlineCardTile;
+                }
+            }
+
             public Handcard()
             {
                 card = CardDB.Instance.unknownCard;

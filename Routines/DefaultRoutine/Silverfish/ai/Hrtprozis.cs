@@ -22,7 +22,10 @@ namespace HREngine.Bots
         demonhunter,//恶魔猎手
         deathknight,//巫妖王
     }
-    //对局信息    
+
+    /// <summary>
+    /// 对局信息
+    /// </summary>    
     public class Hrtprozis  //Hrtprozis是兄弟中非常重要的一个类，记录着从兄弟内部数据中获取到的各种信息
     {
         public int pId = 0;//唯一id
@@ -112,6 +115,11 @@ namespace HREngine.Bots
         public Dictionary<string, int> guessEnemyDeck = new Dictionary<string, int>();//猜测对手剩余卡牌
         public int enemyDirectDmg = 0; //预计对手斩杀线
         public int similarity = 66;
+
+        //连续使用元素牌的回合数
+        public int ownConsecutiveElementalTurns = 0;
+        //上个回合玩家使用的元素牌数量
+        public int ownElementalsPlayedLastTurn = 0;
 
         public List<CardDB.cardIDEnum> enchs = new List<CardDB.cardIDEnum>();
 
@@ -855,7 +863,7 @@ namespace HREngine.Bots
         //输出我方牌库信息(兄弟的牌库读取时好时坏)
         public void printOwnDeck()
         {
-            string od = "己方牌库: ";
+            string od = "od: ";
             foreach (KeyValuePair<CardDB.cardIDEnum, int> e in this.turnDeck)
             {
                 od += e.Key + "," + e.Value + ";";

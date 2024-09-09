@@ -431,6 +431,9 @@ namespace HREngine.Bots
             public bool Excavate = false;//发掘
             public bool Elusive = false;//扰魔
 
+            public string textCN = "";
+            public int count = 1;
+
             private bool _honorableKill = false;
             private bool _overkill = false;
             private bool _spellburst = false;
@@ -470,6 +473,51 @@ namespace HREngine.Bots
             {
                 get { return _frenzy; }
                 set { _frenzy = value; }
+            }
+
+            public string OnlineCardImage
+            {
+                get { return "https://art.hearthstonejson.com/v1/render/latest/zhCN/256x/" + cardIDenum.ToString() + ".png"; }
+            }
+
+            public string OnlineCardTile
+            {
+                get { return "https://art.hearthstonejson.com/v1/tiles/" + cardIDenum.ToString() + ".png"; }
+            }
+
+            public string CardInfo
+            {
+                get
+                {
+                    return "[" + cost + "] \t\t" + Attack.ToString() + "/" + Health.ToString() + "\n" + nameCN.ToString() + "\n" + textCN + "\n" + type.ToString() + " \t\t" + race.ToString();
+                }
+            }
+
+            public string Status
+            {
+                get
+                {
+                    return "(" + cost + ") " + nameCN.ToString() + " [" + count + "] ";
+                }
+            }
+
+            public string Color
+            {
+                get
+                {
+                    switch (rarity)
+                    {
+                        case 3:
+                            return "DodgerBlue";
+                        case 4:
+                            return "BlueViolet";
+                        case 5:
+                            return "DarkOrange";
+                        case 1:
+                        default:
+                            return "Gray";
+                    }
+                }
             }
 
             /// <summary>
@@ -720,8 +768,8 @@ namespace HREngine.Bots
                     }
                     else
                     {
-                        foreach (Minion m in p.ownMinions) if (!m.untouchable && m.handcard.card.type != cardtype.LOCATION) targets.Add(m);
-                        foreach (Minion m in p.enemyMinions) if (!m.untouchable && m.handcard.card.type != cardtype.LOCATION) targets.Add(m);
+                        foreach (Minion m in p.ownMinions) if (!m.untouchable) targets.Add(m);
+                        foreach (Minion m in p.enemyMinions) if (!m.untouchable) targets.Add(m);
                     }
                     if (targetOnlyMinion)
                     {
@@ -1085,6 +1133,13 @@ namespace HREngine.Bots
                         }
                         break;
                 }
+
+                //移除扰魔的随从
+                trgts.RemoveAll(minion => minion != null &&
+                                  minion.handcard != null &&
+                                  minion.handcard.card != null &&
+                                  minion.handcard.card.Elusive);
+
                 return trgts;
             }
 
@@ -1425,6 +1480,19 @@ namespace HREngine.Bots
                         {
                             offset += (p.ownBeastCostLessOnceStarted - p.ownBeastCostLessOnce) * 2;
                         }
+
+                        // 下一张元素随从牌的法力值消耗减少量
+                        if (p.nextElementalReduction > 0 && (TAG_RACE)this.race == TAG_RACE.ELEMENTAL)
+                        {
+                            offset -= p.nextElementalReduction;
+                        }
+
+                        // 本回合下一张元素随从牌的法力值消耗减少量
+                        if (p.thisTurnNextElementalReduction > 0 && (TAG_RACE)this.race == TAG_RACE.ELEMENTAL)
+                        {
+                            offset -= p.thisTurnNextElementalReduction;
+                        }
+
                         break;
                     case cardtype.SPELL:
 
@@ -1817,7 +1885,7 @@ namespace HREngine.Bots
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
-                Helpfunctions.Instance.ErrorLog("在{0}下找不到 CardDefs.xml!" + Settings.Instance.path);
+                Helpfunctions.Instance.ErrorLog("在" + Settings.Instance.path + "下找不到 CardDefs.xml!");
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
                 Helpfunctions.Instance.ErrorLog("ERROR#################################################");
@@ -1924,6 +1992,17 @@ namespace HREngine.Bots
                         case "202":
                             {
                                 card.type = (cardtype)int.Parse(tag.GetAttribute("value"));
+                            }
+                            break;
+                        case "184":
+                            {
+                                foreach (XmlElement node in tag.ChildNodes)
+                                {
+                                    if (node.Name == "zhCN")
+                                    {
+                                        card.textCN = node.InnerText;
+                                    }
+                                }
                             }
                             break;
                         case "185":
@@ -2288,7 +2367,6 @@ namespace HREngine.Bots
                     item.ForgeCost = item.DECK_ACTION_COST;
                 }
             }
-
         }
 
         // 根据卡名获取卡

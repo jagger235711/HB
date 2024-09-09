@@ -1,11 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+using System.Linq;
+using System.Windows;
+#if APPLICATION_MODE
+    using RoutineHelper;
+#endif
+
 namespace HREngine.Bots
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Collections.Concurrent;
-    using System.Threading.Tasks;
-    using System.Linq;
-
     public partial class MiniSimulator
     {
         //#####################################################################################################################
@@ -158,7 +162,11 @@ namespace HREngine.Bots
                         Helpfunctions.Instance.logg(string.Format("树层:{0}，牌面{0}-{1}: actions {2}, 得分:{3}", deep, idx, p.playactions.Count, pVal));
                         p.printActions();
                         Helpfunctions.Instance.logg("");
-                        
+
+#if APPLICATION_MODE
+                        (Application.Current.MainWindow as MainWindow).UpdateActionViewTree(deep, idx, pVal, p.playactions, p);
+#endif
+
                     }
                 }
                 // TODO 仅考虑得分最高的 60 种情况，将其他情况直接剪枝
@@ -277,7 +285,6 @@ namespace HREngine.Bots
 
             int berserk = Settings.Instance.berserkIfCanFinishNextTour;
             int printRules = Settings.Instance.printRules;
-
             for (int i = startIndex; i < endIndex; i++)  // 不同的index对应同一步的不同选择到达的不同牌面
             {
                 Playfield p = source[i];

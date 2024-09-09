@@ -319,6 +319,16 @@ namespace HREngine.Bots
         public bool enemyAmitusThePeacekeeper = false;
         //本回合对敌方英雄造成的伤害
         public int damageDealtToEnemyHeroThisTurn = 0;
+        //下一张元素随从牌的法力值消耗减少量
+        public int nextElementalReduction = 0;
+        //本回合下一张元素随从牌的法力值消耗减少量
+        public int thisTurnNextElementalReduction = 0;
+        //上次打出的卡牌的费用
+        public int lastPlayedCardCost = 0;
+        //在本回合是否打出了元素牌
+        public bool playedElementalThisTurn = false;
+        //本回合打出的元素随从数量
+        public int ownElementalsPlayedThisTurn = 0;
 
         /// <summary>
         /// 在敌方回合开始时调用
@@ -725,6 +735,14 @@ namespace HREngine.Bots
             //维和者阿米图斯
             this.ownAmitusThePeacekeeper = false;
             this.enemyAmitusThePeacekeeper = false;
+            //下一张元素随从牌的法力值消耗减少量
+            this.nextElementalReduction = 0;
+            //本回合下一张元素随从牌的法力值消耗减少量
+            this.thisTurnNextElementalReduction = 0;
+            //上次打出的卡牌的费用
+            this.lastPlayedCardCost = 0;
+            //在本回合是否打出了元素牌
+            this.playedElementalThisTurn = false;
             foreach (TAG_SPELL_SCHOOL school in Enum.GetValues(typeof(TAG_SPELL_SCHOOL)))
             {
                 this.ownSpellSchoolCounts[school] = 0;
@@ -1490,6 +1508,13 @@ namespace HREngine.Bots
             //维和者阿米图斯
             this.ownAmitusThePeacekeeper = p.ownAmitusThePeacekeeper;
             this.enemyAmitusThePeacekeeper = p.enemyAmitusThePeacekeeper;
+            //元素牌费用减少
+            this.nextElementalReduction = p.nextElementalReduction;
+            this.thisTurnNextElementalReduction = p.thisTurnNextElementalReduction;
+            //上次打出的卡牌的费用
+            this.lastPlayedCardCost = p.lastPlayedCardCost;
+            //在本回合是否打出了元素牌
+            this.playedElementalThisTurn = p.playedElementalThisTurn;
         }
 
         public void copyValuesFrom(Playfield p)
@@ -3720,6 +3745,12 @@ namespace HREngine.Bots
 
             //重置本回合对敌方英雄造成的伤害
             this.damageDealtToEnemyHeroThisTurn = 0;
+            //重置本回合下一张元素随从牌的法力值消耗减少量
+            this.thisTurnNextElementalReduction = 0;
+            //重置连续使用元素牌的回合数
+            if (!this.playedElementalThisTurn) Hrtprozis.Instance.ownConsecutiveElementalTurns = 0;
+            //更新上个回合玩家使用的元素牌数量
+            Hrtprozis.Instance.ownElementalsPlayedLastTurn = this.ownElementalsPlayedThisTurn;
         }
 
         /// <summary>
@@ -4848,6 +4879,19 @@ namespace HREngine.Bots
             // 记录敌方英雄当前的生命值
             int enemyHeroHpBefore = this.enemyHero.Hp;
 
+            // 更新 lastPlayedCardCost 属性
+            this.lastPlayedCardCost = c.getManaCost(this, hc.manacost);
+
+            if (hc.card.race == CardDB.Race.ELEMENTAL)
+            {
+                this.ownElementalsPlayedThisTurn++;
+                if (!this.playedElementalThisTurn)
+                {
+                    this.playedElementalThisTurn = true;
+                    Hrtprozis.Instance.ownConsecutiveElementalTurns++;
+                }
+            }
+
             // 处理特殊卡牌费用
             HandleSpecialCardCost(hc);
 
@@ -5581,12 +5625,6 @@ namespace HREngine.Bots
             // 更新当前游戏状态，如随从的位置和状态等
             updateBoards();
 
-            // 如果在处理伤害触发器的过程中又触发了新的事件，递归处理这些事件
-            if (HasPendingTriggers())
-            {
-                doDmgTriggers(); // 递归调用以处理新触发的事件
-            }
-
             // 处理“小型法术尖晶石”卡牌升级的逻辑
             if (this.owncards.Any())
             {
@@ -5623,6 +5661,12 @@ namespace HREngine.Bots
                     m.Ready = true;
                     Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
                 }
+            }
+
+            // 如果在处理伤害触发器的过程中又触发了新的事件，递归处理这些事件
+            if (HasPendingTriggers())
+            {
+                doDmgTriggers(); // 递归调用以处理新触发的事件
             }
         }
 
@@ -5761,13 +5805,8 @@ namespace HREngine.Bots
             // 记录己方和敌方随从及英雄受到伤害的次数
             int anzOwnMinionsGotDmg = this.tempTrigger.ownMinionsGotDmg;
             int anzEnemyMinionsGotDmg = this.tempTrigger.enemyMinionsGotDmg;
-            this.tempTrigger.ownMinionsGotDmg = 0;
-            this.tempTrigger.enemyMinionsGotDmg = 0;
-
             int anzOwnHeroGotDmg = this.tempTrigger.ownHeroGotDmg;
             int anzEnemyHeroGotDmg = this.tempTrigger.enemyHeroGotDmg;
-            this.tempTrigger.ownHeroGotDmg = 0;
-            this.tempTrigger.enemyHeroGotDmg = 0;
 
             // 处理己方随从受到伤害后的效果
             foreach (Minion m in this.ownMinions.ToArray())
@@ -5806,6 +5845,11 @@ namespace HREngine.Bots
             // 重置英雄的伤害相关计数器
             this.ownHero.anzGotDmg = 0;
             this.enemyHero.anzGotDmg = 0;
+
+            this.tempTrigger.ownMinionsGotDmg = 0;
+            this.tempTrigger.enemyMinionsGotDmg = 0;
+            this.tempTrigger.ownHeroGotDmg = 0;
+            this.tempTrigger.enemyHeroGotDmg = 0;
         }
 
         /// <summary>
@@ -6172,7 +6216,8 @@ namespace HREngine.Bots
                 // 处理特殊随从效果
                 if (anzOwnDragonConsort > 0 && (TAG_RACE)hc.card.race == TAG_RACE.DRAGON) anzOwnDragonConsort = 0; // 龙族侍女效果
                 if (ownBeastCostLessOnce > 0 && (TAG_RACE)hc.card.race == TAG_RACE.PET) ownBeastCostLessOnce = 0; // 野兽费用减免效果
-                if (ownElementCost > 0 && (TAG_RACE)hc.card.race == TAG_RACE.ELEMENTAL) ownElementCost = 0; // 元素费用减免效果
+                if (nextElementalReduction > 0 && (TAG_RACE)hc.card.race == TAG_RACE.ELEMENTAL) nextElementalReduction = 0; // 下一张元素随从牌的法力值消耗减少量
+                if (thisTurnNextElementalReduction > 0 && (TAG_RACE)hc.card.race == TAG_RACE.ELEMENTAL) thisTurnNextElementalReduction = 0; // 本回合下一张元素费用减免效果
 
                 int burly = 0;
                 int ssm = 0;
