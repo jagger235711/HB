@@ -793,7 +793,7 @@ namespace Triton.Bot.Logic.Bots.DefaultBot
 			}
 			else if (DefaultBotSettings.Instance.ConstructedGameRule == VisualsFormatType.标准)
 			{
-				if (formatType != FormatType.FT_STANDARD)
+				if (formatType != FormatType.FT_STANDARD || !inRankedPlayMode)
 				{
 					flag = true;
 					ilog_0.InfoFormat("[卡组选择] 切换到\"标准\"模式.");
@@ -801,7 +801,7 @@ namespace Triton.Bot.Logic.Bots.DefaultBot
 			}
 			else if (DefaultBotSettings.Instance.ConstructedGameRule == VisualsFormatType.幻变)
 			{
-				if (formatType != FormatType.FT_TWIST)
+				if (formatType != FormatType.FT_TWIST || !inRankedPlayMode)
 				{
 					flag = true;
 					ilog_0.InfoFormat("[卡组选择] 切换到\"幻变\"模式.");
