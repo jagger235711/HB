@@ -65,7 +65,7 @@ namespace HREngine.Bots
         public static bool isEnemyLowest(Minion mnn, Playfield p)
         {
             bool ret = true;
-            List<Minion> litt = p.getAttackTargets(true, false);
+            List<Minion> litt = p.GetAttackTargets(true, false);
             int val = getValueOfEnemyMinion(mnn);
             foreach (Minion m in p.enemyMinions)
             {
