@@ -14,7 +14,7 @@ namespace HREngine.Bots
         public override string BehaviorName() { return "丨狂野丨快攻暗牧"; }
         PenalityManager penman = PenalityManager.Instance;
 
-//改于2024.9.9  by血色
+        //改于2024.9.9  by血色
 
         // 存储海盗卡牌的集合
         HashSet<CardDB.Card> pirateCards = new HashSet<CardDB.Card>()
@@ -693,6 +693,13 @@ namespace HREngine.Bots
                     }
                     pen += bonus_mine * 4; // 增加惩罚值，避免在不合适时机打出
                     break;
+                case CardDB.cardNameCN.赎罪教堂:
+                    if (p.ownMinions.Select(temp => temp.handcard.card.type != CardDB.cardtype.LOCATION).ToList().Count > 0 &&
+                        p.mana >= 3 && p.owncards.Count <= 3)
+                    {
+                        pen -= 100;
+                    }
+                    break;
             }
 
             if (Hrtprozis.Instance.gTurn == 2
@@ -852,6 +859,10 @@ namespace HREngine.Bots
                 // 根据不同动作类型调整评分
                 switch (a.actionType)
                 {
+                    case actionEnum.useLocation:
+                        retval -= i * 10;
+                        continue;
+
                     case actionEnum.trade:
                         retval -= 20; // 交换行动减分
                         continue;
@@ -886,7 +897,10 @@ namespace HREngine.Bots
                                 retval -= i * 10;
                                 break;
                             case CardDB.cardNameCN.暮光欺诈者:
-                                retval +=  i * 15;
+                                retval += i * 15;
+                                break;
+                            case CardDB.cardNameCN.赎罪教堂:
+                                retval -= (i * 11 + 5);
                                 break;
                         }
                         break;

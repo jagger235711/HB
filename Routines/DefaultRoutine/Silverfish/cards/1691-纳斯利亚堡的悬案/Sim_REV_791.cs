@@ -24,7 +24,7 @@ namespace HREngine.Bots
             p.drawACard(CardDB.cardIDEnum.None, triggerMinion.own);
         }
 
-        public override PlayReq[] GetPlayReqs()
+        public override PlayReq[] GetUseAbilityReqs()
         {
             return new PlayReq[]
             {

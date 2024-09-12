@@ -2833,7 +2833,7 @@ namespace HREngine.Bots
             }
 
             // 如果地标本身有特殊条件，例如地标在冷却中或耐久度已为0
-            if (locationMinion.handcard.card.CooldownTurn > 0 || locationMinion.handcard.card.Health <= 0)
+            if (locationMinion.CooldownTurn > 0 || locationMinion.Hp <= 0)
             {
                 return 1000; // 地标在冷却或已无耐久度，不应使用
             }

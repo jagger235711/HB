@@ -20,7 +20,7 @@ namespace HREngine.Bots
             p.minionGetBuffed(target, 2, 0); // 给予永久的攻击力加成
         }
 
-        public override PlayReq[] GetPlayReqs()
+        public override PlayReq[] GetUseAbilityReqs()
         {
             return new PlayReq[]
             {

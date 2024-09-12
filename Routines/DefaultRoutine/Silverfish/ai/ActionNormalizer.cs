@@ -315,7 +315,7 @@ namespace HREngine.Bots
                         if (m.entitiyID == a.own.entitiyID)
                         {
                             // 确认地标类型并检查其冷却时间是否已经结束
-                            if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.handcard.card.CooldownTurn == 0)
+                            if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.CooldownTurn == 0)
                             {
                                 actionFound = true;
                             }

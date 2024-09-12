@@ -1622,6 +1622,13 @@ namespace HREngine.Bots
                 if (dis.ancestralspirit != pis.ancestralspirit || dis.desperatestand != pis.desperatestand || dis.souloftheforest != pis.souloftheforest || dis.stegodon != pis.stegodon || dis.livingspores != pis.livingspores) minionbool = false;
                 if (dis.explorershat != pis.explorershat || dis.returnToHand != pis.returnToHand || dis.infest != pis.infest || dis.deathrattle2 != pis.deathrattle2) minionbool = false;
                 if (dis.hChoice != pis.hChoice || dis.cantBeTargetedBySpellsOrHeroPowers != pis.cantBeTargetedBySpellsOrHeroPowers || dis.poisonous != pis.poisonous || dis.lifesteal != pis.lifesteal) minionbool = false;
+                if (dis.handcard.card.type == CardDB.cardtype.LOCATION)
+                {
+                    if (dis.Hp != pis.Hp || dis.CooldownTurn != pis.CooldownTurn)
+                    {
+                        minionbool = false;
+                    }
+                }
             }
             if (minionbool == false)
             {
@@ -2474,7 +2481,7 @@ namespace HREngine.Bots
         /// <param name="own"></param>
         /// <param name="isLethalCheck"></param>
         /// <returns></returns>
-        public List<Minion> getAttackTargets(bool own, bool isLethalCheck)
+        public List<Minion> GetAttackTargets(bool own, bool isLethalCheck)
         {
             List<Minion> trgts = new List<Minion>();
             List<Minion> trgts2 = new List<Minion>();
@@ -2485,7 +2492,6 @@ namespace HREngine.Bots
             {
                 if (m.untouchable) continue;//不可攻击
                 if (m.stealth) continue;//潜行
-                if (m.handcard.card.type == CardDB.cardtype.LOCATION) continue;//地标
                 if (m.taunt || m.handcard.card.tank)
                 {
                     hasTaunts = true;
@@ -2502,6 +2508,12 @@ namespace HREngine.Bots
 
             if (own && !(this.enemyHero.immune || this.enemyHero.stealth)) trgts2.Add(this.enemyHero);//免疫 潜行
             else if (!own && !(this.ownHero.immune || this.ownHero.stealth)) trgts2.Add(this.ownHero);
+
+            //移除地标
+            trgts2.RemoveAll(minion => minion != null &&
+                                       minion.handcard != null &&
+                                       minion.handcard.card != null &&
+                                       minion.handcard.card.type == CardDB.cardtype.LOCATION);
             return trgts2;
         }
 
@@ -4854,9 +4866,10 @@ namespace HREngine.Bots
             // 处理友方地标VAC_929（惊险悬崖）的冷却状态
             foreach (Minion m in this.ownMinions)
             {
-                if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_929 && m.handcard.card.CooldownTurn > 0)
+                if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_929 && m.CooldownTurn > 0)
                 {
                     CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_929);
+                    m.CooldownTurn = 0;
                     m.handcard.card.CooldownTurn = 0;
                     m.Ready = true;
                     Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
@@ -4953,9 +4966,10 @@ namespace HREngine.Bots
                 // 处理友方地标VAC_409（鹦鹉乐园）的冷却状态
                 foreach (Minion m in this.ownMinions)
                 {
-                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_409 && m.handcard.card.CooldownTurn > 0)
+                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_409 && m.CooldownTurn > 0)
                     {
                         CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_409);
+                        m.CooldownTurn = 0;
                         m.handcard.card.CooldownTurn = 0;
                         m.Ready = true;
                         Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
@@ -4969,9 +4983,10 @@ namespace HREngine.Bots
                 // 处理友方地标VAC_334（小玩物小屋）的冷却状态
                 foreach (Minion m in this.ownMinions)
                 {
-                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_334 && m.handcard.card.CooldownTurn > 0)
+                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_334 && m.CooldownTurn > 0)
                     {
                         CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_334);
+                        m.CooldownTurn = 0;
                         m.handcard.card.CooldownTurn = 0;
                         m.Ready = true;
                         Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
@@ -4988,9 +5003,10 @@ namespace HREngine.Bots
                 // 处理友方地标VAC_522（潮汐之池）的冷却状态
                 foreach (Minion m in this.ownMinions)
                 {
-                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_522 && m.handcard.card.CooldownTurn > 0)
+                    if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_522 && m.CooldownTurn > 0)
                     {
                         CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_522);
+                        m.CooldownTurn = 0;
                         m.handcard.card.CooldownTurn = 0;
                         m.Ready = true;
                         Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
@@ -5656,9 +5672,10 @@ namespace HREngine.Bots
             // 处理友方地标VAC_425（大地之末号）的冷却状态
             foreach (Minion m in this.ownMinions)
             {
-                if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_425 && m.handcard.card.CooldownTurn > 0)
+                if (m.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_425 && m.CooldownTurn > 0)
                 {
                     CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_425);
+                    m.CooldownTurn = 0;
                     m.handcard.card.CooldownTurn = 0;
                     m.Ready = true;
                     Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");
@@ -8867,9 +8884,10 @@ namespace HREngine.Bots
             {
                 foreach (Minion ownMinion in this.ownMinions)
                 {
-                    if (ownMinion.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_517 && ownMinion.handcard.card.CooldownTurn > 0)
+                    if (ownMinion.handcard.card.cardIDenum == CardDB.cardIDEnum.VAC_517 && ownMinion.CooldownTurn > 0)
                     {
                         CardDB.Card card = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_517);
+                        ownMinion.CooldownTurn = 0;
                         ownMinion.handcard.card.CooldownTurn = 0;
                         ownMinion.Ready = true;
                         Helpfunctions.Instance.logg("卡牌名称 - " + card.nameCN.ToString() + " " + card.cardIDenum.ToString() + " 地标冷却回合 - 0");

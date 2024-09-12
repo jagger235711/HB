@@ -1021,6 +1021,7 @@ namespace HREngine.Bots
                         int hp = Convert.ToInt32(s.Split(new string[] { " H:" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(' ')[0]);
                         int maxhp = Convert.ToInt32(s.Split(new string[] { " mH:" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(' ')[0]);
                         bool ready = s.Split(new string[] { " rdy:" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(' ')[0] == "True";
+                        int CooldownTurn = Convert.ToInt32(s.Split(new string[] { " CooldownTurn:" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(' ')[0]);
                         if (s.Contains(" respawn:"))
                         {
                             string[] tmp = s.Split(new string[] { " respawn:" }, StringSplitOptions.RemoveEmptyEntries)[1].Split(' ')[0].Split(':');
@@ -1164,6 +1165,7 @@ namespace HREngine.Bots
                         tempminion.infest = infest;
                         tempminion.deathrattle2 = deathrattle2;
                         tempminion.enchs = enchs;
+                        tempminion.CooldownTurn = CooldownTurn;
 
                         if (maxhp > hp) tempminion.wounded = true;
                         tempminion.updateReadyness();

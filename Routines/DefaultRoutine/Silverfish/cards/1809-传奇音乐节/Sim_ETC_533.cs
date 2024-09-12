@@ -32,7 +32,7 @@ namespace HREngine.Bots
             }
         }
 
-        public override PlayReq[] GetPlayReqs()
+        public override PlayReq[] GetUseAbilityReqs()
         {
             return new PlayReq[]
             {

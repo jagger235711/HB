@@ -103,14 +103,14 @@ namespace HREngine.Bots
                 this.calculated++;
             }
         }
-        
+
         public float doallmoves(Playfield playf)
         {
-            print = playf.print; 
+            print = playf.print;
             this.isLethalCheck = playf.isLethalCheck; // 是否做斩杀检验
             enoughCalculations = false; //计算是否足够，深度大于最大深度，计算场面数大于最大宽度时为true
             botBase = Ai.Instance.botBase;  // 用哪个策略，策略文件
-            this.posmoves.Clear();  
+            this.posmoves.Clear();
             this.twoturnfields.Clear();
             this.addToPosmoves(playf);  //将当前场面加入到状态队列
             bool havedonesomething = true;  //是否无步骤可出，例如：法力值不够出任何牌，随从全部已经攻击
@@ -140,7 +140,7 @@ namespace HREngine.Bots
                          });
                 }
                 int idx = 0;
-                int best_idx = 0; 
+                int best_idx = 0;
 
                 foreach (Playfield p in temp)  // 到这里nextPlayfields 哪些牌面计算好了（动作也都模拟做完了），value还没算，evaluatePenality已经计算好了。
                 {
@@ -189,7 +189,7 @@ namespace HREngine.Bots
                 {
                     if (this.calculated > this.totalboards)
                     {
-                        Helpfunctions.Instance.logg(string.Format("触发剪枝,deep={0},已计算={1}>阈值{2},牌面{3}的所有子孙牌面被抛弃",  deep + 1, calculated, totalboards, idx));
+                        Helpfunctions.Instance.logg(string.Format("触发剪枝,deep={0},已计算={1}>阈值{2},牌面{3}的所有子孙牌面被抛弃", deep + 1, calculated, totalboards, idx));
                     }
                     else
                     {
@@ -197,7 +197,7 @@ namespace HREngine.Bots
                         if (this.totalboards > 0) this.calculated += p.nextPlayfields.Count;
                         this.posmoves.AddRange(p.nextPlayfields); //将下一层牌面进入队列，赋值posmoves下一层牌面
                         p.nextPlayfields.Clear();
-                    }                    
+                    }
                 });
 
                 if (best_idx > 0 && Settings.Instance.test)
@@ -206,7 +206,7 @@ namespace HREngine.Bots
                     Helpfunctions.Instance.logg("");
                 }
 
-                if (bestoldval >= 10000 && (Hrtprozis.Instance.enemySecretCount == 0 || Hrtprozis.Instance.enemyHeroStartClass != TAG_CLASS.MAGE) ) this.posmoves.Clear();
+                if (bestoldval >= 10000 && (Hrtprozis.Instance.enemySecretCount == 0 || Hrtprozis.Instance.enemyHeroStartClass != TAG_CLASS.MAGE)) this.posmoves.Clear();
                 //如果bestval大于等于10000则意味着兄弟计算出当前场面可以斩杀
                 //对应的策略中的代码是 if (p.enemyHero.Hp <= 0) retval = 10000;
 
@@ -221,7 +221,7 @@ namespace HREngine.Bots
                 if (this.calculated > this.totalboards) enoughCalculations = true;
                 if (deep >= this.maxdeep) enoughCalculations = true;
             }
-            
+
             if (this.dirtyTwoTurnSim > 0 && !twoturnfields.Contains(bestold)) twoturnfields.Add(bestold);
             this.posmoves.Clear();
             this.posmoves.Add(bestold);
@@ -241,12 +241,12 @@ namespace HREngine.Bots
                 {
                     float val = botBase.getPlayfieldValue(posmoves[i]);
                     if (bestval > val) break;
-                    if (posmoves[i].cardsPlayedThisTurn > bestplay.cardsPlayedThisTurn) continue; 
+                    if (posmoves[i].cardsPlayedThisTurn > bestplay.cardsPlayedThisTurn) continue;
                     else if (posmoves[i].cardsPlayedThisTurn == bestplay.cardsPlayedThisTurn)
                     {
-                        if (bestplay.optionsPlayedThisTurn > posmoves[i].optionsPlayedThisTurn) continue; 
+                        if (bestplay.optionsPlayedThisTurn > posmoves[i].optionsPlayedThisTurn) continue;
                         else if (bestplay.optionsPlayedThisTurn == posmoves[i].optionsPlayedThisTurn && bestplay.enemyHero.Hp <= posmoves[i].enemyHero.Hp) continue;
-                        
+
                     }
                     bestplay = posmoves[i];
                     bestval = val;
@@ -324,7 +324,17 @@ namespace HREngine.Bots
                                 }
                             }
                         }
-
+                        if (a.actionType == actionEnum.useLocation)
+                        {
+                            if (a.own != null)
+                            {
+                                bool hasSameEntitiyID = p.playactions.Any(temp => temp.own != null && temp.own.entitiyID == a.own.entitiyID);
+                                if (hasSameEntitiyID)
+                                {
+                                    continue; //当前地标已经模拟使用
+                                }
+                            }
+                        }
                         Playfield pf = new Playfield(p);
                         pf.doAction(a);
                         if (pf.ownHero.Hp > 0 && pf.evaluatePenality < 500) p.nextPlayfields.Add(pf);
@@ -349,7 +359,7 @@ namespace HREngine.Bots
                             if (needETS) Ai.Instance.enemyTurnSim[threadnumber].simulateEnemysTurn(p, this.simulateSecondTurn, playaround, false, playaroundprob, playaroundprob2);
                         }
                     }
- 
+
                     p.complete = true;
 
                 }
@@ -434,7 +444,7 @@ namespace HREngine.Bots
             }
             catch (Exception ex) // Todo:待fix，不应该有这个异常，是处理了奥数、疯狂科学家牌序后才有的
             {
-                Helpfunctions.Instance.logg("异常:" + ex.Message);
+                Helpfunctions.Instance.logg("cuttingposibilities异常:" + ex.Message);
             }
             //useComparison = false;// 暂时调试用，打出所有重复的牌面，重点调试，用于寻找为啥不是相同牌面里的最佳牌序
             if (this.useComparison)
@@ -539,7 +549,7 @@ namespace HREngine.Bots
                             {
                                 continue;
                             }
-                            
+
                             // 同名随从不重复添加
                             // same name -> test whether they are equal
                             if (mnn.Angr == m.Angr && mnn.Hp == m.Hp && mnn.divineshild == m.divineshild && mnn.taunt == m.taunt && mnn.poisonous == m.poisonous && mnn.lifesteal == m.lifesteal && mnn.Spellburst == m.Spellburst) goingtoadd = false;

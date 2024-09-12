@@ -24,7 +24,7 @@ namespace HREngine.Bots
             p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.REV_845), p.ownMinions.Count, triggerMinion.own);
         }
 
-        public override PlayReq[] GetPlayReqs()
+        public override PlayReq[] GetUseAbilityReqs()
         {
             return new PlayReq[]
             {

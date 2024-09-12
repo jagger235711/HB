@@ -17,6 +17,8 @@ namespace HREngine.Bots
 
         public static List<CardStats> AllCardStats = new List<CardStats>();
 
+        public static List<CardStats> StandardCardStats = new List<CardStats>();
+
         private static Hsreplay instance;
 
         public static Hsreplay Instance
@@ -30,8 +32,8 @@ namespace HREngine.Bots
                     var dt = DateTime.Now;
                     instance = new Hsreplay();
                     AllCardStats = LoadAllCardStats();
-                    Helpfunctions.Instance.ErrorLog("加载完毕，总共 " + AllCardStats.Count + " 条数据，总计用时: " + (DateTime.Now - dt).TotalSeconds + " s");
-                    ilog_0.Info("加载完毕，总共 " + AllCardStats.Count + " 条数据，总计用时: " + (DateTime.Now - dt).TotalSeconds + " s");
+                    Helpfunctions.Instance.ErrorLog("加载完毕，总共 " + (AllCardStats.Count + StandardCardStats.Count) + " 条数据，总计用时: " + (DateTime.Now - dt).TotalSeconds + " s");
+                    ilog_0.Info("加载完毕，总共 " + (AllCardStats.Count + StandardCardStats.Count) + " 条数据，总计用时: " + (DateTime.Now - dt).TotalSeconds + " s");
                 }
                 return instance;
             }
@@ -65,8 +67,15 @@ namespace HREngine.Bots
                     if (cardStats.WinrateWhenPlayed == null) cardStats.WinrateWhenPlayed = 0.0;
                 }
 
-                // 将处理后的对象列表添加到字典中
-                allCardStats.AddRange(cardStatsList);
+                if (file.Contains("HsreplayStandard.json"))
+                {
+                    StandardCardStats.AddRange(cardStatsList);
+                }
+                else
+                {
+                    // 将处理后的对象列表添加到字典中
+                    allCardStats.AddRange(cardStatsList);
+                }
             }
             return allCardStats;
         }

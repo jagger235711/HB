@@ -16,6 +16,15 @@ namespace HREngine.Bots
         }
 
         /// <summary>
+        /// 获取技能的使用条件
+        /// </summary>
+        /// <returns></returns>
+        public virtual PlayReq[] GetUseAbilityReqs()
+        {
+            return new PlayReq[] { };
+        }
+
+        /// <summary>
         /// 荣耀击杀效果(随从)
         /// </summary>
         /// <param name="p">场面</param>

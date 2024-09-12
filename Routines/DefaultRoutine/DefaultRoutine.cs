@@ -1107,14 +1107,15 @@ def Execute():
                     Playfield doEndTurnPlay = Ai.Instance.bestplay;
                     foreach (Minion m in doEndTurnPlay.ownMinions)
                     {
-                        if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.handcard.card.CooldownTurn > 0)
+                        if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.CooldownTurn > 0)
                         {
+                            m.CooldownTurn -= 1;
                             m.handcard.card.CooldownTurn -= 1;
-                            if (m.handcard.card.CooldownTurn <= 0)
+                            if (m.CooldownTurn <= 0)
                             {
                                 m.Ready = true;
                             }
-                            Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.handcard.card.CooldownTurn);
+                            Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.CooldownTurn);
                         }
                     }
                     await TritonHs.EndTurn();
@@ -1141,14 +1142,15 @@ def Execute():
                 Playfield nullPlay = Ai.Instance.bestplay;
                 foreach (Minion m in nullPlay.ownMinions)
                 {
-                    if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.handcard.card.CooldownTurn > 0)
+                    if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.CooldownTurn > 0)
                     {
+                        m.CooldownTurn -= 1;
                         m.handcard.card.CooldownTurn -= 1;
-                        if (m.handcard.card.CooldownTurn <= 0)
+                        if (m.CooldownTurn <= 0)
                         {
                             m.Ready = true;
                         }
-                        Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.handcard.card.CooldownTurn);
+                        Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.CooldownTurn);
                     }
                 }
                 await TritonHs.EndTurn();
@@ -1191,14 +1193,15 @@ def Execute():
             Playfield lastPlay = Ai.Instance.bestplay;
             foreach (Minion m in lastPlay.ownMinions)
             {
-                if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.handcard.card.CooldownTurn > 0)
+                if (m.handcard.card.type == CardDB.cardtype.LOCATION && m.CooldownTurn > 0)
                 {
+                    m.CooldownTurn -= 1;
                     m.handcard.card.CooldownTurn -= 1;
-                    if (m.handcard.card.CooldownTurn <= 0)
+                    if (m.CooldownTurn <= 0)
                     {
                         m.Ready = true;
                     }
-                    Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.handcard.card.CooldownTurn);
+                    Helpfunctions.Instance.logg("卡牌名称 - " + m.handcard.card.nameCN + " 地标冷却回合 - " + m.CooldownTurn);
                 }
             }
             await TritonHs.EndTurn();
@@ -1419,36 +1422,33 @@ def Execute():
                 if (moveTodo.target != null)
                 {
                     HSCard target = getEntityWithNumber(moveTodo.target.entitiyID);
-                    Playfield bestplay = Ai.Instance.bestplay;
-                    Minion minon = bestplay.FindMinionByEntityId(new Minion { entitiyID = moveTodo.target.entitiyID });
-                    if (target != null && minon != null)
+                    if (target != null)
                     {
                         Helpfunctions.Instance.logg("使用地标 " + location.Name + " 目标为 " + target.Name);
                         await location.LeftClickCard();
-                        await Coroutine.Sleep(500);
                         await location.UseOn(target.Card);
                         // 更新使用次数及地标是否准备好
                         moveTodo.own.handcard.card.Health--;
-                        moveTodo.own.handcard.card.CooldownTurn = 2;//地标标记为冷却中
+                        moveTodo.own.CooldownTurn = 2;//地标标记为冷却中
+                        moveTodo.own.handcard.card.CooldownTurn = 2;
                         moveTodo.own.Ready = false;
                         Helpfunctions.Instance.logg("地标 " + location.Name + " 标记为冷却中...");
                     }
                     else
                     {
-                        Helpfunctions.Instance.ErrorLog("[AI] 目标丢失，再次重试...");
+                        Helpfunctions.Instance.ErrorLog("[AI] 目标 " + moveTodo.target.entitiyID + "丢失. 再次重试...");
                         Helpfunctions.Instance.logg("[AI] 目标 " + moveTodo.target.entitiyID + "丢失. 再次重试...");
                         await Coroutine.Sleep(3000);
                     }
-                    await Coroutine.Sleep(500);
                 }
                 else
                 {
                     Helpfunctions.Instance.ErrorLog("使用地标: " + location.Name + " 暂时没有目标");
                     await location.LeftClickCard();
-                    await Coroutine.Sleep(500);
                     // 更新使用次数及地标是否准备好
                     moveTodo.own.handcard.card.Health--;
-                    moveTodo.own.handcard.card.CooldownTurn = 2;//地标标记为冷却中
+                    moveTodo.own.CooldownTurn = 2;//地标标记为冷却中
+                    moveTodo.own.handcard.card.CooldownTurn = 2;
                     moveTodo.own.Ready = false;
                     Helpfunctions.Instance.logg("地标 " + location.Name + " 标记为冷却中...");
                 }

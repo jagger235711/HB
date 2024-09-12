@@ -69,6 +69,7 @@ namespace HREngine.Bots
             onTurnStart,//回合开始
             onTurnEnd, //回合结束
             useLocation, //使用地标
+            useTitanAbility, //使用泰坦技能
         }
 
         /// <summary>
@@ -1066,11 +1067,11 @@ namespace HREngine.Bots
             /// <returns></returns>
             public List<Minion> getTargetsForHeroPower(Playfield p, bool own)
             {
-                List<Minion> trgts = getTargetsForCard(p, p.isLethalCheck, own);
-                cardNameEN abName = own ? p.ownHeroAblility.card.nameEN : p.enemyHeroAblility.card.nameEN;
-                int abType = 0; //0 none, 1 damage, 2 heal, 3 baff
+                var targetsForHeroPower = getTargetsForCard(p, p.isLethalCheck, own);
+                var abName = own ? p.ownHeroAblility.card.nameEN : p.enemyHeroAblility.card.nameEN;
+                var abType = 0; //0 none, 1 damage, 2 heal, 3 buff
                 switch (abName)
-                {//此处可添加英雄技能
+                {
                     case cardNameEN.heal: goto case cardNameEN.lesserheal;
                     case cardNameEN.lesserheal:
                         if (p.anzOwnAuchenaiSoulpriest > 0 || p.embracetheshadow > 0) abType = 1;
@@ -1110,15 +1111,15 @@ namespace HREngine.Bots
                             }
                         }
 
-                        tCount = trgts.Count;
+                        tCount = targetsForHeroPower.Count;
                         if (tCount > 0)
                         {
-                            if (trgts[0] != null)
+                            if (targetsForHeroPower[0] != null)
                             {
                                 List<Minion> tmp = new List<Minion>();
                                 for (int i = 0; i < tCount; i++)
                                 {
-                                    Minion m = trgts[i];
+                                    Minion m = targetsForHeroPower[i];
                                     if (m.Hp < m.maxHp)
                                     {
                                         if (needCut)
@@ -1135,12 +1136,17 @@ namespace HREngine.Bots
                 }
 
                 //移除扰魔的随从
-                trgts.RemoveAll(minion => minion != null &&
-                                  minion.handcard != null &&
-                                  minion.handcard.card != null &&
-                                  minion.handcard.card.Elusive);
+                targetsForHeroPower.RemoveAll(minion => minion != null &&
+                                                        minion.handcard != null &&
+                                                        minion.handcard.card != null &&
+                                                        minion.handcard.card.Elusive);
+                //移除地标
+                targetsForHeroPower.RemoveAll(minion => minion != null &&
+                                                        minion.handcard != null &&
+                                                        minion.handcard.card != null &&
+                                                        minion.handcard.card.type == CardDB.cardtype.LOCATION);
 
-                return trgts;
+                return targetsForHeroPower;
             }
 
             /// <summary>
@@ -1167,7 +1173,7 @@ namespace HREngine.Bots
                 bool REQ_DAMAGED_TARGET = false;
                 bool REQ_TARGET_WITH_DEATHRATTLE = false;
 
-                foreach (PlayReq pr in this.sim_card.GetPlayReqs())
+                foreach (PlayReq pr in this.sim_card.GetUseAbilityReqs())
                 {
                     switch (pr.errorType)
                     {

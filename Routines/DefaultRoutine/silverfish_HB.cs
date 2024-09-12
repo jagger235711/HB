@@ -673,14 +673,14 @@ namespace HREngine.Bots
                 this.ownHero.maxHp = card.GetTag(GAME_TAG.HEALTH);
                 this.ownHero.Hp = this.ownHero.maxHp - card.GetTag(GAME_TAG.DAMAGE);
                 this.ownHero.armor = card.GetTag(GAME_TAG.ARMOR);
-                this.ownHero.frozen = (card.GetTag(GAME_TAG.FROZEN) == 0) ? false : true;
-                this.ownHero.stealth = (card.GetTag(GAME_TAG.STEALTH) == 0) ? false : true;
+                this.ownHero.frozen = card.GetTag(GAME_TAG.FROZEN) != 0;
+                this.ownHero.stealth = card.GetTag(GAME_TAG.STEALTH) != 0;
                 this.ownHero.numAttacksThisTurn = card.GetTag(GAME_TAG.NUM_ATTACKS_THIS_TURN);
-                this.ownHero.windfury = (card.GetTag(GAME_TAG.WINDFURY) == 0) ? false : true;
-                this.ownHero.immune = (card.GetTag(GAME_TAG.IMMUNE) == 0) ? false : true;
-                if (!ownHero.immune)
-                    this.ownHero.immuneWhileAttacking = (card.GetTag(GAME_TAG.IMMUNE_WHILE_ATTACKING) == 0) ? false : true; //turn immune
-                //if (this.ownHero.Angr < this.ownWeapon.Angr) this.ownHero.Angr = this.ownWeapon.Angr;
+                this.ownHero.windfury = card.GetTag(GAME_TAG.WINDFURY) != 0;
+                this.ownHero.immune = card.GetTag(GAME_TAG.IMMUNE) != 0;
+                if (!ownHero.immune) this.ownHero.immuneWhileAttacking = card.GetTag(GAME_TAG.IMMUNE_WHILE_ATTACKING) != 0;
+                this.ownHero.handcard.card.Elusive = card.GetTag(GAME_TAG.ELUSIVE) != 0;
+                this.ownHero.nameCN = CardDB.Instance.cardNameCNstringToEnum(card.Name);
             }
             else if (controller == enemyController)
             {
@@ -695,11 +695,12 @@ namespace HREngine.Bots
                 this.enemyHero.maxHp = card.GetTag(GAME_TAG.HEALTH);
                 this.enemyHero.Hp = this.enemyHero.maxHp - card.GetTag(GAME_TAG.DAMAGE);
                 this.enemyHero.armor = card.GetTag(GAME_TAG.ARMOR);
-                this.enemyHero.frozen = (card.GetTag(GAME_TAG.FROZEN) == 0) ? false : true;
+                this.enemyHero.frozen = card.GetTag(GAME_TAG.FROZEN) != 0;
                 this.enemyHero.stealth = (card.GetTag(GAME_TAG.STEALTH) == 0) ? false : true;
-                this.enemyHero.windfury = (card.GetTag(GAME_TAG.WINDFURY) == 0) ? false : true;
-                this.enemyHero.immune = (card.GetTag(GAME_TAG.IMMUNE) == 0) ? false : true; //don't use turn immune
-                //if (this.enemyHero.Angr < this.enemyWeapon.Angr) this.enemyHero.Angr = this.enemyWeapon.Angr;
+                this.enemyHero.windfury = card.GetTag(GAME_TAG.WINDFURY) != 0;
+                this.enemyHero.immune = card.GetTag(GAME_TAG.IMMUNE) != 0; //don't use turn immune
+                this.enemyHero.handcard.card.Elusive = card.GetTag(GAME_TAG.ELUSIVE) != 0;
+                this.enemyHero.nameCN = CardDB.Instance.cardNameCNstringToEnum(card.Name);
             }
 
             var attaches = entity.GetAttachments();//附魔
@@ -851,7 +852,7 @@ namespace HREngine.Bots
                 m.handcard.card.DECK_ACTION_COST = c.DECK_ACTION_COST;//卡组操作消耗法力值
 
                 m.handcard.card.Dredge = c.Dredge;//探底
-                m.handcard.card.CooldownTurn = c.CooldownTurn;//地标冷却回合
+                m.CooldownTurn = c.CooldownTurn;//地标冷却回合
                 m.handcard.card.Infuse = c.Infuse;//注能
                 m.handcard.card.Infused = c.Infused;//已注能
                 m.handcard.card.InfuseNum = c.InfuseNum;//注能数量

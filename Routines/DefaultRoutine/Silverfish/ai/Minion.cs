@@ -158,6 +158,8 @@ namespace HREngine.Bots
             }
         }
 
+        public int CooldownTurn = 0;//地标冷却回合
+
         public Minion()
         {
             this.handcard = new Handmanager.Handcard();
@@ -264,6 +266,8 @@ namespace HREngine.Bots
             this.cantBeTargetedBySpellsOrHeroPowers = m.cantBeTargetedBySpellsOrHeroPowers;
             this.cantAttackHeroes = m.cantAttackHeroes;
             this.cantAttack = m.cantAttack;
+
+            this.CooldownTurn = m.CooldownTurn;
         }
 
         public void setMinionToMinion(Minion m)
@@ -366,6 +370,8 @@ namespace HREngine.Bots
             this.cantBeTargetedBySpellsOrHeroPowers = m.cantBeTargetedBySpellsOrHeroPowers;
             this.cantAttackHeroes = m.cantAttackHeroes;
             this.cantAttack = m.cantAttack;
+
+            this.CooldownTurn = m.CooldownTurn;
         }
 
         public int getRealAttack()
@@ -845,9 +851,13 @@ namespace HREngine.Bots
                 Ready = true;
                 cantAttackHeroes = false;
             }
-            if (this.handcard.card.type == CardDB.cardtype.LOCATION && this.handcard.card.CooldownTurn == 0)
+            if (this.handcard.card.type == CardDB.cardtype.LOCATION && this.CooldownTurn == 0)
             {
                 Ready = true;
+            }
+            if (this.handcard.card.type == CardDB.cardtype.LOCATION && this.CooldownTurn > 0)
+            {
+                Ready = false;
             }
         }
         //被沉默

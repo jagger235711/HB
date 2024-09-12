@@ -683,7 +683,8 @@ namespace HREngine.Bots
                 name = hc.card.nameEN,
                 nameCN = hc.card.nameCN,
                 playedThisTurn = true,
-                numAttacksThisTurn = 0
+                numAttacksThisTurn = 0,
+                CooldownTurn = hc.card.CooldownTurn
             };
 
 
