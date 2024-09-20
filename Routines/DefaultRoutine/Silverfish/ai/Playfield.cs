@@ -2492,7 +2492,7 @@ namespace HREngine.Bots
             {
                 if (m.untouchable) continue;//不可攻击
                 if (m.stealth) continue;//潜行
-                if (m.taunt || m.handcard.card.tank)
+                if (m.taunt)
                 {
                     hasTaunts = true;
                     trgts.Add(m);
