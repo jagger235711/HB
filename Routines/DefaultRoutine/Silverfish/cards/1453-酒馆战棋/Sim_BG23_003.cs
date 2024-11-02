@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：5 生命值：7
+	//随从 中立 费用：4 攻击力：2 生命值：5
 	//Critter Wrangler
 	//小动物照管员
-	//[x]Whenever you cast a spellon a minion, give it +1/+2.
-	//每当你对一个随从施放法术时，使其获得+1/+2。
+	//[x]Whenever you cast a spellon a minion, give it +2/+2.
+	//每当你对一个随从施放法术时，使其获得+2/+2。
 	class Sim_BG23_003 : SimTemplate
 	{
 		

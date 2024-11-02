@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Darkfallen Neophyte
 	//黑暗堕落者新兵
 	//[x]<b>Battlecry:</b> Spend 2 <b>Corpses</b>to give all minions in yourhand +2 Attack.
-	//<b>战吼：</b>消耗2具<b>尸体</b>，使你手牌中的所有随从牌获得+2攻击力。
+	//<b>战吼：</b>消耗2份<b>残骸</b>，使你手牌中的所有随从牌获得+2攻击力。
 	class Sim_RLK_731 : SimTemplate
 	{
 		

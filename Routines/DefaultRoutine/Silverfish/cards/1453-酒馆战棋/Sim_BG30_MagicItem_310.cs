@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：3
+	//BATTLEGROUND_TRINKET 中立 费用：5
 	//Rivendare Portrait
 	//瑞文戴尔肖像
 	//[x]Get a 'Titus Rivendare'.<b>Start of Combat:</b> Doublethe Health of yourTitus Rivendares.

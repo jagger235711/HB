@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：4 生命值：1
+	//随从 中立 费用：2 攻击力：5 生命值：1
 	//Crackling Cyclone
 	//爆裂飓风
 	//<b>Divine Shield</b><b>Windfury</b>

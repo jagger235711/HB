@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Body Bagger
 	//扛包收尸人
 	//<b>Battlecry</b>: Gain a <b>Corpse</b>.
-	//<b>战吼：</b>获得一具<b>尸体</b>。
+	//<b>战吼：</b>获得一份<b>残骸</b>。
 	class Sim_RLK_Prologue_503 : SimTemplate
 	{
 		

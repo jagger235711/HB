@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Risen Ghoul
 	//复活的食尸鬼
 	//<b>Rush</b><i>Doesn't leave a <b>Corpse</b>.</i>
-	//<b>突袭</b>。<i>不会留下<b>尸体</b>。</i>
+	//<b>突袭</b>。<i>不会留下<b>残骸</b>。</i>
 	class Sim_RLK_Prologue_RLK_008t : SimTemplate
 	{
 		

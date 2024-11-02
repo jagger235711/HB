@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 战士 费用：3 攻击力：0 生命值：6
+	//随从 战士 费用：3 攻击力：0 生命值：4
 	//Entrée
 	//主菜
 	//<b>Deathrattle:</b> Your opponent summons a minion from their deck.

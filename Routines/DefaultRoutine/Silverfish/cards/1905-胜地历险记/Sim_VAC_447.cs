@@ -11,5 +11,7 @@ namespace HREngine.Bots
 	//如果本随从不在你的套牌中，则拥有<b>冲锋</b>。
 	class Sim_VAC_447 : SimTemplate
 	{
-    }
+		
+		
+	}
 }

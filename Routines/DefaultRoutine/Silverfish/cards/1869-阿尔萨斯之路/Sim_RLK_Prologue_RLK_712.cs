@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Blood Tap
 	//活力分流
 	//Give all minions in your hand +1/+1.Spend 3 <b>Corpses</b> to give them +1/+1 more.
-	//使你手牌中的所有随从牌获得+1/+1。消耗3具<b>尸体</b>，再获得+1/+1。
+	//使你手牌中的所有随从牌获得+1/+1。消耗3份<b>残骸</b>，再获得+1/+1。
 	class Sim_RLK_Prologue_RLK_712 : SimTemplate
 	{
 		

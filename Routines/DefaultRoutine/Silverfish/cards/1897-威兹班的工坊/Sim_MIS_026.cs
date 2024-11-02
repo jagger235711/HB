@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：6
+	//随从 中立 费用：5 攻击力：2 生命值：6
 	//Puppetmaster Dorian
 	//傀儡大师多里安
 	//After you draw a minion, get a 1/1 copy of it that costs (1).

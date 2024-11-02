@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：6
+	//BATTLEGROUND_TRINKET 中立 费用：5
 	//Shaker Portrait
 	//沙锤手肖像
 	//[x]Get a 'Zesty Shaker'. YourZesty Shakers give anextra copy of the spell.

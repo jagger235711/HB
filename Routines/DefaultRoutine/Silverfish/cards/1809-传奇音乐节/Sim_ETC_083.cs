@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 术士 费用：3
+	//法术 术士 费用：2
 	//Demonic Dynamics
 	//邪魔修音
 	//[x]<b>Discover</b> 2 Demons.<b>Finale:</b> Give them +1/+2.

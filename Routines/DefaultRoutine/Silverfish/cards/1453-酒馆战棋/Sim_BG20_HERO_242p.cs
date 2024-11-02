@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//英雄技能 德鲁伊 费用：1
+	//英雄技能 中立 费用：0
 	//Natural Balance
 	//自然的平衡
-	//[x]Give a friendly minion ofeach Tier +2/+1.
-	//使每个等级的各一个友方随从获得+2/+1。
+	//[x]<b>Passive</b>After you buy 20 Tiers'worth of cards, get a TripleReward. <i>(@ left!)</i>
+	//<b>被动</b>在你购买总计20级的卡牌后，获取一份三连奖励。<i>（还剩@级！）</i>
 	class Sim_BG20_HERO_242p : SimTemplate
 	{
 		

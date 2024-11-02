@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：12 生命值：12
+	//随从 中立 费用：6 攻击力：18 生命值：18
 	//Colossus of the Sun
 	//太阳巨人守护者
 	//<b>Divine Shield</b><b>Reborn</b>

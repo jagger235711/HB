@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 法师 费用：5 攻击力：4 生命值：5
+	//随从 法师 费用：6 攻击力：4 生命值：5
 	//Portalmancer Skyla
 	//传送门操控师斯奇拉
 	//[x]<b>Rogue Tourist</b><b>Battlecry:</b> Swap the Costs ofthe lowest and highest Costspells in your hand.

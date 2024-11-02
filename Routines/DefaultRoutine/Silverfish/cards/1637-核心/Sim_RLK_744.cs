@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Stitched Giant
 	//缝合巨人
 	//[x]Costs (1) less for each<b>Corpse</b> you've spentthis game.
-	//在本局对战中，你每消耗过一具<b>尸体</b>，本牌的法力值消耗便减少（1）点。
+	//在本局对战中，你每消耗过一份<b>残骸</b>，本牌的法力值消耗便减少（1）点。
 	class Sim_RLK_744 : SimTemplate
 	{
 		

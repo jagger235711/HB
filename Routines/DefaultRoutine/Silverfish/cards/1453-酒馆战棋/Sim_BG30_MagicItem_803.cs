@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：2
+	//BATTLEGROUND_TRINKET 中立 费用：1
 	//Kaboom Bot Portrait
 	//爆爆机器人肖像
 	//[x]Get a 'Kaboom Bot'.Your Kaboom Bots'<b>Deathrattles</b> deal8 extra damage.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：5
+	//BATTLEGROUND_TRINKET 中立 费用：7
 	//Boom Controller
 	//砰砰遥控器
 	//[x]When you have space,summon an exact copyof your first Mech thatdied each combat.

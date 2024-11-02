@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Hematurge
 	//鲜血魔术师
 	//<b>Battlecry:</b> Spend a<b>Corpse</b> to <b>Discover</b> aBlood Rune card.
-	//<b>战吼：</b>消耗一具<b>尸体</b>，<b>发现</b>一张鲜血符文牌。
+	//<b>战吼：</b>消耗一份<b>残骸</b>，<b>发现</b>一张鲜血符文牌。
 	class Sim_RLK_Prologue_066 : SimTemplate
 	{
 		

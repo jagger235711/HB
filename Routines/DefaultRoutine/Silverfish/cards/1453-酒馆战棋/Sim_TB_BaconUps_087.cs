@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：9 攻击力：6 生命值：12
+	//随从 中立 费用：5 攻击力：6 生命值：12
 	//Kangor's Apprentice
 	//坎格尔的学徒
 	//<b>Deathrattle:</b> Summonyour first 4 Mechs that died this combat.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：1
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Ship in a Bottle
 	//瓶中船
 	//[x]<b>Start of Combat:</b> Getand summon a randomPirate. It attacksimmediately.

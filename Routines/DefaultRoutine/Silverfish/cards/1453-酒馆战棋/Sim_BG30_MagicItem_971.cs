@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：1
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Enforcer Portrait
 	//执行者肖像
 	//[x]Get a 'LightfangEnforcer'. Your LightfangEnforcers haveall minion types.

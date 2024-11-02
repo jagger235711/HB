@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：9
+	//BATTLEGROUND_TRINKET 中立 费用：6
 	//Felbat Portrait
 	//魔蝠肖像
 	//[x]Get a 'FamishedFelbat'. The Tavernalways has 7 cards.

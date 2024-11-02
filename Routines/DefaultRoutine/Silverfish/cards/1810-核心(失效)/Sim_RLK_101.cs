@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Defrost
 	//解冻
 	//Draw a card.Spend 2 <b>Corpses</b> to draw another.
-	//抽一张牌。消耗2具<b>尸体</b>，再抽一张。
+	//抽一张牌。消耗2份<b>残骸</b>，再抽一张。
 	class Sim_RLK_101 : SimTemplate
 	{
 		

@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Bonedigger Geist
 	//掘骨恶鬼
 	//<b>Battlecry:</b> Spend a <b>Corpse</b> to gain +1/+2.
-	//<b>战吼：</b>消耗一具<b>尸体</b>，获得+1/+2。
+	//<b>战吼：</b>消耗一份<b>残骸</b>，获得+1/+2。
 	class Sim_RLK_Prologue_RLK_753 : SimTemplate
 	{
 		

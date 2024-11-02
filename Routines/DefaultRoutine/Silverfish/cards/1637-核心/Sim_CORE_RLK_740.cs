@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Might of Menethil
 	//米奈希尔之力
 	//<b>Battlecry:</b> Spendup to 3 <b>Corpses</b>.<b>Freeze</b> that manyenemy minions.
-	//<b>战吼：</b>消耗最多3具<b>尸体</b>，<b>冻结</b>等量的敌方随从。
+	//<b>战吼：</b>消耗最多3份<b>残骸</b>，<b>冻结</b>等量的敌方随从。
 	class Sim_CORE_RLK_740 : SimTemplate
 	{
 		

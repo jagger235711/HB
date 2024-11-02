@@ -11,6 +11,7 @@ namespace HREngine.Bots
 	//<b>突袭。嘲讽</b>如果你拥有至少十个法力水晶，则法力值消耗为（1）点。
 	class Sim_VAC_950 : SimTemplate
 	{
-
-    }
+		
+		
+	}
 }

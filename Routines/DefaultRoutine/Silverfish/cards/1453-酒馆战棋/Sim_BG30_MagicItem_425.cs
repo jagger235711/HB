@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：2
+	//BATTLEGROUND_TRINKET 中立 费用：1
 	//Azeroth Model Globe
 	//艾泽拉斯星球仪
 	//[x]At the start of every 2turns, <b>Discover</b> a Tier 6minion. <i>(@ |4(turn, turns) left!)</i>

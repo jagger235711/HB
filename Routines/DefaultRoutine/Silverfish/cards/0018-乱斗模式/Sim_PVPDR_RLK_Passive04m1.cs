@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Risen Groom
 	//复活的新郎
 	//<i>Doesn't leave a <b>Corpse</b>.</i>
-	//<i>不会留下<b>尸体</b>。</i>
+	//<i>不会留下<b>残骸</b>。</i>
 	class Sim_PVPDR_RLK_Passive04m1 : SimTemplate
 	{
 		

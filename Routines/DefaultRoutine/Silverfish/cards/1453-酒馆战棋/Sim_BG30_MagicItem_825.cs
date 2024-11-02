@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：1
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Smuggler Portrait
 	//走私商肖像
 	//Get a 'Whelp Smuggler'. Your Whelp Smugglers are Dragons.

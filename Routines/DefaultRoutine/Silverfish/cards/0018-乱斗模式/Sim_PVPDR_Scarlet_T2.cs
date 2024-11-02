@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Scourge Strike
 	//天灾打击
 	//[x]Gain @<b> |4(Corpse, Corpses)</b>,destroy @ enemy |4(minion, minions),and draw @ |4(card, cards).<i>(Improves during run.)</i>
-	//获得@具<b>尸体</b>，消灭@个敌方随从，抽@张牌。<i>（效果会随着对决进度提升）</i>
+	//获得@份<b>残骸</b>，消灭@个敌方随从，抽@张牌。<i>（效果会随着对决进度提升）</i>
 	class Sim_PVPDR_Scarlet_T2 : SimTemplate
 	{
 		

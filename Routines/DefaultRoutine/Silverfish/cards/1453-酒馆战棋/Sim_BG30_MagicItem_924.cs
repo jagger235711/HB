@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：3
+	//BATTLEGROUND_TRINKET 中立 费用：1
 	//Booty Bay Brew
 	//藏宝海湾美酒
 	//Whenever you spend Gold, give a friendly Pirate +1/+2.

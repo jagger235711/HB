@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：3
+	//BATTLEGROUND_TRINKET 中立 费用：2
 	//Charging Staff
 	//充能之杖
 	//[x]At the end of each turn,give your minions with<b>Divine Shield</b> +7 Attack.

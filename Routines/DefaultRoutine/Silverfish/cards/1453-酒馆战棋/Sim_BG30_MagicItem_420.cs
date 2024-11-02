@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：4
+	//BATTLEGROUND_TRINKET 中立 费用：3
 	//Book of Medivh
 	//麦迪文之书
 	//<b>Discover</b> a Tavern spell. At the start of each turn, <b>Discover</b> another.

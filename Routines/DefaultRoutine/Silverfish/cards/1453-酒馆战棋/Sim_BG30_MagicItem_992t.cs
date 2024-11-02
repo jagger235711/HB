@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：5
+	//BATTLEGROUND_TRINKET 中立 费用：8
 	//Darnassus Pie
 	//达纳苏斯馅饼
 	//Minions in the Tavern have +2/+2 for each minion you've sold this turn.

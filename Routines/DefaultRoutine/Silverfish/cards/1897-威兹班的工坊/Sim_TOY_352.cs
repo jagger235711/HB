@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 猎人 费用：2
+	//法术 猎人 费用：1
 	//Fetch!
 	//抛接嬉戏
 	//Draw a minion. If it's a Beast, draw a spell.

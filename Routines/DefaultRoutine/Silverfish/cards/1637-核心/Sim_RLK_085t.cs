@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Risen Golem
 	//复活的傀儡
 	//<b>Rush</b><i>Doesn't leave a <b>Corpse</b>.</i>
-	//<b>突袭</b>。<i>不会留下<b>尸体</b>。</i>
+	//<b>突袭</b>。<i>不会留下<b>残骸</b>。</i>
 	class Sim_RLK_085t : SimTemplate
 	{
 		

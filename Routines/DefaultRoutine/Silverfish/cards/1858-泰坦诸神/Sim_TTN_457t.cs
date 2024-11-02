@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Eulogizer
 	//悼词宣诵者
 	//<b>Forged</b><b>Battlecry:</b> Gain 3 <b>Corpses</b>. Deal 3 damage.
-	//<b>已锻造</b><b>战吼：</b>获得3具<b>尸体</b>。造成3点伤害。
+	//<b>已锻造</b><b>战吼：</b>获得3份<b>残骸</b>。造成3点伤害。
 	class Sim_TTN_457t : SimTemplate
 	{
 		

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：2
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Essence of Dreams
 	//梦境精华
 	//[x]Get a 'Dreamer'sEmbrace'. At the start ofeach turn, get another.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：3
+	//BATTLEGROUND_TRINKET 中立 费用：5
 	//Slamma Sticker
 	//猛猿标签
 	//After you summon a Beast in combat, double its stats.

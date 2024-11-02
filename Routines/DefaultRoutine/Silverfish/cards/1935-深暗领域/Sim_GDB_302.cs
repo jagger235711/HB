@@ -1,0 +1,17 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace HREngine.Bots
+{
+	//随从 法师 费用：3 攻击力：3 生命值：1
+	//Blazing Accretion
+	//吸积炽焰
+	//<b>Battlecry:</b> Destroy the top 3 cards of your deck. Any Fire spells or Elementals are drawn instead.
+	//<b>战吼：</b>摧毁你牌库顶的3张牌，其中的火焰法术牌或元素牌会由摧毁改为抽取。
+	class Sim_GDB_302 : SimTemplate
+	{
+		
+		
+	}
+}

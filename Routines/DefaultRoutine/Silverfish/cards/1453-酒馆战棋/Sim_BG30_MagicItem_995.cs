@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：4
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Bronze Timepiece
 	//青铜龙时钟
 	//[x]<b>Start of Combat:</b> Set eachof your minions' Attackand Health to the higherof the two.

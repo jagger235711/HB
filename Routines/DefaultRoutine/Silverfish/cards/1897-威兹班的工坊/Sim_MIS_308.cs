@@ -11,6 +11,7 @@ namespace HREngine.Bots
 	//在你的回合结束时，将一张“炸弹” 牌洗入你对手的牌库。当抽到“炸弹”时，便会受到5点伤害。
 	class Sim_MIS_308 : SimTemplate
 	{
-
-    }
+		
+		
+	}
 }

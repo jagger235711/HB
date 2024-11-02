@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：2
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Devourer Sticker
 	//吞噬者标签
 	//[x]Get a 'Channel theDevourer'. At the start ofeach turn, get another.

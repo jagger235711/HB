@@ -11,7 +11,7 @@ namespace HREngine.Bots
 	//{0}{1}
 	class Sim_VAC_523t : SimTemplate
 	{
-
-        
-    }
+		
+		
+	}
 }

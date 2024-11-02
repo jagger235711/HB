@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_SPELL 中立 费用：4
+	//BATTLEGROUND_SPELL 中立 费用：3
 	//Channel the Devourer
 	//祈请吞噬者
 	//Remove a minion.Give its stats to a random friendly minion.

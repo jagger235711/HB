@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：8
+	//随从 中立 费用：5 攻击力：8 生命值：10
 	//Clunker Junker
 	//废铁残械
 	//<b>Battlecry:</b> Choose a friendly Mech. <b>Discover</b> 2 Mechs to <b>Magnetize</b> to it.

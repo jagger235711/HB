@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：8
+	//随从 中立 费用：4 攻击力：3 生命值：9
 	//Prime Mate
 	//领长副官
 	//After a friendly <b>Deathrattle</b> minion dies, gain 1 Gold next turn.

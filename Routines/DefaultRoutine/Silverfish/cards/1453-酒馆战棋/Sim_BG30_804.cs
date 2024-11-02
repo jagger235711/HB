@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_SPELL 中立 费用：2
+	//BATTLEGROUND_SPELL 中立 费用：1
 	//Robust Evolution
 	//稳健异变
 	//Choose a minion. Transform it into a random minion of a higher Tier. It keeps its stats.

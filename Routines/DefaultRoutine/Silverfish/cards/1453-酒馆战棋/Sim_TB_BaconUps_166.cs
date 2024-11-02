@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：12 生命值：6
+	//随从 中立 费用：3 攻击力：18 生命值：10
 	//Wildfire Elemental
 	//野火元素
 	//After this attacks and killsa minion, deal excess damage to both adjacent minions.

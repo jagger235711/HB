@@ -11,5 +11,7 @@ namespace HREngine.Bots
 	//<b>沉默</b>此武器攻击的任何随从。
 	class Sim_VAC_464t4 : SimTemplate
 	{
-    }
+		
+		
+	}
 }

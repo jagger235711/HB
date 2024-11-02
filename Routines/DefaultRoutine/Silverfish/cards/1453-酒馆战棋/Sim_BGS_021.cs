@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Mama Bear
 	//熊妈妈
 	//Whenever you summon a Beast, give it +4/+4.
-	//每当你召唤一只野兽，使其获得+4/+4。
+	//每当你召唤一个野兽，使其获得+4/+4。
 	class Sim_BGS_021 : SimTemplate
 	{
 		

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 萨满祭司 费用：4 攻击力：3 生命值：4
+	//随从 萨满祭司 费用：3 攻击力：3 生命值：3
 	//Turbulus
 	//湍流元素特布勒斯
 	//<b>Hunter Tourist</b>. <b>Battlecry:</b> Give +1/+1 to all other <b>Battlecry</b> minions in your hand, deck, and battlefield.

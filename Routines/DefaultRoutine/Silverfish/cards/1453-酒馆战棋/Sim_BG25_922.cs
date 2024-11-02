@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：4 生命值：3
+	//随从 中立 费用：4 攻击力：4 生命值：4
 	//Fireworks Fanatic
 	//烟火狂热者
 	//Whenever you get a minion you already have, give your minions +1/+1.

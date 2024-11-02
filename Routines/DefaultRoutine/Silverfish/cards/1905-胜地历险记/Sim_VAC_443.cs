@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 法师 费用：5 攻击力：5 生命值：6
+	//随从 法师 费用：5 攻击力：4 生命值：4
 	//Surfalopod
 	//冲浪章鱼
 	//[x]<b>Battlecry:</b> The nextspell you draw is<b>Cast When Drawn</b>.

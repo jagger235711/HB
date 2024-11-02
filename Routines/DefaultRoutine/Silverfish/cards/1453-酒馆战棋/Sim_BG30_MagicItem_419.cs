@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：5
+	//BATTLEGROUND_TRINKET 中立 费用：3
 	//Exquisite Dishware
 	//精致餐具
 	//[x]At the end of your turn,get a random minion ofeach different typeyou control.

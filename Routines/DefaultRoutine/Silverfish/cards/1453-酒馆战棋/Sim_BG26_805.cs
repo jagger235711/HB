@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：2 生命值：4
+	//随从 中立 费用：2 攻击力：1 生命值：4
 	//Humming Bird
 	//哼鸣蜂鸟
-	//Your other Beasts have+2 Attack.
-	//你的其他野兽拥有+2攻击力。
+	//<b>Start of Combat:</b> For the rest of this combat, your Beasts have +1 Attack.
+	//<b>战斗开始时：</b>在本场战斗的剩余时间内，你的野兽拥有+1攻击力。
 	class Sim_BG26_805 : SimTemplate
 	{
 		

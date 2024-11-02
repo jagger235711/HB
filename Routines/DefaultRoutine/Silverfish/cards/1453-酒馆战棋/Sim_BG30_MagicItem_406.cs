@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：7
+	//BATTLEGROUND_TRINKET 中立 费用：8
 	//Butcher's Sickle
 	//屠夫钩镰
 	//[x]Get a 'Butchering' and arandom Undead with<b>Deathrattle</b>. At the start ofeach turn, repeat this.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：6 生命值：6
+	//随从 中立 费用：1 攻击力：8 生命值：8
 	//Corrupted Myrmidon
 	//已腐蚀的侍从
 	//[x]<b>Start of Combat:</b> Triplethis minion's stats.

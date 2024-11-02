@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：2
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Nether Pendant
 	//虚空坠饰
 	//[x]Minions in the Tavern have+{1}/+{1}. Upgrades every 4times your hero takes damageduring your turn. <i>({0} left!)</i>

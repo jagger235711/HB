@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Soulstealer
 	//窃魂者
 	//[x]<b>Battlecry:</b> Destroy all otherminions. Gain 1 <b>Corpse</b> foreach enemy destroyed.
-	//<b>战吼：</b>消灭所有其他随从。每消灭一个敌方随从，获得1具<b>尸体</b>。
+	//<b>战吼：</b>消灭所有其他随从。每消灭一个敌方随从，获得1份<b>残骸</b>。
 	class Sim_CORE_RLK_741 : SimTemplate
 	{
 		

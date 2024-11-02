@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：3
+	//BATTLEGROUND_TRINKET 中立 费用：2
 	//Reinforced Shield
 	//强固之盾
 	//[x]Whenever you summona minion, give it <b>DivineShield</b>. <i>(4 times percombat.)</i>@[x]Whenever you summona minion, give it <b>DivineShield</b>. <i>({0} left!)</i>

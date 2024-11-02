@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：1
+	//BATTLEGROUND_TRINKET 中立 费用：0
 	//Bronzebeard Portrait
 	//铜须肖像
 	//Get a 'Brann Bronzebeard'. Your Brann Bronzebeards are both Murlocs and Dragons.

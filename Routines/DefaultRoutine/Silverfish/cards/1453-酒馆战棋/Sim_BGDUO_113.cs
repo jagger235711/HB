@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_SPELL 中立 费用：2
+	//BATTLEGROUND_SPELL 中立 费用：3
 	//Portal in a Bottle
 	//瓶中传送门
 	//<b>Pass</b> a non-Golden minion.

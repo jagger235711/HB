@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 法师 费用：4 攻击力：4 生命值：4
+	//随从 法师 费用：3 攻击力：3 生命值：3
 	//Watercolor Artist
 	//水彩美术家
 	//<b>Battlecry:</b> Draw aFrost spell. At the startof your turns, reduceits Cost by (1).

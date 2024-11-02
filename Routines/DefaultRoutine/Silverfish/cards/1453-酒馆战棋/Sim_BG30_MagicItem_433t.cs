@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_TRINKET 中立 费用：5
+	//BATTLEGROUND_TRINKET 中立 费用：6
 	//Alliance Keychain
 	//联盟钥匙链
 	//[x]The first time a friendlyminion dies each combat,give its maximum stats to2 random friendly minions.

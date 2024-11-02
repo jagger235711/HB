@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Risen Skeleton
 	//复活的骷髅
 	//<i>Doesn't leave a <b>Corpse</b>.</i>
-	//<i>不会留下<b>尸体</b>。</i>
+	//<i>不会留下<b>残骸</b>。</i>
 	class Sim_THD_001pt : SimTemplate
 	{
 		
