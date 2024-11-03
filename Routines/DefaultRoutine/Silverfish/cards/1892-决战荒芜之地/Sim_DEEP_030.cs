@@ -11,7 +11,18 @@ namespace HREngine.Bots
 	//<b>战吼，亡语：</b>抽一张牌，并对你的英雄造成2点伤害。
 	class Sim_DEEP_030 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+			p.minionGetDamageOrHeal(own.own ? p.ownHero : p.enemyHero, 4);
+		}
+
+		public override void onDeathrattle(Playfield p, Minion m)		
+        {
+            p.drawACard(CardDB.cardIDEnum.None, m.own);
+        }
+
+
 		
 	}
 }

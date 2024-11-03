@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>，<b>战吼：</b><b>发现</b>一张具有<b>嘲讽</b>的随从牌。
 	class Sim_Core_UNG_072 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            p.drawACard(CardDB.cardNameEN.pompousthespian, own.own, true);
+
+        }
 		
 	}
 }

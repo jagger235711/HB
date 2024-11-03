@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//<b>战吼：</b>如果你在上个回合使用过元素牌，召唤两只3/3并具有<b>突袭</b>的奶牛。
 	class Sim_WW_024 : SimTemplate
 	{
-		
+		CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.WW_024t);//murlocscout
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+            p.callKid(kid, own.zonepos, own.own);
+			p.callKid(kid, own.zonepos, own.own);
+		}
 		
 	}
 }

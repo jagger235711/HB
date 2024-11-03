@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对所有敌人造成@点伤害<i>（每有一个你使用过元素牌的连续的回合，伤害都会提升）</i>。
 	class Sim_WW_026 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            int damage = Hrtprozis.Instance.ownConsecutiveElementalTurns;    
+            foreach (Minion enemy in p.enemyMinions)
+           {
+                p.minionGetDamageOrHeal(enemy, damage + 1);
+           }
+        }
+
 		
 	}
 }

@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽五张牌。将抽到的法术牌交给你的对手。
 	class Sim_JAM_036 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+			p.drawACard(CardDB.cardIDEnum.None, own.own);
+			p.drawACard(CardDB.cardIDEnum.None, own.own);
+			p.drawACard(CardDB.cardIDEnum.None, own.own);
+			p.drawACard(CardDB.cardIDEnum.None, own.own);
+		}
 		
 	}
 }
