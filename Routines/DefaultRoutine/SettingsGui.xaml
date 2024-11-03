@@ -67,7 +67,7 @@
 
                     <TextBox Name="Description" TextWrapping="Wrap" Width="500"  Grid.Row="0" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
 AI值相关说明和卡组代码请滑动到下面的文本框中查看。&#13;&#10;
-本策略由各位大佬共同开发：【李文浩】【看书范】【酸小明】【血色】【白寸衫】【不着调的～man】等。"/>
+本策略由各位大佬共同开发：为了保护隐私，就不一一署名。"/>
 
                     <TextBox Name="deckCode" TextWrapping="Wrap" Width="500"  Grid.Row="1" Grid.Column="0"  Margin="3,5,3,1" Height="Auto" Text="
 参考卡组代码：&#xA;&#xA;

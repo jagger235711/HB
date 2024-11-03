@@ -46,7 +46,7 @@ namespace Quest
         /// <summary>The author of the plugin.</summary>
         public string Author
         {
-            get { return "琴弦上的宇宙+Pik_4"; }
+            get { return "开源软件"; }
         }
 
         /// <summary>The version of the plugin.</summary>

@@ -136,13 +136,13 @@ def Execute():
         /// <summary> The description of the routine. </summary>
         public string Description
         {
-            get { return "【李文浩+看书范+酸小明】修改的天梯策略."; }
+            get { return "天梯学习攻略."; }
         }
 
         /// <summary>The author of this routine.</summary>
         public string Author
         {
-            get { return "李文浩+酸小明"; }
+            get { return "天梯"; }
         }
 
         /// <summary>The version of this routine.</summary>

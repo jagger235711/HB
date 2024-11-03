@@ -59,7 +59,7 @@ namespace Triton.Bot.Logic.Bots.DefaultBot
 		/// <summary> The description of the Bot. </summary>
 		public string Description
 		{
-			get { return "【琴弦上的宇宙】修改的天梯脚本."; }
+			get { return "天梯学习手册."; }
 		}
 
 		/// <summary>The author of the Bot.</summary>
