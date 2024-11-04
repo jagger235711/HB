@@ -10722,6 +10722,7 @@ namespace HREngine.Bots
                                 this.totalAngr += this.ownMinions[i].Angr;
                             }
                         }
+                        //判断虚触侍从对场攻的提升
                     }
                 }
 
