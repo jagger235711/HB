@@ -331,7 +331,20 @@ namespace HREngine.Bots
         public bool playedElementalThisTurn = false;
         //本回合打出的元素随从数量
         public int ownElementalsPlayedThisTurn = 0;
-
+        //伞降咒符实现,添加一个全局光环检查
+        public void onOwnTurnStart(Playfield p)
+        {
+            // 检查光环是否结束，召唤三个1/1海盗
+            if (p.sigilsToTriggerOnOwnTurnStart.Contains(CardDB.cardIDEnum.VAC_925))
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    summonPirate(p);
+                }
+                // 移除触发标记
+                p.sigilsToTriggerOnOwnTurnStart.Remove(CardDB.cardIDEnum.VAC_925);
+            }
+        }
         /// <summary>
         /// 在敌方回合开始时调用
         /// </summary>
@@ -411,7 +424,14 @@ namespace HREngine.Bots
             else
                 this.ownGraveyard[CardDB.cardIDEnum.CS2_122] += count;
         }
-
+        //伞降咒符 海盗帕奇斯降落伞 惊险悬崖 sim实现方法
+        public void summonPirate(Playfield p)
+        {
+            // 冲锋海盗卡牌ID为 "VAC_926t'"
+            CardDB.Card pirateCard = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_926t);
+            int position = p.ownMinions.Count; // 召唤的位置在己方随从的最后
+            p.callKid(pirateCard, position, true); 
+        }
         /// <summary>
         /// 消耗尸体
         /// </summary>
