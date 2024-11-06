@@ -12,6 +12,11 @@ namespace HREngine.Bots
 	class Sim_TID_716 : SimTemplate
 	{
 		
-		
+				 public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+            };
+        }
 	}
 }
