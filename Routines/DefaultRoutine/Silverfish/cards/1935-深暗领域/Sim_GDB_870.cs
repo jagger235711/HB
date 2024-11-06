@@ -12,6 +12,30 @@ namespace HREngine.Bots
 	class Sim_GDB_870 : SimTemplate
 	{
 		
-		
+		/// <summary>
+        /// 连击效果实现
+        /// </summary>
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            if (ownplay && p.cardsPlayedThisTurn > 0)
+            {
+                // 连击效果：获得+2攻击力和潜行
+                target.Angr += 2;
+                target.stealth = true;
+            }
+        }
+
+        /// <summary>
+        /// 法术迸发效果实现
+        /// </summary>
+		public override void OnSpellburst(Playfield p, Minion m, Handmanager.Handcard hc)
+        {
+            if (m.own)
+            {
+                // 法术迸发效果：获得+2攻击力和潜行
+                m.Angr += 2;
+                m.stealth = true;
+            }
+        }
 	}
 }
