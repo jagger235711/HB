@@ -20,4 +20,5 @@ namespace HREngine.Bots
                 p.drawACard(CardDB.cardIDEnum.VAC_933t, own.own, true); // true表示将卡牌洗入牌库而非直接抽取
             }
         }
+    }
 }
