@@ -276,6 +276,7 @@ namespace HREngine.Bots
         public int shadowmadnessed = 0; //这一回合随从更换了控制权
         public int enemyHeroTurnStartedHp = 0;
         public int ownHeroTurnStartedHp = 0;
+        public List<CardDB.cardIDEnum> sigilsToTriggerOnOwnTurnStart = new List<CardDB.cardIDEnum>();
 
         //法术派系
         public Dictionary<TAG_SPELL_SCHOOL, int> ownSpellSchoolCounts;
