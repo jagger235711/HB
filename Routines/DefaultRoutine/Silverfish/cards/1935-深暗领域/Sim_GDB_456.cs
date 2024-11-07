@@ -12,7 +12,7 @@ namespace HREngine.Bots
 	class Sim_GDB_456 : SimTemplate
 	   {
         //<b>Deal 4 damage to a random enemy. If you played an Elemental last turn, choose the target.</b>
-
+        /*
         public override void getBattlecryEffect(Playfield p, Minion m, Minion target, int choice)
         {
             Minion selectedTarget = null;
@@ -42,15 +42,17 @@ namespace HREngine.Bots
                 p.minionGetDamageOrHeal(selectedTarget, 4);
             }
         }
-
+      
         public override PlayReq[] GetPlayReqs()
         {
             // 该卡牌需要选择目标
             return new PlayReq[] {
                 new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),  // 需要选择一个目标
-                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET_OR_HERO, // 目标必须是随从或英雄
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET_OR_HERO), // 目标必须是随从或英雄
                 new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET),    // 目标必须是敌方
             };
         }
+
+        */
     }
 }

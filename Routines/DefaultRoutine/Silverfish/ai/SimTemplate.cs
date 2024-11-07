@@ -196,8 +196,6 @@ namespace HREngine.Bots
             return;
         }
 
-  
-        }
         /// <summary>
         /// 弃牌时触发
         /// </summary>
