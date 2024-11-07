@@ -196,7 +196,6 @@ namespace HREngine.Bots
             return;
         }
 
-
         /// <summary>
         /// 弃牌时触发
         /// </summary>
@@ -206,6 +205,10 @@ namespace HREngine.Bots
         /// <param name="num">仅当当前随从为玛克扎尔的小鬼时生效，值为弃牌数量</param>
         /// <param name="checkBonus">是否检查额外效果。实际影响不明</param>
         /// <returns></returns>
+        public virtual void onCardIsDrawn(Playfield p, bool ownplay, Minion triggerEffectMinion)
+        {
+            
+        }
         public virtual bool onCardDicscard(Playfield p, Handmanager.Handcard hc, Minion own, int num, bool checkBonus = false)
         {
             return false;
