@@ -15,3 +15,21 @@ namespace HREngine.Bots
 		
 	}
 }
+public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+{
+    int cardsToProcess = Math.Min(3, p.ownDeck.Count); // 如果牌库不足3张，就只处理现有的牌数
+
+    for (int i = 0; i < cardsToProcess; i++)
+    {
+        Card topCard = p.ownDeck[0]; // 牌库顶的第一张牌
+
+        if (topCard.isFireSpell || topCard.isElemental) // 检查是否为火焰法术或元素牌
+        {
+            p.drawACard(topCard.cardIDenum, own.own, true); // 抽取该牌
+        }
+        else
+        {
+            p.removeCardFromDeck(topCard); // 将该牌从牌库中摧毁
+        }
+    }
+}
