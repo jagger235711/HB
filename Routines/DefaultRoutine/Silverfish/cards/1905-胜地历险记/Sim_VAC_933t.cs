@@ -12,13 +12,11 @@ namespace HREngine.Bots
 	class Sim_VAC_933t : SimTemplate
     {
         // 抽到时施放的效果
-        /*
         public override void onCardIsDrawn(Playfield p, bool ownplay, Minion triggerEffectMinion)
         {
             int pos = (ownplay) ? p.ownMinions.Count : p.enemyMinions.Count;
             // 召唤一个1/1并具有冲锋的海盗
             p.callKid(CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_926t), pos, ownplay, true);
         }
-        */
     }
 }
