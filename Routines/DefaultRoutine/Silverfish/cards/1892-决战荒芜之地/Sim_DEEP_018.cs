@@ -15,7 +15,7 @@ namespace HREngine.Bots
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
             // 给目标随从赋予圣盾
-            if (target != null)
+            if (target != null&&target.divineshild==false)
             {
                 target.divineshild = true;
             }
@@ -23,6 +23,15 @@ namespace HREngine.Bots
             // 发掘一个宝藏
             CardDB.Card treasure = p.handleExcavation();
             p.drawACard(treasure.cardIDenum, ownplay, true);
+        }
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_NONSELF_TARGET),
+            };
         }
     }
 }
