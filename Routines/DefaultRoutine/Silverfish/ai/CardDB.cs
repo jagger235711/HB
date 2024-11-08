@@ -219,7 +219,7 @@ namespace HREngine.Bots
             REQ_TARGET_MAX_ATTACK = 8, //最大攻击力，有参数
             REQ_NONSELF_TARGET = 9, //非自己
             REQ_TARGET_WITH_RACE = 10, //种族 有参数
-            REQ_TARGET_TO_PLAY = 11, //小目标
+            REQ_TARGET_TO_PLAY = 11, //需要有目标
             REQ_NUM_MINION_SLOTS = 12, //随从数量插槽 有参数
             REQ_WEAPON_EQUIPPED = 13, // 武器装备，需要武器
             REQ_ENOUGH_MANA = 14,
@@ -230,7 +230,7 @@ namespace HREngine.Bots
             REQ_MINION_CAP_IF_TARGET_AVAILABLE = 19,
             REQ_MINION_CAP = 20,
             REQ_TARGET_ATTACKED_THIS_TURN = 21,
-            REQ_TARGET_IF_AVAILABLE = 22, // 有目标如果用（抉择星辰降落，巫医）
+            REQ_TARGET_IF_AVAILABLE = 22, // 无目标时也可以使用（抉择星辰降落，巫医）
             REQ_MINIMUM_ENEMY_MINIONS = 23, // 最少的敌方随从，有参数
             REQ_TARGET_FOR_COMBO = 24, //连击有目标
             REQ_NOT_EXHAUSTED_ACTIVATE = 25,
