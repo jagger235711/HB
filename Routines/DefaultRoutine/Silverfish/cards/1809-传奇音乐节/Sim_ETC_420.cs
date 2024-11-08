@@ -15,7 +15,7 @@ namespace HREngine.Bots
         {
             if (target != null&&target.own==true)
             {	
-				target.hp+=own.hp;
+				target.Hp+=own.Hp;
 				target.Angr+=own.Angr;
             }
         }
