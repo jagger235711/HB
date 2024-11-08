@@ -17,13 +17,14 @@ namespace HREngine.Bots
 			if (target != null && !target.own)
 			{
 				// 将敌方随从移回其拥有者的手牌
-				p.minionReturnToDeck(target, target.own);
+				p.minionReturnToHand(target, target.own, 0);
 			}
 		}
 		public override PlayReq[] GetPlayReqs()
 		{
 			// 扰魔是不吃法术和英雄技能的指定 但是随从技能没办法 参考萨隆偷带扰魔的奇利亚斯
 			return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
 				new PlayReq(CardDB.ErrorType2.REQ_MINIMUM_ENEMY_MINIONS, 1),
 				new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
 				new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET),
