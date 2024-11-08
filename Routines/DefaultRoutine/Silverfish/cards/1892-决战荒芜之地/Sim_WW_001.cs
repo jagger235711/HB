@@ -15,7 +15,7 @@ namespace HREngine.Bots
 		{
 			// 触发发掘效果
 			CardDB.Card treasure = p.handleExcavation();
-            p.drawACard(treasure.cardIDenum, ownplay, true);
+            p.drawACard(treasure.cardIDenum, own.own, true);
 		}
 
 	}
