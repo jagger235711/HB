@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//<b>突袭</b>在本随从攻击并消灭一个随从后，可再次攻击。
 	class Sim_CORE_TOY_103 : SimTemplate
 	{
-		
-		
+		public override void onMinionAttack(Playfield p, Minion attacker, Minion target)
+		{
+			int tmp=target.Hp - attacker.Angr;
+			if (tmp <= 0) attacker.allreadyAttacked = false;
+		}
+
+		public override PlayReq[] GetPlayReqs()
+		{
+			return new PlayReq[] {
+				new PlayReq(CardDB.ErrorType2. REQ_TARGET_TO_PLAY),
+			};
+		}
 	}
 }
