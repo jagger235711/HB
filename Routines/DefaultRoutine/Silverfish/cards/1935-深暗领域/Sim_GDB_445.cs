@@ -12,6 +12,10 @@ namespace HREngine.Bots
 	class Sim_GDB_445 : SimTemplate
 	{
 		
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+			p.allMinionsGetDamage(5);
+        }
 		
 	}
 }

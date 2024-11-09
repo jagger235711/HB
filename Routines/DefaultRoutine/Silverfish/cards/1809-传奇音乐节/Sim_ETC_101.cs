@@ -16,7 +16,7 @@ namespace HREngine.Bots
 		{
 			if (p.ownMinions.Count == 1) {
 	            int dmg = 2;
-    	        p.minionGetDamageOrHeal(target, dmg);
+				if (target != null) p.minionGetDamageOrHeal(target, dmg);
 			}
 		}
 		
