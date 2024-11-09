@@ -12,6 +12,23 @@ namespace HREngine.Bots
 	class Sim_ETC_101 : SimTemplate
 	{
 		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			if (p.ownMinions.Count == 1) {
+	            int dmg = 2;
+    	        p.minionGetDamageOrHeal(target, dmg);
+			}
+		}
+		
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE),
+            };
+        }
+		
 		
 	}
 }
