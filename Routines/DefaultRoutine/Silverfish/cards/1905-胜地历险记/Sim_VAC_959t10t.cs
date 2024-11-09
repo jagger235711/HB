@@ -16,10 +16,11 @@ namespace HREngine.Bots
             // 使你手牌中的所有卡牌的法力值消耗减少1点
             foreach (Handmanager.Handcard hc in p.owncards)
             {
-                hc.manacost = Math.Max(0, hc.manacost - 1);
+				if (hc.card.type == CardDB.cardtype.MOB)
+				{
+					hc.manacost = Math.Max(0, hc.manacost - 1);
+				}            
             }
         }
-
-
     }
 }

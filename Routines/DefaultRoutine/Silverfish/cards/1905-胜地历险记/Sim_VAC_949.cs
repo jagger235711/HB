@@ -12,9 +12,21 @@ namespace HREngine.Bots
 	class Sim_VAC_949 : SimTemplate
 	{
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
-        {
-        }
-
-
+		{
+            if (ownplay)
+            {
+                if (p.ownMaxMana < 10)
+                {
+                    p.ownMaxMana++;
+                }
+            }
+            else
+            {
+                if (p.enemyMaxMana < 10)
+                {
+                    p.enemyMaxMana++;
+                }
+            }
+		}
     }
 }

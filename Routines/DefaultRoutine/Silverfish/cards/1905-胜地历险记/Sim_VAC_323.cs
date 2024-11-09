@@ -14,7 +14,7 @@ namespace HREngine.Bots
 	{
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
-            int dmg = 1;
+            int dmg = (ownplay) ? p.getSpellDamageDamage(1) : p.getEnemySpellDamageDamage(1);
             p.allCharsOfASideGetDamage(!ownplay, dmg); // 对所有敌人造成1点伤害
 
             // 抽一张“还剩2杯”的卡牌

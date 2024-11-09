@@ -11,18 +11,12 @@ namespace HREngine.Bots
 	//每当本随从受到伤害，对你的英雄造成等量的伤害。
 	class Sim_VAC_512 : SimTemplate
 	{
-        public override void onMinionGotDmgTrigger(Playfield p, Minion triggerEffectMinion, int anzOwnMinionsGotDmg, int anzEnemyMinionsGotDmg, int anzOwnHeroGotDmg, int anzEnemyHeroGotDmg)
+        public override void onMinionGotDmgTrigger(Playfield p, Minion m, int anzOwnMinionsGotDmg, int anzEnemyMinionsGotDmg, int anzOwnHeroGotDmg, int anzEnemyHeroGotDmg)
         {
-            // 检查是否是心灵按摩师受到了伤害
-            if (triggerEffectMinion.Hp > 0 && !triggerEffectMinion.silenced)
+            if (m.anzGotDmg > 0)
             {
-                int dmgTaken = triggerEffectMinion.maxHp - triggerEffectMinion.Hp; // 计算随从受到的伤害
-
-                if (dmgTaken > 0)
-                {
-                    // 对己方或敌方英雄造成等量的伤害
-                    p.minionGetDamageOrHeal(triggerEffectMinion.own ? p.ownHero : p.enemyHero, dmgTaken);
-                }
+                m.anzGotDmg = 0;
+                p.minionGetDamageOrHeal(m.own ? p.ownHero : p.enemyHero, m.GotDmgValue);
             }
         }
     }

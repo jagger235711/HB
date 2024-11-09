@@ -22,6 +22,15 @@ namespace HREngine.Bots
                 p.minionSetAngrToX(target, 1);
             }
         }
+		public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+                new PlayReq(CardDB.ErrorType2.REQ_NUM_MINION_SLOTS, 1),
+            };
+        }
 
     }
 }

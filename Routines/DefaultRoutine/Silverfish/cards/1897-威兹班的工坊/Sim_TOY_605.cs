@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//抽两张<b>嘲讽</b>随从牌。
 	class Sim_TOY_605 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.VAC_406, ownplay);
+            p.drawACard(CardDB.cardIDEnum.None, ownplay);
+		}
 		
 	}
 }

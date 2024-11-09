@@ -14,7 +14,7 @@ namespace HREngine.Bots
 
         public override void onDeathrattle(Playfield p, Minion m)
         {
-            p.drawACard(CardDB.cardIDEnum.None, m.own, true);
+            p.drawACard(CardDB.cardIDEnum.VAC_406, m.own, true);
         }
     }
 }

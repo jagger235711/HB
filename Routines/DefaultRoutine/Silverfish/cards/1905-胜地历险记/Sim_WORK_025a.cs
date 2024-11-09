@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//+2攻击力。
 	class Sim_WORK_025a : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.minionGetBuffed(target, 2, 0);
+        }
 		
 	}
 }

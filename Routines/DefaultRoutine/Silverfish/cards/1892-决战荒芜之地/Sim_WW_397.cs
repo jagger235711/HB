@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>亡语：</b>对除友方元素外的所有随从造成2点伤害。
 	class Sim_WW_397 : SimTemplate
 	{
-		
+		public override void onDeathrattle(Playfield p, Minion m)
+        {
+            p.allMinionsGetDamage(2);
+        }
 		
 	}
 }

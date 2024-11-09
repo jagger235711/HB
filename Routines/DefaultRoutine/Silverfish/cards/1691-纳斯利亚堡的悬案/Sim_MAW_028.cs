@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b><b>嘲讽</b>。</b><b>战吼：</b>如果你的护甲值大于或等于4点，获得+4/+4。
 	class Sim_MAW_028 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion m, Minion target, int choice)
+        {
+			if (p.ownHero.armor >= 4)
+            {
+               p.minionGetBuffed(m, 4, 4);
+            }
+        }
 		
 	}
 }

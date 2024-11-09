@@ -14,17 +14,18 @@ namespace HREngine.Bots
 
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
+            int dmg = (ownplay) ? p.getSpellDamageDamage(1) : p.getEnemySpellDamageDamage(1);
             // 对所有随从造成1点伤害，重复三次
             for (int i = 0; i < 3; i++)
             {
                 foreach (Minion m in p.ownMinions)
                 {
-                    p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(1));
+                    p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(dmg));
                 }
 
                 foreach (Minion m in p.enemyMinions)
                 {
-                    p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(1));
+                    p.minionGetDamageOrHeal(m, p.getSpellDamageDamage(dmg));
                 }
             }
         }

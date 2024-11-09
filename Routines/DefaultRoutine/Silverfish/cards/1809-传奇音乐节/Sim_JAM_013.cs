@@ -11,28 +11,26 @@ namespace HREngine.Bots
 
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
-            // 给友方随从获得+3/+3
-            if (target != null && target.own == ownplay)
+            p.minionGetBuffed(target, 3, 3);
+
+            int dmg = (ownplay) ? p.getSpellDamageDamage(1) : p.getEnemySpellDamageDamage(1);
+            foreach (Minion m in p.ownMinions)
             {
-                p.minionGetBuffed(target, 3, 3);
+                if (m != target) p.minionGetDamageOrHeal(m, dmg);
+            }
+            foreach (Minion m in p.enemyMinions)
+            {
+                p.minionGetDamageOrHeal(m, dmg);
             }
 
-            // 对所有其他随从造成1点伤害
-            List<Minion> allMinions = (ownplay) ? p.enemyMinions : p.ownMinions;
-            foreach (Minion m in allMinions)
-            {
-                if (m != target)
-                {
-                    p.minionGetDamageOrHeal(m, 1);
-                }
-            }
         }
+
         public override PlayReq[] GetPlayReqs()
         {
             return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
                 new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
                 new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET),
-                new PlayReq(CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE),
             };
         }
     }

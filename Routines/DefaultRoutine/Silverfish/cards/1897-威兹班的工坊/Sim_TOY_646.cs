@@ -11,16 +11,9 @@ namespace HREngine.Bots
 	//<b>吸血</b>。<b>嘲讽</b><b>亡语：</b>对所有敌人造成1点伤害。
 	class Sim_TOY_646 : SimTemplate
 	{
-
-        public override void onDeathrattle(Playfield p, Minion m)
+		public override void onDeathrattle(Playfield p, Minion m)
         {
-            // 对所有敌人造成1点伤害
-            foreach (Minion enemy in p.enemyMinions)
-            {
-                p.minionGetDamageOrHeal(enemy, 1);
-            }
-            p.minionGetDamageOrHeal(p.enemyHero, 1);
+			p.allCharsOfASideGetDamage(!m.own, 1);
         }
-
     }
 }

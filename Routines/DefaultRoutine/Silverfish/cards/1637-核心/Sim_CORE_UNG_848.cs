@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>嘲讽，战吼：</b>对所有其他随从造成2点伤害。
 	class Sim_CORE_UNG_848 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            p.allMinionsGetDamage(2, own.entitiyID);
+        }
 		
 	}
 }
