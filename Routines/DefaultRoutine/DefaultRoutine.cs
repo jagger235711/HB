@@ -1164,28 +1164,28 @@ def Execute():
             {
                 case actionEnum.playcard:
                     await PlayCard(moveTodo);
-                    break;
+                    return;
                 case actionEnum.attackWithMinion:
                     await AttackWithMinion(moveTodo);
-                    break;
+                    return;
                 case actionEnum.attackWithHero:
                     await AttackWithHero(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useHeroPower:
                     await UseHeroPower(moveTodo);
-                    break;
+                    return;
                 case actionEnum.trade:
                     await HandleTrade(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useLocation:
                     await UseLocation(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useTitanAbility:
                     await UseTitanAbility(moveTodo);
-                    break;
+                    return;
                 case actionEnum.forge:
                     await HandleForge(moveTodo);
-                    break;
+                    return;
                 default:
                     break;
             }
