@@ -45,7 +45,7 @@ jobs:
         with:
           repository: ${{ github.event.inputs.targetRepo }}
           ref: ${{ github.event.inputs.targetBranch1 }}
-          token: ${{ secrets.REPO_ACCESS_TOKEN_EE }} # 使用单个 Token
+          token: ${{ secrets.REPO_ACCESS_TOKEN }} # 使用单个 Token
 
       - name: Setup Git
         run: |
