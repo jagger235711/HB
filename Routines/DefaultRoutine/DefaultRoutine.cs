@@ -939,11 +939,6 @@ def Execute():
             // 当最佳动作值小于等于-700时的处理
             if (Ai.Instance.bestmoveValue <= -700)
             {
-                if ("主动投降".Equals(printUtils.emoteMode))
-                {
-                    playEmote(EmoteType.WELL_PLAYED);
-                    TritonHs.Concede(true);
-                }
                 if ("乞讨模式".Equals(printUtils.emoteMode))
                 {
                     playEmote(EmoteType.THANKS);
