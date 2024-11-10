@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//抽取三张不同类型的随从牌。
 	class Sim_VAC_528 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.None, ownplay);
+            p.drawACard(CardDB.cardIDEnum.None, ownplay);
+			p.drawACard(CardDB.cardIDEnum.None, ownplay);
+		}
 		
 	}
 }

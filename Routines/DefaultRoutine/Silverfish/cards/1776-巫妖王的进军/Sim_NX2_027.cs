@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>战吼：</b>如果你的护甲值大于或等于5点，召唤一个本随从的复制。
 	class Sim_NX2_027 : SimTemplate
 	{
-		
-		
+		public override void getBattlecryEffect(Playfield p, Minion m, Minion target, int choice)
+		{
+			if (p.ownHero.armor >= 5)
+			{
+				var minionsCnt = (m.own ? p.ownMinions : p.enemyMinions).Count;
+				if (minionsCnt < 7)
+				{
+					p.callKid(m.handcard.card, m.zonepos, m.own);
+					(m.own ? p.ownMinions : p.enemyMinions)[minionsCnt].setMinionToMinion(m);
+				}
+			}
+		}	
 	}
 }

@@ -13,15 +13,15 @@ namespace HREngine.Bots
 	{
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
-            // 分配总共10点随机伤害到所有随从
-            p.allMinionsGetRandomDamage(10);
-
-            // 吸血效果：恢复等同于造成的伤害的生命值
-            p.minionGetDamageOrHeal(ownplay ? p.ownHero : p.enemyHero, -10);
-
-            // 处理过载效果
+            
             if (ownplay)
             {
+                // 分配总共10点随机伤害到所有随从
+                p.allMinionsGetRandomDamage(10);
+
+                // 吸血效果：恢复等同于造成的伤害的生命值
+                p.minionGetDamageOrHeal(ownplay ? p.ownHero : p.enemyHero, -10);
+
                 p.ueberladung += 1;  // 过载1点法力水晶
             }
         }

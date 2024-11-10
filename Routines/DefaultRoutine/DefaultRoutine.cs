@@ -939,11 +939,6 @@ def Execute():
             // 当最佳动作值小于等于-700时的处理
             if (Ai.Instance.bestmoveValue <= -700)
             {
-                if ("主动投降".Equals(printUtils.emoteMode))
-                {
-                    playEmote(EmoteType.WELL_PLAYED);
-                    TritonHs.Concede(true);
-                }
                 if ("乞讨模式".Equals(printUtils.emoteMode))
                 {
                     playEmote(EmoteType.THANKS);
@@ -1164,28 +1159,28 @@ def Execute():
             {
                 case actionEnum.playcard:
                     await PlayCard(moveTodo);
-                    break;
+                    return;
                 case actionEnum.attackWithMinion:
                     await AttackWithMinion(moveTodo);
-                    break;
+                    return;
                 case actionEnum.attackWithHero:
                     await AttackWithHero(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useHeroPower:
                     await UseHeroPower(moveTodo);
-                    break;
+                    return;
                 case actionEnum.trade:
                     await HandleTrade(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useLocation:
                     await UseLocation(moveTodo);
-                    break;
+                    return;
                 case actionEnum.useTitanAbility:
                     await UseTitanAbility(moveTodo);
-                    break;
+                    return;
                 case actionEnum.forge:
                     await HandleForge(moveTodo);
-                    break;
+                    return;
                 default:
                     break;
             }

@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using System;
-
+using Logger = Triton.Common.LogUtilities.Logger;
+using log4net;
+using System.Linq;
 namespace HREngine.Bots
 {
     public partial class Behavior丨标准丨元素法 : Behavior
@@ -10,6 +12,277 @@ namespace HREngine.Bots
 
         public override string BehaviorName() { return "丨标准丨元素法"; }
         PenalityManager penman = PenalityManager.Instance;
+
+        //文本输出
+        private static readonly ILog Log = Logger.GetLoggerInstanceForType();
+
+
+
+        /// <summary>
+        /// 标准元素法的留牌策略
+        /// </summary>
+        /// <param name="cards">起手卡牌列表</param>
+        public override void specialMulligan(List<Mulligan.CardIDEntity> cards)
+        {
+            int 冰川裂片 = 0;
+            int 火羽精灵 = 0;
+            int 烈焰喷涌 = 0;
+            int 焦油泥浆怪 = 0;
+            int 流水档案管理员 = 0;
+            int 月石重拳手 = 0;
+            int 烈焰亡魂 = 0;
+            int 页岩蛛 = 0;
+            int 吸积炽焰 = 0;
+            
+
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+                if (cardCN.nameCN == CardDB.cardNameCN.冰川裂片)
+                {
+                    冰川裂片 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.火羽精灵)
+                {
+                    火羽精灵 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.烈焰喷涌)
+                {
+                    烈焰喷涌 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.焦油泥浆怪)
+                {
+                    焦油泥浆怪 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.流水档案管理员)
+                {
+                    流水档案管理员 += 1;
+                }
+                 if (cardCN.nameCN == CardDB.cardNameCN.月石重拳手)
+                {
+                    月石重拳手 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.烈焰亡魂)
+                {
+                    烈焰亡魂 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.页岩蛛)
+                {
+                    页岩蛛 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.吸积炽焰)
+                {
+                    吸积炽焰 += 1;
+                }
+            }
+
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+
+                if (cardCN.nameCN == CardDB.cardNameCN.冰川裂片)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张冰川裂片";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡冰川裂片";
+                            }
+                        }
+                    }
+
+                    if (cards.Count >= 3 && 火羽精灵 + 焦油泥浆怪  >= 1)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "按特殊规则丢弃冰川裂片，因为有更优质的一费随从";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.火羽精灵)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张火羽精灵";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡火羽精灵";
+                            }
+                        }
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.烈焰喷涌)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留烈焰喷涌";
+                        
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.焦油泥浆怪)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张焦油泥浆怪";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡焦油泥浆怪";
+                            }
+                        }
+                    }
+
+                    if (cards.Count >= 3 && 火羽精灵  >= 1)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "按特殊规则丢弃焦油泥浆怪，因为有更优质的一费随从";
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.月石重拳手)
+                {
+                    if (cards.Count >= 3 && 冰川裂片 + 火羽精灵 + 焦油泥浆怪  >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费元素留1张月石重拳手";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡月石重拳手";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留月石重拳手";
+                    }                  
+                }
+
+
+                if (cardCN.nameCN == CardDB.cardNameCN.流水档案管理员)
+                {
+                    if (cards.Count >= 3 && 冰川裂片 + 火羽精灵 + 焦油泥浆怪  >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费元素留1张流水档案管理员";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡流水档案管理员";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留流水档案管理员";
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.烈焰亡魂)
+                {
+                    if (cards.Count >= 3 && 冰川裂片 + 火羽精灵 + 焦油泥浆怪 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费元素留1张烈焰亡魂";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡烈焰亡魂";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留烈焰亡魂";
+                    }                  
+                }
+                
+
+
+                if (cardCN.nameCN == CardDB.cardNameCN.页岩蛛)
+                {
+                    if (cards.Count >= 3 && 冰川裂片 + 火羽精灵 + 焦油泥浆怪 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费元素留1张页岩蛛";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡页岩蛛";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留页岩蛛";
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.吸积炽焰)
+               {
+                    if (cards.Count >= 3 && 冰川裂片 + 火羽精灵 + 焦油泥浆怪 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费元素留1张吸积炽焰";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡吸积炽焰";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留吸积炽焰";
+                    }                  
+                }
+
+                //剩下大于等于4费的卡hb是默认不留的
+            }       
+        }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+
 
         public override int getComboPenality(CardDB.Card card, Minion target, Playfield p, Handmanager.Handcard nowHandcard)
         {
@@ -52,62 +325,76 @@ namespace HREngine.Bots
             //此处为单卡描述
             switch (card.nameCN)		
             {
-                case CardDB.cardNameCN.元素混合:
-                if ( p.ownMaxMana > 3) pen -= 10; //最大水晶为4可以直接打出
-                if (p.owncards.Count <= 3) pen -= 5; //手牌低于3时尽快打出
-                if (p.owncards.Count > 3 && p.ownMaxMana < 2) pen += 3;
-                if (p.owncards.Count >= 7) pen += 100;
-                break;
-
                 case CardDB.cardNameCN.冰川裂片:
                 break;
                 case CardDB.cardNameCN.火羽精灵:
                 break;
                 case CardDB.cardNameCN.烈焰喷涌:
+                if ( p.ownMaxMana >= 10 && (target.isHero && !target.own) ) pen -= 100;
                 break;
                 case CardDB.cardNameCN.焦油泥浆怪:
-                break;
-
-                case CardDB.cardNameCN.摇滚巨石:
-                if (p.ownMaxMana == 2 && (p.ownMinions.Count >= 1 || p.getCorpseCount() == 1))  pen = -50;
+                if ( p.ownMaxMana == 1 && p.enemyMinions.Count >= 1) pen -= 10;
+                foreach(Handmanager.Handcard hc in p.owncards)
+                        {
+                        if ( p.ownMaxMana == 1 && p.enemyMinions.Count == 0 && (hc.card.nameCN == CardDB.cardNameCN.冰川裂片 || hc.card.nameCN == CardDB.cardNameCN.火羽精灵) ) pen += 10;
+                       }
                 break;
 
                 case CardDB.cardNameCN.流水档案管理员:
-                if ( p.ownMaxMana >= 2) pen -= 1000;
+                if ( p.ownMaxMana >= 2) pen -= 100;
                 break;
 
                 case CardDB.cardNameCN.烈焰亡魂:
-                if (p.ownMaxMana <= 2 && p.enemyMinions.Count >= 1) pen += 100;
-                if (p.ownMaxMana >= 2 && p.enemyMinions.Count == 0) pen = -20;
+                if ( p.ownMaxMana == 2) pen -= 30;
+                if (Hrtprozis.Instance.gTurn == 2)
+                    {
+                        foreach(Handmanager.Handcard hc in p.owncards)
+                        {
+                            if(hc.getManaCost(p) == 1 && hc.card.race == CardDB.Race.ELEMENTAL)
+                            {
+                                pen -= 100;
+                            }
+                        }
+                    }
+                if (p.enemyMinions.Count == 0) pen = -40;
                 break;
 
                 case CardDB.cardNameCN.页岩蛛:
+                if ( p.ownMaxMana == 2) pen -= 30;
+                foreach(Handmanager.Handcard hc in p.owncards)
                 if (p.owncards.Count <= 3) pen -= 10; //手牌低于3时尽快打出
                 break;
 
-                case CardDB.cardNameCN.消融元素:
-                if ( p.enemyMinions.Count >= 2) pen = -20;
+                case CardDB.cardNameCN.吸积炽焰:
+                if ( p.ownMaxMana == 3) pen -= 50;
+                if (p.owncards.Count <= 3) pen -= 20; //手牌低于3时尽快打出
+                if (p.owncards.Count >= 7) pen += 100;
+                break;
+
+                case CardDB.cardNameCN.火球术:
+                if ( p.ownMaxMana <= 9) pen += 1000;
+                if (target.isHero && !target.own) //打敌方头
+                    {
+                        if (p.enemyHero.Hp <= 6)
+                            pen -= 3000;
+                        if (p.enemyHero.Hp > 15)  //不要太早打头，出其他牌
+                            pen += 150;
+                    }
                 break;
 
                 case CardDB.cardNameCN.燃灯元素:
-                if (p.enemyHero.immune)
-                pen += 100000; // 对面免疫时不打。
+                if (p.enemyHero.immune) pen += 1000; // 对面免疫时不打。
                 if ( p.ownMaxMana <= 10) pen += 1000; 
-                if (p.enemyHero.Hp + p.enemyHero.armor <= p.ownMaxMana) pen -= 1000;
-                if (p.owncards.FindAll(x => x.card.nameCN == CardDB.cardNameCN.燃灯元素).Count >= 2 && p.enemyHero.Hp + p.enemyHero.armor <= 2 * p.ownMaxMana) pen -= 1000;
-                if (p.owncards.Count <= 1) pen -= 1000;//殊死一搏                   
+                if (p.enemyHero.Hp + p.enemyHero.armor <= p.ownMaxMana) pen -= 2000;
+                if (p.owncards.FindAll(x => x.card.nameCN == CardDB.cardNameCN.燃灯元素).Count >= 2 && p.ownMaxMana ==  10) pen -= 2000;       
                 if (target.isHero && !target.own) // 检查目标是否为敌方英雄
                 pen -= 100;
                 else
                 pen += 100;
-                break;
-
-               
-                case CardDB.cardNameCN.三芯诡烛:
-                if (p.enemyHero.Hp + p.enemyHero.armor <=6 && p.enemyMinions.Count == 0) pen = -1000;
-                break;               
+                break;            
 
                 case CardDB.cardNameCN.溢流熔岩:
+                if ( p.ownMaxMana == 4) pen -= 30;
                 if (p.ownMinions.Count >= 5) pen = +50;
                 foreach (Minion m in p.ownMinions)
 				{
@@ -119,24 +406,33 @@ namespace HREngine.Bots
                 break;
 
                 case CardDB.cardNameCN.破链角斗士:
-                if (p.owncards.Count <= 3) pen -= 10;
+                if ( p.ownMaxMana == 4) pen -= 30;
+                if (p.owncards.Count <= 3) pen -= 15;
                 if (p.owncards.Count >= 7) pen += 100;
                 break;
 
-                case CardDB.cardNameCN.滑冰元素:
+                case CardDB.cardNameCN.腐化残渣:
+                if ( p.ownMaxMana >= 5) pen -= 50;
+                if (p.enemyHero.Hp + p.enemyHero.armor <=7 && p.enemyMinions.Count == 0) pen -= 1200;
                 break;
 
-                case CardDB.cardNameCN.碎裂巨岩迈沙顿:
-                if (p.owncards.Count <= 3 || p.enemyMinions.Count <= 1) pen -= 50;
+                case CardDB.cardNameCN.阳炎耀斑:
+                if (nowHandcard.getManaCost(p) <= 2 && p.enemyMinions.Count == 0)  pen += 20;
+                if (nowHandcard.getManaCost(p) <= 2 && p.enemyMinions.Count >= 2)  pen -= 50;
+                if (nowHandcard.getManaCost(p) >= 3) pen += 20;
+                if ( p.enemyMinions.Count >= 5)  pen -= 70;
+                if (p.enemyHero.Hp <= 2)  pen -= 3000;
                 break;
 
                 case CardDB.cardNameCN.伊辛迪奥斯:              
                 pen -= 1000;
                 break;
 
-                case CardDB.cardNameCN.腐化残渣:
-                if (p.enemyHero.Hp + p.enemyHero.armor <=7 && p.enemyMinions.Count == 0) pen = -1000;
+                case CardDB.cardNameCN.恒星之火萨鲁恩:              
+                pen -= 1200;
                 break;
+
+                
                 case CardDB.cardNameCN.火焰冲击:
                     if (target != null )
                     {
@@ -211,43 +507,30 @@ namespace HREngine.Bots
         
                 //// 出牌排序优先
                 switch (a.card.card.nameCN)
-                {
-                    
-                    
-                    case CardDB.cardNameCN.元素混合:
-                    case CardDB.cardNameCN.燃灯元素:
-                        retval -= i * 6;
-                    break;
-                    
+                {                                          
                     case CardDB.cardNameCN.烈焰亡魂:
-                        retval -= i * 5;
-                    break;
-
-                    case CardDB.cardNameCN.滑冰元素:   //确保微缩有操作
-                    case CardDB.cardNameCN.溢流熔岩:
-                        retval -= i * 4;
-                    break;
-
-                    case CardDB.cardNameCN.流水档案管理员:
-                    case CardDB.cardNameCN.页岩蛛:
-                    case CardDB.cardNameCN.破链角斗士:
                         retval -= i * 3;
                     break;
-
+                    case CardDB.cardNameCN.伊辛迪奥斯:
+                    case CardDB.cardNameCN.恒星之火萨鲁恩:
+                    case CardDB.cardNameCN.页岩蛛:
+                    case CardDB.cardNameCN.吸积炽焰:
+                    case CardDB.cardNameCN.燃灯元素:
+                    case CardDB.cardNameCN.破链角斗士:
+                    case CardDB.cardNameCN.溢流熔岩:
+                    case CardDB.cardNameCN.腐化残渣:
+                        retval -= i * 2;
+                    break;
                     case CardDB.cardNameCN.冰川裂片:
                     case CardDB.cardNameCN.火羽精灵:
                     case CardDB.cardNameCN.烈焰喷涌:
                     case CardDB.cardNameCN.焦油泥浆怪:
                     case CardDB.cardNameCN.烈焰元素:
-                        retval -= i * 2;
-                    break;
-
-                    case CardDB.cardNameCN.摇滚巨石:
                         retval -= i ;
                     break;
-                    case CardDB.cardNameCN.三芯诡烛:
-                    case CardDB.cardNameCN.腐化残渣:
-                    case CardDB.cardNameCN.伊辛迪奥斯:
+                    case CardDB.cardNameCN.流水档案管理员:
+                    case CardDB.cardNameCN.阳炎耀斑:
+                    case CardDB.cardNameCN.火球术:
                     break;
                 }
             }
@@ -345,8 +628,15 @@ namespace HREngine.Bots
             int bonus = 4;
             switch (m.handcard.card.nameCN)
             {
-                case CardDB.cardNameCN.巫师学徒:
+                
+                case CardDB.cardNameCN.悠闲的曲奇:
+                    retval += 200;
+                    break;
+              
+
+
                 case CardDB.cardNameCN.肢体商贩:
+                case CardDB.cardNameCN.巫师学徒:
                 case CardDB.cardNameCN.巨型图腾埃索尔:
                 case CardDB.cardNameCN.驻锚图腾:
                 case CardDB.cardNameCN.刺豚拳手:
@@ -395,7 +685,12 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.暗影升腾者:
                 case CardDB.cardNameCN.赤红教士:
                 case CardDB.cardNameCN.受伤的搬运工:
+                case CardDB.cardNameCN.阿米图斯的信徒:
                 case CardDB.cardNameCN.隐藏宝石:
+                case CardDB.cardNameCN.落难的大法师:
+                case CardDB.cardNameCN.虚空协奏者:
+                case CardDB.cardNameCN.神话观测者:
+                 case CardDB.cardNameCN.粗暴的猢狲:
                     retval += 150;
                     break;
               
@@ -436,8 +731,9 @@ namespace HREngine.Bots
                     break;
 
                 case CardDB.cardNameCN.白银之手新兵:
-                case CardDB.cardNameCN.脆弱的食尸鬼:
                 case CardDB.cardNameCN.伊丽扎刺刃:
+                case CardDB.cardNameCN.石心之王:
+                case CardDB.cardNameCN.神秘的蛋:
                     retval -= 150;
                     break;
                 
@@ -445,12 +741,7 @@ namespace HREngine.Bots
                 if (p.anzEnemyTaunt == 0 && p.calTotalAngr()  >= p.enemyHero.Hp + p.enemyHero.armor)
                     retval -= 150;
                     break;
-               
-                   
-                
-
-                
-                
+                                                               
             }
             return retval;
         }

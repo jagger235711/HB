@@ -243,7 +243,7 @@ namespace HREngine.Bots
         {
             get
             {
-                return AllEmotes ?? (AllEmotes = new ObservableCollection<string>() { "无", "友善模式", "嘴臭模式", "乞讨模式", "摊牌了我是脚本", "精神污染模式", "抱歉", "主动投降" } );
+                return AllEmotes ?? (AllEmotes = new ObservableCollection<string>() { "无", "友善模式", "嘴臭模式", "乞讨模式", "摊牌了我是脚本", "精神污染模式", "抱歉"} );
             }
         }
 

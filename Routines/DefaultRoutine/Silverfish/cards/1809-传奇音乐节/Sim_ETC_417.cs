@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//使你牌库中的所有随从牌获得等同于其法力值消耗的攻击力和生命值。
 	class Sim_ETC_417 : SimTemplate
 	{
-		
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+			if(ownplay)
+			{
+				// 卡组
+				p.deckAngrBuff += 7;
+				p.deckHpBuff += 7;
+				p.evaluatePenality -= 5;
+			}
+		}
 	}
 }

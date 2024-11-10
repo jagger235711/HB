@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//<b><b>突袭</b>。嘲讽</b>。<b>选择三次：</b>获得+2攻击力；或者+2生命值。
 	class Sim_WORK_025 : SimTemplate
 	{
-		
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+        {
+            PenalityManager.Instance.getChooseCard(own.handcard.card, choice).sim_card.onCardPlay(p, own.own, own, choice);
+        }	
 	}
 }

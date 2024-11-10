@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>亡语：</b>对敌方英雄造成4点伤害。
 	class Sim_TSC_001 : SimTemplate
 	{
-		
-		
-	}
+        public override void onDeathrattle(Playfield p, Minion m)
+        {
+            p.minionGetDamageOrHeal(m.own ? p.enemyHero : p.ownHero, 4);
+        }
+
+    }
 }

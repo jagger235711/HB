@@ -11,7 +11,20 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>在你的回合结束时，使你手牌中所有<b>嘲讽</b>随从牌获得+2/+2。
 	class Sim_CORE_ULD_258 : SimTemplate
 	{
-		
-		
+		public override void onTurnEndsTrigger(Playfield p, Minion triggerEffectMinion, bool turnEndOfOwner)
+		{
+			if (turnEndOfOwner == triggerEffectMinion.own)
+			{
+				foreach (Handmanager.Handcard hc in p.owncards)
+				{
+					if (hc.card.tank)
+					{
+						hc.addattack += 2;
+						hc.addHp += 2;
+						p.anzOwnExtraAngrHp += 4;
+					}
+				}
+			}
+		}	
 	}
 }
