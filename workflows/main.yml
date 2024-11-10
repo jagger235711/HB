@@ -1,0 +1,66 @@
+name: Sync Repository
+
+on:
+  schedule:
+    # 每周一下午6点（UTC时间）执行，对应中国东八区凌晨2点
+    - cron: "0 18 * * 1"
+  workflow_dispatch:
+    inputs:
+      targetRepo:
+        description: "Target repository"
+        required: true
+        default: "jagger235711/HB"
+      targetBranch1:
+        description: "Target branch 1"
+        required: true
+        default: "Routines"
+      upstreamRepo1:
+        description: "Upstream repository 1"
+        required: true
+        default: "UniverseString/Hearthstone-myRoutines"
+      upstreamBranch1:
+        description: "Upstream branch 1"
+        required: true
+        default: "master"
+      
+      gitUserName:
+        description: "Git user name"
+        required: true
+        default: "mergeBot"
+      gitUserEmail:
+        description: "Git user email"
+        required: true
+        default: "you@example.com"
+
+jobs:
+  sync-branch1:
+    runs-on: ubuntu-latest
+    env:
+      TZ: Asia/Shanghai
+      REPO_ACCESS_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN_EE }} # 使用单个 Token
+
+    steps:
+      - name: Checkout target repository for branch 1
+        uses: actions/checkout@v3
+        with:
+          repository: ${{ github.event.inputs.targetRepo }}
+          ref: ${{ github.event.inputs.targetBranch1 }}
+          # token: ${{ secrets.REPO_ACCESS_TOKEN_EE }} # 使用单个 Token
+
+      - name: Setup Git
+        run: |
+          git config --global user.name "${{ github.event.inputs.gitUserName }}"
+          git config --global user.email "${{ github.event.inputs.gitUserEmail }}"
+
+      - name: Verify timezone
+        run: date
+
+      - name: Add and merge changes from upstream repository 1 to branch 1
+        run: |
+          git remote add upstream1 https://x-access-token:${REPO_ACCESS_TOKEN_EE}@gitee.com/${{ github.event.inputs.upstreamRepo1 }}.git
+          git fetch upstream1
+          git checkout ${{ github.event.inputs.targetBranch1 }}
+          git merge upstream1/${{ github.event.inputs.upstreamBranch1 }} --allow-unrelated-histories --no-edit
+          git push origin ${{ github.event.inputs.targetBranch1 }}
+
+ 
