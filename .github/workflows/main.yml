@@ -22,7 +22,7 @@ on:
         description: "Upstream branch 1"
         required: true
         default: "master"
-      
+
       gitUserName:
         description: "Git user name"
         required: true
@@ -60,7 +60,5 @@ jobs:
           git remote add upstream1 https://x-access-token:${REPO_ACCESS_TOKEN_EE}@gitee.com/${{ github.event.inputs.upstreamRepo1 }}.git
           git fetch upstream1
           git checkout ${{ github.event.inputs.targetBranch1 }}
-          git merge upstream1/${{ github.event.inputs.upstreamBranch1 }} --allow-unrelated-histories --no-edit
-          git push origin ${{ github.event.inputs.targetBranch1 }}
-
- 
+          git reset --hard upstream1/${{ github.event.inputs.upstreamBranch1 }}
+          git push origin ${{ github.event.inputs.targetBranch1 }} --force
