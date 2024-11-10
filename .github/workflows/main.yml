@@ -45,7 +45,7 @@ jobs:
         with:
           repository: ${{ github.event.inputs.targetRepo }}
           ref: ${{ github.event.inputs.targetBranch1 }}
-          # token: ${{ secrets.REPO_ACCESS_TOKEN_EE }} # 使用单个 Token
+          token: ${{ secrets.REPO_ACCESS_TOKEN_EE }} # 使用单个 Token
 
       - name: Setup Git
         run: |
@@ -57,7 +57,7 @@ jobs:
 
       - name: Add and merge changes from upstream repository 1 to branch 1
         run: |
-          git remote add upstream1 https://x-access-token:${REPO_ACCESS_TOKEN_EE}@gitee.com/${{ github.event.inputs.upstreamRepo1 }}.git
+          git remote add upstream1 https://x-access-token:${REPO_ACCESS_TOKEN}@gitee.com/${{ github.event.inputs.upstreamRepo1 }}.git
           git fetch upstream1
           git checkout ${{ github.event.inputs.targetBranch1 }}
           git reset --hard upstream1/${{ github.event.inputs.upstreamBranch1 }}
