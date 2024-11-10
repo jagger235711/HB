@@ -29,5 +29,13 @@ namespace HREngine.Bots
                 p.callKid(randomMinion, p.ownMinions.Count, ownplay);
             }
         }
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+            };
+        }		
+
     }
 }

@@ -12,6 +12,19 @@ namespace HREngine.Bots
 	class Sim_YOG_082 : SimTemplate
 	{
 		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            int dmg = (ownplay) ? p.getSpellDamageDamage(3) : p.getEnemySpellDamageDamage(3);
+            p.minionGetDamageOrHeal(target, dmg);
+		}
+
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+            };
+        }
 		
 	}
 }
