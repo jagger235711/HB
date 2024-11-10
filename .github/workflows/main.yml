@@ -3,7 +3,7 @@ name: Sync Repository
 on:
   schedule:
     # 每周一下午6点（UTC时间）执行，对应中国东八区凌晨2点
-    - cron: "0 18 * * 1"
+    - cron: "0 18 * * *"
   workflow_dispatch:
     inputs:
       targetRepo:
