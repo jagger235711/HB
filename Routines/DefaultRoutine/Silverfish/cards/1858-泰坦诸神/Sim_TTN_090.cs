@@ -30,7 +30,6 @@ namespace HREngine.Bots
             return new PlayReq[]
             {
                 new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要一个目标才能使用
-                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 需要一个目标才能使用
                 new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET), // 需要一个目标才能使用
             };
         }
