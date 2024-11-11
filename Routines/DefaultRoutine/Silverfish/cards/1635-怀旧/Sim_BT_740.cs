@@ -18,7 +18,7 @@ namespace HREngine.Bots
             {
 				int oldHp = enemy.Hp;
                 p.minionGetDamageOrHeal(enemy, damage);
-				if (oldHp > target.Hp) p.applySpellLifesteal(oldHp - enemy.Hp, ownplay);
+				if (oldHp > enemy.Hp) p.applySpellLifesteal(oldHp - enemy.Hp, ownplay);
                 i++;
                 if (i == 2) break;
             }

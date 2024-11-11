@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//<b>战吼：</b>如果你没有控制其他随从，<b>发现</b>并施放一个<b>奥秘</b>。
 	class Sim_ETC_028 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			if (p.ownMinions.Count == 1) {
+				//fakeone 只是为了让AIi倾向于空场的时候打出来。
+				p.minionGetDamageOrHeal(p.enemyHero, 5);
+			}
+		}		
 		
 	}
 }

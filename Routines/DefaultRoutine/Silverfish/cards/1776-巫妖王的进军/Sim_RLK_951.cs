@@ -11,7 +11,15 @@ namespace HREngine.Bots
 	//<b>战吼：</b><b>冻结</b>一个敌方随从。<b>法力渴求（6）：</b>先将其<b>沉默</b>。
 	class Sim_RLK_951 : SimTemplate
 	{
-		
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY),
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE),				
+            };
+        }				
 		
 	}
 }
