@@ -11,6 +11,7 @@ namespace HREngine.Bots
     // <b>嘲讽</b>。<b>吸血</b> 每有一个敌方随从，本牌的法力值消耗便减少（1）点。
     class Sim_GDB_320 : SimTemplate
     {
+        /*
         public int attack = 5;
         public int health = 6;
         public int cost = 7;
@@ -64,5 +65,6 @@ namespace HREngine.Bots
             // 默认情况下不使用此卡牌
             return false;
         }
+        */
     }
 }

@@ -9,6 +9,7 @@ namespace HREngine.Bots
     // <b>法术迸发</b>：随机获取一张法力值消耗与法术相同的随从牌，并将其法力值消耗变为（0）点。
     class Sim_GDB_311 : SimTemplate
     {
+/*
         public override void onSpellburst(Playfield p, Minion m, int spellCost)
         {
             // 从卡牌数据库中获取所有符合指定费用的随从卡
@@ -38,8 +39,9 @@ namespace HREngine.Bots
                 p.owncards.Add(newHandcard);
 
                 // 输出调试信息（可选）
-                Console.WriteLine($"法术迸发触发：获得一张随机随从牌 {chosenMinion.name}，费用为 0。");
+                //Console.WriteLine($"法术迸发触发：获得一张随机随从牌 {chosenMinion.name}，费用为 0。");
             }
         }
+*/
     }
 }

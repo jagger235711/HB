@@ -9,6 +9,7 @@ namespace HREngine.Bots
     // [x] 随机召唤两个法力值消耗为（2）的随从。复原我方 2 个法力水晶。
     class Sim_GDB_883 : SimTemplate
     {
+/*
         public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
         {
             // 随机召唤两个法力值消耗为 2 的随从
@@ -28,5 +29,6 @@ namespace HREngine.Bots
                 p.mana = Math.Min(p.ownMaxMana, p.mana + 2); // 复原法力值，但不超过最大法力值
             }
         }
+*/
     }
 }
