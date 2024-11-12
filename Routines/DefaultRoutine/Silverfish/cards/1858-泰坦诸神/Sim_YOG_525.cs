@@ -11,7 +11,18 @@ namespace HREngine.Bots
 	//<b>战吼：</b>使你手牌中的所有随从牌获得+1/+1。<b>锻造：</b>改为+2/+2。
 	class Sim_YOG_525 : SimTemplate
 	{
-		
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+
+			foreach (Handmanager.Handcard hc in p.owncards)
+			{
+				if (hc.card.type == CardDB.cardtype.MOB)
+				{
+					hc.addattack += 1;
+					hc.addHp += 1;
+				}
+			}
+		}
+
 	}
 }

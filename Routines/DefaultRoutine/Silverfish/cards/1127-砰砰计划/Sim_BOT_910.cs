@@ -10,21 +10,17 @@ namespace HREngine.Bots
 		//<b>Battlecry:</b> Give all minions in your hand +2/+2.
 		//<b>战吼：</b>使你手牌中的所有随从牌获得+2/+2。
 		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
-{
+		{
 
-foreach (Handmanager.Handcard hc in p.owncards)
-{
-if (hc.card.type == CardDB.cardtype.MOB)
-{
-hc.addattack+=2;
-hc.addHp+=2;
-}
-}
-}
-
-		
-
-
+			foreach (Handmanager.Handcard hc in p.owncards)
+			{
+				if (hc.card.type == CardDB.cardtype.MOB)
+				{
+					hc.addattack+=2;
+					hc.addHp+=2;
+				}
+			}
+		}
 
 	}
 }
