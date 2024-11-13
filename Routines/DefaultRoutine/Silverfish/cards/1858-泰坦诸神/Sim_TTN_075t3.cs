@@ -11,7 +11,9 @@ namespace HREngine.Bots
 	//随机施放@个法师<b>奥秘</b>。
 	class Sim_TTN_075t3 : SimTemplate
 	{
-		
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+			p.drawACard(CardDB.cardIDEnum.None, ownplay, true);
+		}
 	}
 }

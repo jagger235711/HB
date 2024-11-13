@@ -11,26 +11,22 @@ namespace HREngine.Bots
 	//<b>战吼：</b>摧毁你牌库顶的3张牌，其中的火焰法术牌或元素牌会由摧毁改为抽取。
 	class Sim_GDB_302 : SimTemplate
 	{
-        /*
+        
 		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
         {
-            int cardsToProcess = Math.Min(3, p.ownDeck.Count); // 如果牌库不足3张，就只处理现有的牌数
-
-            for (int i = 0; i < cardsToProcess; i++)
+            if (own.own)
+			{
+				//检测牌库是否有元素并抽取
+				var drawElemental = p.CheckTurnDeckExists(TAG_RACE.ELEMENTAL); // 元素
+				if (drawElemental != CardDB.cardIDEnum.None) p.drawACard(drawElemental, true); // 抽取元素
+			} 
+			else
             {
-                Card topCard = p.ownDeck[0]; // 牌库顶的第一张牌
-
-                if (topCard.isFireSpell || topCard.isElemental) // 检查是否为火焰法术或元素牌
-                {
-                    p.drawACard(topCard.cardIDenum, own.own, true); // 抽取该牌
-                }
-                else
-                {
-                    p.removeCardFromDeck(topCard); // 将该牌从牌库中摧毁
-                }
+				p.drawACard(CardDB.cardIDEnum.None, true);
             }
+
         }
-        */
+        
 	}
 }
 

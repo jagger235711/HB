@@ -1,34 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HREngine.Bots
 {
-    // 法术 德鲁伊 费用：4
-    // Distress Signal
-    // 求救信号
-    // [x] 随机召唤两个法力值消耗为（2）的随从。复原我方 2 个法力水晶。
-    class Sim_GDB_883 : SimTemplate
-    {
-/*
-        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
-        {
-            // 随机召唤两个法力值消耗为 2 的随从
-            for (int i = 0; i < 2; i++)
-            {
-                CardDB.Card randomTwoCostMinion = p.getRandomCardOfTypeAndCost(CardDB.cardtype.MOB, 2);
-                if (randomTwoCostMinion != null)
-                {
-                    // 将随从召唤到战场上，位置在自己随从列表的末尾
-                    p.callKid(randomTwoCostMinion, p.ownMinions.Count, ownplay);
-                }
-            }
+	class Sim_GDB_883 : SimTemplate //求救信号 Distress Signal
+//[x]Summon two random 2-Cost minions. Refresh 2 Mana Crystals.
+//随机召唤两个 法力值消耗为（2）的随从。复原2个 法力水晶。
+	{
+        
 
-            // 复原我方 2 个法力水晶
-            if (ownplay)
-            {
-                p.mana = Math.Min(p.ownMaxMana, p.mana + 2); // 复原法力值，但不超过最大法力值
-            }
-        }
-*/
-    }
+		CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.CS2_172);
+
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            int pos =(ownplay) ? p.ownMinions.Count : p.enemyMinions.Count;
+
+            p.callKid(kid, pos, ownplay, false);
+            p.callKid(kid, pos, ownplay);			
+
+            p.mana = Math.Min(10, p.mana+2);
+            p.ownMaxMana = Math.Min(10, p.ownMaxMana+2); // 复原2个 法力水晶
+        }    
+    }    
 }

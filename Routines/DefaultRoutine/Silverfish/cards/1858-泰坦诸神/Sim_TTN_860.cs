@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b>获取一张1/1并具有<b>磁力</b>和一项随机<b>额外效果</b>的火花机器人。
 	class Sim_TTN_860 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			p.drawACard(CardDB.cardNameEN.lepergnome, own.own, true);
+		}
 		
 	}
 }

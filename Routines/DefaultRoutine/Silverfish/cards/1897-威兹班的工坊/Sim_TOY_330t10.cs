@@ -11,7 +11,13 @@ namespace HREngine.Bots
 	//你可以在构筑套牌时打造专属于自己的奇利亚斯豪华版3000型！
 	class Sim_TOY_330t10 : SimTemplate
 	{
-		
-		
+		public override void getBattlecryEffect(Playfield p, Minion m, Minion target, int choice)
+		{
+			m.taunt = true;
+			m.divineshild = true;
+			m.lifesteal = true;
+			m.windfury = true;
+			p.callKid(m.handcard.card, m.zonepos, m.own); // 在指定位置召唤一个随从的复制
+		}
 	}
 }

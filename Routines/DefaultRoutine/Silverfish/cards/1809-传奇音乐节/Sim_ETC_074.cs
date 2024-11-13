@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>发现</b>一张你的对手在本局对战中使用过的牌的复制。
 	class Sim_ETC_074 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.None, ownplay, true); 
+		}
 		
 	}
 }

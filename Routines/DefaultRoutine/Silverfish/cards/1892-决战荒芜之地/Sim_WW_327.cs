@@ -11,7 +11,19 @@ namespace HREngine.Bots
 	//<b>战吼：</b>抽一张法术牌。如果你在本回合中施放抽到的牌，则获得+1/+2和<b>嘲讽</b>。
 	class Sim_WW_327 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			p.drawACard(CardDB.cardNameEN.frostbolt, own.own); // 抽一张冰枪
+			foreach (Handmanager.Handcard hc in p.owncards)
+			{
+				if (p.owncards.Find(c => c.card.nameEN == CardDB.cardNameEN.frostbolt) != null)	 // 如果抽到的牌是冰枪
+				{
+					own.Angr += 1;
+					own.Hp += 2;
+					own.taunt = true;
+				}
+			}
+		}
 		
 	}
 }

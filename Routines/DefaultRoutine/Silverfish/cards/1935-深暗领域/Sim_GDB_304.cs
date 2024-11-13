@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>战吼：</b>使你牌库中的所有元素获得<b>火焰法术伤害+1</b>。
 	class Sim_GDB_304 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			p.spellpower++; // 火焰法术伤害+1
+		}
 		
 	}
 }

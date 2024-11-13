@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>嘲讽</b>。<b>亡语：</b>使你手牌和牌库中的所有元素牌属性值翻倍。
 	class Sim_DEEP_036 : SimTemplate
 	{
-		
-		
+		public override void onDeathrattle(Playfield p, Minion m)
+		{
+			m.taunt = true;
+			p.minionGetBuffed(m, m.Angr, m.Hp);
+		}        
 	}
 }

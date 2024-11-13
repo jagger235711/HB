@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//<b>磁力</b><b>吸血</b>
 	class Sim_TTN_719t7 : SimTemplate
 	{
-		
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			if (own.own) p.Magnetic(own); // 磁力
+
+		}
 		
 	}
 }

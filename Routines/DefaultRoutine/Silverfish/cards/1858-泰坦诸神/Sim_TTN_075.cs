@@ -33,13 +33,26 @@ namespace HREngine.Bots
                 case 2: // 远古知识
                     // 下个回合敌方卡牌的法力值消耗增加（1）点
                     // 实现具体逻辑
+                    p.enemyMinions.ForEach(m => m.handcard.manacost += 1);
                     break;
 
                 case 3: // 无限潜能
                     // 随机施放1个法师奥秘，假设模拟召唤法师奥秘
                     // 实现具体逻辑
+                    p.drawACard(CardDB.cardIDEnum.None, triggerMinion.own, true);
                     break;
             }
         }
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要选择一个目标
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 需要随从目标
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_TARGET), // 需要友方目标
+            };
+        }   
+
+
     }
 }

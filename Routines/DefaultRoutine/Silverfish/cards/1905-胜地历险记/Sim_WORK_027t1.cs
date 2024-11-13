@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//随机获取2张可能会影响敌方战场的卡牌。
 	class Sim_WORK_027t1 : SimTemplate
 	{
-		
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+		     p.drawACard(CardDB.cardIDEnum.CORE_CS1_112, ownplay, true);
+			 p.drawACard(CardDB.cardIDEnum.EX1_407, ownplay, true);
+		}
 	}
 }

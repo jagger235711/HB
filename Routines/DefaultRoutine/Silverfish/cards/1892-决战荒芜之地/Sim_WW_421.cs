@@ -11,7 +11,17 @@ namespace HREngine.Bots
 	//<b>战吼：</b>复活你的食人魔帮众，使其获得<b>风怒</b>。
 	class Sim_WW_421 : SimTemplate
 	{
+
 		
+
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_NUM_MINION_SLOTS, 1), // 需要一个空位
+                new PlayReq(CardDB.ErrorType2.REQ_FRIENDLY_MINION_DIED_THIS_GAME), // 需要一个友方死亡的随从
+            };
+        }
 		
 	}
 }

@@ -11,7 +11,11 @@ namespace HREngine.Bots
 	//随机获取2张可能会消耗大量法力值的卡牌。
 	class Sim_WORK_027t2 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+		    p.drawACard(CardDB.cardIDEnum.CORE_EX1_383, ownplay, true);
+			p.drawACard(CardDB.cardIDEnum.EX1_295, ownplay, true);
+		}
 		
 	}
 }

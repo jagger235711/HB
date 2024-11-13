@@ -10,15 +10,16 @@ namespace HREngine.Bots
 	//At the start of yournext turn, summon three 1/1 Pirates with <b>Charge</b>.
 	//在你的下个回合开始时，召唤三个1/1并具有<b>冲锋</b>的海盗。
 	class Sim_VAC_925 : SimTemplate
-    {
-        // 当伞降咒符法术被施放时调用
-        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
-        {
-            // 如果该卡是由自己使用，则在Playfield标记需要在下一回合开始时触发
-            if (ownplay)
-            {
-                p.sigilsToTriggerOnOwnTurnStart.Add(CardDB.cardIDEnum.VAC_925);
-            }
-        }
-    }
+	{
+		CardDB.Card kid = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.VAC_926t);
+		public override void onTurnStartTrigger(Playfield p, Minion triggerEffectMinion, bool turnStartOfOwner)
+		{
+			if (turnStartOfOwner)
+			{
+				p.callKid(kid, triggerEffectMinion.zonepos, triggerEffectMinion.own);
+				p.callKid(kid, triggerEffectMinion.zonepos, triggerEffectMinion.own);
+				p.callKid(kid, triggerEffectMinion.zonepos, triggerEffectMinion.own);
+			}
+		}
+	}
 }

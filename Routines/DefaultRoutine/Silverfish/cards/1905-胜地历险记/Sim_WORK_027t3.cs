@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//随机获取2张可能会对敌方英雄造成伤害的卡牌。
 	class Sim_WORK_027t3 : SimTemplate
 	{
-		
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+		    p.drawACard(CardDB.cardIDEnum.CORE_CS2_029, ownplay, true);
+			p.drawACard(CardDB.cardIDEnum.CORE_EX1_238, ownplay, true);
+		}
 	}
 }

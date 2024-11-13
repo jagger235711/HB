@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>发现</b>一张法术牌，使其法力值消耗减少（2）点。
 	class Sim_CORE_UNG_941 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+        {
+            p.drawACard(CardDB.cardNameEN.frostbolt, ownplay, true);
+        }
 		
 	}
 }

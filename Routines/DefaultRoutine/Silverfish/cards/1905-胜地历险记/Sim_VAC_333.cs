@@ -13,6 +13,17 @@ namespace HREngine.Bots
 	{
         public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
         {
+            // 获取最后一张职业牌的费用
+            int lastCardCost = p.lastPlayedCardCost;
+
+            if (lastCardCost >= 7)
+            {
+                p.evaluatePenality -= 15; // 如果最后一张职业牌的法力值消耗大于等于7，则减少惩罚
+            }
+            else
+            {
+                p.evaluatePenality += 15; // 如果最后一张职业牌的法力值消耗小于7，则增加惩罚
+            }
         }
     }
 }

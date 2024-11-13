@@ -12,17 +12,21 @@ namespace HREngine.Bots
 	class Sim_WORK_023 : SimTemplate
 	{
 		public override void onMinionGotDmgTrigger(Playfield p, Minion m, int anzOwnMinionsGotDmg, int anzEnemyMinionsGotDmg, int anzOwnHeroGotDmg, int anzEnemyHeroGotDmg)
-		{
-			if (m.anzGotDmg > 0)
-			{
-				int tmp = m.anzGotDmg;
-				m.anzGotDmg = 0;
-				for (int i = 0; i < tmp; i++)
-				{
+        {
+            if (m.own)
+            {
+                for (int i = 0; i < anzOwnMinionsGotDmg - anzOwnHeroGotDmg; i++)
+                {
 					p.minionGetArmor(p.ownHero, 3);
-				}
-			}
+                }
+            }
+            else
+            {
+                for (int i = 0; i < anzEnemyMinionsGotDmg - anzEnemyHeroGotDmg; i++)
+                {
+                    p.minionGetArmor(p.enemyHero, 3); // 敌方英雄获得护甲
+                }
+            }
 		}
-		
 	}
 }

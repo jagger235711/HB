@@ -13,5 +13,20 @@ namespace HREngine.Bots
 	{
 		
 		
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+			int pos = ownplay ? p.ownMinions.Count : p.enemyMinions.Count; // 获取随从位置
+            CardDB.Card copyCard = CardDB.Instance.getCardDataFromID(target.handcard.card.cardIDenum); // 获取复制卡牌
+            p.callKid(copyCard, pos, ownplay, true); // 召唤复制	
+		}
+
+		public override PlayReq[] GetPlayReqs()
+		{
+			return new PlayReq[] {
+				new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要目标
+				new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 需要随从目标
+			};
+		}	
+
 	}
 }

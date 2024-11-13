@@ -31,5 +31,15 @@ namespace HREngine.Bots
                 }
             }
         }
+
+
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_TO_PLAY), // 需要目标   
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET), // 需要随从目标
+                new PlayReq(CardDB.ErrorType2.REQ_ENEMY_TARGET), // 需要敌方目标
+            };
+        }
     }
 }

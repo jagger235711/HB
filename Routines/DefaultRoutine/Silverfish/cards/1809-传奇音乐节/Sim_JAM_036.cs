@@ -12,12 +12,13 @@ namespace HREngine.Bots
 	class Sim_JAM_036 : SimTemplate
 	{
 		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
-		{		
+		{
             p.drawACard(CardDB.cardIDEnum.None, own.own);
 			p.drawACard(CardDB.cardIDEnum.None, own.own);
 			p.drawACard(CardDB.cardIDEnum.None, own.own);
 			p.drawACard(CardDB.cardIDEnum.None, own.own);
 			p.drawACard(CardDB.cardIDEnum.None, own.own);
+			
 		}
 		
 	}

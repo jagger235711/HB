@@ -11,7 +11,12 @@ namespace HREngine.Bots
 	//获取三张1/1并具有<b>磁力</b>和随机<b>额外效果</b>的火花机器人。
 	class Sim_TTN_719 : SimTemplate
 	{
-		
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardNameEN.unknown, ownplay, true);
+		    p.drawACard(CardDB.cardNameEN.unknown, ownplay, true);
+		    p.drawACard(CardDB.cardNameEN.unknown, ownplay, true);	
+		}	
 		
 	}
 }

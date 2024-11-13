@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>亡语：</b>复制你手牌中法力值消耗最高的法术牌。
 	class Sim_ETC_536 : SimTemplate
 	{
-		
+		public override void onDeathrattle(Playfield p, Minion m)
+		{
+
+			p.drawACard(CardDB.cardIDEnum.None, m.own);
+			
+
+			
+		}
 		
 	}
 }

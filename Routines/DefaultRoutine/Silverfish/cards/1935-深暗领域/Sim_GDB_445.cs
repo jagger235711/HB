@@ -11,11 +11,17 @@ namespace HREngine.Bots
 	//对所有随从造成$5点伤害。将5张小行星洗入你的牌库。
 	class Sim_GDB_445 : SimTemplate
 	{
-		
-        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
-        {
-			p.allMinionsGetDamage(5);
-        }
+		CardDB.Card eruptionCard = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.GDB_430); // 爆发卡的ID
+		public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice)
+		{
+            int dmg = (ownplay) ? p.getSpellDamageDamage(5) : p.getEnemySpellDamageDamage(5);
+            p.allMinionsGetDamage(dmg);
+
+			for (int i = 0; i < 5; i++)
+			{
+				p.AddToDeck(eruptionCard);
+			}
+		}
 		
 	}
 }

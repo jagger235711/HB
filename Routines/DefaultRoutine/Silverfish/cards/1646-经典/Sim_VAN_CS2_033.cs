@@ -11,7 +11,10 @@ namespace HREngine.Bots
 	//<b>冻结</b>任何受到本随从伤害的角色。
 	class Sim_VAN_CS2_033 : SimTemplate
 	{
-		
+        public override void onCardPlay(Playfield p, bool ownplay, Minion target, int choice) 
+        {
+            if (target != null) p.minionGetFrozen(target); // 冻结目标
+        }
 		
 	}
 }
