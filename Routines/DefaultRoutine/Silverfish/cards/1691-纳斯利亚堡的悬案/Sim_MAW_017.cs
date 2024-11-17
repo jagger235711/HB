@@ -11,7 +11,22 @@ namespace HREngine.Bots
 	//<b>战吼：</b>如果你的牌库中没有中立卡牌，将一个随从的属性值变为1/1。
 	class Sim_MAW_017 : SimTemplate
 	{
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+			//TODO:If there is no neutral cards in deck
+			if (target != null) {
+				p.minionSetAngrToX(target, 1);
+				p.minionSetLifetoX(target, 1);
+			}
+		}
 		
+        public override PlayReq[] GetPlayReqs()
+        {
+            return new PlayReq[] {
+                new PlayReq(CardDB.ErrorType2.REQ_MINION_TARGET),
+                new PlayReq(CardDB.ErrorType2.REQ_TARGET_IF_AVAILABLE),
+            };
+        }
 		
 	}
 }
