@@ -4,16 +4,17 @@ using System.Text;
 
 namespace HREngine.Bots
 {
+    //随从 中立 费用：4 攻击力：4 生命值：4
+	//燃灯元素 
+    //战吼：如果你在上个回合使用过元素牌，则造成4点伤害。
     class Sim_VAC_442 : SimTemplate // Light the Candle Elemental
-    {
-
-        // <b>战吼：</b> 造成@点伤害<i>（每有一个你使用过元素牌的连续的回合，伤害都会提升）</i>。
+    {  
         public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
         {
-            int damage = Hrtprozis.Instance.ownConsecutiveElementalTurns; // 根据连续使用元素牌的回合数确定伤害值
-            if (target != null)
+            //int damage = Hrtprozis.Instance.ownConsecutiveElementalTurns; // 2024.11.22最新改动锁定4点伤害
+            if (target != null && Hrtprozis.Instance.ownConsecutiveElementalTurns > 0)
             {
-                p.minionGetDamageOrHeal(target, damage + 1); // 对目标造成相应的伤害
+                p.minionGetDamageOrHeal(target, 4); // 对目标造成相应的伤害
             }
         }
 
