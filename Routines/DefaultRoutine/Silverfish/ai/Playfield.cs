@@ -4176,7 +4176,7 @@ namespace HREngine.Bots
 
                 if (this.patchesInDeck)
                 {
-                    var patchCard = this.prozis.turnDeck.FirstOrDefault(kvp => kvp.Key == CardDB.cardIDEnum.CFM_637);
+                    var patchCard = this.prozis.turnDeck.ToArray().FirstOrDefault(kvp => kvp.Key == CardDB.cardIDEnum.CFM_637);
                     if (!patchCard.Equals(default(KeyValuePair<CardDB.cardIDEnum, int>)))
                     {
                         this.callKid(CardDB.Instance.getCardDataFromID(patchCard.Key), this.ownMinions.Count, true);
