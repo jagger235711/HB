@@ -52,6 +52,14 @@ namespace HREngine.Bots
 
             // 获取卡组操作区域的中心点
             var center = collider.Bounds.m_Center;
+			var screenPoint = Camera.Main.WorldToScreenPoint(center);
+            if (screenPoint.X > Screen.Width)
+            {
+                // 超出屏幕空间，从边界减随机10个像素点作为真实point
+                var ranPoint = Client.Random.Next(0, 10);
+                screenPoint.X = Screen.Width - ranPoint;
+                center.X = Camera.Main.ScreenToWorldPoint(screenPoint).X;
+            }
 
             // 模拟人类操作，将光标移动到卡组操作区域的中心点
             await Client.MoveCursorHumanLike(center);
