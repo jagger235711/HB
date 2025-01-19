@@ -11,11 +11,14 @@ namespace HREngine.Bots
 	//<b>战吼：</b>对一个敌方随从造成3点伤害。将3张小行星洗入你的牌库。
 	class Sim_GDB_901 : SimTemplate
 	{
+		CardDB.Card eruptionCard = CardDB.Instance.getCardDataFromID(CardDB.cardIDEnum.GDB_430); // 小行星
 		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
 		{
-            int dmg = 3;
-            p.minionGetDamageOrHeal(target, dmg);
-			//TODO：三张小行星洗入牌库
+            if (target != null) p.minionGetDamageOrHeal(target, 3);
+			for (int i = 0; i < 3; i++) // 洗入3张小行星
+			{
+				p.AddToDeck(eruptionCard);
+			}
 		}
 		
         public override PlayReq[] GetPlayReqs()

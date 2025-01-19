@@ -127,7 +127,7 @@ namespace HREngine.Bots
                         str.Append(" 攻击 " + (this.target != null ? this.target.info() : "空"));
                         break;
                     case actionEnum.trade:
-                        str.Append("使用随从 " + this.own.info() + " 交易");
+                        str.Append("使用随从 " + (this.card != null && this.card.card != null ? this.card.card.chnInfo() : "无")+ " 交易");
                         break;
                     case actionEnum.useLocation:
                         str.Append("使用地标 " + this.own.info());
@@ -233,7 +233,7 @@ namespace HREngine.Bots
                     str.Append(" 攻击 " + (this.target != null ? this.target.info() : "空"));
                     break;
                 case actionEnum.trade:
-                    str.Append("使用随从 " + this.own.info() + " 交易");
+                    str.Append("使用随从 " + (this.card != null && this.card.card != null ? this.card.card.chnInfo() : "无") + " 交易");
                     break;
                 case actionEnum.useLocation:
                     str.Append("使用地标 " + this.own.info());
@@ -339,7 +339,7 @@ namespace HREngine.Bots
                     break;
 
                 case actionEnum.trade:
-                    retval.Append("使用随从 " + this.own.info() + " 交易");
+                    retval.Append("使用随从 " + (this.card != null && this.card.card != null ? this.card.card.chnInfo() : "无") + " 交易");
                     break;
 
                 case actionEnum.useLocation:
