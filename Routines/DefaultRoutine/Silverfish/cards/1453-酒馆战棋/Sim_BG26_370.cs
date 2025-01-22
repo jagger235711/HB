@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：5 生命值：2
+	//随从 中立 费用：0 攻击力：5 生命值：2
 	//Hungry Snapjaw
 	//饥饿的钳嘴龟
 	//After you summon aBeast, gain +1 Health permanently.

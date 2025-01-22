@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：16 生命值：10
+	//随从 中立 费用：0 攻击力：20 生命值：12
 	//Young Murk-Eye
 	//小瞎眼
-	//[x]At the end of your turn,adjacent minions triggertheir <b>Battlecries</b> twice.
-	//在你的回合结束时，相邻的随从触发其<b>战吼</b>，触发两次。
+	//At the end of your turn, trigger the <b>Battlecries</b> of adjacent minions.
+	//在你的回合结束时，触发相邻随从的<b>战吼</b>。
 	class Sim_BG22_403_G : SimTemplate
 	{
 		

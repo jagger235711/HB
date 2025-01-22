@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：3 攻击力：4 生命值：8
+	//随从 术士 费用：2 攻击力：4 生命值：8
 	//Imp Gang Boss
 	//小鬼首领
 	//Whenever this minion takes damage, summon a 2/2 Imp.

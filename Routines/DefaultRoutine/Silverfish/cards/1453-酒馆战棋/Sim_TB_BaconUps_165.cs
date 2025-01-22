@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：8 生命值：10
+	//随从 中立 费用：0 攻击力：6 生命值：8
 	//Gentle Djinni
 	//温和的灯神
-	//[x]<b>Taunt</b>. <b>Deathrattle:</b>Summon and get2 random Elementals.
-	//<b>嘲讽</b>。<b>亡语：</b>召唤并获取2个随机元素。
+	//[x]<b>Taunt</b><b>Battlecry and Deathrattle:</b>__Get 2 random Elementals._
+	//<b>嘲讽</b>。<b>战吼，亡语：</b>随机获取2张元素牌。
 	class Sim_TB_BaconUps_165 : SimTemplate
 	{
 		

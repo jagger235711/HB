@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：2
+	//随从 中立 费用：0 攻击力：6 生命值：2
 	//Annihilan Battlemaster
 	//安尼赫兰战场军官
-	//<b>Battlecry:</b> Gain +4 Health for each Health your hero_is missing.
-	//<b>战吼：</b>你的英雄每缺失一点生命值，便获得+4生命值。
+	//[x]<b>Battlecry:</b> Gain +@ Health.<i>(Improved by each Healthyour hero is missing!)</i>
+	//<b>战吼：</b>获得+@生命值。<i>（你的英雄每缺失一点生命值都会提升！）</i>
 	class Sim_TB_BaconUps_083 : SimTemplate
 	{
 		

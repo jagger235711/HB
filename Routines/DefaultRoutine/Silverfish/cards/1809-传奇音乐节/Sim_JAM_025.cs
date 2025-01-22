@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 潜行者 费用：1
+	//法术 潜行者 费用：2
 	//Funnel Cake
 	//漏斗蛋糕
 	//[x]Restore #3 Health to a minion and its neighbors.For each one <b>Overhealed</b>,refresh a Mana Crystal.

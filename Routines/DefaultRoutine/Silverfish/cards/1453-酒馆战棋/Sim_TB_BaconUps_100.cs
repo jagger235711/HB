@@ -7,8 +7,8 @@ namespace HREngine.Bots
 	//随从 中立 费用：6 攻击力：12 生命值：6
 	//King Bagurgle
 	//拜戈尔格国王
-	//<b>Battlecry:</b> Give your other Murlocs +6/+6.
-	//<b>战吼：</b>使你的其他鱼人获得+6/+6。
+	//<b>Battlecry:</b> Give your other Murlocs +6/+8.
+	//<b>战吼：</b>使你的其他鱼人获得+6/+8。
 	class Sim_TB_BaconUps_100 : SimTemplate
 	{
 		

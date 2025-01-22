@@ -9,7 +9,7 @@ namespace HREngine.Bots
 	//战歌步兵
 	//<b>Rush</b>. After this attacks and kills a minion, it may attack again.
 	//<b>突袭</b>在本随从攻击并消灭一个随从后，可再次攻击。
-	class Sim_TOY_103 : Sim_CORE_TOY_103
+	class Sim_TOY_103 : SimTemplate
 	{
 		
 		

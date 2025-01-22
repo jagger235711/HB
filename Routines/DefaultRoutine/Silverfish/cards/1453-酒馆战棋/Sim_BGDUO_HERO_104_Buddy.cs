@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Mister Chu
 	//楚先生
 	//Once per turn, after you <b>Pass</b> a minion, get a plain copy of it <i>(except <b>Buddies</b>)</i>.

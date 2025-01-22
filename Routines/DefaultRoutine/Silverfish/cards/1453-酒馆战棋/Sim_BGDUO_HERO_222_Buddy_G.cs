@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：10
+	//随从 中立 费用：0 攻击力：10 生命值：10
 	//Halfus the Mighty
 	//威猛的哈尔弗斯
 	//At the start of your turn, <b>Discover</b> 2 minions of your Tier. <i>(50% chance to <b>Pass</b> them!)</i>

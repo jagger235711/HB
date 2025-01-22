@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：8 攻击力：6 生命值：10
+	//随从 中立 费用：7 攻击力：6 生命值：8
 	//The Exodar
 	//埃索达
 	//<b>Battlecry:</b> If you're building a <b>Starship</b>, launch it and choose a Protocol!

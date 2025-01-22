@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//英雄 德鲁伊 费用：0
+	//英雄 中立 费用：0
 	//Guff Runetotem
 	//古夫·符文图腾
 	//

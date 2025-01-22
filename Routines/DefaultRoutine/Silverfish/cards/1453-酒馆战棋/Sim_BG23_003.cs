@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：5
+	//随从 中立 费用：4 攻击力：4 生命值：6
 	//Critter Wrangler
 	//小动物照管员
 	//[x]Whenever you cast a spellon a minion, give it +2/+2.

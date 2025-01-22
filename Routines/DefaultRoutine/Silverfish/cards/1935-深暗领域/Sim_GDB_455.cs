@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 潜行者 费用：5 攻击力：4 生命值：5
+	//随从 潜行者 费用：4 攻击力：4 生命值：4
 	//Askara
 	//阿斯卡拉
 	//<b>Battlecry:</b> The next Draenei you play summons a copy of itself.

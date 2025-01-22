@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：7 攻击力：1 生命值：1
+	//随从 中立 费用：0 攻击力：1 生命值：1
 	//Sandy
 	//流沙幻象
 	//[x]<b>Start of Combat:</b>Transform into a copy ofyour teammate's highestHealth minion.

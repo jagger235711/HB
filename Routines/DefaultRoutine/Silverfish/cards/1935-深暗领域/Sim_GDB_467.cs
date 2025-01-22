@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 牧师 费用：6
+	//法术 牧师 费用：8
 	//Quasar
 	//类星体
 	//Shuffle your hand into your deck.Reduce the Cost of cards in your deck by (3).

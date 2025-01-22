@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Orc-estra Conductor
 	//兽人指挥
 	//[x]<b>Battlecry:</b> Give a minion+{0}/+{1} <i>(Upgraded foreach Orc-estra your team__has played this game)</i>.
