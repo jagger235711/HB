@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：6
 	//Electric Synthesizer
 	//电音合成师
-	//<b>Battlecry:</b> Give yourother Dragons +6/+4.
-	//<b>战吼：</b>使你的其他龙获得+6/+4。
+	//<b>Battlecry and Start of Combat:</b> Give yourother Dragons +2/+2.
+	//<b>战吼，战斗开始时：</b>使你的其他龙获得+2/+2。
 	class Sim_BG26_963_G : SimTemplate
 	{
 		

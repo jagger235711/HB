@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：1 生命值：2
+	//随从 中立 费用：3 攻击力：2 生命值：3
 	//Sun-Bacon Relaxer
 	//晾膘的游客
 	//When you sell this,get 2 <b>Blood Gems</b>.

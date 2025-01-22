@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Pocket Dimension
 	//袖珍次元
 	//<b>Discover</b> a spell.Repeat until you see one for the second time.
-	//<b>发现</b>一张法术牌。重复此效果，直到你再次见到所选的牌。
+	//<b>发现</b>一张法术牌。重复此效果，直到你再次见到选项中见过的牌。
 	class Sim_GDB_133 : SimTemplate
 	{
 		

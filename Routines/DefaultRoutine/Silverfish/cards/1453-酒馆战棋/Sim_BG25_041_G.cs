@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：2
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Felemental
 	//邪能元素
 	//[x]<b>Battlecry:</b> Minions inthe Tavern have +2/+2this game.

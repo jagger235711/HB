@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//英雄 潜行者 费用：0
+	//英雄 中立 费用：0
 	//The Nameless One
 	//无名者
 	//

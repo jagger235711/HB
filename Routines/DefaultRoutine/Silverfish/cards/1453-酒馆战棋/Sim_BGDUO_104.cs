@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：3 生命值：4
+	//随从 中立 费用：0 攻击力：3 生命值：4
 	//Friendly Saloonkeeper
 	//热心的沙龙酒保
 	//<b>Battlecry:</b> Your teammate gets a Gold Coin.

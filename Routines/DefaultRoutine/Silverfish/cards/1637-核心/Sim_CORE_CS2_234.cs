@@ -9,7 +9,7 @@ namespace HREngine.Bots
 	//暗言术：痛
 	//Destroy a minion with 3_or less Attack.
 	//消灭一个攻击力小于或等于3的随从。
-	class Sim_CORE_CS2_234 : Sim_CS2_234
+	class Sim_CORE_CS2_234 : SimTemplate
 	{
 		
 		

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Sky Pirate Flagbearer
 	//擎旗空中海盗
 	//[x]<b>Start of Combat:</b> Give yourother Pirates "<b>Deathrattle:</b>_Summon a 2/2 Pirate. It____attacks immediately."

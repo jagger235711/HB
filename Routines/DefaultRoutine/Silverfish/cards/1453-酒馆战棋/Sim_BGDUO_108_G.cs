@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Mirror Monster
 	//镜中鬼怪
 	//When you buy or <b>Discover</b> this, get 2 extra copiesand <b>Pass</b> them.

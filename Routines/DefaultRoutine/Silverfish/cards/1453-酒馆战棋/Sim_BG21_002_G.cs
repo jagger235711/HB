@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：4 生命值：8
+	//随从 中立 费用：0 攻击力：4 生命值：8
 	//Bird Buddy
 	//鸟类的伙伴
 	//<b>Avenge (1):</b> Give your Beasts +2/+2.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 牧师 费用：5 攻击力：4 生命值：3
+	//随从 牧师 费用：5 攻击力：5 生命值：4
 	//The Gravitational Displacer
 	//引力置换器
 	//[x]<b>Starship Piece</b>When this is launched,summon a copy ofthe <b>Starship</b>.

@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Linedance Partner
 	//排舞的伴侣
 	//<b>Battlecry:</b> If you're holding another 3-Cost card, summon a random 3-Cost minion.
-	//<b>战吼：</b>如果你手牌中有其他法力值消耗为3的牌，随机召唤一个法力值消耗为3的随从。
+	//<b>战吼：</b>如果你手牌中有其他法力值消耗为（3）的牌，随机召唤一个法力值消耗为（3）的随从。
 	class Sim_WW_433 : SimTemplate
 	{
 		

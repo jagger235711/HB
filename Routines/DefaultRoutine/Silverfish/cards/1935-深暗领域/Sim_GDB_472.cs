@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 牧师 费用：4 攻击力：4 生命值：4
+	//随从 牧师 费用：3 攻击力：3 生命值：3
 	//Talgath
 	//塔尔加斯
 	//[x]Undamaged enemy minionstake double damage.<b>Combo:</b> Get a Backstab.

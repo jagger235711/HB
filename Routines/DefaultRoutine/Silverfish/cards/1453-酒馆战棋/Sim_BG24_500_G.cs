@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Amber Guardian
 	//琥珀卫士
 	//[x]<b>Start of Combat:</b> Givetwo other friendly Dragons+3/+3 and <b>Divine Shield</b>.

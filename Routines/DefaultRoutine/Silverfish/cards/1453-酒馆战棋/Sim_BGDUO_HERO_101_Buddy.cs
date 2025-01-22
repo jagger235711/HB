@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：6 生命值：1
+	//随从 中立 费用：0 攻击力：6 生命值：1
 	//Glorious Gloopling
 	//神奇黏液宝宝
 	//[x]At the start of your turn,get a plain copy of yourteammate's highest-Tier______minion <i>(except <b>Buddies</b>)</i>.___

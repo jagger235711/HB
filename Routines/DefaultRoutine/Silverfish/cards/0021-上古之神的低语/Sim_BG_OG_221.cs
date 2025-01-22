@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：2 生命值：1
+	//随从 圣骑士 费用：0 攻击力：2 生命值：1
 	//Selfless Hero
 	//无私的英雄
 	//<b>Deathrattle:</b> Give a random friendly minion <b>Divine Shield</b>.

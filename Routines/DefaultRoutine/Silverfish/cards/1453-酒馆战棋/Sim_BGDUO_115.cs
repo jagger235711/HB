@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：3 生命值：4
+	//随从 中立 费用：0 攻击力：3 生命值：4
 	//Jumping Jack
 	//跳跳娃娃
 	//[x]After the first time thisis sold, <b>Pass</b> it.@[x]After the first time thisis sold, <b>Pass</b> it.<i>(Has been sold.)</i>

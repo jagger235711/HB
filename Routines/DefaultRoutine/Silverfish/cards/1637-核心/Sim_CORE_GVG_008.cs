@@ -9,7 +9,7 @@ namespace HREngine.Bots
 	//圣光炸弹
 	//Deal damage to each minion equal to its Attack.
 	//对所有随从造成等同于其攻击力的伤害。
-	class Sim_CORE_GVG_008 : Sim_GVG_008
+	class Sim_CORE_GVG_008 : SimTemplate
 	{
 		
 		

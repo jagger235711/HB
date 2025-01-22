@@ -7,8 +7,8 @@ namespace HREngine.Bots
 	//法术 中立 费用：0
 	//Hard-Earned Ring
 	//辛苦得来的戒指
-	//Give a minion +2 Attack for each Gold you've spent this turn.
-	//在本回合中你每花一枚铸币，使一个随从获得+2攻击力。
+	//[x]Give a minion +@ Attack.<i>(Improved by each Gold___you've spent this turn!)</i>
+	//使一个随从获得+@攻击力。<i>（在本回合中你每花费一枚铸币都会提升！）</i>
 	class Sim_TB_BaconShop_HERO_10_Buddy_Gt3 : SimTemplate
 	{
 		

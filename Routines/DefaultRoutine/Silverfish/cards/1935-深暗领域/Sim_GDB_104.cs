@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：3 攻击力：2 生命值：3
+	//随从 术士 费用：3 攻击力：2 生命值：4
 	//Felfire Thrusters
 	//邪火推进器
 	//[x]<b><b>Spellburst</b>:</b> Deal thisminion's Attack damage to2 random enemy minions.<b>Starship Piece</b>

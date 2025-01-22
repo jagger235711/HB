@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：5 生命值：5
+	//随从 中立 费用：0 攻击力：5 生命值：5
 	//Halfus the Wise
 	//睿智的哈尔弗斯
 	//[x]At the start of your turn,<b>Discover</b> a Tavern spell ofyour Tier. <i>(50% chance to<b>Pass</b> it!)</i>

@@ -4,11 +4,11 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：10
+	//随从 中立 费用：0 攻击力：10 生命值：10
 	//Saloon Dancer
 	//沙龙舞者
-	//[x]<b>Taunt</b>Whenever you cast aTavern spell, give another___friendly minion +6/+6.
-	//<b>嘲讽</b>。每当你施放一个酒馆法术，使另一个友方随从获得+6/+6。
+	//[x]<b><b>Taunt</b>.</b> Wheneveryou cast a Tavern spell,give two other friendlyminions +10/+10.
+	//<b><b>嘲讽</b>。</b>每当你施放一个酒馆法术，使两个其他友方随从获得+10/+10。
 	class Sim_BG28_667_G : SimTemplate
 	{
 		

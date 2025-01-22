@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Annoy-o Horn
 	//吵吵号角
 	//Fill your board with annoying minions.
-	//用吵闹的随从填满你的面板
+	//用吵闹的随从填满你的面板。
 	class Sim_DALA_722 : SimTemplate
 	{
 		

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：1 生命值：1
+	//随从 中立 费用：0 攻击力：1 生命值：1
 	//Faceless One
 	//无面者
 	//When you sell this, get the <b>Buddy</b> of your teammate's Hero Power.
