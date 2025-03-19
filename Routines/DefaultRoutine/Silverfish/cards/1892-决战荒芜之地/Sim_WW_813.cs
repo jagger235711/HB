@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：4 攻击力：2 耐久度：3
+	//武器 猎人 费用：4 攻击力：2 耐久度：0
 	//Starshooter
 	//明星手枪
 	//After your hero attacks, get an Arcane Shot.

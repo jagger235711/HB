@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：3 耐久度：4
+	//武器 中立 费用：2 攻击力：3 耐久度：0
 	//Ritual Dagger
 	//仪式匕首
 	//[x]<b>Lifesteal</b>After you cast a spell, thisgains +1 Durability.

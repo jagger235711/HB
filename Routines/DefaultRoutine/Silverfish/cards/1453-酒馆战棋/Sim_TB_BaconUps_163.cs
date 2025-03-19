@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：8 攻击力：16 生命值：16
+	//随从 中立 费用：0 攻击力：16 生命值：16
 	//Lieutenant Garr
 	//炎魔副官加尔
 	//[x]<b>Taunt</b>After you play an Elemental,gain +2 Health for eachfriendly Elemental.

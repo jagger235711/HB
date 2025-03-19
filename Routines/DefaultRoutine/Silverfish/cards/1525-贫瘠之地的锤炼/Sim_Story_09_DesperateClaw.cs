@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：3 攻击力：2 耐久度：3
+	//武器 萨满祭司 费用：3 攻击力：2 耐久度：0
 	//Desperate Claw
 	//绝望之爪
 	//Has +1 Attack while you have <b>Overloaded</b> Mana Crystals.

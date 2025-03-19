@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 猎人 费用：3 攻击力：6 生命值：4
+	//随从 猎人 费用：0 攻击力：6 生命值：4
 	//Rabid Saurolisk
 	//暴怒的巨蜥
 	//After you play a minion with <b>Deathrattle</b>, gain +2/+4.

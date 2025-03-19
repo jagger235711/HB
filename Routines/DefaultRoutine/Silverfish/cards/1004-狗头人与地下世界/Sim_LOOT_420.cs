@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 术士 费用：5 攻击力：0 耐久度：3
+	//武器 术士 费用：5 攻击力：0 耐久度：0
 	//Skull of the Man'ari
 	//堕落者之颅
 	//At the start of your turn, summon a Demon from your hand.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：10
+	//随从 中立 费用：0 攻击力：6 生命值：10
 	//Soul Juggler
 	//灵魂杂耍者
 	//After a friendly Demon dies, deal {0} damage to a random enemy minion, twice.@After a friendly Demon dies, deal <b>*{0}*</b> damage to a random enemy minion, twice.

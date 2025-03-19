@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：12 生命值：12
+	//随从 中立 费用：0 攻击力：12 生命值：12
 	//Chromie
 	//克罗米
 	//[x]Minions in the Tavernhave +2/+2 for each time itwas <b>Refreshed</b> this turn.

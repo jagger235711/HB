@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：1 耐久度：3
+	//武器 战士 费用：2 攻击力：1 耐久度：0
 	//Ringmaster's Baton
 	//马戏领班的节杖
 	//After your hero attacks, give a Mech, Dragon, and Pirate in your hand +1/+1.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：8 攻击力：3 耐久度：3
+	//武器 萨满祭司 费用：8 攻击力：3 耐久度：0
 	//The Runespear
 	//符文之矛
 	//After your hero attacks, <b>Discover</b> a spelland cast it with random targets.

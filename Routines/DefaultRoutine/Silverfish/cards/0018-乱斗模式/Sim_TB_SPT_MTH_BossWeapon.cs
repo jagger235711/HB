@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：0 耐久度：1
+	//武器 中立 费用：1 攻击力：0 耐久度：0
 	//Party Armory
 	//派对军械库
 	//Attack increases over time.

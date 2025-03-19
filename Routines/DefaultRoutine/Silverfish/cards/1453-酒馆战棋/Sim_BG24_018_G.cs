@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：0 攻击力：8 生命值：14
+	//随从 中立 费用：0 攻击力：6 生命值：12
 	//Tortollan Blue Shell
 	//蓝壳始祖龟
 	//If you lost your last combat, this minion sells for 10 Gold.

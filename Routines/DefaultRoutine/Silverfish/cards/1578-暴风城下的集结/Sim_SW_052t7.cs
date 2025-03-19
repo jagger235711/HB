@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：1 攻击力：3 耐久度：2
+	//武器 牧师 费用：1 攻击力：3 耐久度：0
 	//Hidden Gyroblade
 	//隐蔽式旋刃
 	//<b>Deathrattle:</b> Throw this at a random enemy minion.

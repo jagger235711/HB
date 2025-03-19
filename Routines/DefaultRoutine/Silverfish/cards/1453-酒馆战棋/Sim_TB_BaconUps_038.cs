@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：8 生命值：10
+	//随从 中立 费用：0 攻击力：8 生命值：10
 	//Phalanx Commander
 	//方阵指挥官
 	//Your <b>Taunt</b> minionshave +4 Attack.

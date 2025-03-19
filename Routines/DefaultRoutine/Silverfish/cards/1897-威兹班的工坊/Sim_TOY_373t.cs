@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 法师 费用：3 攻击力：0 耐久度：6
+	//武器 法师 费用：3 攻击力：0 耐久度：0
 	//Magic Wisdomball
 	//魔法智慧之球
 	//[x]At the end of your turn,cast a helpful Mage spell.Lose 1 Durability.

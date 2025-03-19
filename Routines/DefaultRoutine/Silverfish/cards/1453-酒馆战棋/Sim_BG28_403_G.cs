@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：2
+	//随从 中立 费用：0 攻击力：6 生命值：2
 	//Phaerix, Wrath of the Sun
 	//菲利克斯，太阳之怒
 	//<b><b>Divine Shield</b>Avenge (4):</b> Give two random friendly minions <b><b>Divine Shield</b>.</b>

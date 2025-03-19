@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：1 攻击力：4 生命值：2
+	//随从 术士 费用：0 攻击力：4 生命值：2
 	//Fiendish Servant
 	//邪魔仆从
 	//[x]<b>Deathrattle:</b> Give thisminion's Attack to a randomfriendly minion, twice.

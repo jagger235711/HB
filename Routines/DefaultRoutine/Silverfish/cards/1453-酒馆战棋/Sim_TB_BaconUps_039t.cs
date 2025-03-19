@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 圣骑士 费用：8 攻击力：16 生命值：16
+	//随从 圣骑士 费用：0 攻击力：16 生命值：16
 	//Robosaur
 	//机械暴龙
 	//

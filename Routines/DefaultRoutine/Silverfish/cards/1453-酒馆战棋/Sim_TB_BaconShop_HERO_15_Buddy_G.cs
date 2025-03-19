@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：8
+	//随从 中立 费用：0 攻击力：6 生命值：8
 	//Karl the Lost
 	//走失的卡尔
 	//After you use your Hero Power, give your <b>Divine Shield</b> minions +4_Attack.

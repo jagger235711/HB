@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：6
+	//随从 中立 费用：0 攻击力：10 生命值：6
 	//Hunter of Old
 	//老练的猎人
 	//At the start of your turn,get 2 of your last opponent's Buddy.

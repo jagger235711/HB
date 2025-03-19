@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 萨满祭司 费用：3
+	//法术 萨满祭司 费用：2
 	//Flash of Lightning
 	//须臾闪电
 	//Draw a card.Next turn, your Nature spells cost (1) less.

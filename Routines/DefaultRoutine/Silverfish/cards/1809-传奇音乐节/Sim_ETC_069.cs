@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 术士 费用：3
+	//法术 术士 费用：2
 	//Crescendo
 	//渐强声浪
 	//[x]Take Fatigue damage.Deal that much damageto all enemies.@[x]Take {0} Fatigue damage.Deal that much damageto all enemies.

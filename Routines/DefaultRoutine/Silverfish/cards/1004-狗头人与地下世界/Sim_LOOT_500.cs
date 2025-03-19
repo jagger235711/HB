@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：6 攻击力：4 耐久度：2
+	//武器 圣骑士 费用：6 攻击力：4 耐久度：0
 	//Val'anyr
 	//瓦兰奈尔
 	//<b>Deathrattle:</b> Give a minion in your hand +4/+2. When it dies, reequip this.

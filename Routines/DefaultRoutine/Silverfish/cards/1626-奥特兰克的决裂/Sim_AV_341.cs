@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：5 攻击力：3 耐久度：2
+	//武器 圣骑士 费用：5 攻击力：3 耐久度：0
 	//Cavalry Horn
 	//骑兵号角
 	//<b>Deathrattle:</b> Summon the lowest Cost minion in your hand.

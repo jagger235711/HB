@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：10
+	//随从 中立 费用：0 攻击力：6 生命值：10
 	//Witchwing Nestmatron
 	//巫翼巢穴主母
 	//<b>Avenge (3):</b> Get 2 random <b>Battlecry</b> minions.

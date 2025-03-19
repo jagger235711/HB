@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：3 攻击力：3 耐久度：2
+	//武器 牧师 费用：3 攻击力：3 耐久度：0
 	//Record Scratcher
 	//搓盘机
 	//[x]<b>Deathrattle:</b> Refresh@ Mana |4(Crystal, Crystals).<i>(Play <b>Combo</b> cards while____equipped to improve!)</i>__

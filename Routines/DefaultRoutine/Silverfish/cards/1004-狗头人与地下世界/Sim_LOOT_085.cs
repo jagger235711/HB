@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：7 攻击力：4 耐久度：2
+	//武器 猎人 费用：7 攻击力：4 耐久度：0
 	//Rhok'delar
 	//伦鲁迪洛尔
 	//<b>Battlecry:</b> If your deck has no minions, fill your_hand with Hunter_spells.

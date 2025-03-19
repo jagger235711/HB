@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：1 攻击力：1 耐久度：1
+	//武器 战士 费用：1 攻击力：1 耐久度：0
 	//Boom Wrench
 	//砰砰扳手
 	//[x]<b>Mini</b><b>Deathrattle:</b> Trigger the<b>Deathrattle</b> of a randomfriendly Mech.

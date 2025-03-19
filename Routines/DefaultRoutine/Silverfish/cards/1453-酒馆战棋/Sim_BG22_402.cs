@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：5 生命值：5
+	//随从 中立 费用：0 攻击力：5 生命值：5
 	//Mantid Queen
 	//螳螂妖女皇
 	//[x]<b>Venomous</b>. <b>Start of Combat:</b>For each of your miniontypes gain +5/+5, <b>Windfury</b>,___<b>Reborn</b>, or <b>Taunt</b>.

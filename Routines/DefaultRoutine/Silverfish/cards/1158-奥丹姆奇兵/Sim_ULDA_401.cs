@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：4 耐久度：2
+	//武器 战士 费用：3 攻击力：4 耐久度：0
 	//Ol' Faithful
 	//靠谱的老猎枪
 	//After your hero attacks, deal 1 damage to all enemies.

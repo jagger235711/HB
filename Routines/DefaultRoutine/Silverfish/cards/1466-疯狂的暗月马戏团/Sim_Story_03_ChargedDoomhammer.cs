@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：5 攻击力：3 耐久度：8
+	//武器 萨满祭司 费用：5 攻击力：3 耐久度：0
 	//Charged Doomhammer
 	//充能的毁灭之锤
 	//<b>Windfury</b><b>Deathrattle:</b> Give yourminions <b>Windfury</b>.

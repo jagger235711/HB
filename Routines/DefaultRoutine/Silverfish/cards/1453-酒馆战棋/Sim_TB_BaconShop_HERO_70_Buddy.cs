@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：5 生命值：4
+	//随从 中立 费用：0 攻击力：5 生命值：4
 	//Lil' K.T.
 	//小克
 	//[x]At the start of your turn,get a plain minion fromyour lowest Healthopponent's warband.

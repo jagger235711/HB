@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 中立 费用：1
+	//法术 中立 费用：0
 	//Snake Oil
 	//蛇油
 	//<b>Tradeable</b>Deal $0 damage.<i>This seems useless...</i>

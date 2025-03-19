@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：2 耐久度：3
+	//武器 中立 费用：2 攻击力：2 耐久度：0
 	//Kodo Hide Whip
 	//科多皮鞭
 	//After your hero attacks a minion and it survives, put that minion in your hand.

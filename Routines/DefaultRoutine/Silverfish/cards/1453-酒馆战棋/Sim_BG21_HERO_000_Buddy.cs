@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：7 生命值：5
+	//随从 中立 费用：0 攻击力：7 生命值：5
 	//Captain Fairmount
 	//法莫斯队长
 	//[x]<b>Choose One</b> - For the restof the game, 'Conviction'gives an extra +2 Attack;or +2 Health.

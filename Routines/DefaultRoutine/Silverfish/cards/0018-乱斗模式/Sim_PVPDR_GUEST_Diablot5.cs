@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：0 耐久度：3
+	//武器 战士 费用：3 攻击力：0 耐久度：0
 	//Horns of Flame
 	//烈焰之角
 	//At the start of your turn, add a random Shadow or Fire spell to your hand.

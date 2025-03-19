@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：7 攻击力：3 生命值：9
+	//随从 中立 费用：0 攻击力：3 生命值：9
 	//Moira Bronzebeard
 	//茉艾拉·铜须
 	//Your <b>Battlecries</b> and <b>Deathrattles</b> trigger twice.

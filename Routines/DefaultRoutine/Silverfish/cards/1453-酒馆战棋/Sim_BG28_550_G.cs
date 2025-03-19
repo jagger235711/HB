@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：6 生命值：8
+	//随从 中立 费用：0 攻击力：6 生命值：8
 	//Rodeo Performer
 	//竞技表演者
 	//<b>Battlecry:</b> <b>Discover</b> 2 Tavern spells.

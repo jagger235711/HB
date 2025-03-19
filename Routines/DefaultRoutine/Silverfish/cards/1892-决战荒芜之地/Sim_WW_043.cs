@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：3 攻击力：2 生命值：4
+	//随从 术士 费用：3 攻击力：2 生命值：5
 	//Sludge on Wheels
 	//轮式淤泥怪
 	//[x]<b>Rush</b>. Whenever this takesdamage, get a Barrel ofSludge and add one to thebottom of your deck.

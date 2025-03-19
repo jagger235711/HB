@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：3 攻击力：3 耐久度：2
+	//武器 圣骑士 费用：3 攻击力：3 耐久度：0
 	//Interstellar Starslicer
 	//斩星巨刃
 	//<b>Battlecry and Deathrattle:</b> Reduce the Cost of your Librams by (1)this game.

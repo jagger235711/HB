@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：4 攻击力：2 耐久度：2
+	//武器 战士 费用：4 攻击力：2 耐久度：0
 	//Blood Razor
 	//血刃剃刀
 	//<b>Battlecry and Deathrattle:</b>Deal 1 damage to all_minions.

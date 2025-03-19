@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：2 攻击力：3 耐久度：2
+	//武器 圣骑士 费用：2 攻击力：3 耐久度：0
 	//Hammer
 	//战锤
 	//

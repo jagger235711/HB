@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 法师 费用：2 攻击力：0 耐久度：3
+	//武器 法师 费用：2 攻击力：0 耐久度：0
 	//Cosmic Keyboard
 	//星界键盘
 	//[x]After you cast a spell,summon an Elemental withstats equal to its Cost.Lose 1 Durability.

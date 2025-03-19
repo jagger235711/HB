@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：1 攻击力：2 耐久度：3
+	//武器 牧师 费用：1 攻击力：2 耐久度：0
 	//Hasty Blade
 	//急促之刃
 	//<b>Deathrattle:</b> Give a random friendly minion <b>Charge</b>.

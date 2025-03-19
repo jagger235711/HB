@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：3 耐久度：2
+	//武器 中立 费用：2 攻击力：3 耐久度：0
 	//Improvised Flamethrower
 	//简易喷火器
 	//<b>Battlecry and Deathrattle:</b>Deal 2 damage to all_minions.

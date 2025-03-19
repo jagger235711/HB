@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 恶魔猎手 费用：5 攻击力：5 生命值：3
+	//随从 恶魔猎手 费用：5 攻击力：6 生命值：4
 	//Zai, the Incredible
 	//扎依，出彩艺人
 	//<b>Battlecry:</b> Copy the left- and right-most cards in your hand.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：1 耐久度：5
+	//武器 中立 费用：3 攻击力：1 耐久度：0
 	//Shaw's Shank
 	//肖尔的小刀
 	//Has +1_Attack for each friendly minion you control.

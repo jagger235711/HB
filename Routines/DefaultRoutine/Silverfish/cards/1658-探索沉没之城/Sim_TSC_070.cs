@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：3 攻击力：3 耐久度：2
+	//武器 猎人 费用：3 攻击力：3 耐久度：0
 	//Harpoon Gun
 	//鱼叉炮
 	//After your hero attacks, <b>Dredge</b>. If it's a Beast, reduce its Cost by (2).

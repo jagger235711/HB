@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：7 攻击力：18 生命值：18
+	//随从 中立 费用：0 攻击力：18 生命值：18
 	//King Varian
 	//瓦里安国王
 	//When you sell this, <b>Discover</b> fourTier 6 minions.

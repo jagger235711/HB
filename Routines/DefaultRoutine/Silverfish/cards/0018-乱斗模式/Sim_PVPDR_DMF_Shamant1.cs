@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：5 攻击力：2 耐久度：3
+	//武器 萨满祭司 费用：5 攻击力：2 耐久度：0
 	//Tempest's Fury
 	//雷暴之怒
 	//After your hero attacks, cast Lightning Bolt on a random enemy character.

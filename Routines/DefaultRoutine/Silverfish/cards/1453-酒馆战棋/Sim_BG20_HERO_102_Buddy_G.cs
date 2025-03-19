@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：12 生命值：12
+	//随从 中立 费用：0 攻击力：12 生命值：12
 	//Dranosh Saurfang
 	//德拉诺什·萨鲁法尔
 	//After you buy a minion, gain double its stats.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：7 生命值：5
+	//随从 中立 费用：0 攻击力：7 生命值：5
 	//Crimson Hand Centurion
 	//炽手百夫长
 	//After 'Verdant Spheres' triggers, give your hand and board +1/+1.

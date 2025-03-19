@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：3 耐久度：1
+	//武器 战士 费用：3 攻击力：3 耐久度：0
 	//Rokara's Axe
 	//洛卡拉的斧头
 	//

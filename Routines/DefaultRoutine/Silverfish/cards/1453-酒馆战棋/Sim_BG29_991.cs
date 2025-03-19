@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：3 生命值：5
+	//随从 中立 费用：0 攻击力：3 生命值：5
 	//Murgl Mk II
 	//钢铁鱼人II型
 	//[x]<b>Avenge (4):</b> Give minionsin your hand and board+1/+1 permanently.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Talent Scout
 	//星探
 	//<b>Battlecry:</b> Make a <b>Buddy</b> Golden.

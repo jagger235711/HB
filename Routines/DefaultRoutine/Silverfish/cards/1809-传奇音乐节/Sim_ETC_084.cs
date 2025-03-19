@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 术士 费用：1 攻击力：0 耐久度：3
+	//武器 术士 费用：1 攻击力：0 耐久度：0
 	//Felstring Harp
 	//邪弦竖琴
 	//[x]Whenever your hero wouldtake damage on your turn,restore 2 Health instead.Lose 1 Durability.

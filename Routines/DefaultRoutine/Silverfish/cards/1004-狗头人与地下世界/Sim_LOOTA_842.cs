@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：6 耐久度：6
+	//武器 中立 费用：1 攻击力：6 耐久度：0
 	//Quel'Delar
 	//奎尔德拉
 	//After your hero attacks, deal 6 damage to all_enemies.

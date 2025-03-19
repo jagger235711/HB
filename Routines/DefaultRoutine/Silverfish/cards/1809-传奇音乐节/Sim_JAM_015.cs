@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：2 耐久度：2
+	//武器 战士 费用：2 攻击力：2 耐久度：0
 	//Remixed Tuning Fork
 	//混搭音叉
 	//Gains an extra effect inyour hand that changeseach turn.

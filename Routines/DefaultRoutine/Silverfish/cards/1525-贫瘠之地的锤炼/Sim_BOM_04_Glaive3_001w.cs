@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 恶魔猎手 费用：3 攻击力：4 耐久度：2
+	//武器 恶魔猎手 费用：3 攻击力：4 耐久度：0
 	//Glaive (Rank 3)
 	//战刃（等级3）
 	//

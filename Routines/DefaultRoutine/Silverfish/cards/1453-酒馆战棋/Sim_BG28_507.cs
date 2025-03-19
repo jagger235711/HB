@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_SPELL 中立 费用：6
+	//BATTLEGROUND_SPELL 中立 费用：4
 	//Sacred Gift
 	//神圣赠礼
 	//Give a minion<b>Divine Shield</b>.

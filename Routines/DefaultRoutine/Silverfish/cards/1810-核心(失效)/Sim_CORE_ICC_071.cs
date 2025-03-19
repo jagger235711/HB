@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：4 攻击力：1 耐久度：4
+	//武器 圣骑士 费用：4 攻击力：1 耐久度：0
 	//Light's Sorrow
 	//光之悲恸
 	//After a friendly minion loses <b>Divine Shield</b>, gain +1 Attack.

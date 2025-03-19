@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：3 攻击力：3 耐久度：2
+	//武器 萨满祭司 费用：3 攻击力：3 耐久度：0
 	//Whack-A-Gnoll Hammer
 	//敲狼锤
 	//After your hero attacks, give a random friendly minion +1/+1.

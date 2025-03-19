@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：5 生命值：3
+	//随从 中立 费用：6 攻击力：5 生命值：4
 	//Evasive Wyrm
 	//辟法巨龙
 	//<b>Rush</b><b>Divine Shield</b><b>Elusive</b>

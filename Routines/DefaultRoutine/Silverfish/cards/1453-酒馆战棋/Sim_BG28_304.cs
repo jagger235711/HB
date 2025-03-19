@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：4 生命值：2
+	//随从 中立 费用：0 攻击力：4 生命值：2
 	//Moroes, Steward of Death
 	//死亡管家莫罗斯
 	//<b><b>Reborn</b>. Deathrattle:</b> Give your Undead +2/+4.

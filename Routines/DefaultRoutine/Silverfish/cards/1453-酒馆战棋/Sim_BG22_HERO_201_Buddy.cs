@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：4 生命值：3
+	//随从 中立 费用：0 攻击力：4 生命值：3
 	//Submersible Chef
 	//水下大厨
 	//<b>Battlecry:</b> Get a random minion each fromTiers 1, 3, and 5.

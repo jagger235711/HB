@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 恶魔猎手 费用：5 攻击力：3 耐久度：4
+	//武器 恶魔猎手 费用：5 攻击力：3 耐久度：0
 	//Warglaives of Azzinoth
 	//埃辛诺斯战刃
 	//After attacking a minion, your hero may attack again.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：1 耐久度：5
+	//武器 中立 费用：3 攻击力：1 耐久度：0
 	//Training Sword
 	//训练用剑
 	//After your hero attacks, gain +1 Attack.

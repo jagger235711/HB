@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：4 攻击力：4 耐久度：3
+	//武器 中立 费用：4 攻击力：4 耐久度：0
 	//Magma Horns
 	//熔岩魔角
 	//After your hero attacks, destroy 1 of your_opponent's Mana_Crystals.

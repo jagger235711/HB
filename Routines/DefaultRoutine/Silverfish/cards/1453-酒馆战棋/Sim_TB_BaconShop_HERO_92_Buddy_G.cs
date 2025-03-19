@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：12 生命值：12
+	//随从 中立 费用：0 攻击力：12 生命值：12
 	//Baby Y'Shaarj
 	//亚煞极幼体
 	//Whenever you summona minion of your Tier,give it +8/+8.

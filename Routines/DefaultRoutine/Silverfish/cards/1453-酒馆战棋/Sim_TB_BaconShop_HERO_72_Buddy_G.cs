@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：8
+	//随从 中立 费用：0 攻击力：10 生命值：8
 	//Barov's Apprentice
 	//巴罗夫的扈从
 	//After you play a Coin, gain 2 Gold.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：12 生命值：10
+	//随从 中立 费用：0 攻击力：12 生命值：10
 	//Lucifron
 	//鲁西弗隆
 	//Your end of turn effects trigger 2 extra times.

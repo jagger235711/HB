@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：4
+	//随从 中立 费用：0 攻击力：6 生命值：4
 	//Lantern Tender
 	//护灯人
 	//At the end of your turn,get 2 'Lantern Lights' that give a minion stats equal to your Tier.

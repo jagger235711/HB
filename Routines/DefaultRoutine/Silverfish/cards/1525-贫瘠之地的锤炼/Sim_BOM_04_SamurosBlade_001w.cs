@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：5 攻击力：3 耐久度：3
+	//武器 战士 费用：5 攻击力：3 耐久度：0
 	//Samuro's Blade
 	//萨穆罗的剑
 	//Also damages the minions next to whomever your hero_attacks.

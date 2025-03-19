@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：0 耐久度：3
+	//武器 中立 费用：1 攻击力：0 耐久度：0
 	//Archmage Staff
 	//大法师之杖
 	//[x]At the start of your turn,add a random Magespell to your hand.

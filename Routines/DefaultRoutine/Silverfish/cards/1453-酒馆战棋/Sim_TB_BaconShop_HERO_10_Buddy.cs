@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：3
+	//随从 中立 费用：0 攻击力：6 生命值：3
 	//Bilgewater Mogul
 	//锈水大亨
 	//[x]<b>Choose One - </b>Give a minion+@ Attack; or +@ Health.<i>(Improved by each Gold____you've spent this turn!)</i>

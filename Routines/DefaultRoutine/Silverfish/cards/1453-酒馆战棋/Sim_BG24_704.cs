@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：8 生命值：5
+	//随从 中立 费用：0 攻击力：8 生命值：5
 	//Interrogator Whitemane
 	//审讯官怀特迈恩
 	//[x]<b>Start of Combat:</b> Give anenemy minion from Tier 5 orhigher <b>Taunt</b>. It takes doubledamage this combat.

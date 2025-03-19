@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：2 耐久度：2
+	//武器 中立 费用：1 攻击力：2 耐久度：0
 	//Runic Shortsword
 	//符文短剑
 	//{0} {1}

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：3 生命值：4
+	//随从 中立 费用：0 攻击力：3 生命值：4
 	//Sin'dorei Straight Shot
 	//辛多雷直射手
 	//[x]<b>Windfury</b>, <b>Divine Shield</b>Whenever this attacks,remove <b>Reborn</b> and <b>Taunt</b>from the target.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：3 耐久度：2
+	//武器 中立 费用：3 攻击力：3 耐久度：0
 	//Electrified Spear
 	//电化长矛
 	//Also damages the minions next to whomever your hero_attacks.

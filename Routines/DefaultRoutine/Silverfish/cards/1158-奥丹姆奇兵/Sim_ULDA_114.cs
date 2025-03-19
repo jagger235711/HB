@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：0 耐久度：10
+	//武器 中立 费用：1 攻击力：0 耐久度：0
 	//Aegis of Death
 	//死亡护盾
 	//[x]Your hero is <b>Immune</b>.Each turn, lose 1 Durabilty.<b>Deathrattle:</b> Deal 100damage to your hero.

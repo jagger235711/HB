@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：1 攻击力：1 耐久度：1
+	//武器 战士 费用：1 攻击力：1 耐久度：0
 	//Molten Blade
 	//熔岩之刃
 	//Transforms into a new weapon when in hand that changes each turn.

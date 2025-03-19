@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：3 攻击力：3 耐久度：2
+	//武器 巫妖王 费用：3 攻击力：3 耐久度：0
 	//Soulbreaker
 	//断魂
 	//After your hero attacks and kills a minion, gain 2 <b>Corpses</b>.

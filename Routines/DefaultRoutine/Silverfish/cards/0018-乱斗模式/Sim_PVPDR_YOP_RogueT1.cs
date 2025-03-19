@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：3 攻击力：1 耐久度：3
+	//武器 牧师 费用：3 攻击力：1 耐久度：0
 	//Green Tortollan Shell
 	//翠绿始祖龟壳
 	//<b>Battlecry:</b> Return @ random enemy |4(minion, minions) to |4(its, their) owner's hand. <i>(Improves_during_run)</i>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：3 生命值：4
+	//随从 中立 费用：0 攻击力：3 生命值：4
 	//Pigeon Lord
 	//鸽群领主
 	//[x]Your <b>Refreshes</b> cost (0)while the Tavern doesn'thave the minion type ofyour Hero Power.

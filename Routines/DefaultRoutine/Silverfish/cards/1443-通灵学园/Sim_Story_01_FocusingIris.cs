@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 法师 费用：8 攻击力：0 耐久度：3
+	//武器 法师 费用：8 攻击力：0 耐久度：0
 	//Focusing Iris
 	//聚焦之虹
 	//<b>Spell Damage +1</b> <b>Battlecry:</b> Fill your board with 3/6 Water Elementals.

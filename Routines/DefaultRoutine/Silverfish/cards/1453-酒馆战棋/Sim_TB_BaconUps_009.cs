@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Defender of Argus
 	//阿古斯防御者
 	//<b>Battlecry:</b> Give adjacent minions +2/+2 and <b>Taunt</b>.

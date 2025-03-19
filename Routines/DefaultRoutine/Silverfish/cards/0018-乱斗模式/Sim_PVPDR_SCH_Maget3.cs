@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 法师 费用：1 攻击力：0 耐久度：5
+	//武器 法师 费用：1 攻击力：0 耐久度：0
 	//Wand of Dueling
 	//决斗魔杖
 	//Your Hero Power deals 1 extra damage. After each use, lose 1 Durability.

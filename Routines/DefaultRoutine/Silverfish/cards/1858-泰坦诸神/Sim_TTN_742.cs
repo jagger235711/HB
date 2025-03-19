@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：3 生命值：3
+	//随从 中立 费用：2 攻击力：3 生命值：2
 	//Celestial Projectionist
 	//星空投影师
 	//[x]<b>Battlecry:</b> Choose afriendly minion. Add a<b>Temporary</b> copy of itto your hand.

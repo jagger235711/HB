@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：7 攻击力：5 耐久度：2
+	//武器 战士 费用：7 攻击力：5 耐久度：0
 	//The Unstoppable Force
 	//无坚不摧之力
 	//After you attack a minion, smash it into the enemy hero!

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：1 耐久度：2
+	//武器 中立 费用：1 攻击力：1 耐久度：0
 	//Rare Spear
 	//破水之矛
 	//Whenever your opponent plays a Rare card, gain +1/+1.

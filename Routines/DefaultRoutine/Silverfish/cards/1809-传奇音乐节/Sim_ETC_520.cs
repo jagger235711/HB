@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：4 攻击力：3 耐久度：2
+	//武器 战士 费用：4 攻击力：3 耐久度：0
 	//Kodohide Drumkit
 	//科多兽皮组鼓
 	//[x]<b>Deathrattle:</b> Deal @damage to all minions.<i>(Gain Armor while____equipped to improve!)</i>__

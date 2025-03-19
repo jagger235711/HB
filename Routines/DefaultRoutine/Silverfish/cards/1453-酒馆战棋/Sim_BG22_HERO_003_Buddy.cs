@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：4 生命值：7
+	//随从 中立 费用：0 攻击力：4 生命值：7
 	//Stormpike Lieutenant
 	//雷矛军官
 	//[x]<b>Avenge (2):</b> Minions inthe Tavern have +1 Healththis game.

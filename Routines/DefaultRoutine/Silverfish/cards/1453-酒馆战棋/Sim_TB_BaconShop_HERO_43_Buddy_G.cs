@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：0 生命值：6
+	//随从 中立 费用：0 攻击力：0 生命值：6
 	//Brann's Epic Egg
 	//布莱恩的宝贝蛋
 	//[x]<b>Taunt</b> <b>Deathrattle:</b> Summonand get 2 random<b>Battlecry</b> minions.

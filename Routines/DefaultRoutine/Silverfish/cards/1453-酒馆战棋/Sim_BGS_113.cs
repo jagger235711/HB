@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：4 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：4
 	//Faceless Taverngoer
 	//无面酒客
 	//[x]<b>Battlecry:</b> Choose a minionin the Tavern. Transforminto a plain copy of it.

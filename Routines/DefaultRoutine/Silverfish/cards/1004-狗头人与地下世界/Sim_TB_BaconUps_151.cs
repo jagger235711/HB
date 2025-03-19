@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 猎人 费用：3 攻击力：6 生命值：8
+	//随从 猎人 费用：0 攻击力：4 生命值：8
 	//Cave Hydra
 	//洞穴多头蛇
 	//Also damages the minions next to whomeverthis attacks.

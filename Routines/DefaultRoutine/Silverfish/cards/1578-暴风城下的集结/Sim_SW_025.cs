@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：2 攻击力：2 耐久度：2
+	//武器 萨满祭司 费用：2 攻击力：2 耐久度：0
 	//Auctionhouse Gavel
 	//拍卖行木槌
 	//[x]After your hero attacks,reduce the Cost of a<b>Battlecry</b> minion inyour hand by (1).

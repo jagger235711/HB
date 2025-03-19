@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：6 生命值：16
+	//随从 中立 费用：0 攻击力：6 生命值：16
 	//The Boogie Monster
 	//布吉舞怪兽
 	//After you play a Tier {0} minion, progress to thenext Tier and give your minions +2/+4.@After you play a Tier 6 minion, give yourminions +2/+4.

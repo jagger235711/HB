@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：8 攻击力：4 耐久度：3
+	//武器 战士 费用：8 攻击力：4 耐久度：0
 	//Shadowmourne
 	//影之哀伤
 	//Also damages the minions next to whomever your hero_attacks.

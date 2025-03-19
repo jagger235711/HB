@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 恶魔猎手 费用：4 攻击力：4 耐久度：2
+	//武器 恶魔猎手 费用：4 攻击力：4 耐久度：0
 	//Glaivetar
 	//战刃吉他
 	//[x]_<b>Deathrattle:</b> Draw @ |4(card, cards)._<i>(Play <b>Outcast</b> cards while_equipped to improve!)</i>

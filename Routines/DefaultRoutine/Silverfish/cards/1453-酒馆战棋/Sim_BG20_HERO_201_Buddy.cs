@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：7 生命值：6
+	//随从 中立 费用：0 攻击力：7 生命值：6
 	//Master Gadrin
 	//加德林大师
 	//[x]Minions targeted by'Spirit Swap' also gaineach other's Health.

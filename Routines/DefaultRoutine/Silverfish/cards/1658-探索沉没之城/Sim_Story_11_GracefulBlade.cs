@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：3 攻击力：2 耐久度：3
+	//武器 牧师 费用：3 攻击力：2 耐久度：0
 	//Graceful Blade
 	//优雅之刃
 	//<b>Battlecry:</b> Deal 1 damage. <b>Combo:</b> Gain <b>Lifesteal</b>.

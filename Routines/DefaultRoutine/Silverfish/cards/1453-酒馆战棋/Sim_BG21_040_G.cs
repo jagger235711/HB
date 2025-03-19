@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：8
+	//随从 中立 费用：0 攻击力：10 生命值：8
 	//Recycling Wraith
 	//回收魔灵
 	//[x]After you play anElemental, your next two<b>Refreshes</b> cost (1) less.

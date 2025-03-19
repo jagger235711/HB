@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：5 攻击力：6 耐久度：1
+	//武器 中立 费用：5 攻击力：6 耐久度：0
 	//Soulreaper's Scythe
 	//掠魂之镰
 	//<b>Deathrattle:</b> Summon all minions killed by this weapon this run.

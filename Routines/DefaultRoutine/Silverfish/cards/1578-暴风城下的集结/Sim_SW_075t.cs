@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：10 攻击力：15 耐久度：3
+	//武器 中立 费用：10 攻击力：15 耐久度：0
 	//Sword of a Thousand Truths
 	//锯齿符文剑
 	//[x]After your hero attacks,destroy your opponent'sMana Crystals.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：3 攻击力：3 耐久度：2
+	//武器 萨满祭司 费用：3 攻击力：3 耐久度：0
 	//Jazz Bass
 	//爵士贝斯
 	//[x]<b>Deathrattle:</b> Your nextspell costs (@) less.<i>(<b>Overload</b> while equippedto improve!)</i>

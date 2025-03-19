@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：5 攻击力：3 耐久度：2
+	//武器 牧师 费用：5 攻击力：3 耐久度：0
 	//Warden's Glaive
 	//守望者的战刃
 	//If this kills an enemy minion, adjacent minions go <b>Dormant</b> for 2 turns.

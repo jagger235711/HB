@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：3 耐久度：3
+	//武器 中立 费用：3 攻击力：3 耐久度：0
 	//Felfire Flamberge
 	//邪能火蛇剑
 	//After your Hero attacks, add a random Demon to your hand.

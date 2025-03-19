@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：0 耐久度：5
+	//武器 中立 费用：2 攻击力：0 耐久度：0
 	//Xal'atath
 	//萨拉塔斯
 	//After you cast a spell, deal 2 damage to the enemy hero and lose 1 Durability.

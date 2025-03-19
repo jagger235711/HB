@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：7 攻击力：14 生命值：14
+	//随从 中立 费用：0 攻击力：14 生命值：14
 	//Captain Sanders
 	//杉德尔船长
 	//<b>Battlecry:</b> Make a friendly minion Golden.

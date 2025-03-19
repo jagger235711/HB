@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：9 攻击力：18 生命值：14
+	//随从 术士 费用：0 攻击力：18 生命值：14
 	//Mal'Ganis
 	//玛尔加尼斯
 	//Your other Demons have +4/+4.Your hero is <b>Immune</b>.

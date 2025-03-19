@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：4 耐久度：2
+	//武器 中立 费用：1 攻击力：4 耐久度：0
 	//Infused Wrench
 	//灌水的扳手
 	//<b>Windfury</b>

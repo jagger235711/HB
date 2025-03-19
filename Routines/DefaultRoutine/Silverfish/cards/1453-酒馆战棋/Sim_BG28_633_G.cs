@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：4 生命值：12
+	//随从 中立 费用：0 攻击力：4 生命值：12
 	//Felboar
 	//邪能野猪人
 	//[x]After you cast 2 spells,consume a minion in theTavern to gain doubleits stats. <i>(@ left!)</i>

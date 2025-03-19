@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：10
+	//随从 中立 费用：0 攻击力：10 生命值：10
 	//Chronormu
 	//克罗诺姆
 	//At the start of your turn, swap with a random minion in the Tavern. <b>Battlecry:</b> Triple this minion's Attack.

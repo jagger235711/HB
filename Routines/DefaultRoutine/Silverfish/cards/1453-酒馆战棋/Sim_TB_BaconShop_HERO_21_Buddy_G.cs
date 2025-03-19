@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：10
+	//随从 中立 费用：0 攻击力：6 生命值：10
 	//Street Magician
 	//街头魔术师
 	//At the end of your turn, cast 2 random <b>Secrets</b>.

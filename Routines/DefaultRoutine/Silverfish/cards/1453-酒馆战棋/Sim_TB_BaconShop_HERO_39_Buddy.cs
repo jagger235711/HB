@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：5 生命值：2
+	//随从 中立 费用：0 攻击力：5 生命值：2
 	//Titanic Guardian
 	//泰坦守护者
 	//Whenever a different friendly minion gains Health, this gains it too.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：2 生命值：2
+	//随从 中立 费用：0 攻击力：2 生命值：2
 	//Cattlecarp of N'Zoth
 	//恩佐斯的鱼仔
 	//[x]After a friendly <b>Deathrattle</b>minion dies in combat,gain its <b>Deathrattle</b>.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//英雄 中立 费用：10
+	//英雄 中立 费用：8
 	//Reno, Lone Ranger
 	//孤胆游侠雷诺
 	//[x]<b>Battlecry:</b> If your deckstarted with no duplicates,remove all enemy minionsfrom the game.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：5 生命值：7
+	//随从 中立 费用：0 攻击力：5 生命值：7
 	//Thawed Champion
 	//解冻的勇士
 	//[x]At the end of your turn, geta random <b>Frozen</b> cardfrom the Tavern.

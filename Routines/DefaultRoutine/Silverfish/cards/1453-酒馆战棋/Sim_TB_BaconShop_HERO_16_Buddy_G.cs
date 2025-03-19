@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：6 生命值：4
+	//随从 中立 费用：0 攻击力：6 生命值：4
 	//Snack Vendor
 	//零食商人
 	//At the end of your turn, give your Tier 3 minions +2/+4.

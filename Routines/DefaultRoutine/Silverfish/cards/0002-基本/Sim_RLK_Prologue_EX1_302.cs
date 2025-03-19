@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Mortal Coil
 	//死亡缠绕
 	//Deal $1 damage to a minion. If that kills it, draw a card.
-	//对一个随从造成$1点伤害。如果“死亡缠绕”消灭该随从，抽一张牌。
+	//对一个随从造成$1点伤害。如果消灭该随从，抽一张牌。
 	class Sim_RLK_Prologue_EX1_302 : SimTemplate
 	{
 		

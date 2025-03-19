@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：3 攻击力：3 耐久度：2
+	//武器 巫妖王 费用：3 攻击力：3 耐久度：0
 	//Ironweave Bloodletter
 	//铁纹放血刃
 	//<b>Battlecry:</b> For the rest of the game, whenever you consume one or more <b>Corpses</b>, restore 2 Health to your hero.

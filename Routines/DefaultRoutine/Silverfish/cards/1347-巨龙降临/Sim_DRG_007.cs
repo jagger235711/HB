@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：3 攻击力：3 耐久度：2
+	//武器 猎人 费用：3 攻击力：3 耐久度：0
 	//Stormhammer
 	//风暴之锤
 	//Doesn't lose Durability while you control a_Dragon.

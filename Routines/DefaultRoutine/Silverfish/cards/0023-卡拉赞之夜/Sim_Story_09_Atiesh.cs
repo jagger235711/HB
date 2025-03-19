@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：1 耐久度：3
+	//武器 中立 费用：3 攻击力：1 耐久度：0
 	//Atiesh
 	//埃提耶什
 	//[x]After you cast a spell,summon a randomminion of that Cost.Lose 1 Durability.

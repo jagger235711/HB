@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：14 生命值：14
+	//随从 中立 费用：0 攻击力：12 生命值：12
 	//Deserted Golem
 	//荒弃魔像
 	//

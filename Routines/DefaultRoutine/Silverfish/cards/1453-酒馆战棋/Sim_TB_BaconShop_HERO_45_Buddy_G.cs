@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：8 生命值：12
+	//随从 中立 费用：0 攻击力：8 生命值：12
 	//Loyal Henchman
 	//铁杆匪徒
 	//[x]After you kill a secondminion each combat,_get 2 plain copies of it.

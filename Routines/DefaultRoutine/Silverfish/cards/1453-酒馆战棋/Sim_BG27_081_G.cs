@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：24 生命值：6
+	//随从 中立 费用：0 攻击力：24 生命值：6
 	//Cultist S'Thara
 	//异教徒斯瑟拉
 	//[x]<b><b>Stealth</b>.</b> <b>Deathrattle:</b>Summon your first 2 Demonsthat died this combat withtheir maximum stats.

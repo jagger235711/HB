@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：6 生命值：14
+	//随从 中立 费用：0 攻击力：6 生命值：14
 	//Felstomper
 	//邪能践踏者
 	//[x]After you summon a_minion in combat, give___your minions +6 Attack.

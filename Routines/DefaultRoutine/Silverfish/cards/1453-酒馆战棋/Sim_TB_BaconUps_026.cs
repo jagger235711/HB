@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 猎人 费用：4 攻击力：6 生命值：6
+	//随从 猎人 费用：0 攻击力：6 生命值：6
 	//Infested Wolf
 	//寄生恶狼
 	//<b>Deathrattle:</b> Summon two 2/2 Spiders.

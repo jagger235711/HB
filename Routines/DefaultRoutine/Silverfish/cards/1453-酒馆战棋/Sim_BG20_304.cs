@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：4 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：4
 	//Archdruid Hamuul
 	//大德鲁伊哈缪尔
 	//<b>Battlecry:</b> <b>Refresh</b> the Tavern with minions of your most common type.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：5 生命值：5
+	//随从 中立 费用：0 攻击力：5 生命值：5
 	//Qiraji Harbinger
 	//其拉传令官
 	//After a friendly minion with <b>Taunt</b> dies, give its neighbors +2/+2.

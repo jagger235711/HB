@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 德鲁伊 费用：4 攻击力：2 耐久度：3
+	//武器 德鲁伊 费用：4 攻击力：2 耐久度：0
 	//Timber Tambourine
 	//实木手鼓
 	//[x]<b>Deathrattle:</b> Summon @5/5 |4(Ancient, Ancients). <i>(Play cardsthat cost (5) or more while__equipped to improve!)</i>

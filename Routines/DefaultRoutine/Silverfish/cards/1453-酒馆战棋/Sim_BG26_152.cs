@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：4 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：4
 	//Utility Drone
 	//多面辅助无人机
 	//[x]At the end of your turn,give your minions +2/+1for each <b>Magnetization</b>they have.

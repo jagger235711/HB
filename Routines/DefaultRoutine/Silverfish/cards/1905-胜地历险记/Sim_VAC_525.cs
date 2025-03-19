@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：5 攻击力：4 耐久度：2
+	//武器 战士 费用：5 攻击力：4 耐久度：0
 	//The Ryecleaver
 	//黑麦切割者
 	//[x]<b>Battlecry and Deathrattle:</b>Get a Slice of Bread.<i>(Get 2 to Sandwich anyminions in between!)</i>

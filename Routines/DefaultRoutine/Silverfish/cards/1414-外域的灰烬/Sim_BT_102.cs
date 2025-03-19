@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：5 攻击力：4 耐久度：2
+	//武器 萨满祭司 费用：5 攻击力：4 耐久度：0
 	//Boggspine Knuckles
 	//沼泽拳刺
 	//After your hero attacks, transform your minions into random ones that cost (1) more.

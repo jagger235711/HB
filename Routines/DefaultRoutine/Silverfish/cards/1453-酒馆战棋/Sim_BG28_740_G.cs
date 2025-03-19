@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：6 生命值：16
+	//随从 中立 费用：0 攻击力：6 生命值：16
 	//Augmented Laborer
 	//强能劳工
 	//<b>Avenge (4):</b> Get 2 random <b>Magnetic</b> Mecha-Demons.

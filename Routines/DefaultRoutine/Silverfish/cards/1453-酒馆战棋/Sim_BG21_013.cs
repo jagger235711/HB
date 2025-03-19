@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：2 生命值：5
+	//随从 中立 费用：0 攻击力：2 生命值：5
 	//Whelp Smuggler
 	//雏龙走私商
 	//Whenever a friendly Dragon gains Attack, give it +1 Health.

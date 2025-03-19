@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：12 生命值：14
+	//随从 中立 费用：0 攻击力：12 生命值：14
 	//Dread Admiral Eliza
 	//亡灵舰长伊丽扎
 	//Whenever a friendly minion attacks, give your minions +2/+2.

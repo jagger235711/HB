@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：1 攻击力：1 耐久度：2
+	//武器 牧师 费用：1 攻击力：1 耐久度：0
 	//Broken Microphone
 	//坏掉的麦克风
 	//Your hero takes 1 additional damage from all sources.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：4 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：4
 	//Disguised Graverobber
 	//变装盗墓贼
 	//<b>Battlecry:</b> Destroy a friendly Undead to geta plain copy of it.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：6 生命值：14
+	//随从 中立 费用：0 攻击力：6 生命值：14
 	//Orgozoa, the Tender
 	//照看者奥戈佐亚
 	//[x]<b>Spellcraft: Discover</b> 2 Naga.

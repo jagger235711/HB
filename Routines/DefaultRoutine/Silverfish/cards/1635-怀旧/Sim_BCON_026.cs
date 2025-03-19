@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：2 耐久度：3
+	//武器 战士 费用：3 攻击力：2 耐久度：0
 	//Blazing Longsword
 	//炽炎长剑
 	//Also damages minions next to whomever your hero attacks.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 巫妖王 费用：25 攻击力：6 生命值：3
+	//随从 巫妖王 费用：20 攻击力：6 生命值：3
 	//Reska, the Pit Boss
 	//矿坑老板雷斯卡
 	//[x]<b>Rush</b>. Costs (1) less for eachminion that died this game.<b>Deathrattle:</b> Take control of arandom enemy minion.

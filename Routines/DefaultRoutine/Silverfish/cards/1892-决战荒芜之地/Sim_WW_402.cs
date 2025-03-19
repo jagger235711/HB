@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 恶魔猎手 费用：4 攻击力：3 生命值：3
+	//随从 恶魔猎手 费用：3 攻击力：1 生命值：3
 	//Blindeye Sharpshooter
 	//盲眼神射手
 	//[x]After you play a Naga,deal 2 damage to a randomenemy and draw a spell.<i>(Then switch!)</i>@[x]After you cast a spell,deal 2 damage to a randomenemy and draw a Naga.<i>(Then switch!)</i>

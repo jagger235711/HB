@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 巫妖王 费用：4 攻击力：3 生命值：5
+	//随从 巫妖王 费用：3 攻击力：2 生命值：4
 	//Sickly Grimewalker
 	//秽病行尸
 	//[x]After you summon an Undead, give it <b>Poisonous</b>.

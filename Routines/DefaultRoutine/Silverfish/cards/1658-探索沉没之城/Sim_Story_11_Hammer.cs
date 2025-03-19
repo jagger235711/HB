@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：3 耐久度：2
+	//武器 中立 费用：1 攻击力：3 耐久度：0
 	//Gnomish Hammer
 	//侏儒之锤
 	//<i>Used to strike an area.</i><b>Battlecry:</b> The next Mech you play costs (0).

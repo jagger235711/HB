@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：3 生命值：1
+	//随从 中立 费用：0 攻击力：3 生命值：1
 	//Silithid Burrower
 	//异种钻地虫
 	//[x]<b>Taunt</b><b>Deathrattle:</b> Give your Beasts+1/+1 permanently.

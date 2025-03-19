@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：3 攻击力：1 耐久度：3
+	//武器 猎人 费用：3 攻击力：1 耐久度：0
 	//Carrot on a Stick
 	//胡萝卜杆
 	//After you attack, give your Beasts +1/+1.

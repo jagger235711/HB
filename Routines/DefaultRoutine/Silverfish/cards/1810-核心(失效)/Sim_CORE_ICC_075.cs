@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：5 攻击力：4 生命值：5
+	//随从 术士 费用：5 攻击力：4 生命值：6
 	//Despicable Dreadlord
 	//卑鄙的恐惧魔王
 	//At the end of your turn, deal 1 damage to all enemy minions.

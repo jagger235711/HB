@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Elder Taggawag
 	//长者塔格瓦格
 	//[x]<b>Start of Combat:</b> If you control4 minions with different types,__gain double your minions'__highest Attack and Health.

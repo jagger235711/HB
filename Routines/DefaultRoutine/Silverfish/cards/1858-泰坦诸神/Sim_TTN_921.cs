@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 牧师 费用：3 攻击力：3 生命值：2
+	//随从 牧师 费用：3 攻击力：4 生命值：3
 	//Coppertail Snoop
 	//铜尾刺探鼠
 	//[x]<b>Magnetic</b>Whenever this attacks,get a Coin.

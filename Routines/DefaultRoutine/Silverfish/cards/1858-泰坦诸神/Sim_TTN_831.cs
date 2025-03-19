@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 萨满祭司 费用：6
+	//法术 萨满祭司 费用：5
 	//Crash of Thunder
 	//雷电崩鸣
 	//Deal $3 damage to all enemies. Costs (1) less for each Nature spell you've cast this turn.

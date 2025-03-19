@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 恶魔猎手 费用：2 攻击力：1 耐久度：2
+	//武器 恶魔猎手 费用：2 攻击力：1 耐久度：0
 	//Umberwing
 	//棕红之翼
 	//<b>Battlecry:</b> Summon two 1/1 Felwings.

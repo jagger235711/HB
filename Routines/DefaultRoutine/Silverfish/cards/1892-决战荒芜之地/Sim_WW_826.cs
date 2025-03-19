@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 德鲁伊 费用：4 攻击力：3 生命值：4
+	//随从 德鲁伊 费用：4 攻击力：3 生命值：5
 	//Desert Nestmatron
 	//沙漠巢母
 	//<b>Taunt</b>. <b>Battlecry:</b> If you're holding a Dragon, refresh 4 Mana Crystals.

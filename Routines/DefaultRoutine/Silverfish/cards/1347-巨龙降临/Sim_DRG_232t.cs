@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：4 攻击力：4 耐久度：2
+	//武器 圣骑士 费用：4 攻击力：4 耐久度：0
 	//Truesilver Champion
 	//真银圣剑
 	//Whenever your hero attacks, restore #3_Health to it.

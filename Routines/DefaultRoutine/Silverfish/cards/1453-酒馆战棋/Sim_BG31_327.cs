@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：0 攻击力：5 生命值：6
+	//随从 中立 费用：0 攻击力：4 生命值：5
 	//Thorned Trailblazer
 	//刺棘开拓者
 	//1 <b>Choose One</b> card each turn has both effects combined. <i>(@ left!)</i>

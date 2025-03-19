@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：3 耐久度：3
+	//武器 中立 费用：1 攻击力：3 耐久度：0
 	//The Exorcisor
 	//驱魔者
 	//<b>Silence</b> any minion attacked by this weapon.

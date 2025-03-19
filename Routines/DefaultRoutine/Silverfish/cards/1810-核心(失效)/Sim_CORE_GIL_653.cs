@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：2 耐久度：2
+	//武器 战士 费用：2 攻击力：2 耐久度：0
 	//Woodcutter's Axe
 	//樵夫之斧
 	//<b>Deathrattle:</b> Give +2/+1 to a random friendly minion.

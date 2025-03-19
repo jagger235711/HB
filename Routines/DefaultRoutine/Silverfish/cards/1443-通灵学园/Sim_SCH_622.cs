@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：3 攻击力：1 耐久度：4
+	//武器 牧师 费用：3 攻击力：1 耐久度：0
 	//Self-Sharpening Sword
 	//自砺之锋
 	//After your hero attacks, gain +1 Attack.

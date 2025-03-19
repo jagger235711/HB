@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：6 生命值：3
+	//随从 中立 费用：0 攻击力：6 生命值：3
 	//Eclipsion Illidari
 	//日蚀伊利达雷
 	//[x]Your first minion thatattacks has "<b>Immune</b>while Attacking" for oneattack only.

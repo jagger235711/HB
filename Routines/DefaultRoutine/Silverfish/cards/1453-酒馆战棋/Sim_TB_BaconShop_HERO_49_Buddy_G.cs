@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Magnus Manastorm
 	//玛格努斯·法力风暴
 	//[x]After you buy a card,add two of the same Tier to the Tavern.

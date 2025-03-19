@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：4 攻击力：2 耐久度：2
+	//武器 牧师 费用：4 攻击力：2 耐久度：0
 	//Thistle Dagger
 	//蓟草匕首
 	//After your hero attacks, draw a card. Add an extra copy of it to your hand.

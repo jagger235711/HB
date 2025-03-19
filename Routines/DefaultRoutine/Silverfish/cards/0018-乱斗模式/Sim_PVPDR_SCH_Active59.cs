@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：1 耐久度：5
+	//武器 中立 费用：3 攻击力：1 耐久度：0
 	//Jaws
 	//巨颚
 	//Whenever a minion with <b>Deathrattle</b> dies, gain +2 Attack.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：4 生命值：6
+	//随从 中立 费用：0 攻击力：4 生命值：6
 	//Assistant Guard
 	//助理警卫
 	//[x]<b>Battlecry:</b> Give a minion<b>Taunt</b>. Then give your<b>Taunt</b> minions +4/+6.

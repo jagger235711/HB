@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：4 攻击力：4 耐久度：2
+	//武器 猎人 费用：4 攻击力：4 耐久度：0
 	//Jungle Jammer
 	//丛林弹唱琴
 	//[x]<b>Deathrattle:</b> Summon arandom @-Cost Beast.<i>(Cast spells while____equipped to improve!)</i>__

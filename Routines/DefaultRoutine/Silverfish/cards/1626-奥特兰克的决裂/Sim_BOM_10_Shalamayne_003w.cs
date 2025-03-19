@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：4 攻击力：3 耐久度：2
+	//武器 中立 费用：4 攻击力：3 耐久度：0
 	//Shalamayne
 	//萨拉迈恩
 	//After your hero attacks, give +1/+1 to your <b>Legendary</b> minions.

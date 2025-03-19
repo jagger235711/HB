@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：0 攻击力：5 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：2
 	//Gritty Headhunter
 	//顽砂猎头
 	//<b>Battlecry:</b> Get a 'Marauder's Contract'.

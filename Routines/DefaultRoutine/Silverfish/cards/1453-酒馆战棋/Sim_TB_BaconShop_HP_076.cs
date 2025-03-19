@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Piggy Bank
 	//招财小猪
 	//[x]Gain @ Gold.Increases each turn.<i>(Once per game.)</i>
-	//获得@枚铸币。每回合都会提高。<i>（每场对战限一次。）</i>
+	//获得@枚铸币。每回合都会提高。<i>（每局对战限一次。）</i>
 	class Sim_TB_BaconShop_HP_076 : SimTemplate
 	{
 		

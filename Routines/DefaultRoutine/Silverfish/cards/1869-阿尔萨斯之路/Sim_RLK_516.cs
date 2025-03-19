@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：1 攻击力：2 耐久度：2
+	//武器 巫妖王 费用：1 攻击力：2 耐久度：0
 	//Bone Breaker
 	//碎骨手斧
 	//[x]After your hero attacks aminion, deal 2 damageto the enemy hero.

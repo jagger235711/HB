@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：3 生命值：12
+	//随从 中立 费用：0 攻击力：3 生命值：12
 	//Unforgiving Treant
 	//记仇的树人
 	//[x]<b>Taunt</b>Whenever this takesdamage, give your minions___+2 Attack permanently.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：10 生命值：16
+	//随从 中立 费用：0 攻击力：10 生命值：16
 	//Untameabull
 	//傲角铁牛
 	//[x]Whenever this takesdamage, gain<b>Divine Shield</b>.

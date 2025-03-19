@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：14 生命值：10
+	//随从 中立 费用：0 攻击力：14 生命值：10
 	//Waxadred, the Drippy
 	//垂滴的蜡烛巨龙
 	//[x]<b>Battlecry: Refresh</b> theTavern with the highestTier minion from eachopponent's warband.

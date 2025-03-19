@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Tentacle of C'Thun
 	//克苏恩的触手
 	//After a different friendly minion gains stats, gain_+2/+2 until next turn.

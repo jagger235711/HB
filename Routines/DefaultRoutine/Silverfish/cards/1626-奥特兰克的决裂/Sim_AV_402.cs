@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：2 攻击力：2 耐久度：2
+	//武器 牧师 费用：2 攻击力：2 耐久度：0
 	//The Lobotomizer
 	//剥夺者
 	//[x]<b>Honorable Kill:</b> Get acopy of the top cardof your opponent'sdeck.

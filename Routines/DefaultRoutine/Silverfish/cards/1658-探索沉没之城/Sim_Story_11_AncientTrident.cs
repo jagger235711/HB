@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：3 耐久度：2
+	//武器 中立 费用：3 攻击力：3 耐久度：0
 	//Ancient Trident
 	//上古三叉戟
 	//After your hero attacks, <b>Discover</b> a spelland cast it with random targets.

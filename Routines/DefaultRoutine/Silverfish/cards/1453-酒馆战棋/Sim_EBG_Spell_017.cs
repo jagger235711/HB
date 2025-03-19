@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_SPELL 中立 费用：6
+	//BATTLEGROUND_SPELL 中立 费用：4
 	//Eyes of the Earth Mother
 	//大地母亲之眼
 	//Choose a friendly minion from Tier 4 or below. Make it Golden.

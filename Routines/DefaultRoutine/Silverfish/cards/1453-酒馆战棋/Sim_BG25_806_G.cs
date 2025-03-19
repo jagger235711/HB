@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：4
+	//随从 中立 费用：0 攻击力：2 生命值：4
 	//Sly Raptor
 	//狡猾的迅猛龙
 	//<b>Deathrattle:</b> Summon a random Beast. Set its stats to 10/10.

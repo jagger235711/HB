@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：2 耐久度：3
+	//武器 战士 费用：3 攻击力：2 耐久度：0
 	//Imbued Axe
 	//灌能战斧
 	//[x]<b>Infused</b>After your hero attacks,give your damagedminions +2/+2.

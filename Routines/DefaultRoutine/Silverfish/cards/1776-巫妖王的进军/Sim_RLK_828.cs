@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 猎人 费用：6 攻击力：4 耐久度：2
+	//武器 猎人 费用：6 攻击力：4 耐久度：0
 	//Hope of Quel'Thalas
 	//奎尔萨拉斯的希望
 	//[x]After your hero attacks,give your minions +1/+1<i>(wherever they are).</i>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 德鲁伊 费用：2 攻击力：0 耐久度：3
+	//武器 德鲁伊 费用：2 攻击力：0 耐久度：0
 	//Herding Horn
 	//牧人号角
 	//[x]After you play a Beast, summon a copy of it and lose 1 Durability.

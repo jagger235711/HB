@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：4 攻击力：4 耐久度：2
+	//武器 牧师 费用：4 攻击力：4 耐久度：0
 	//Counterfeit Blade
 	//伪造的匕首
 	//[x]<b>Battlecry</b>: Get a copyof a random friendly<b>Deathrattle</b> minionthat died this game.

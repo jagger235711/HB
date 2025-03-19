@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：3 攻击力：1 耐久度：1
+	//武器 中立 费用：3 攻击力：1 耐久度：0
 	//Scythe
 	//镰刀
 	//Doesn't lose Durability. When you kill a minion with this weapon, gain +1 Attack.

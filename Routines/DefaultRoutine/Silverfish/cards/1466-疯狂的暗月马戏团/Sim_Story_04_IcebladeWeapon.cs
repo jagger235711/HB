@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：4 攻击力：2 耐久度：2
+	//武器 巫妖王 费用：4 攻击力：2 耐久度：0
 	//Iceblade
 	//冰刃
 	//<b>Battlecry and Deathrattle:</b>Deal 2 damage to all enemy minions.

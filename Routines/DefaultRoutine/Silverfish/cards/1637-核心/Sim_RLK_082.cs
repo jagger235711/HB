@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 巫妖王 费用：5 攻击力：3 生命值：6
+	//随从 巫妖王 费用：5 攻击力：4 生命值：6
 	//Deathbringer Saurfang
 	//死亡使者萨鲁法尔
 	//[x]<b>Taunt</b><b>Deathrattle:</b> Return this toyour hand. It costs Healthinstead of Mana.

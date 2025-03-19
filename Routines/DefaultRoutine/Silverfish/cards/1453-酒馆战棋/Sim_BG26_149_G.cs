@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：10 生命值：20
+	//随从 中立 费用：0 攻击力：10 生命值：20
 	//Polarizing Beatboxer
 	//极性B-Box拳手
 	//[x]Whenever you <b>Magnetize</b>another minion, it also_<b>Magnetizes</b> to this twice.

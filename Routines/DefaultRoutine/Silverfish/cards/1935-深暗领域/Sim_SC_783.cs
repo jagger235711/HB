@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 无效的 费用：3 攻击力：3 生命值：1
+	//随从 无效的 费用：3 攻击力：3 生命值：2
 	//Void Ray
 	//虚空辉光舰
 	//<b>Rush</b>, <b>Divine Shield</b><b>Battlecry:</b> If this costs (0), gain +2/+2.

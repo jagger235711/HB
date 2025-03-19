@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 法师 费用：2 攻击力：0 耐久度：2
+	//武器 法师 费用：2 攻击力：0 耐久度：0
 	//Celestial Ink Set
 	//星空墨水套装
 	//[x]After you spend 5 Mana onspells, reduce the Cost of aspell in your hand by (5).Lose 1 Durability.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：5 攻击力：1 耐久度：9
+	//武器 萨满祭司 费用：5 攻击力：2 耐久度：0
 	//Staff of the Nine Frogs
 	//九蛙魔杖
 	//[x]After your hero attacks,summon a {0}/{1} Frogwith <b>Taunt</b>. <i>(Each Frog is_bigger than the last!)</i>

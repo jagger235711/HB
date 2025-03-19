@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：3 攻击力：3 耐久度：4
+	//武器 巫妖王 费用：3 攻击力：3 耐久度：0
 	//Runed Soulblade
 	//符文灵魂之剑
 	//After your hero takes damage, deal 1 damage to all enemies and lose 1 Durability.

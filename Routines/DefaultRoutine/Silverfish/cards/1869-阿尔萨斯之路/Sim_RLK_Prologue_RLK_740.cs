@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：4 攻击力：4 耐久度：2
+	//武器 巫妖王 费用：4 攻击力：4 耐久度：0
 	//Might of Menethil
 	//米奈希尔之力
 	//<b>Battlecry:</b> Spendup to 3 <b>Corpses</b>.<b>Freeze</b> that manyenemy minions.

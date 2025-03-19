@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：2
+	//随从 中立 费用：0 攻击力：2 生命值：2
 	//Asher the Haberdasher
 	//帽商艾舍尔
 	//[x]After you sell a minion,gain a +1/+1 hat thatpasses to a friendly minionwhen sold.

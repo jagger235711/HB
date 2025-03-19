@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：2 生命值：1
+	//随从 中立 费用：0 攻击力：2 生命值：1
 	//Motley Phalanx
 	//混编战团
 	//<b>Taunt</b><b>Deathrattle:</b> Give a friendly minion of each type +2/+1 permanently.

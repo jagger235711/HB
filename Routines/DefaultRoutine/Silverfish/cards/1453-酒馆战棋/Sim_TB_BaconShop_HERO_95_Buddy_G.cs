@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：4 生命值：14
+	//随从 中立 费用：0 攻击力：4 生命值：14
 	//Wandering Treant
 	//游荡树人
 	//[x]Whenever a friendly <b>Taunt</b>minion is attacked, giveyour minions +2 Attackpermanently.

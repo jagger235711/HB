@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：3 耐久度：2
+	//武器 战士 费用：3 攻击力：3 耐久度：0
 	//Sunken Trident
 	//沉没的三叉戟
 	//After your hero attacks, deal 2 damage to all enemy minions.

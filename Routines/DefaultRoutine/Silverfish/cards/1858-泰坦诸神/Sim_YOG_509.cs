@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 圣骑士 费用：5
+	//法术 圣骑士 费用：4
 	//Keeper's Strength
 	//守护者的力量
 	//Give a friendly minion +2/+2. Dealits Attack damage toall other minions.

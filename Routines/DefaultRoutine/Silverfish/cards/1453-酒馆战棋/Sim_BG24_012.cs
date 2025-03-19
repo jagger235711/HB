@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：3 生命值：3
+	//随从 中立 费用：0 攻击力：3 生命值：3
 	//Murky
 	//奔波尔霸
 	//<b>Battlecry:</b> Give a friendly Murloc +3/+3 for each one you control.

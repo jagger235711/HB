@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//High Priest Amet
 	//高阶祭司阿门特
 	//[x]Whenever you summon aminion, set its Health equalto this minion's.
-	//每当你召唤一个随从，将其生命值设置为与本随从相同。
+	//每当你召唤一个随从，将其生命值变为与本随从相同。
 	class Sim_ULD_262 : SimTemplate
 	{
 		

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：1 耐久度：1
+	//武器 中立 费用：2 攻击力：1 耐久度：0
 	//Wax Lance
 	//蜡油长枪
 	//<b>Deathrattle:</b> Summon 1/1 Living Candles equal to this weapon's Attack.

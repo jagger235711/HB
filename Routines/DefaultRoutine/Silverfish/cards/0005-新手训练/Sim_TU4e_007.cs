@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：6 攻击力：4 耐久度：2
+	//武器 中立 费用：6 攻击力：4 耐久度：0
 	//Dual Warglaives
 	//双持战刃
 	//

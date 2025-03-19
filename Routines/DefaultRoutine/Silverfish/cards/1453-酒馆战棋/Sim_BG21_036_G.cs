@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：12 生命值：12
+	//随从 中立 费用：0 攻击力：12 生命值：12
 	//Master of Realities
 	//现境大师
 	//<b><b>Taunt</b>.</b> After a friendly Elemental gains stats, gain +2/+2.

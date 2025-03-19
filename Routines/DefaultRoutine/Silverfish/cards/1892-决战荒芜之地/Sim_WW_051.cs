@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 圣骑士 费用：3
+	//法术 圣骑士 费用：2
 	//Showdown!
 	//决战！
 	//Both players summon three 3/3 Outlaws.Give yours <b>Rush</b>.

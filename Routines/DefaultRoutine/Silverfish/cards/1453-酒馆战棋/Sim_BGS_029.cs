@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：1 生命值：1
+	//随从 中立 费用：0 攻击力：1 生命值：1
 	//Shifter Zerus
 	//百变泽鲁斯
 	//[x]Each turn this is in yourhand, transform it into arandom minion. It keepsenchantments.

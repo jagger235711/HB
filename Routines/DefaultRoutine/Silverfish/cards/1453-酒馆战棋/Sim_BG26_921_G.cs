@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：20 生命值：40
+	//随从 中立 费用：0 攻击力：20 生命值：40
 	//Worgen Vigilante
 	//狼人义警
 	//[x]<b>Windfury</b>This minion always attacksan enemy minion that itcan kill <i>(if possible).</i>

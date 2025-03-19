@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 法师 费用：5 攻击力：3 生命值：4
+	//随从 法师 费用：4 攻击力：3 生命值：4
 	//Inquisitive Creation
 	//求知造物
 	//[x]<b>Battlecry:</b> Deal @ damageto all enemy minions.<i>(Improved by each spell schoolyou've cast this game!)</i>

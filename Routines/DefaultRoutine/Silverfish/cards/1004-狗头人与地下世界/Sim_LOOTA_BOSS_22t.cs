@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：0 耐久度：1
+	//武器 中立 费用：1 攻击力：0 耐久度：0
 	//Tad's Pole
 	//塔德的鱼竿
 	//[x]At the end of your turn,summon a minionfrom youropponent's deck.

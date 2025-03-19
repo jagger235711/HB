@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：2 耐久度：2
+	//武器 战士 费用：2 攻击力：2 耐久度：0
 	//Crystalline Greatmace
 	//晶石巨槌
 	//After your hero attacks, give all Draenei in your hand +2 Attack.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：2 生命值：4
+	//随从 中立 费用：5 攻击力：3 生命值：5
 	//Finja, the Flying Star
 	//飞火流星·芬杰
 	//[x]<b>Stealth</b>   Whenever this attacks and   kills a minion, summon 2_Murlocs from your deck.

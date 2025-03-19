@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：2 生命值：5
+	//随从 中立 费用：0 攻击力：2 生命值：5
 	//Lava Lurker
 	//熔岩潜伏者
 	//[x]The first <b>Spellcraft</b> enchantment on this__each turn is permanent.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：3 攻击力：3 耐久度：2
+	//武器 圣骑士 费用：3 攻击力：3 耐久度：0
 	//Disco Maul
 	//迪斯科战槌
 	//[x]<b>Deathrattle:</b> Give a randomfriendly minion +@/+@.<i>(Play minions whileequipped to improve!)</i>

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 战士 费用：3 攻击力：2 生命值：2
+	//随从 战士 费用：2 攻击力：2 生命值：2
 	//Battleworn Faceless
 	//历战无面者
 	//<b>Battlecry:</b> Transform into acopy of a damaged minion.

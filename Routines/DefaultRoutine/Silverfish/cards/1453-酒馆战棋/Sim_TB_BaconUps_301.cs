@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Champion of Y'Shaarj
 	//亚煞极的勇士
 	//Whenever a friendly <b>Taunt</b> minion is attacked, gain +2/+4 permanently.

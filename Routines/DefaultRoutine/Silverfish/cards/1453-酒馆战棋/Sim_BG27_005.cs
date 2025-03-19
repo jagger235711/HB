@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：1 生命值：4
+	//随从 中立 费用：0 攻击力：1 生命值：4
 	//Timecap'n Hooktail
 	//时空船长钩尾
 	//[x]Whenever you cast aTavern spell, give yourminions +1 Attack.

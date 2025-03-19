@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：4 生命值：4
+	//随从 中立 费用：4 攻击力：5 生命值：4
 	//Pozzik, Audio Engineer
 	//音响工程师普兹克
 	//<b>Battlecry:</b> Add two 3/3 Bots to your opponent's hand. <b>Deathrattle:</b> Summon them for yourself.

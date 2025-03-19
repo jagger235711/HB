@@ -8,7 +8,7 @@ namespace HREngine.Bots
 	//Gonna Be Rich!
 	//要发财了！
 	//[x]Make a friendly minionGolden.<i>(Once per game.)</i>
-	//使一个友方随从变为金色。<i>（每场对战限一次。）</i>
+	//使一个友方随从变为金色。<i>（每局对战限一次。）</i>
 	class Sim_TB_BaconShop_HP_046 : SimTemplate
 	{
 		

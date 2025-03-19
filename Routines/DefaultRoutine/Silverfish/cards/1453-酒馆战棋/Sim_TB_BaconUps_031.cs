@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 潜行者 费用：3 攻击力：4 生命值：10
+	//随从 潜行者 费用：0 攻击力：4 生命值：10
 	//Tortollan Shellraiser
 	//始祖龟执盾者
 	//[x]<b>Taunt</b><b>Deathrattle:</b> Give a random_friendly minion +2/+2.

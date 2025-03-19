@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Jandice's Apprentice
 	//詹迪斯的学徒
 	//After you swap minions, give them stats equal to your Tier twice.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 德鲁伊 费用：3 攻击力：3 耐久度：3
+	//武器 德鲁伊 费用：3 攻击力：3 耐久度：0
 	//Elise's Machete
 	//伊莉斯的弯刀
 	//[x]After your hero attacks,summon two 2/2 Treants.Give them <b>Rush</b>.

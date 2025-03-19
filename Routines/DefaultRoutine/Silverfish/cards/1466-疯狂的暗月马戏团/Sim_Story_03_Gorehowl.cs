@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：7 攻击力：7 耐久度：1
+	//武器 战士 费用：7 攻击力：7 耐久度：0
 	//Gorehowl
 	//血吼
 	//<b>Poisonous</b>Attacking a minion costs 1 Attack instead of 1 Durability.

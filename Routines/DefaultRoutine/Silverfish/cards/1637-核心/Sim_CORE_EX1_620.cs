@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：22 攻击力：8 生命值：8
+	//随从 中立 费用：20 攻击力：8 生命值：8
 	//Molten Giant
 	//熔核巨人
 	//Costs (1) less foreach Health your herois missing.

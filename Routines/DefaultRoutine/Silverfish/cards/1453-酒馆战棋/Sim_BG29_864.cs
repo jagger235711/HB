@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：0 攻击力：7 生命值：7
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Arid Atrocity
 	//旱地凶怪
 	//[x]<b>Deathrattle:</b> Summon a@/@ Golem. <i>(Improved byeach friendly minion type__that died this combat!)</i>

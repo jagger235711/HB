@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：1 攻击力：4 耐久度：2
+	//武器 中立 费用：1 攻击力：4 耐久度：0
 	//Board with a Nail in It
 	//夺命钉板
 	//<b>Battlecry:</b> Deal 5 damage to your hero.

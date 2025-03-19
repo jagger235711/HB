@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：6 攻击力：6 耐久度：3
+	//武器 战士 费用：6 攻击力：6 耐久度：0
 	//Claws of Terror
 	//恐怖利爪
 	//<b>Start of Game:</b> Draw this. Also damages adjacent minions.

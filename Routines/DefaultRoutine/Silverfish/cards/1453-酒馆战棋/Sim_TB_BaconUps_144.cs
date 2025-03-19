@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：4 生命值：4
+	//随从 中立 费用：0 攻击力：4 生命值：4
 	//Menagerie Mug
 	//展馆茶杯
 	//[x]<b>Battlecry:</b> Give 3friendly minions of__different types +2/+2.

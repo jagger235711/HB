@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 圣骑士 费用：1 攻击力：1 耐久度：4
+	//武器 圣骑士 费用：1 攻击力：1 耐久度：0
 	//Overdue Justice
 	//迟到的正义
 	//

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 猎人 费用：4
+	//法术 猎人 费用：3
 	//Saddle Up!
 	//跨鞍飞驰
 	//Give your minions "<b>Deathrattle:</b> Summon a random Beast that costs (3) or less."

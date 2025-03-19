@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：2 生命值：12
+	//随从 中立 费用：0 攻击力：2 生命值：12
 	//Winged Chimera
 	//辅翼奇美拉
 	//[x]Whenever this takes damage,give a friendly minion of eachtype +2/+2 permanently.<i>(Twice per combat.)</i>

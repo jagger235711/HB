@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：12 生命值：6
+	//随从 中立 费用：0 攻击力：12 生命值：6
 	//Majordomo Executus
 	//管理者埃克索图斯
 	//[x]At the end of your turn, giveyour left-most minion +2/+2.Repeat for each Elementalyou played this turn.

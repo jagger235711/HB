@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 德鲁伊 费用：4 攻击力：3 生命值：5
+	//随从 德鲁伊 费用：4 攻击力：3 生命值：6
 	//Fandral Staghelm
 	//范达尔·鹿盔
 	//Your <b>Choose One</b> cards and powers have both effects combined.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：1 攻击力：2 生命值：2
+	//随从 中立 费用：0 攻击力：2 生命值：2
 	//Shudderling
 	//沙德灵
 	//[x]<b>Battlecry:</b> Repeat all other<b>Battlecries</b> from cards you_played this game twice<i>_____(targets chosen randomly)</i>.__

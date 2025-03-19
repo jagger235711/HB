@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 恶魔猎手 费用：4 攻击力：4 耐久度：2
+	//武器 恶魔猎手 费用：4 攻击力：4 耐久度：0
 	//Souleater's Scythe
 	//食魂者之镰
 	//[x]<b>Start of Game:</b> Consume3 different minions in yourdeck. Leave behind Soulsthat <b>Discover</b> them.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：2 生命值：9
+	//随从 中立 费用：0 攻击力：2 生命值：9
 	//Greta Gold-Gun
 	//金枪格蕾塔
 	//[x]<b>Spellcraft:</b> Make a differentfriendly Pirate or NagaGolden until next turn.

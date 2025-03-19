@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：1 攻击力：1 耐久度：3
+	//武器 萨满祭司 费用：1 攻击力：1 耐久度：0
 	//Spirit Claws
 	//幽灵之爪
 	//[x]Has +2 Attack while youhave <b>Spell Damage</b>.

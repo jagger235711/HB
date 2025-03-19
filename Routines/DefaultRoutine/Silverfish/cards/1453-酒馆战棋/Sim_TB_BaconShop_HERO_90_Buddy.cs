@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：5 生命值：6
+	//随从 中立 费用：0 攻击力：5 生命值：6
 	//Burth
 	//布尔斯
 	//After you <b>Discover</b> a minion, give it +{1}/+{1} and upgrade this by +1/+1.

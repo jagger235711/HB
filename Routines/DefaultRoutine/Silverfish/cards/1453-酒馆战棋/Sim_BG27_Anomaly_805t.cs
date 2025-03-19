@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//BATTLEGROUND_QUEST_REWARD 中立 费用：0
+	//英雄技能 中立 费用：0
 	//Match Fixing
 	//操纵比赛
 	//Guess which player will win your next combat.

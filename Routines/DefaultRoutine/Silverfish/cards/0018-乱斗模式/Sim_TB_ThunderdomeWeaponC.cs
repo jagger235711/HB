@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：4 攻击力：3 耐久度：4
+	//武器 中立 费用：4 攻击力：3 耐久度：0
 	//Augmented Auto-Mace
 	//强能动力锤
 	//<b>Battlecry:</b> Give a random friendly minion +5 Attack.

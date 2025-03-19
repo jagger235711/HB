@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：2 耐久度：2
+	//武器 战士 费用：2 攻击力：2 耐久度：0
 	//Curved Tuning Fork
 	//弧形音叉
 	//[x]Also damages minionsadjacent to whomeveryour hero attacks.<i>(Changes each turn.)</i>@[x]Also damages minionsadjacent to whomeveryour hero attacks.

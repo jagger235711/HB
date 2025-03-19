@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：2 攻击力：4 耐久度：2
+	//武器 中立 费用：2 攻击力：4 耐久度：0
 	//Explorer's Sceptor
 	//探险者之杖
 	//<b>Spell Damage +1</b><b>Battlecry:</b> Gain 8 Armor.

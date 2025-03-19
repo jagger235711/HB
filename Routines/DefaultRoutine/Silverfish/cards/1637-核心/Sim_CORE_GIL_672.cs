@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：4 攻击力：2 耐久度：2
+	//武器 牧师 费用：4 攻击力：2 耐久度：0
 	//Spectral Cutlass
 	//幽灵弯刀
 	//[x]<b>Lifesteal</b>Whenever you play a cardfrom another class,gain +1 Durability.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：2 攻击力：2 耐久度：2
+	//武器 战士 费用：2 攻击力：2 耐久度：0
 	//Sharpened Tuning Fork
 	//尖利音叉
 	//[x]<b>Battlecry:</b> Gain +2 Attack.<i>(Changes each turn.)</i>@[x]<b>Battlecry:</b> Gain +2 Attack.

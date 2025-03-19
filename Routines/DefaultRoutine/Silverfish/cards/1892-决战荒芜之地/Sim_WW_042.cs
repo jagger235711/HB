@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：4 攻击力：5 生命值：7
+	//随从 术士 费用：4 攻击力：7 生命值：7
 	//Waste Remover
 	//废物清理工
 	//[x]At the end of your turn,destroy the bottom 3cards of your deck.

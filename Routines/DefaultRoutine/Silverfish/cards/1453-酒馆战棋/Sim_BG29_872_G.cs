@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：20 生命值：20
+	//随从 中立 费用：0 攻击力：20 生命值：20
 	//Hoarding Hatespawn
 	//怨嗣藏宝龙
 	//[x]<b>Start of Combat:</b> Steal20/20 from the highestHealth enemy minion.

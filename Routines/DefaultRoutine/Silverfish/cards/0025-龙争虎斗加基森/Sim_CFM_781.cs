@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 牧师 费用：3 攻击力：2 生命值：3
+	//随从 牧师 费用：3 攻击力：2 生命值：4
 	//Shaku, the Collector
 	//收集者沙库尔
 	//[x]<b>Stealth</b>. Whenever thisattacks, add a random cardto your hand <i>(from youropponent's class).</i>

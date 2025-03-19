@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 巫妖王 费用：3 攻击力：1 耐久度：5
+	//武器 巫妖王 费用：3 攻击力：1 耐久度：0
 	//Greatsword of the Ebon Blade
 	//黑锋重剑
 	//Whenever you play a minion, give it <b>Reborn</b> and this loses 1 Durability.

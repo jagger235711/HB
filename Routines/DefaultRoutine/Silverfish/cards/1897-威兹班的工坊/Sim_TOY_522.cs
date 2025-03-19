@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：4 攻击力：3 耐久度：3
+	//武器 牧师 费用：4 攻击力：3 耐久度：0
 	//Watercannon
 	//水弹枪
 	//After your hero attacks, summon a 1/1 Pirate that attacks a random enemy.

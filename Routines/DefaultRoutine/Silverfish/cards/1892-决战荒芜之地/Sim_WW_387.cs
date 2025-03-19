@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 潜行者 费用：7 攻击力：4 生命值：6
+	//随从 潜行者 费用：6 攻击力：4 生命值：6
 	//Thirsty Drifter
 	//口渴的流浪者
 	//<b>Taunt</b>Costs (1) less for each1-Cost card you've played this game.

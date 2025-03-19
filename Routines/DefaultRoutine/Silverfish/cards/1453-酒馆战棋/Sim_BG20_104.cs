@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：3 生命值：7
+	//随从 中立 费用：0 攻击力：3 生命值：7
 	//Bonker
 	//狂棍野猪人
 	//<b>Windfury</b>After this attacks, get a <b>Blood Gem</b>.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：10 生命值：6
+	//随从 中立 费用：0 攻击力：10 生命值：6
 	//Mechano-Tank
 	//步行坦克
 	//[x]<b>Avenge (2):</b> Deal 5 damageto the highest Healthenemy minion, twice.

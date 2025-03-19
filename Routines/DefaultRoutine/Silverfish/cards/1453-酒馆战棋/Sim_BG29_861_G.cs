@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：4 生命值：12
+	//随从 中立 费用：0 攻击力：4 生命值：12
 	//Barrens Brawler
 	//贫瘠之地殴斗者
 	//<b>Battlecry:</b> Get 2 random <b>Deathrattle</b> minions.

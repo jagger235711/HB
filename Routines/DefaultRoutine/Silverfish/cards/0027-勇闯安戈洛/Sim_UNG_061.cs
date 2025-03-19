@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 牧师 费用：4 攻击力：3 耐久度：3
+	//武器 牧师 费用：4 攻击力：3 耐久度：0
 	//Obsidian Shard
 	//黑曜石碎片
 	//Costs (1) less for each non-Rogue Class card added to your hand this game.

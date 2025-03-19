@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：7 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Amalgadon
 	//融合巨怪
 	//[x]<b>Battlecry:</b> Randomly<b>Adapt</b> for each differentfriendly minion type.

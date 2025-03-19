@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：6 攻击力：3 耐久度：6
+	//武器 中立 费用：6 攻击力：3 耐久度：0
 	//Tentacles
 	//触须
 	//

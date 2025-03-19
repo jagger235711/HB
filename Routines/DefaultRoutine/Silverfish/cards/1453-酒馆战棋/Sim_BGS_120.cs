@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：3 生命值：2
+	//随从 中立 费用：0 攻击力：3 生命值：2
 	//Party Elemental
 	//派对元素
 	//After you play an Elemental, give a friendly Elemental other than it +2/+1.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：7 生命值：4
+	//随从 中立 费用：0 攻击力：7 生命值：4
 	//Frostwolf Lieutenant
 	//霜狼军官
 	//[x]<b>Avenge (2):</b> Minions inthe Tavern have +1 Attackthis game.

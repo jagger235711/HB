@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 中立 费用：4 攻击力：4 耐久度：2
+	//武器 中立 费用：4 攻击力：4 耐久度：0
 	//Blade of the Burning Sun
 	//灼日之刃
 	//<b>Battlecry:</b> Give all minions in your deck +2 Attack.<b>Deathrattle:</b> Return this to your hand.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：3 攻击力：2 生命值：2
+	//随从 中立 费用：0 攻击力：2 生命值：2
 	//Arcane Cannon
 	//奥术火炮
 	//[x]Can't attack.After an adjacent minionattacks, deal 2 damageto an enemy minion.

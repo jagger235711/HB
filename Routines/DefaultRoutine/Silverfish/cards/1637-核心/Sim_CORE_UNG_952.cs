@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//法术 圣骑士 费用：6
+	//法术 圣骑士 费用：5
 	//Spikeridged Steed
 	//剑龙骑术
 	//Give a minion +2/+6 and <b>Taunt</b>. When it dies, summon a Stegodon.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 萨满祭司 费用：5 攻击力：3 耐久度：1
+	//武器 萨满祭司 费用：5 攻击力：3 耐久度：0
 	//Truesilver Lance
 	//真银长枪
 	//<b>Lifesteal</b>After you <b>Overload</b>, gain +1 Durability.

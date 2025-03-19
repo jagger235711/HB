@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：2 攻击力：2 生命值：4
+	//随从 中立 费用：0 攻击力：2 生命值：4
 	//Apostle of Galakrond
 	//迦拉克隆的使徒
 	//[x]<b>Battlecry:</b> Replacecards in the Tavern withones from a Tier higher.

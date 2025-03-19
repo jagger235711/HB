@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 术士 费用：7 攻击力：10 生命值：16
+	//随从 术士 费用：0 攻击力：10 生命值：16
 	//Siegebreaker
 	//攻城恶魔
 	//<b>Taunt</b>Your other Demons have +2 Attack.

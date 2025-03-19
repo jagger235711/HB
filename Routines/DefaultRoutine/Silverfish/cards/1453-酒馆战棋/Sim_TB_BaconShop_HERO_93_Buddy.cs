@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：4 攻击力：8 生命值：4
+	//随从 中立 费用：0 攻击力：8 生命值：4
 	//Baby N'Zoth
 	//恩佐斯幼体
 	//[x]<b>Battlecry:</b> Make a friendly<b>Deathrattle</b> minion Golden.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//武器 战士 费用：3 攻击力：4 耐久度：2
+	//武器 战士 费用：3 攻击力：4 耐久度：0
 	//Warsong Axe
 	//战歌之斧
 	//After attacking a minion, your hero may attack again.

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：6 攻击力：5 生命值：5
+	//随从 中立 费用：0 攻击力：5 生命值：5
 	//Seafood Slinger
 	//海鲜投喂手
 	//<b>Battlecry:</b> Make a Murloc Golden.

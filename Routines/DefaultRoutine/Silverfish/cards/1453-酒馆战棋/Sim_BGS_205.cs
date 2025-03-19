@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：8 攻击力：8 生命值：8
+	//随从 中立 费用：0 攻击力：8 生命值：8
 	//Elistra the Immortal
 	//永恒者艾丽斯特拉
 	//[x]<b>Divine Shield</b>. <b>Reborn</b>.Whenever a friendly <b>Taunt</b>minion is attacked, this__gets attacked instead.

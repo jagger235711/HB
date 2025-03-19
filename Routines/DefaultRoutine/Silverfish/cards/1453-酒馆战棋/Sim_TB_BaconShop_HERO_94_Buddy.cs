@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-	//随从 中立 费用：5 攻击力：6 生命值：6
+	//随从 中立 费用：0 攻击力：6 生命值：6
 	//Ticket Collector
 	//奖券收集者
 	//When you sell this,<b>Discover</b> a Darkmoon Prize from the next Tier.
