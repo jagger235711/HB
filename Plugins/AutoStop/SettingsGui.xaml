@@ -41,6 +41,10 @@
                     <Label Grid.Row="2" Grid.Column="3" Content="场"  Margin="3,5,3,1" />
                     <TextBox Name="StopLossCountTextBox" Grid.Row="2" Grid.Column="2" Margin="3"/>
                     
+                    <Label Grid.Row="3" Grid.Column="0" Content="游戏时长自动投降"  Margin="3,5,3,1" />
+                    <CheckBox x:Name="ConcedeAfterXMinutesCheckBox" Grid.Row="3" Grid.Column="1" Margin="3"/>
+                    <Label Grid.Row="3" Grid.Column="3" Content="分钟"  Margin="3,5,3,1" />
+                    <TextBox Name="ConcedeMinutesCountTextBox" Grid.Row="3" Grid.Column="2" Margin="3"/>
 
                 </Grid>
 

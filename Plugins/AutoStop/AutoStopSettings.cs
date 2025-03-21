@@ -42,11 +42,12 @@ namespace AutoStop
         private bool _stopAfterXGames;
         private bool _stopAfterXWins;
         private bool _stopAfterXLosses;
-     
+        private bool _concedeAfterXMinutes;
 
         private int _stopGameCount;
         private int _stopWinCount;
         private int _stopLossCount;
+        private int _concedeMinutesCount;
 
 
 
@@ -205,6 +206,39 @@ namespace AutoStop
             }
         }
 
+        /// <summary>
+        /// 是否在游戏进行指定分钟数后自动投降
+        /// </summary>
+        [DefaultValue(true)]
+        public bool ConcedeAfterXMinutes
+        {
+            get { return _concedeAfterXMinutes; }
+            set
+            {
+                if (!value.Equals(_concedeAfterXMinutes))
+                {
+                    _concedeAfterXMinutes = value;
+                    NotifyPropertyChanged(() => ConcedeAfterXMinutes);
+                }
+            }
+        }
+
+        /// <summary>
+        /// 游戏进行多少分钟后自动投降
+        /// </summary>
+        [DefaultValue(32)]
+        public int ConcedeMinutesCount
+        {
+            get { return _concedeMinutesCount; }
+            set
+            {
+                if (!value.Equals(_concedeMinutesCount))
+                {
+                    _concedeMinutesCount = value;
+                    NotifyPropertyChanged(() => ConcedeMinutesCount);
+                }
+            }
+        }
 
     }
 }
