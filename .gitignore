@@ -9,6 +9,7 @@ bin-release/
 .vscode
 .gitee
 .gitignore
+.vs
 # Executables
 *.swf
 *.air
