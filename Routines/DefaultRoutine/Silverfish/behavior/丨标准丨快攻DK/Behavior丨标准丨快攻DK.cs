@@ -3,13 +3,297 @@ using System;
 
 namespace HREngine.Bots
 {
-    public partial class Behavior丨狂野丨暗龙牧 : Behavior
+    public partial class Behavior丨标准丨快攻DK : Behavior
     {
         private int bonus_enemy = 4;
         private int bonus_mine = 4;
 
-        public override string BehaviorName() { return "丨狂野丨暗龙牧"; }
+        public override string BehaviorName() { return "丨标准丨快攻DK"; }
         PenalityManager penman = PenalityManager.Instance;
+
+
+
+
+
+        /// <summary>
+        /// 标准快攻DK的留牌策略
+        /// </summary>
+        /// <param name="cards">起手卡牌列表</param>
+        public override void specialMulligan(List<Mulligan.CardIDEntity> cards)
+        {
+            int 怪异魔蚊 = 0;
+            int 暴行祭礼 = 0;
+            int 火羽精灵 = 0;
+            int 病变虫群 = 0;
+            int 鱼人木乃伊 = 0;
+            int 恐惧猎犬训练师 = 0;
+            int 感染吐息 = 0;
+            int 疯狂生物 = 0;
+            int 堕寒男爵 = 0;
+            int 秘迹观测者 = 0;
+            
+
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+                if (cardCN.nameCN == CardDB.cardNameCN.怪异魔蚊)
+                {
+                    怪异魔蚊 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.暴行祭礼)
+                {
+                    暴行祭礼 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.火羽精灵)
+                {
+                    火羽精灵 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.病变虫群)
+                {
+                    病变虫群 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.鱼人木乃伊)
+                {
+                    鱼人木乃伊 += 1;
+                }
+                 if (cardCN.nameCN == CardDB.cardNameCN.恐惧猎犬训练师)
+                {
+                    恐惧猎犬训练师 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.感染吐息)
+                {
+                    感染吐息 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.疯狂生物)
+                {
+                    疯狂生物 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.堕寒男爵)
+                {
+                    堕寒男爵 += 1;
+                }
+                if (cardCN.nameCN == CardDB.cardNameCN.堕寒男爵)
+                {
+                    秘迹观测者 += 1;
+                }
+            }
+
+            foreach (Mulligan.CardIDEntity card in cards)
+            {
+                CardDB.Card cardCN = CardDB.Instance.getCardDataFromID(card.id);
+
+                if (cardCN.nameCN == CardDB.cardNameCN.怪异魔蚊)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张怪异魔蚊";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = 2;
+                                tmp.holdReason = "按规则留第二张怪异魔蚊，对面没解牌就后手压死对手";
+                            }
+                        }
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.暴行祭礼)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不留暴行祭礼，没尸体还亏节奏";
+                        
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.火羽精灵)
+                {
+                     if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张火羽精灵";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张火羽精灵，留一张配合533就好";
+                            }
+                        }
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.病变虫群)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张病变虫群";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = 2;
+                                tmp.holdReason = "按规则留第二张病变虫群超展开";
+                            }
+                        }
+                    }
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.鱼人木乃伊)
+                {
+                    if (cards.Count >= 3)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "留一张鱼人木乃伊";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张鱼人木乃伊，两张太呆了";
+                            }
+                        }
+                    }
+
+                    if (cards.Count >= 3 && 火羽精灵 + 病变虫群 >= 1)
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "按特殊规则丢弃鱼人木乃伊，因为有更优质的展开";
+                    }              
+                }
+
+
+                if (cardCN.nameCN == CardDB.cardNameCN.恐惧猎犬训练师)
+                {
+                    if (cards.Count >= 3 && 怪异魔蚊 + 火羽精灵 + 病变虫群 + 鱼人木乃伊 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费牌留1张恐惧猎犬训练师";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张卡恐惧猎犬训练师";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留恐惧猎犬训练师";
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.感染吐息)
+                {
+                    if (cards.Count >= 3 && 怪异魔蚊 + 火羽精灵 + 病变虫群 + 鱼人木乃伊 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费牌留1张感染吐息";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张感染吐息";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留感染吐息";
+                    }                  
+                }
+                
+
+
+                if (cardCN.nameCN == CardDB.cardNameCN.疯狂生物)
+                {
+                    if (cards.Count >= 3 && 怪异魔蚊 + 火羽精灵 + 病变虫群 + 鱼人木乃伊 >= 1)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "先后手有能用的1费牌留1张疯狂生物";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张疯狂生物";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留疯狂生物";
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.堕寒男爵)
+                {
+                    if (cards.Count >= 3 && 怪异魔蚊 + 火羽精灵 + 病变虫群 + 鱼人木乃伊 + 恐惧猎犬训练师 + 感染吐息 + 感染吐息 + 疯狂生物>= 2)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "能按费拍怪留1张堕寒男爵过牌";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张堕寒男爵";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留堕寒男爵";
+                    }                  
+                }
+
+                if (cardCN.nameCN == CardDB.cardNameCN.秘迹观测者)
+                {
+                    if (cards.Count >= 3 && 怪异魔蚊 + 火羽精灵 + 病变虫群 + 鱼人木乃伊 + 恐惧猎犬训练师 + 感染吐息 + 感染吐息 + 疯狂生物>= 2)
+                    {
+                        card.holdByRule = 2;
+                        card.holdReason = "能按费拍怪留1张秘迹观测者控场";
+                        foreach (Mulligan.CardIDEntity tmp in cards)
+                        {
+                            if (tmp.entitiy == card.entitiy) continue;
+                            if (tmp.id == card.id)
+                            {
+                                tmp.holdByRule = -2;
+                                tmp.holdReason = "按规则丢弃第二张秘迹观测者";
+                            }
+                        }
+                    }
+                    else
+                    {
+                        card.holdByRule = -2;
+                        card.holdReason = "不符合特殊规则不留秘迹观测者";
+                    }                  
+                }
+
+                //剩下大于等于4费的卡hb是默认不留的
+            }       
+        }
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 
         public override int getComboPenality(CardDB.Card card, Minion target, Playfield p, Handmanager.Handcard nowHandcard)
         {
@@ -20,215 +304,133 @@ namespace HREngine.Bots
             }
             // 初始惩罚值（负为优先打出该牌，正为低优先打出该牌）
             int pen = 0;
-            //一费检查手牌有没有船载火炮、幸运币、海盗，此处为没有海盗，返回值1000不打出此combo。
-            if (Hrtprozis.Instance.gTurn <= 2 && card.race == CardDB.Race.PIRATE && p.enemyMinions.Count == 0)
-            {
-                foreach (Handmanager.Handcard hc in p.owncards)
-                {
-                    if (hc.card.nameCN == CardDB.cardNameCN.船载火炮)
-                    {
-                        foreach (Handmanager.Handcard hhc in p.owncards)
-                        {
-                            if (hhc.card.nameCN == CardDB.cardNameCN.幸运币 || hhc.getManaCost(p) == 1 && hhc.card.race != CardDB.Race.PIRATE && hhc.card.type == CardDB.cardtype.MOB)
-                            {
-                                return 1000;
-                            }
-                        }
-                    }
-                }
-            }
-            //如果是海盗并且随从有船载火炮 增加基础推荐出牌。
-            if(card.race == CardDB.Race.PIRATE)	
-			{
-				foreach (Minion m in p.ownMinions)
-				{
-					if(m.handcard.card.nameCN == CardDB.cardNameCN.船载火炮)
-					{
-						pen -= 100;
-					}
-				}
-			}
-
+            
             //此处为单卡描述
             switch (card.nameCN)		
-            {
-                case CardDB.cardNameCN.亡者复生:
-					if(p.getCorpseCount() < 2)	// 如果墓地里的尸体小于2 建议不出牌。 
-					{
-					return 1000;
-					}
-                    break;
-                case CardDB.cardNameCN.暗影投弹手:
-                    foreach (Handmanager.Handcard hc in p.owncards)
+            {   
+
+                case CardDB.cardNameCN.幸运币:
+                foreach (Handmanager.Handcard hc in p.owncards)
                         {
-                            if (hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者)
+                            if ( hc.card.nameCN == CardDB.cardNameCN.怪异魔蚊 && p.ownMinions.Count >= 1 )
                             {
 
-                             pen -= 30;
+                            pen -= 100;
 
                             }
                         }
-                    break;
-                case CardDB.cardNameCN.暮光雏龙:
-                    foreach (Handmanager.Handcard hc in p.owncards)
-                        {
-                            if (hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者)
-                            {
+                break;
+                case CardDB.cardNameCN.怪异魔蚊:
+                if (p.ownMinions.Count >= 2 )  pen = -60;
+                pen -= 6;
+                break;
 
-                             pen -= 30;
-
-                            }
-                        }
-                    break;
-                case CardDB.cardNameCN.海盗帕奇斯:
-                    foreach (Handmanager.Handcard hc in p.owncards)
-                        {
-                            if (hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者)
-                            {
-
-                             pen -= 30;
-
-                            }
-                        }
-                    break;
-                case CardDB.cardNameCN.礼盒雏龙://成功
-                    foreach (Handmanager.Handcard hc in p.owncards)
-                        {
-                            if ( hc.card.nameCN == CardDB.cardNameCN.暮光雏龙 || hc.card.nameCN == CardDB.cardNameCN.错误产物 || hc.card.nameCN == CardDB.cardNameCN.随船外科医师 || hc.card.nameCN == CardDB.cardNameCN.深海融合怪 || hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者 || hc.card.nameCN == CardDB.cardNameCN.龙鳞祭司)
-                            {
-
-                            pen -= 40;
-
-                            }
-                        }
-                        pen -= 2;  
-                    break;
-                case CardDB.cardNameCN.精神灼烧:
-                    if (target != null && target.Hp <= 2 || !target.own)       //对方随从生命值小于 2
-					{
-						pen -= 10;
-						break;
-					}
-                    if(p.enemyHero.Hp <= 5 && target != null && target.Hp <= 2)           //我方随从生命值小于 2
-					{
-						pen -= 10000;
-						break;
-					}
-                    pen += 2;
-					break;
-                case CardDB.cardNameCN.虚触侍从:
-                    if (p.ownMinions.Count >= p.enemyMinions.Count && p.ownMinions.Count >= 1)	//暗牧的随从攻击力都偏低，就不计算 敌我攻击力之类的了，如果敌方随从更多，应该不下。
+                case CardDB.cardNameCN.暴行祭礼:
+                if (p.getCorpseCount() < 2) // 如果墓地里的尸体小于5 不打出此牌。 
                     {
-                        pen -= 10;
+                        pen += 500;
                     }
-                    else
+                    if (p.owncards.Count <= 2 && p.getCorpseCount() >= 2 && p.ownMaxMana >= 4)   // 撑起龟壳保护随从
                     {
-                        pen += 2;
+                        pen -= 5;
                     }
-                    break;
-                case CardDB.cardNameCN.错误产物:
-                    foreach (Handmanager.Handcard hc in p.owncards)
+                break;
+
+                case CardDB.cardNameCN.火羽精灵:
+                break;
+
+                case CardDB.cardNameCN.病变虫群:
+                foreach (Handmanager.Handcard hc in p.owncards)
                         {
-                            if (hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者)
+                            if ( hc.card.nameCN == CardDB.cardNameCN.怪异魔蚊 || hc.card.nameCN == CardDB.cardNameCN.火羽精灵 || hc.card.nameCN == CardDB.cardNameCN.鱼人木乃伊)
                             {
 
-                             pen -= 30;
+                            pen -= 10;
 
                             }
                         }
-                    pen -= 2;
-                    break;
-                case CardDB.cardNameCN.随船外科医师:
-                    foreach (Handmanager.Handcard hc in p.owncards)
+                        pen -= 7;  
+                break;
+
+                case CardDB.cardNameCN.鱼人木乃伊:
+                break;
+                
+                case CardDB.cardNameCN.恐惧猎犬训练师:
+				break;
+                
+                case CardDB.cardNameCN.感染吐息:
+                if (p.ownMaxMana == 2 && target.Hp == 3) pen -= 20;
+                if (p.ownMaxMana == 2 && target.Hp == 2) pen -= 20; 
+                break;
+
+                case CardDB.cardNameCN.疯狂生物:
+                foreach (Handmanager.Handcard hc in p.owncards)
                         {
-                            if (hc.card.race == CardDB.Race.PIRATE || hc.card.nameCN == CardDB.cardNameCN.错误产物 || hc.card.nameCN == CardDB.cardNameCN.口渴的流浪者 || hc.card.nameCN == CardDB.cardNameCN.虚触侍从)
+                            if ( hc.card.nameCN == CardDB.cardNameCN.怪异魔蚊 || hc.card.nameCN == CardDB.cardNameCN.火羽精灵 || hc.card.nameCN == CardDB.cardNameCN.鱼人木乃伊 && p.enemyMinions.Count == 0)
                             {
 
-                             pen -= 35;
+                            pen -= 10;
 
                             }
                         }
-                        pen -= 2;                                                        
-                    break;
-                case CardDB.cardNameCN.龙鳞祭司:
-                        foreach (Handmanager.Handcard hc in p.owncards)
-                        {
-                            if (hc.card.race == CardDB.Race.DRAGON)
-                            {
+                break;
 
-                             pen -= 10;
+                case CardDB.cardNameCN.堕寒男爵:
+                if (p.ownMaxMana == 3) pen -= 20;
+                if (p.owncards.Count <= 3) pen -= 20; //手牌低于3时尽快打出
+                if (p.owncards.Count >= 7) pen += 100;
+                break;
 
-                            }
-                        }
-                    break;
-                case CardDB.cardNameCN.伴唱机:               
-                    break;
-                case CardDB.cardNameCN.暮光欺诈者:               
-                    break;
-                case CardDB.cardNameCN.深海融合怪:
-                    if (target != null && target.handcard.card.race == CardDB.Race.DRAGON)
+                case CardDB.cardNameCN.秘迹观测者:
+                if (p.ownMinions.Count >= 2 && p.ownMaxMana == 3)  pen = -50;
+                if (p.ownMinions.Count >= p.enemyMinions.Count)  pen = -50;
+                break;
+
+                case CardDB.cardNameCN.恶毒恐魔:               
+                break;
+                
+                case CardDB.cardNameCN.血虫感染:
+                if (p.ownMaxMana == 4) pen -= 30;
+                if (p.owncards.Count <= 3) pen -= 20; //手牌低于3时尽快打出
+                // 统计敌方场上生命值小于等于1的随从数量，同时减去这些随从攻击力的平方值。
+                int kill_num = 0;
+                if (p.enemyMinions.Count > 0)
+                    foreach (Minion mi in p.enemyMinions)
                     {
-                    pen -= 20;
-                    }
-                    break;
-                case CardDB.cardNameCN.黑暗主教本尼迪塔斯:
-                    break;
-                case CardDB.cardNameCN.口渴的流浪者:
-                    if (nowHandcard.getManaCost(p) <= 0) pen -= 60;
-                    if (nowHandcard.getManaCost(p) <= 1) pen -= 40;
-                    if (nowHandcard.getManaCost(p) <= 3) pen -= 10;
-                    if (nowHandcard.getManaCost(p) > 3) pen += 10;
-                    break;
-                case CardDB.cardNameCN.奇利亚斯豪华版3000型:
-                    if (p.ownMinions.Count >= 3) pen -= 30;
-                    if (nowHandcard.getManaCost(p) <= 0) pen -= 60;
-                    if (nowHandcard.getManaCost(p) <= 1) pen -= 40;
-                    if (nowHandcard.getManaCost(p) <= 3) pen -= 10;
-                    if (nowHandcard.getManaCost(p) > 3) pen += 10;
-                    break;
-                case CardDB.cardNameCN.心灵尖刺:
-                    if (target != null )
-                    {
-                         if (target.own)
+                        if (mi.Hp <= 1)                   
                         {
-                        return 1000; // 规定不以己方为目标
+                        kill_num++;
+                        pen -= mi.Angr * mi.Angr;
                         }
-                    else
-                        {
-                        pen -= 3;   
-                        }
-                    }
-                    break;
-                case CardDB.cardNameCN.心灵震爆:
-                    if (p.enemyHero.immune) return 1000;    //对面免疫时不打。
-                                                         //对面使用脱罪力证不打。(不成功)
-                    //如果对手没有嘲讽随从，然后计算你的总攻击力加上你可以对敌方英雄造成的伤害，看是否足够来击败对手的英雄。
-                    if (p.anzEnemyTaunt == 0 && p.calTotalAngr() + p.calDirectDmg(p.mana, false) >= p.enemyHero.Hp + p.enemyHero.armor)
+                    }               
+                break;
+
+                case CardDB.cardNameCN.展馆茶壶:
+                if (p.ownMinions.Count >= 3 && p.ownMaxMana == 5)  pen = -150;
+                if (p.ownMinions.Count >= 3 )  pen = -80;
+                break;
+
+                case CardDB.cardNameCN.丑恶的残躯:
+                if (p.ownMinions.Count <= 5 && p.ownMaxMana == 6)  pen = -100;
+                if (p.ownMinions.Count <= 5 )  pen = -70;
+                break;
+
+                case CardDB.cardNameCN.气闸破损:
+                if (p.getCorpseCount() < 5) // 如果墓地里的尸体小于5 不打出此牌。 
                     {
-                        return -20;
+                        pen += 500;
                     }
-                    if (p.owncards.FindAll(x => x.card.nameCN == CardDB.cardNameCN.心灵震爆).Count >= 3 && p.anzEnemyTaunt == 0 && p.calTotalAngr() + p.calDirectDmg(p.mana, false) >= p.enemyHero.Hp + p.enemyHero.armor)
+                    if (p.ownMinions.Count >= 2 || p.getCorpseCount() >= 5)   // 撑起龟壳保护随从
                     {
-                        return -20;
+                        pen -= 50;
                     }
-                    if (p.ownWeapon.Durability == 0) //首先检查己方武器的耐久度是否为0
-                    {
-                        if (p.enemySecretCount == 0) //进一步检查对手是否没有奥秘
-                            foreach (Handmanager.Handcard hc in p.owncards)
-                            {
-                                if ( hc.card.nameCN == CardDB.cardNameCN.暮光欺诈者) return 0;
-                            }
-                        pen += 50;
-                        if (p.ownAbilityReady) return 200;//少生孩子多射箭
-                        // 手里有别牌就藏着
-                        foreach (Handmanager.Handcard hc in p.owncards)
-                        {
-                            if (hc.getManaCost(p) <= nowHandcard.getManaCost(p) && hc.card.nameCN != CardDB.cardNameCN.心灵震爆) return 200;
-                        }
-                    }
-                    else
-                        pen += 10;
-                    break;
+                break;
+
+                case CardDB.cardNameCN.食尸鬼冲锋:
+                if (p.ownMinions.Count == 7 )  pen = +700;
+                pen += 1;
+                break;
+        
                 }
             return pen;
         }
@@ -298,24 +500,7 @@ namespace HREngine.Bots
                 //// 出牌排序优先
                 switch (a.card.card.nameCN)
                 {
-                    case CardDB.cardNameCN.心灵震爆:
-                        if (canBe_flameward) retval -= i * 100 - 500;
-                        break;
-                    case CardDB.cardNameCN.心灵尖刺:
-                        if (canBe_flameward) retval -= i * 100 - 500;
-                        break;
-                    case CardDB.cardNameCN.礼盒雏龙:
-                        retval -= 3 * i;
-                        break;
-                    case CardDB.cardNameCN.随船外科医师:
-                        retval -= 2 * i;
-                        break;
-                    case CardDB.cardNameCN.虚触侍从:
-                        retval -= (i * 4 > 10 ? 10 : i * 4);
-                        break;
-                    case CardDB.cardNameCN.亡者复生:
-                        retval -= 30;
-                        break;
+                    
                 }
             }
             // 对手基本随从交换模拟
@@ -378,42 +563,7 @@ namespace HREngine.Bots
 			// Helpfunctions.Instance.logg("发现卡：" + card.nameCN);
 			// Helpfunctions.Instance.logg("发现卡类型：" + card.race);
 			// Helpfunctions.Instance.logg("发现卡费用：" + card.cost);
-            switch (card.nameCN)
-            {
-            //法术（if条件成功了！）
-            case CardDB.cardNameCN.心灵震爆:
-            if (p.enemyHero.Hp <= 5 + p.calTotalAngr()) return 100;
-            return 15;                
-            case CardDB.cardNameCN.精神灼烧:
-            if (p.enemyHero.Hp >= 3 + p.calTotalAngr() && p.ownMinions.Count <= p.enemyMinions.Count) return 20;
-            return 10;  
-            case CardDB.cardNameCN.亡者复生:
-            return 5;
             
-            //随从（龙）
-            case CardDB.cardNameCN.时空扭曲者扎里米:
-            return 50; 
-            case CardDB.cardNameCN.礼盒雏龙:
-            return 30; 
-            case CardDB.cardNameCN.暮光雏龙:
-            case CardDB.cardNameCN.随船外科医师:
-            case CardDB.cardNameCN.错误产物:
-            case CardDB.cardNameCN.精灵龙:
-            return 20; 
-            case CardDB.cardNameCN.光明之翼:
-            case CardDB.cardNameCN.星光雏龙:
-            case CardDB.cardNameCN.深蓝系咒师:
-            case CardDB.cardNameCN.碧蓝幼龙:
-            return 15;
-            case CardDB.cardNameCN.黏土巢母:
-            case CardDB.cardNameCN.骸骨巨龙:
-            return 10; 
-
-            }
-            if (card.race == CardDB.Race.DRAGON)    
-            {
-            return 3;
-            }
             return 0;
 
         }
@@ -711,9 +861,6 @@ namespace HREngine.Bots
             }
             return pen;
         }
-
-
-
 
     }
 }
