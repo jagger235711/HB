@@ -11,7 +11,14 @@ namespace HREngine.Bots
 	//<b>战吼，亡语：</b>抽一张牌。
 	class Sim_RLK_708 : SimTemplate
 	{
+		public override void getBattlecryEffect(Playfield p, Minion own, Minion target, int choice)
+		{
+            p.drawACard(CardDB.cardIDEnum.None, own.own);
+		}
 		
-		
+		public override void onDeathrattle(Playfield p, Minion m)
+        {
+            p.drawACard(CardDB.cardIDEnum.None, m.own);
+        }
 	}
 }

@@ -11,7 +11,25 @@ namespace HREngine.Bots
 	//在你的回合结束时，你的英雄会从生命值最低的敌人处偷取@点生命值。
 	class Sim_EDR_810t : SimTemplate
 	{
-		
+		public override void onTurnEndsTrigger(Playfield p, Minion triggerEffectMinion, bool turnEndOfOwner)
+        {
+            if (triggerEffectMinion.own == turnEndOfOwner)
+            {
+                Minion target = null;
+
+                if (turnEndOfOwner)
+                {
+                    target = p.getEnemyCharTargetForRandomSingleDamage(1);
+                }
+                else
+                {
+                    target = p.searchRandomMinion(p.ownMinions, searchmode.searchHighestAttack); 
+                    if (target == null) target = p.ownHero;
+                }
+                p.minionGetDamageOrHeal(target, 1, true);
+                triggerEffectMinion.stealth = false;
+            }
+        }
 		
 	}
 }
