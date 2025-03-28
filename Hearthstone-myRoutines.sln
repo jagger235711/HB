@@ -5,7 +5,7 @@ VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultBot", "Bots\DefaultBot\DefaultBot.csproj", "{10F660CB-C2A3-4A24-91B2-8C184229A0E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultRoutines", "Routines\DefaultRoutine\DefaultRoutines.csproj", "{58DCED32-57AA-48E3-ADB4-00E9176E860C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DefaultRoutine", "Routines\DefaultRoutine\DefaultRoutine.csproj", "{58DCED32-57AA-48E3-ADB4-00E9176E860C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monitor", "Plugins\Monitor\Monitor.csproj", "{B2D0202A-06B7-4E83-8062-FDC31FE9B8B9}"
 EndProject
