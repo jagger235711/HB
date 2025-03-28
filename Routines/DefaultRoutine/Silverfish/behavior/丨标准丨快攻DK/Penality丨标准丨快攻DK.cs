@@ -25,6 +25,7 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.快速射击:
                 case CardDB.cardNameCN.自然死亡:
                 case CardDB.cardNameCN.缠人根须:
+                case CardDB.cardNameCN.尸虫噬咬:
                     if (target != null && target.own) return 1000;
                     break;
             }

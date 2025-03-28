@@ -330,9 +330,9 @@ namespace HREngine.Bots
                     {
                         pen += 500;
                     }
-                    if (p.owncards.Count <= 2 && p.getCorpseCount() >= 2 && p.ownMaxMana >= 4)   // 撑起龟壳保护随从
+                    if (p.getCorpseCount() >= 2 && p.ownMaxMana >= 4)   
                     {
-                        pen -= 5;
+                        pen -= 25;
                     }
                 break;
 
@@ -360,7 +360,18 @@ namespace HREngine.Bots
                 
                 case CardDB.cardNameCN.感染吐息:
                 if (p.ownMaxMana == 2 && target.Hp == 3) pen -= 20;
-                if (p.ownMaxMana == 2 && target.Hp == 2) pen -= 20; 
+                if (p.ownMaxMana == 2 && target.Hp == 2) pen -= 20;
+                int kill_num = 0;
+                if (p.enemyMinions.Count > 0)
+                    foreach (Minion mi in p.enemyMinions)
+                    {
+                        if (mi.Hp <= 1)                   
+                        {
+                        kill_num++;
+                        pen -= mi.Angr * mi.Angr;
+                        }
+                    }
+                pen -= kill_num * 10; 
                 break;
 
                 case CardDB.cardNameCN.疯狂生物:
@@ -393,16 +404,17 @@ namespace HREngine.Bots
                 if (p.ownMaxMana == 4) pen -= 30;
                 if (p.owncards.Count <= 3) pen -= 20; //手牌低于3时尽快打出
                 // 统计敌方场上生命值小于等于1的随从数量，同时减去这些随从攻击力的平方值。
-                int kill_num = 0;
+                int kill_num1 = 0;
                 if (p.enemyMinions.Count > 0)
                     foreach (Minion mi in p.enemyMinions)
                     {
                         if (mi.Hp <= 1)                   
                         {
-                        kill_num++;
+                        kill_num1++;
                         pen -= mi.Angr * mi.Angr;
                         }
-                    }               
+                    }
+                pen -= kill_num1 * 10;               
                 break;
 
                 case CardDB.cardNameCN.展馆茶壶:
@@ -413,17 +425,36 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.丑恶的残躯:
                 if (p.ownMinions.Count <= 5 && p.ownMaxMana == 6)  pen = -100;
                 if (p.ownMinions.Count <= 5 )  pen = -70;
+                int kill3_num = 0;
+                if (p.enemyMinions.Count > 0)
+                    foreach (Minion mi in p.enemyMinions)
+                    {
+                        if (mi.Hp <= 3)                   
+                        {
+                        kill3_num++;
+                        pen -= mi.Angr * mi.Angr;
+                        }
+                    }
+                pen -= kill3_num * 10;
                 break;
 
                 case CardDB.cardNameCN.气闸破损:
-                if (p.getCorpseCount() < 5) // 如果墓地里的尸体小于5 不打出此牌。 
+                if (p.getCorpseCount() < 5 || p.ownMinions.Count >= 6 ) // 如果墓地里的尸体小于5 不打出此牌。 
                     {
                         pen += 500;
                     }
-                    if (p.ownMinions.Count >= 2 || p.getCorpseCount() >= 5)   // 撑起龟壳保护随从
+                if ( p.getCorpseCount() >= 5 && p.ownMinions.Count <= 5 )   // 撑起龟壳保护随从
                     {
-                        pen -= 50;
+                        pen -= 60;
                     }
+                if ( p.getCorpseCount() >= 5 && p.ownMinions.Count <= 5 &&p.enemyMinions.Count >= p.ownMinions.Count)   // 撑起龟壳保护随从
+                    {
+                        pen -= 90;
+                    }
+                break;
+
+                case CardDB.cardNameCN.死亡使者萨鲁法尔:
+                pen -= 5;
                 break;
 
                 case CardDB.cardNameCN.食尸鬼冲锋:
@@ -563,9 +594,89 @@ namespace HREngine.Bots
 			// Helpfunctions.Instance.logg("发现卡：" + card.nameCN);
 			// Helpfunctions.Instance.logg("发现卡类型：" + card.race);
 			// Helpfunctions.Instance.logg("发现卡费用：" + card.cost);
-            
-            return 0;
+            switch (card.nameCN)
+            {
+    
+            //随从
 
+            case CardDB.cardNameCN.萨萨里安:
+            case CardDB.cardNameCN.丑恶的残躯:
+            case CardDB.cardNameCN.侏儒嚼嚼怪:
+            case CardDB.cardNameCN.髓骨使御者:
+            return 25;
+
+            case CardDB.cardNameCN.堕寒男爵:
+            case CardDB.cardNameCN.尸魔花:
+            case CardDB.cardNameCN.喷灯破坏者:
+            case CardDB.cardNameCN.团队领袖:
+            case CardDB.cardNameCN.大作战狂热玩家:
+            case CardDB.cardNameCN.展馆茶杯:
+            case CardDB.cardNameCN.秘迹观测者:
+            case CardDB.cardNameCN.法瑞克:
+            case CardDB.cardNameCN.玩具盗窃恶鬼:
+            case CardDB.cardNameCN.泼漆彩鳍鱼人:
+            case CardDB.cardNameCN.笨拙的搬运工:
+            case CardDB.cardNameCN.血蓟幻术师:
+            case CardDB.cardNameCN.躁动的愤怒卫士:
+            case CardDB.cardNameCN.达卡莱附魔师:
+            case CardDB.cardNameCN.迅猛龙先锋:
+            case CardDB.cardNameCN.逃生舱:
+            case CardDB.cardNameCN.缝合巨人:
+            return 20;
+
+            case CardDB.cardNameCN.死亡金属骑士:
+            case CardDB.cardNameCN.毛绒暴暴狗:
+            case CardDB.cardNameCN.彩虹裁缝:
+            case CardDB.cardNameCN.A3型机械金刚:
+            case CardDB.cardNameCN.乌祖尔暴怒者:
+            case CardDB.cardNameCN.南海船长:
+            case CardDB.cardNameCN.巢群虫后:
+            case CardDB.cardNameCN.死亡侍僧:
+            case CardDB.cardNameCN.卡牌评级师:
+            case CardDB.cardNameCN.可怕的主厨:
+            case CardDB.cardNameCN.扮装选手:
+            case CardDB.cardNameCN.法夜欺诈者:
+            case CardDB.cardNameCN.混蒙畸体:
+            case CardDB.cardNameCN.焦油爬行者:
+            case CardDB.cardNameCN.爆破工程师:
+            case CardDB.cardNameCN.甜蜜雪灵:
+            case CardDB.cardNameCN.穆克拉:
+            case CardDB.cardNameCN.粗暴的猢狲:
+            case CardDB.cardNameCN.红衣指挥官:
+            case CardDB.cardNameCN.荆棘帮暴徒:
+            case CardDB.cardNameCN.软软多头蛇:
+            case CardDB.cardNameCN.锈烂蝰蛇:
+            case CardDB.cardNameCN.鱼人领军:           
+            return 10;
+
+            case CardDB.cardNameCN.骷髅帮手:
+            case CardDB.cardNameCN.恐惧猎犬训练师:
+            case CardDB.cardNameCN.蹒跚的僵尸坦克:
+            case CardDB.cardNameCN.恶毒恐魔:
+            case CardDB.cardNameCN.蛛魔护群守卫:
+            case CardDB.cardNameCN.黑棘针线师:
+            case CardDB.cardNameCN.死亡使者萨鲁法尔:
+            case CardDB.cardNameCN.行程保安:
+            case CardDB.cardNameCN.变异生命体:
+            case CardDB.cardNameCN.套娃傀儡:
+            return 15;
+
+            case CardDB.cardNameCN.扛包收尸人:
+            case CardDB.cardNameCN.寒冬先锋:
+            case CardDB.cardNameCN.脆骨海盗:
+            case CardDB.cardNameCN.滑雪高手:
+            case CardDB.cardNameCN.业余傀儡师:
+            case CardDB.cardNameCN.小精灵:
+            case CardDB.cardNameCN.鱼人木乃伊:
+            case CardDB.cardNameCN.狂野炎术师:
+            case CardDB.cardNameCN.疯狂的炼金师:
+            case CardDB.cardNameCN.血法师萨尔诺斯:
+            case CardDB.cardNameCN.黑骑士:
+            case CardDB.cardNameCN.冰喉:
+            return 5;
+
+            }
+            return 0;
         }
         // 敌方随从价值 主要等于（HP + Angr） * 4
         public override int getEnemyMinionValue(Minion m, Playfield p)
@@ -658,6 +769,23 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.战场通灵师:
                 case CardDB.cardNameCN.纸艺天使:
                 case CardDB.cardNameCN.纳亚克海克森:
+                case CardDB.cardNameCN.烈焰亡魂:
+                case CardDB.cardNameCN.饥饿食客哈姆:
+                case CardDB.cardNameCN.箭矢工匠:
+                case CardDB.cardNameCN.傀儡大师多里安:
+                case CardDB.cardNameCN.脆骨海盗:
+                case CardDB.cardNameCN.暗影升腾者:
+                case CardDB.cardNameCN.赤红教士:
+                case CardDB.cardNameCN.受伤的搬运工:
+                case CardDB.cardNameCN.阿米图斯的信徒:
+                case CardDB.cardNameCN.隐藏宝石:
+                case CardDB.cardNameCN.落难的大法师:
+                case CardDB.cardNameCN.虚空协奏者:
+                case CardDB.cardNameCN.神话观测者:
+                case CardDB.cardNameCN.奥术工匠:
+                case CardDB.cardNameCN.食肉魔块:
+                case CardDB.cardNameCN.小动物看护者:
+                case CardDB.cardNameCN.扭曲的织网蛛:
                     retval += 150;
                     break;
               
@@ -679,8 +807,11 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.宝藏经销商:
                 case CardDB.cardNameCN.随船外科医师:
                 case CardDB.cardNameCN.玩具船:
+                case CardDB.cardNameCN.淘金客:
+                case CardDB.cardNameCN.雏龙牧人:
                     retval += 50;
                     break;
+
                 // 算有点用
                 case CardDB.cardNameCN.贪婪的书虫:
                 case CardDB.cardNameCN.治疗图腾:
@@ -693,6 +824,25 @@ namespace HREngine.Bots
                 case CardDB.cardNameCN.飞刀杂耍者:
                     retval += 15;
                     break;
+
+                case CardDB.cardNameCN.白银之手新兵:
+                case CardDB.cardNameCN.脆弱的食尸鬼:
+                case CardDB.cardNameCN.伊丽扎刺刃:
+                case CardDB.cardNameCN.石心之王:
+                case CardDB.cardNameCN.神秘的蛋:
+                    retval -= 150;
+                    break;
+                
+                case CardDB.cardNameCN.侏儒飞行员诺莉亚:
+                if (p.anzEnemyTaunt == 0 && p.calTotalAngr()  >= p.enemyHero.Hp + p.enemyHero.armor)
+                    retval -= 150;
+                    break;
+               
+                   
+                
+
+                
+                
             }
             return retval;
         }

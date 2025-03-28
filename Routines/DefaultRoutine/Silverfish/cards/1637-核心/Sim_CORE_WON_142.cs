@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HREngine.Bots
 {
-    class Sim_WON_142 : SimTemplate //* 展馆茶壶 Menagerie Jug
+    class Sim_CORE_WON_142 : SimTemplate //* 展馆茶壶 Menagerie Jug
     {
         //[x]<b>Battlecry:</b> Give 3 randomfriendly minions of differentminion types +3/+3.
         // <b>战吼：</b>随机使三个不同类型的友方随从获得+3/+3。
