@@ -9,6 +9,7 @@ bin-release/
 .vscode
 .gitee
 .gitignore
+.vs
 # Executables
 *.swf
 *.air
@@ -22,3 +23,7 @@ bin-release/
 # should NOT be excluded as they contain compiler settings and other important
 # information for Eclipse / Flash Builder.
 
+*.sln
+mydll/
+Properties/
+*.csproj
