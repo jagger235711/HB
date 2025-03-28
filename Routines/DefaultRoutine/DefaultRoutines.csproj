@@ -122,6 +122,8 @@
     <Compile Include="Silverfish\ai\Hrtprozis.cs" />
     <Compile Include="Silverfish\behavior\丨标准丨元素萨\Behavior丨标准丨元素萨.cs" />
     <Compile Include="Silverfish\behavior\丨标准丨元素萨\Penality丨标准丨元素萨.cs" />
+    <Compile Include="Silverfish\behavior\丨标准丨快攻DK\Behavior丨标准丨快攻DK.cs" />
+    <Compile Include="Silverfish\behavior\丨标准丨快攻DK\Penality丨标准丨快攻DK.cs" />
     <Compile Include="Silverfish\behavior\丨狂野丨快攻暗牧\Penality丨狂野丨快攻暗牧.cs" />
     <Compile Include="Silverfish\behavior\丨狂野丨快攻暗牧\Behavior丨狂野丨快攻暗牧.cs" />
     <Compile Include="Silverfish\behavior\丨标准丨元素法\Behavior丨标准丨元素法.cs" />
@@ -142,8 +144,6 @@
     <Compile Include="Silverfish\behavior\丨狂野丨奥秘法\Behavior丨狂野丨奥秘法.cs" />
     <Compile Include="Silverfish\behavior\丨通用丨暗牧\Penality丨通用丨暗牧.cs" />
     <Compile Include="Silverfish\behavior\丨通用丨暗牧\Behavior丨通用丨暗牧.cs" />
-    <Compile Include="Silverfish\behavior\丨狂野丨暗龙牧\Penality丨狂野丨暗龙牧.cs" />
-    <Compile Include="Silverfish\behavior\丨狂野丨暗龙牧\Behavior丨狂野丨暗龙牧.cs" />
     <Compile Include="Silverfish\behavior\丨通用丨酸鱼人萨\Penality丨通用丨酸鱼人萨.cs" />
     <Compile Include="Silverfish\behavior\丨通用丨酸鱼人萨\Behavior丨通用丨酸鱼人萨.cs" />
     <Compile Include="Silverfish\Helpers\Hsreplay.cs" />
@@ -26383,6 +26383,8 @@
   <ItemGroup>
     <Content Include="Silverfish\behavior\丨标准丨元素萨\_mulligan.txt" />
     <Content Include="Silverfish\behavior\丨标准丨元素萨\_settings.txt" />
+    <Content Include="Silverfish\behavior\丨标准丨快攻DK\_mulligan.txt" />
+    <Content Include="Silverfish\behavior\丨标准丨快攻DK\_settings.txt" />
     <Content Include="Silverfish\behavior\丨狂野丨快攻暗牧\_mulligan.txt" />
     <Content Include="Silverfish\behavior\丨狂野丨快攻暗牧\_settings.txt" />
     <Content Include="Silverfish\behavior\丨标准丨元素法\_mulligan.txt" />
@@ -26404,8 +26406,6 @@
     <Content Include="Silverfish\behavior\丨狂野丨奥秘法\_settings.txt" />
     <Content Include="Silverfish\behavior\丨通用丨暗牧\_mulligan.txt" />
     <Content Include="Silverfish\behavior\丨通用丨暗牧\_settings.txt" />
-    <Content Include="Silverfish\behavior\丨狂野丨暗龙牧\_mulligan.txt" />
-    <Content Include="Silverfish\behavior\丨狂野丨暗龙牧\_settings.txt" />
     <Content Include="Silverfish\behavior\丨通用丨酸鱼人萨\_mulligan.txt" />
     <Content Include="Silverfish\behavior\丨通用丨酸鱼人萨\_settings.txt" />
     <Content Include="Silverfish\说明.txt" />
